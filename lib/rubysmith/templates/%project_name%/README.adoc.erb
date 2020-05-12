@@ -1,0 +1,78 @@
+:toc: macro
+:toclevels: 5
+:figure-caption!:
+
+= <%= realm.project_label %>
+
+toc::[]
+
+== Features
+
+== Screencasts
+
+== Requirements
+
+. link:https://www.ruby-lang.org[Ruby].
+
+== Setup
+<% if realm.build_setup %>
+
+To set up the project, run:
+
+[source,bash]
+----
+bin/setup
+----
+<% end %>
+
+== Usage
+<% if realm.build_console %>
+
+=== Console
+
+To use the IRB console to invesitage and/or experiment with all project objects, run:
+
+[source,bash]
+----
+bin/console
+----
+<% end %>
+
+== Tests
+
+To test, run:
+
+[source,bash]
+----
+bundle exec rake
+----
+
+== Versioning
+
+Read link:https://semver.org[Semantic Versioning] for details. Briefly, it means:
+
+* Major (X.y.z) - Incremented for any backwards incompatible public API changes.
+* Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
+* Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
+
+== Code of Conduct
+
+Please note that this project is released with a link:CODE_OF_CONDUCT.adoc[CODE OF CONDUCT]. By
+participating in this project you agree to abide by its terms.
+
+== Contributions
+
+Read link:CONTRIBUTING.adoc[CONTRIBUTING] for details.
+
+== License
+
+Read link:LICENSE.adoc[LICENSE] for details.
+
+== History
+
+Read link:CHANGES.adoc[CHANGES] for details.
+Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+
+== Credits
+
+Engineered by link:<%= realm.author_url %>[<%= realm.author_name %>].

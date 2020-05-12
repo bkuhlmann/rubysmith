@@ -1,0 +1,207 @@
+:toc: macro
+:toclevels: 5
+:figure-caption!:
+
+= Rubysmith
+
+[link=http://badge.fury.io/rb/rubysmith]
+image::https://badge.fury.io/rb/rubysmith.svg[Gem Version]
+[link=https://circleci.com/gh/bkuhlmann/rubysmith]
+image::https://circleci.com/gh/bkuhlmann/rubysmith.svg?style=svg[Circle CI Status]
+
+A command line interface for smithing Ruby projects.
+
+toc::[]
+
+== Features
+
+* Builds a Ruby project skeleton for custom design and development.
+* Uses link:https://www.alchemists.io/projects/refinements[Refinements] Ruby core library enhancements.
+* Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
+* Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
+* Supports link:https://github.com/rubysec/bundler-audit[Bundler Audit].
+* Supports link:https://git-scm.com[Git]
+* Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
+* Supports link:https://github.com/guard/guard[Guard].
+* Supports link:http://pryrepl.org[Pry].
+* Supports link:https://github.com/troessner/reek[Reek].
+* Supports link:https://rspec.info[RSpec].
+* Supports link:https://github.com/rubocop-hq/rubocop[Rubocop].
+* Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
+* Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
+* Supports common settings and a structured layout for building projects.
+* Provides common documentation:
+** README
+** CHANGES
+** CONTRIBUTING
+** CODE OF CONDUCT
+** LICENSE
+
+== Screencasts
+
+[link=https://www.alchemists.io/screencasts/rubysmith]
+image::https://www.alchemists.io/images/screencasts/rubysmith/cover.svg[Screencast,600,240,role=focal_point]
+
+== Requirements
+
+. A UNIX-based system.
+. link:https://www.ruby-lang.org[Ruby].
+. link:https://rubygems.org[RubyGems].
+. link:https://github.com/bundler/bundler[Bundler].
+
+== Setup
+
+=== Production
+
+To install, run:
+
+[source,bash]
+----
+gem install rubysmith
+----
+
+=== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/rubysmith.git
+cd rubysmith
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
+
+== Usage
+
+=== Command Line Interface (CLI)
+
+From the command line, type: `rubysmith --help`
+
+....
+USAGE:
+  -v, --version                            Show gem version.
+  -h, --help                               Show this message.
+  -c, --config ACTION                      Manage gem configuration: edit or view.
+  -b, --build NAME [options]               Build new gem.
+
+BUILD OPTIONS:
+      --[no-]bundler-audit                 Add Bundler Audit.
+      --[no-]console                       Add console support.
+      --[no-]documentation                 Add Documentation.
+      --[no-]git                           Add Git.
+      --[no-]git-lint                      Add Git Lint.
+      --[no-]guard                         Add Guard.
+      --[no-]reek                          Add Reek.
+      --[no-]pry                           Add Pry.
+      --[no-]rubocop                       Add Rubocop.
+      --[no-]rspec                         Add RSpec.
+      --[no-]simple_cov                    Add SimpleCov.
+      --[no-]setup                         Add setup support.
+....
+
+=== Configuration
+
+This gem can be configured via a global configuration:
+
+....
+$HOME/.config/rubysmith/configuration.yml
+....
+
+It can also be configured via link:https://www.alchemists.io/projects/xdg[XDG] environment
+variables.
+
+The default configuration is as follows:
+
+[source,yaml]
+----
+:author:
+  :name:
+  :email:
+  :url:
+:documentation:
+  :format: "md"
+  :license: "mit"
+:build:
+  :bundler_audit: true
+  :console: true
+  :documentation: true
+  :git: true
+  :git_lint: true
+  :guard: true
+  :pry: true
+  :reek: true
+  :rspec: true
+  :rubocop: true
+  :setup: true
+  :simple_cov: true
+:builders:
+  :pragmater:
+    :comments:
+      - "# frozen_string_literal: true"
+    :includes:
+      - "**/*.rb"
+      - "**/*bin/console"
+      - "**/*bin/guard"
+      - "**/*bin/rubocop"
+      - "**/*Gemfile"
+      - "**/*Guardfile"
+      - "**/*Rakefile"
+----
+
+Feel free to take this default configuration, modify, and save as your own custom
+`configuration.yml`.
+
+=== Console
+
+To use the IRB console to invesitage and/or experiment with all project objects, run:
+
+[source,bash]
+----
+bin/console
+----
+
+== Tests
+
+To test, run:
+
+[source,bash]
+----
+bundle exec rake
+----
+
+== Versioning
+
+Read link:https://semver.org[Semantic Versioning] for details. Briefly, it means:
+
+* Major (X.y.z) - Incremented for any backwards incompatible public API changes.
+* Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
+* Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
+
+== Code of Conduct
+
+Please note that this project is released with a link:CODE_OF_CONDUCT.adoc[CODE OF CONDUCT]. By
+participating in this project you agree to abide by its terms.
+
+== Contributions
+
+Read link:CONTRIBUTING.adoc[CONTRIBUTING] for details.
+
+== License
+
+Read link:LICENSE.adoc[LICENSE] for details.
+
+== History
+
+Read link:CHANGES.adoc[CHANGES] for details.
+Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+
+== Credits
+
+Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].

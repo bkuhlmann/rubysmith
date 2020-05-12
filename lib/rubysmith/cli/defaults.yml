@@ -1,0 +1,34 @@
+:project:
+  :name:
+:author:
+  :name:
+  :email:
+  :url:
+:documentation:
+  :format: "md"
+  :license: "mit"
+:build:
+  :bundler_audit: true
+  :console: true
+  :documentation: true
+  :git: true
+  :git_lint: true
+  :guard: true
+  :pry: true
+  :reek: true
+  :rspec: true
+  :rubocop: true
+  :setup: true
+  :simple_cov: true
+:builders:
+  :pragmater:
+    :comments:
+      - "# frozen_string_literal: true"
+    :includes:
+      - "**/*.rb"
+      - "**/*bin/console"
+      - "**/*bin/guard"
+      - "**/*bin/rubocop"
+      - "**/*Gemfile"
+      - "**/*Guardfile"
+      - "**/*Rakefile"

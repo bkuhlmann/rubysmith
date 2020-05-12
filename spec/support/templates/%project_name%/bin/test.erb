@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby
+
+require "<%= realm.project_name %>"
+<% if realm.build_pry %>
+require "pry"
+<% end %>
+
+puts "Test."

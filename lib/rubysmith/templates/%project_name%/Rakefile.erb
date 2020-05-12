@@ -1,0 +1,33 @@
+<% if realm.build_bundler_audit %>
+  require "bundler/audit/task"
+<% end %>
+<% if realm.build_git && realm.build_git_lint %>
+  require "git/lint/rake/setup"
+<% end %>
+<% if realm.build_reek %>
+  require "reek/rake/task"
+<% end %>
+<% if realm.build_rspec %>
+  require "rspec/core/rake_task"
+<% end %>
+<% if realm.build_rubocop %>
+  require "rubocop/rake_task"
+<% end %>
+
+<% if realm.build_bundler_audit %>
+  Bundler::Audit::Task.new
+<% end %>
+<% if realm.build_reek %>
+  Reek::Rake::Task.new
+<% end %>
+<% if realm.build_rspec %>
+  RSpec::Core::RakeTask.new :spec
+<% end %>
+<% if realm.build_rubocop %>
+  RuboCop::RakeTask.new
+<% end %>
+
+desc "Run code quality checks"
+task code_quality: %i[<% if realm.build_bundler_audit %>bundle:audit<% end %> <% if realm.build_git && realm.build_git_lint %>git_lint<% end %> <% if realm.build_reek %>reek<% end %> <% if realm.build_rubocop %>rubocop<% end %>]
+
+task default: %i[code_quality <% if realm.build_rspec %>spec<% end %>]
