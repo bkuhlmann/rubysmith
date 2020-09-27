@@ -20,7 +20,7 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/rubysec/bundler-audit[Bundler Audit].
-* Supports link:https://git-scm.com[Git]
+* Supports link:https://git-scm.com[Git].
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
 * Supports link:http://pryrepl.org[Pry].
@@ -37,10 +37,10 @@ toc::[]
 ** CODE OF CONDUCT
 ** LICENSE
 
-== Screencasts
+// == Screencasts
 
-[link=https://www.alchemists.io/screencasts/rubysmith]
-image::https://www.alchemists.io/images/screencasts/rubysmith/cover.svg[Screencast,600,240,role=focal_point]
+// [link=https://www.alchemists.io/screencasts/rubysmith]
+// image::https://www.alchemists.io/images/screencasts/rubysmith/cover.svg[Screencast,600,240,role=focal_point]
 
 == Requirements
 
@@ -160,7 +160,7 @@ Feel free to take this default configuration, modify, and save as your own custo
 
 === Console
 
-To use the IRB console to invesitage and/or experiment with all project objects, run:
+To use the IRB console to investigate and/or experiment with all project objects, run:
 
 [source,bash]
 ----
