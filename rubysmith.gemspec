@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://github.com/bkuhlmann/rubysmith"
   spec.summary = Rubysmith::Identity::SUMMARY
-  spec.license = "MIT"
+  spec.license = "Apache-2.0"
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/rubysmith/issues",
