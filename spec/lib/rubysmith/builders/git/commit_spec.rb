@@ -17,7 +17,11 @@ RSpec.describe Rubysmith::Builders::Git::Commit, :realm do
     before do
       Dir.chdir temp_dir do
         project_dir.mkdir
-        Dir.chdir(project_dir) { `git init` }
+        Dir.chdir project_dir do
+          `git init`
+          `git config user.name "#{realm.author_name}"`
+          `git config user.email "#{realm.author_email}"`
+        end
         project_dir.join("test.txt").touch
         builder.call
       end
