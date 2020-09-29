@@ -35,7 +35,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Assembler do
   describe "#to_s" do
     it "answers usage" do
       parser.call
-      expect(parser.to_s).to match(/.+USAGE.+OPTIONS.+Build.+/m)
+      expect(parser.to_s).to match(/.+USAGE.+BUILD\sOPTIONS.+/m)
     end
   end
 end
