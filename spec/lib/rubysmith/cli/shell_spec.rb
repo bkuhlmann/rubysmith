@@ -129,6 +129,8 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds maximum skeleton" do
+        next if ENV["CI"] == "true" # FIX: Needs a global Git configuration.
+
         Dir.chdir temp_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
