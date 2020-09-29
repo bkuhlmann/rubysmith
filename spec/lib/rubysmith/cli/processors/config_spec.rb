@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Processors::Config do
-  subject(:processor) { described_class.new kernel: kernel }
+RSpec.describe Rubysmith::CLI::Processors::Config, :runcom do
+  subject(:processor) { described_class.new configuration: runcom_configuration, kernel: kernel }
 
   let(:kernel) { class_spy Kernel }
 

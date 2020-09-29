@@ -3,23 +3,27 @@
 require "spec_helper"
 require "refinements/pathnames"
 
-RSpec.describe Rubysmith::CLI::Shell do
+RSpec.describe Rubysmith::CLI::Shell, :runcom do
   using Refinements::Pathnames
 
   subject(:shell) { described_class.new processors: processors }
 
   let :processors do
     {
-      config: Rubysmith::CLI::Processors::Config.new(kernel: kernel),
+      config: Rubysmith::CLI::Processors::Config.new(
+        configuration: runcom_configuration,
+        kernel: kernel
+      ),
       build: Rubysmith::CLI::Processors::Build.new
     }
   end
 
   let(:kernel) { class_spy Kernel }
 
-  describe "#call", :temp_dir do
+  describe "#call" do
     let :project_files do
-      temp_dir.files("**/*", flag: File::FNM_DOTMATCH)
+      temp_dir.join("test")
+              .files("**/*", flag: File::FNM_DOTMATCH)
               .reject { |path| path.fnmatch? "*.git/[^COMMIT]*" }
               .reject { |path| path.fnmatch? "*rubocop-https*" }
               .map { |path| path.relative_path_from(temp_dir).to_s }
