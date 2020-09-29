@@ -294,12 +294,12 @@ RSpec.describe Rubysmith::Builder, :temp_dir do
 
     context "when minor failure" do
       it "logs information" do
-        builder.run "ls -z"
-        expect(output_buffer.reread).to match(/.+illegal option.+/)
+        builder.run "hostname -x"
+        expect(output_buffer.reread).to match(/.+(illegal|invalid) option.+/m)
       end
 
       it "answers self" do
-        expect(builder.run("ls -z")).to be_a(described_class)
+        expect(builder.run("hostname -x")).to be_a(described_class)
       end
     end
 
