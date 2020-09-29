@@ -31,13 +31,13 @@ module Rubysmith
         end
 
         def add_console
-          client.on "--[no-]console", "Add console support." do |value|
+          client.on "--[no-]console", "Add console script." do |value|
             options[:build_console] = value
           end
         end
 
         def add_documentation
-          client.on "--[no-]documentation", "Add Documentation." do |value|
+          client.on "--[no-]documentation", "Add documentation." do |value|
             options[:build_documentation] = value
           end
         end
@@ -85,7 +85,7 @@ module Rubysmith
         end
 
         def add_setup
-          client.on "--[no-]setup", "Add setup support." do |value|
+          client.on "--[no-]setup", "Add setup script." do |value|
             options[:build_setup] = value
           end
         end
