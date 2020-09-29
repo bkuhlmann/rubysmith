@@ -1,5 +1,16 @@
 = Changes
 
+== 0.1.1 (2020-09-28)
+
+* Fixed CLI assembler parser failure
+* Fixed CLI build option documentation
+* Fixed CLI specs to use controlled configuration
+* Fixed Git commit spec to ensure author name and email
+* Fixed README typos
+* Fixed builder spec to be compatible with CI
+* Fixed gemspec license
+* Updated shell spec CI behavior
+
 == 0.1.0 (2020-09-27)
 
 * Added initial implementation.

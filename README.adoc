@@ -9,7 +9,9 @@ image::https://badge.fury.io/rb/rubysmith.svg[Gem Version]
 [link=https://circleci.com/gh/bkuhlmann/rubysmith]
 image::https://circleci.com/gh/bkuhlmann/rubysmith.svg?style=svg[Circle CI Status]
 
-A command line interface for smithing Ruby projects.
+A command line interface for smithing Ruby projects. Handy for situations in which you need
+something more sophisticated than a Bundler Inline script but less complicated than a Ruby Gem as
+provided by link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
 
 toc::[]
 
@@ -86,24 +88,24 @@ From the command line, type: `rubysmith --help`
 
 ....
 USAGE:
-  -v, --version                            Show gem version.
-  -h, --help                               Show this message.
   -c, --config ACTION                      Manage gem configuration: edit or view.
   -b, --build NAME [options]               Build new gem.
+  -v, --version                            Show gem version.
+  -h, --help                               Show this message.
 
 BUILD OPTIONS:
       --[no-]bundler-audit                 Add Bundler Audit.
-      --[no-]console                       Add console support.
-      --[no-]documentation                 Add Documentation.
+      --[no-]console                       Add console script.
+      --[no-]documentation                 Add documentation.
       --[no-]git                           Add Git.
       --[no-]git-lint                      Add Git Lint.
       --[no-]guard                         Add Guard.
-      --[no-]reek                          Add Reek.
       --[no-]pry                           Add Pry.
-      --[no-]rubocop                       Add Rubocop.
+      --[no-]reek                          Add Reek.
       --[no-]rspec                         Add RSpec.
+      --[no-]rubocop                       Add Rubocop.
+      --[no-]setup                         Add setup script.
       --[no-]simple_cov                    Add SimpleCov.
-      --[no-]setup                         Add setup support.
 ....
 
 === Configuration
@@ -157,15 +159,6 @@ The default configuration is as follows:
 
 Feel free to take this default configuration, modify, and save as your own custom
 `configuration.yml`.
-
-=== Console
-
-To use the IRB console to investigate and/or experiment with all project objects, run:
-
-[source,bash]
-----
-bin/console
-----
 
 == Tests
 
