@@ -147,12 +147,12 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
 
     it "prints help (usage)" do
       expectation = proc { shell.call %w[--help] }
-      expect(&expectation).to output(/Rubysmith.+USAGE.+OPTIONS.+Build/m).to_stdout
+      expect(&expectation).to output(/Rubysmith.+USAGE.+BUILD OPTIONS/m).to_stdout
     end
 
     it "prints usage when no options are given" do
       expectation = proc { shell.call }
-      expect(&expectation).to output(/Rubysmith.+USAGE.+OPTIONS.+Build/m).to_stdout
+      expect(&expectation).to output(/Rubysmith.+USAGE.+BUILD OPTIONS.+/m).to_stdout
     end
 
     it "prints error with invalid option" do

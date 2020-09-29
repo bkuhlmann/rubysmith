@@ -31,12 +31,8 @@ RSpec.describe Rubysmith::Builders::Git::Commit, :realm do
       let(:realm) { default_realm.with build_git: true }
 
       it "creates commit" do
-        expect(commit).to eq(
-          <<~MESSAGE
-            Added project skeleton
-            Generated with [Rubysmith](https://www.alchemists.io/projects/rubysmith)
-            0.1.0.
-          MESSAGE
+        expect(commit).to match(
+          /Added project skeleton.+Generated with.+Rubysmith.+\d+\.\d+\.\d+\./m
         )
       end
     end
