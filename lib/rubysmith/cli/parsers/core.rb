@@ -37,7 +37,7 @@ module Rubysmith
         end
 
         def add_build
-          client.on "-b", "--build NAME [options]", "Build new gem." do |value|
+          client.on "-b", "--build NAME [options]", "Build new project." do |value|
             options[:build] = value
           end
         end
