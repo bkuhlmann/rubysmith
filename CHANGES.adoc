@@ -1,5 +1,12 @@
 = Changes
 
+== 0.2.0 (2020-10-04)
+
+* Fixed CLI build description
+* Fixed commit and shell spec failures
+* Updated to Ruby 2.7.2
+* Removed project identity
+
 == 0.1.1 (2020-09-28)
 
 * Fixed CLI assembler parser failure

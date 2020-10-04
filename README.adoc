@@ -9,9 +9,12 @@ image::https://badge.fury.io/rb/rubysmith.svg[Gem Version]
 [link=https://circleci.com/gh/bkuhlmann/rubysmith]
 image::https://circleci.com/gh/bkuhlmann/rubysmith.svg?style=svg[Circle CI Status]
 
-A command line interface for smithing Ruby projects. Handy for situations in which you need
-something more sophisticated than a Bundler Inline script but less complicated than a Ruby Gem as
-provided by link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+Rubysmith is a command line interface for smithing Ruby projects.
+
+This gem is useful in situations in which you need something more sophisticated than a
+link:https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html[Bundler Inline] script but
+less complicated than a Ruby Gem as provided by
+link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
 
 toc::[]
 
@@ -107,6 +110,28 @@ BUILD OPTIONS:
       --[no-]setup                         Add setup script.
       --[no-]simple_cov                    Add SimpleCov.
 ....
+
+=== Building
+
+The core functionality of this gem centers around the `--build` command with optional customization
+provided via build options. By default, all build options are enabled. Example:
+
+[source,bash]
+----
+rubysmith --build demo
+----
+
+Running the above will generate a new `demo` Ruby project with all options enabled. Should you wish
+to disable certain options when building projects, you can prefix options with `--no-*`. Example:
+
+[source,bash]
+----
+rubysmith --build demo --no-pry --no-guard
+----
+
+Should you wish to have certain options enabled/disabled _every time_ you build a new Ruby project,
+then you can edit your global configuration for making these settings permanent (see below for
+details).
 
 === Configuration
 
