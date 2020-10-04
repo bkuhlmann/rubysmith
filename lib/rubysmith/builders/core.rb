@@ -14,8 +14,6 @@ module Rubysmith
       end
 
       def call
-        builder.call(realm.with(template_path: "%project_name%/lib/%project_name%/identity.rb.erb"))
-               .render
         builder.call(realm.with(template_path: "%project_name%/lib/%project_name%.rb.erb")).render
         builder.call(realm.with(template_path: "%project_name%/.ruby-version.erb")).render
         nil

@@ -65,7 +65,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           "test/Gemfile",
           "test/Gemfile.lock",
           "test/Rakefile",
-          "test/lib/test/identity.rb",
           "test/lib/test.rb"
         ]
       end
@@ -120,7 +119,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           "test/bin/guard",
           "test/bin/rubocop",
           "test/bin/setup",
-          "test/lib/test/identity.rb",
           "test/lib/test.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
           "test/spec/spec_helper.rb",
