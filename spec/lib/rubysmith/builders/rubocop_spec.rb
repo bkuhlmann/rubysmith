@@ -82,8 +82,6 @@ RSpec.describe Rubysmith::Builders::Rubocop, :realm do
 
         expect(runner).to have_received(:run).with([
           "--auto-correct",
-          "--format",
-          "quiet",
           temp_dir.join("test").to_s
         ])
       end

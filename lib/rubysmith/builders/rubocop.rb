@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 require "rubocop"
-require "stringio"
+require "refinements/ios"
 
 module Rubysmith
   module Builders
     # Builds project skeleton Rubocop code quality support.
     class Rubocop
+      using Refinements::IOs
+
       def self.call realm, builder: Builder
         new(realm, builder: builder).call
       end
@@ -33,10 +35,7 @@ module Rubysmith
       attr_reader :realm, :builder, :runner
 
       def auto_correct
-        backup = $stdout
-        $stdout = StringIO.new
-        runner.run ["--auto-correct", "--format", "quiet", realm.project_root.to_s]
-        $stdout = backup
+        STDOUT.squelch { runner.run ["--auto-correct", realm.project_root.to_s] }
       end
     end
   end
