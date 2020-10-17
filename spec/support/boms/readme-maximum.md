@@ -19,9 +19,9 @@ To set up the project, run:
 
 ## Usage
 
-### Console
+## Development
 
-To use the IRB console to invesitage and/or experiment with all project objects, run:
+You can also use the IRB console for direct access to all objects:
 
     bin/console
 
