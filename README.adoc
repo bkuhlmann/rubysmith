@@ -56,31 +56,11 @@ toc::[]
 
 == Setup
 
-=== Production
-
 To install, run:
 
 [source,bash]
 ----
 gem install rubysmith
-----
-
-=== Development
-
-To contribute, run:
-
-[source,bash]
-----
-git clone https://github.com/bkuhlmann/rubysmith.git
-cd rubysmith
-bin/setup
-----
-
-You can also use the IRB console for direct access to all objects:
-
-[source,bash]
-----
-bin/console
 ----
 
 == Usage
@@ -91,15 +71,12 @@ From the command line, type: `rubysmith --help`
 
 ....
 USAGE:
-  -c, --config ACTION                      Manage gem configuration: edit or view.
-  -b, --build NAME [options]               Build new gem.
   -v, --version                            Show gem version.
   -h, --help                               Show this message.
+  -c, --config ACTION                      Manage gem configuration: edit or view.
+  -b, --build NAME [options]               Build new project.
 
 BUILD OPTIONS:
-      --[no-]bundler-audit                 Add Bundler Audit.
-      --[no-]console                       Add console script.
-      --[no-]documentation                 Add documentation.
       --[no-]git                           Add Git.
       --[no-]git-lint                      Add Git Lint.
       --[no-]guard                         Add Guard.
@@ -109,6 +86,10 @@ BUILD OPTIONS:
       --[no-]rubocop                       Add Rubocop.
       --[no-]setup                         Add setup script.
       --[no-]simple_cov                    Add SimpleCov.
+      --min                                Use minimum/no options.
+      --[no-]bundler-audit                 Add Bundler Audit.
+      --[no-]console                       Add console script.
+      --[no-]documentation                 Add documentation.
 ....
 
 === Building
@@ -122,16 +103,28 @@ rubysmith --build demo
 ----
 
 Running the above will generate a new `demo` Ruby project with all options enabled. Should you wish
-to disable certain options when building projects, you can prefix options with `--no-*`. Example:
+to disable specific options, you can use the `--no-*` prefix. Example:
 
 [source,bash]
 ----
 rubysmith --build demo --no-pry --no-guard
 ----
 
-Should you wish to have certain options enabled/disabled _every time_ you build a new Ruby project,
-then you can edit your global configuration for making these settings permanent (see below for
-details).
+With the above example, both Pry and Guard support would have been disabled when building the `demo`
+project. Taking this a step further, you can also use the `--min` option to generate a project with
+bare minimum of options. Example:
+
+[source,bash]
+----
+rubysmith --build demo --min
+----
+
+The above is essentially the same as building with _all_ options disabled. This is handy in
+situations where you need to quickly script something up for sharing with others yet still want to
+avoid using a Bundler Inline script so gem dependencies are not installed each time the code is run.
+
+To have specific options enabled/disabled _every time_ you build a new Ruby project, you can edit
+your global configuration for making these settings permanent (see below for details).
 
 === Configuration
 
@@ -162,6 +155,7 @@ The default configuration is as follows:
   :git: true
   :git_lint: true
   :guard: true
+  :minimum: false
   :pry: true
   :reek: true
   :rspec: true
@@ -184,6 +178,24 @@ The default configuration is as follows:
 
 Feel free to take this default configuration, modify, and save as your own custom
 `configuration.yml`.
+
+== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/rubysmith.git
+cd rubysmith
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
 
 == Tests
 

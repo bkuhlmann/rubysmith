@@ -1,5 +1,15 @@
 = Changes
 
+== 0.3.0 (2020-10-18)
+
+* Added Bundler minimum build option support
+* Added development section to documentation templates
+* Added minimum build option
+* Added version release notes
+* Updated build processor to support minimum and maximum builders
+* Updated to Refinements 7.11.0
+* Refactored Rubocop builder to use IO refinement
+
 == 0.2.0 (2020-10-04)
 
 * Fixed CLI build description
