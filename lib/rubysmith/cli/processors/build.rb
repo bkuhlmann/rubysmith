@@ -3,27 +3,34 @@
 module Rubysmith
   module CLI
     module Processors
-      # Order is important.
-      BUILDERS = [
-        Builders::Core,
-        Builders::Documentation,
-        Builders::Git::Setup,
-        Builders::Bundler,
-        Builders::Rake,
-        Builders::Console,
-        Builders::Setup,
-        Builders::Guard,
-        Builders::Reek,
-        Builders::RSpec::Context,
-        Builders::RSpec::Helper,
-        Builders::Pragma,
-        Builders::Rubocop,
-        Builders::Git::Commit
-      ].freeze
-
       # Handles the Command Line Interface (CLI) for building of a project skeleton.
       class Build
-        def initialize builders: BUILDERS
+        # Order is important.
+        MINIMUM = [
+          Builders::Core,
+          Builders::Bundler,
+          Builders::Pragma
+        ].freeze
+
+        # Order is important.
+        MAXIMUM = [
+          Builders::Core,
+          Builders::Documentation,
+          Builders::Git::Setup,
+          Builders::Bundler,
+          Builders::Rake,
+          Builders::Console,
+          Builders::Setup,
+          Builders::Guard,
+          Builders::Reek,
+          Builders::RSpec::Context,
+          Builders::RSpec::Helper,
+          Builders::Pragma,
+          Builders::Rubocop,
+          Builders::Git::Commit
+        ].freeze
+
+        def initialize builders: MAXIMUM
           @builders = builders
         end
 
