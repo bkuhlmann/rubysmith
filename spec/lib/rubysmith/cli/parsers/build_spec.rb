@@ -10,6 +10,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
+    it "enables minimum options" do
+      parser.call %w[--min]
+      expect(options).to eq(build_minimum: true)
+    end
+
     it "enables bundler audit" do
       parser.call %w[--bundler-audit]
       expect(options).to eq(build_bundler_audit: true)

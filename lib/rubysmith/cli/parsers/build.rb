@@ -24,6 +24,12 @@ module Rubysmith
 
         attr_reader :client, :options
 
+        def add_minimum
+          client.on "--min", "Use minimum/no options." do |value|
+            options[:build_minimum] = value
+          end
+        end
+
         def add_bundler_audit
           client.on "--[no-]bundler-audit", "Add Bundler Audit." do |value|
             options[:build_bundler_audit] = value

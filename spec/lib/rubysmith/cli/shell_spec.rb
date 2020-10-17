@@ -14,7 +14,10 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
         configuration: runcom_configuration,
         kernel: kernel
       ),
-      build: Rubysmith::CLI::Processors::Build.new
+      build_minimum: Rubysmith::CLI::Processors::Build.new(
+        builders: Rubysmith::CLI::Processors::Build::MINIMUM
+      ),
+      build_maximum: Rubysmith::CLI::Processors::Build.new
     }
   end
 
@@ -39,7 +42,35 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       expect(kernel).to have_received(:system).with(/cat\s.+configuration.yml/)
     end
 
-    context "with minimum build" do
+    context "with minimum forced build" do
+      let :options do
+        %w[
+          --build
+          test
+          --min
+        ]
+      end
+
+      let :files do
+        [
+          "test/.ruby-version",
+          "test/Gemfile",
+          "test/Gemfile.lock",
+          "test/lib/test.rb"
+        ]
+      end
+
+      it "builds minimum skeleton" do
+        Dir.chdir temp_dir do
+          Bundler.definition true
+          Bundler.with_unbundled_env { shell.call options }
+        end
+
+        expect(project_files).to contain_exactly(*files)
+      end
+    end
+
+    context "with minimum optional build" do
       let :options do
         %w[
           --build

@@ -11,7 +11,8 @@ module Rubysmith
 
       PROCESSORS = {
         config: Processors::Config.new,
-        build: Processors::Build.new
+        build_minimum: Processors::Build.new(builders: Processors::Build::MINIMUM),
+        build_maximum: Processors::Build.new
       }.freeze
 
       def initialize parser: Parsers::Assembler.new, processors: PROCESSORS
@@ -22,13 +23,16 @@ module Rubysmith
       def call arguments = []
         parse arguments
 
+        # rubocop:disable Style/MethodCallWithArgsParentheses
         case options
           in config: action, **remainder then config action
-          in build:, **remainder then build options.rekey(build: :project_name).merge now: Time.now
+          in build_minimum: true, **remainder then build(:build_minimum, options)
+          in build:, **remainder then build(:build_maximum, options)
           in version:, **remainder then puts version
           in help:, **remainder then usage
           else usage
         end
+        # rubocop:enable Style/MethodCallWithArgsParentheses
       end
 
       private
@@ -45,8 +49,8 @@ module Rubysmith
         processors.fetch(__method__).call action
       end
 
-      def build settings
-        processors.fetch(__method__).call settings
+      def build kind, settings
+        processors.fetch(kind).call settings.rekey(build: :project_name).merge(now: Time.now)
       end
 
       def options

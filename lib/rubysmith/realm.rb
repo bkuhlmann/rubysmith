@@ -16,6 +16,7 @@ module Rubysmith
     now
     documentation_format
     documentation_license
+    build_minimum
     build_bundler_audit
     build_console
     build_documentation
