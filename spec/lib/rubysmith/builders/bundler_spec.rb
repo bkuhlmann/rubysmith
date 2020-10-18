@@ -38,6 +38,22 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       it_behaves_like "a bundle"
     end
 
+    context "with minimum options" do
+      let(:realm) { default_realm.with build_minimum: true }
+
+      it "builds Gemfile" do
+        builder.call
+
+        expect(gemfile_path.read).to eq(
+          <<~CONTENT
+            source "https://rubygems.org"
+          CONTENT
+        )
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with only Bundler Audit" do
       let(:realm) { default_realm.with build_bundler_audit: true }
 
