@@ -46,6 +46,25 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       end
     end
 
+    context "with only Bundler Leak" do
+      let(:realm) { default_realm.with build_bundler_leak: true }
+
+      it "builds Rakefile" do
+        expect(rakefile_path.read).to eq(
+          <<~CONTENT
+            require "bundler/plumber/task"
+
+            Bundler::Plumber::Task.new
+
+            desc "Run code quality checks"
+            task code_quality: %i[bundle:leak]
+
+            task default: %i[code_quality]
+          CONTENT
+        )
+      end
+    end
+
     context "with only Git and Git Lint" do
       let(:realm) { default_realm.with build_git: true, build_git_lint: true }
 
@@ -123,6 +142,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     context "with all options" do
       let :realm do
         default_realm.with build_bundler_audit: true,
+                           build_bundler_leak: true,
                            build_git: true,
                            build_git_lint: true,
                            build_reek: true,
@@ -133,18 +153,20 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       let :proof do
         <<~CONTENT
           require "bundler/audit/task"
+          require "bundler/plumber/task"
           require "git/lint/rake/setup"
           require "reek/rake/task"
           require "rspec/core/rake_task"
           require "rubocop/rake_task"
 
           Bundler::Audit::Task.new
+          Bundler::Plumber::Task.new
           Reek::Rake::Task.new
           RSpec::Core::RakeTask.new :spec
           RuboCop::RakeTask.new
 
           desc "Run code quality checks"
-          task code_quality: %i[bundle:audit git_lint reek rubocop]
+          task code_quality: %i[bundle:audit bundle:leak git_lint reek rubocop]
 
           task default: %i[code_quality spec]
         CONTENT

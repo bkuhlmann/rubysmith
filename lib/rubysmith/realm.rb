@@ -18,6 +18,7 @@ module Rubysmith
     documentation_license
     build_minimum
     build_bundler_audit
+    build_bundler_leak
     build_console
     build_documentation
     build_git

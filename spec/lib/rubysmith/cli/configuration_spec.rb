@@ -16,6 +16,7 @@ RSpec.describe Rubysmith::CLI::Configuration, :runcom do
         documentation_license: "mit",
         build_minimum: false,
         build_bundler_audit: true,
+        build_bundler_leak: true,
         build_console: true,
         build_documentation: true,
         build_git: true,

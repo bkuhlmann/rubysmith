@@ -75,6 +75,27 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       it_behaves_like "a bundle"
     end
 
+    context "with only Bundler Leak" do
+      let(:realm) { default_realm.with build_bundler_leak: true }
+
+      it "builds Gemfile" do
+        builder.call
+
+        expect(gemfile_path.read).to eq(
+          <<~CONTENT
+            source "https://rubygems.org"
+
+            group :development do
+              gem "bundler-leak", "~> 0.2"
+              gem "rake", "~> 13.0"
+            end
+          CONTENT
+        )
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with only Git and Git Lint" do
       let(:realm) { default_realm.with build_git: true, build_git_lint: true }
 
@@ -231,6 +252,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     context "with all options" do
       let :realm do
         default_realm.with build_bundler_audit: true,
+                           build_bundler_leak: true,
                            build_git: true,
                            build_git_lint: true,
                            build_guard: true,
@@ -247,6 +269,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
           group :development do
             gem "bundler-audit", "~> 0.7"
+            gem "bundler-leak", "~> 0.2"
             gem "git-lint", "~> 1.3"
             gem "guard-rspec", "~> 4.7"
             gem "pry", "~> 0.13"

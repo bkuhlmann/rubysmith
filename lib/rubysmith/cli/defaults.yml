@@ -9,6 +9,7 @@
   :license: "mit"
 :build:
   :bundler_audit: true
+  :bundler_leak: true
   :console: true
   :documentation: true
   :git: true

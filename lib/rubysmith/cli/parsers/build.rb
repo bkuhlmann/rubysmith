@@ -4,6 +4,7 @@ module Rubysmith
   module CLI
     module Parsers
       # Handles parsing of Command Line Interface (CLI) build options.
+      # :reek:TooManyMethods
       class Build
         def self.call client:, options:
           new(client: client, options: options).call
@@ -33,6 +34,12 @@ module Rubysmith
         def add_bundler_audit
           client.on "--[no-]bundler-audit", "Add Bundler Audit." do |value|
             options[:build_bundler_audit] = value
+          end
+        end
+
+        def add_bundler_leak
+          client.on "--[no-]bundler-leak", "Add Bundler Leak." do |value|
+            options[:build_bundler_leak] = value
           end
         end
 

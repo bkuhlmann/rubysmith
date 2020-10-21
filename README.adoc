@@ -27,6 +27,7 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/rubysec/bundler-audit[Bundler Audit].
+* Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
@@ -79,6 +80,10 @@ USAGE:
   -b, --build NAME [options]               Build new project.
 
 BUILD OPTIONS:
+      --[no-]bundler-audit                 Add Bundler Audit.
+      --[no-]bundler-leak                  Add Bundler Leak.
+      --[no-]console                       Add console script.
+      --[no-]documentation                 Add documentation.
       --[no-]git                           Add Git.
       --[no-]git-lint                      Add Git Lint.
       --[no-]guard                         Add Guard.
@@ -89,9 +94,6 @@ BUILD OPTIONS:
       --[no-]setup                         Add setup script.
       --[no-]simple_cov                    Add SimpleCov.
       --min                                Use minimum/no options.
-      --[no-]bundler-audit                 Add Bundler Audit.
-      --[no-]console                       Add console script.
-      --[no-]documentation                 Add documentation.
 ....
 
 === Building
@@ -152,6 +154,7 @@ The default configuration is as follows:
   :license: "mit"
 :build:
   :bundler_audit: true
+  :bundler_leak: true
   :console: true
   :documentation: true
   :git: true
