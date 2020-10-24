@@ -19,6 +19,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
         <<~BODY
           require "bundler/setup"
 
+          require "test"
+
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each(&method(:require))
 
           RSpec.configure do |config|
@@ -59,6 +61,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
           require "simplecov"
           SimpleCov.start { enable_coverage :branch }
 
+          require "test"
+
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each(&method(:require))
 
           RSpec.configure do |config|
@@ -98,6 +102,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
 
           require "pry"
           require "pry-byebug"
+          require "test"
 
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each(&method(:require))
 
@@ -141,6 +146,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
 
           require "pry"
           require "pry-byebug"
+          require "test"
 
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each(&method(:require))
 
