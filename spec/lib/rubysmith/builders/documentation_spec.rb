@@ -49,6 +49,7 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
           default_realm.with build_documentation: true,
                              build_setup: true,
                              build_console: true,
+                             build_rubocop: true,
                              documentation_format: "md"
         end
 
@@ -123,6 +124,7 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
         default_realm.with build_documentation: true,
                            build_setup: true,
                            build_console: true,
+                           build_rubocop: true,
                            documentation_format: "adoc"
       end
 

@@ -4,6 +4,11 @@
 
 = <%= realm.project_label %>
 
+<% if realm.build_rubocop %>
+[link=https://www.alchemists.io/projects/code_quality]
+image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchemists Style Guide]
+<% end %>
+
 toc::[]
 
 == Features

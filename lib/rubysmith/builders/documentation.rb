@@ -45,7 +45,9 @@ module Rubysmith
       end
 
       def render_readme
-        builder.call(realm.with(template_path: "%project_name%/README.#{kind}.erb")).render
+        builder.call(realm.with(template_path: "%project_name%/README.#{kind}.erb"))
+               .render
+               .replace("\n\n\n", "\n\n")
       end
 
       def kind
