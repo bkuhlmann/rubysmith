@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pragmater", "~> 8.0"
   spec.add_dependency "refinements", "~> 7.14"
   spec.add_dependency "rubocop", "~> 1.3"
-  spec.add_dependency "runcom", "~> 6.2"
+  spec.add_dependency "runcom", "~> 6.4"
   spec.add_development_dependency "bundler-audit", "~> 0.7"
   spec.add_development_dependency "bundler-leak", "~> 0.2"
   # spec.add_development_dependency "gemsmith", "~> 14.6"
