@@ -173,7 +173,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
             group :development do
               gem "rake", "~> 13.0"
-              gem "rspec", "~> 3.9"
+              gem "rspec", "~> 3.10"
             end
           CONTENT
         )
@@ -253,7 +253,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             gem "pry-byebug", "~> 3.9"
             gem "rake", "~> 13.0"
             gem "reek", "~> 6.0"
-            gem "rspec", "~> 3.9"
+            gem "rspec", "~> 3.10"
             gem "rubocop", "~> 1.3"
             gem "rubocop-performance", "~> 1.8"
             gem "rubocop-rake", "~> 0.5"
