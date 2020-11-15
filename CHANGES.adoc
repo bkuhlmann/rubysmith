@@ -1,5 +1,17 @@
 = Changes
 
+== 0.4.0 (2020-11-14)
+
+* Added Alchemists style guide badge
+* Added Bundler Leak development dependency
+* Updated Rubocop gems
+* Updated to Gemsmith 14.8.0
+* Updated to Git Lint 1.3.0
+* Updated to Pragmater 8.1.0
+* Updated to RSpec 3.10.0
+* Updated to Refinements 7.14.0
+* Updated to Runcom 6.4.0
+
 == 0.3.0 (2020-10-18)
 
 * Added Bundler minimum build option support
