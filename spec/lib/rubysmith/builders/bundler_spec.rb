@@ -86,7 +86,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             source "https://rubygems.org"
 
             group :development do
-              gem "git-lint", "~> 1.0"
+              gem "git-lint", "~> 1.3"
               gem "rake", "~> 13.0"
             end
           CONTENT
@@ -247,7 +247,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
           group :development do
             gem "bundler-audit", "~> 0.7"
-            gem "git-lint", "~> 1.0"
+            gem "git-lint", "~> 1.3"
             gem "guard-rspec", "~> 4.7"
             gem "pry", "~> 0.13"
             gem "pry-byebug", "~> 3.9"
