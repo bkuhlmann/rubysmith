@@ -35,7 +35,7 @@ module Rubysmith
         end
 
         def call options
-          Realm[**options].then(&method(:process))
+          Realm[**options].then { |realm| process realm }
         end
 
         private

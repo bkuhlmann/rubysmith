@@ -16,7 +16,7 @@ module Rubysmith
       def call
         return unless realm.build_documentation
 
-        private_methods.grep(/render_/).each(&method(:__send__))
+        private_methods.grep(/render_/).each { |method| __send__ method }
       end
 
       private

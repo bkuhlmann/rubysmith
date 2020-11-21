@@ -19,13 +19,17 @@ module Rubysmith
         def call arguments = []
           client.banner = "#{Identity::LABEL} - #{Identity::SUMMARY}"
           client.separator "\nUSAGE:\n"
-          private_methods.grep(/add_/).each(&method(:__send__))
+          collate
           arguments.empty? ? arguments : client.parse!(arguments)
         end
 
         private
 
         attr_reader :client, :options
+
+        def collate
+          private_methods.grep(/add_/).each { |method| __send__ method }
+        end
 
         def add_config
           client.on "-c",
