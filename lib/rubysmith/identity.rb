@@ -4,7 +4,7 @@ module Rubysmith
   module Identity
     NAME = "rubysmith"
     LABEL = "Rubysmith"
-    VERSION = "0.4.0"
+    VERSION = "0.5.0"
     VERSION_LABEL = "#{LABEL} #{VERSION}"
     SUMMARY = "A command line interface for smithing Ruby projects."
   end

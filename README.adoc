@@ -74,10 +74,10 @@ From the command line, type: `rubysmith --help`
 
 ....
 USAGE:
+  -b, --build NAME [options]               Build new project.
   -v, --version                            Show gem version.
   -h, --help                               Show this message.
   -c, --config ACTION                      Manage gem configuration: edit or view.
-  -b, --build NAME [options]               Build new project.
 
 BUILD OPTIONS:
       --[no-]bundler-audit                 Add Bundler Audit.

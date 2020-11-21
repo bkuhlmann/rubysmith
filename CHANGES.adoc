@@ -1,5 +1,12 @@
 = Changes
 
+== 0.5.0 (2020-11-21)
+
+- Fixed Rubocop Performance/MethodObjectAsBlock issues
+- Fixed spec helper template to require project
+- Added Bundler Leak build option
+- Updated to Refinements 7.15.1
+
 == 0.4.0 (2020-11-14)
 
 * Added Alchemists style guide badge
