@@ -7,11 +7,14 @@ SimpleCov.start { enable_coverage :branch }
 
 require "pry"
 require "pry-byebug"
+require "refinements"
 require "rubysmith"
 
-Dir[File.join(__dir__, "support/matchers/**/*.rb")].sort.each { |path| require path }
-Dir[File.join(__dir__, "support/shared_contexts/**/*.rb")].sort.each { |path| require path }
-Dir[File.join(__dir__, "support/shared_examples/**/*.rb")].sort.each { |path| require path }
+using Refinements::Pathnames
+
+Pathname.require_tree __dir__, "support/matchers/**/*.rb"
+Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
+Pathname.require_tree __dir__, "support/shared_examples/**/*.rb"
 
 RSpec.configure do |config|
   config.color = true

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "refinements/pathnames"
-require "refinements/string_ios"
 
 RSpec.describe Rubysmith::Builder, :temp_dir do
   using Refinements::Pathnames
