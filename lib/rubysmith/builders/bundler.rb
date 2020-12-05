@@ -25,6 +25,7 @@ module Rubysmith
                .replace(/\s{4}\n/, "")
                .replace("  end", "end")
                .replace(/\n{1,}\Z/, "\n")
+               .replace(/\n\ngroup :(code_quality|test) do\nend/, "")
         Dir.chdir(realm.project_root) { runner.start %w[install --quiet] }
         nil
       end
