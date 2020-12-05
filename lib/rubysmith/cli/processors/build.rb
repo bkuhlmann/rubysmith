@@ -9,7 +9,8 @@ module Rubysmith
         MINIMUM = [
           Builders::Core,
           Builders::Bundler,
-          Builders::Pragma
+          Builders::Pragma,
+          Builders::Rubocop::Formatter
         ].freeze
 
         # Order is important.
@@ -27,6 +28,7 @@ module Rubysmith
           Builders::RSpec::Helper,
           Builders::Pragma,
           Builders::Rubocop::Setup,
+          Builders::Rubocop::Formatter,
           Builders::Git::Commit
         ].freeze
 
