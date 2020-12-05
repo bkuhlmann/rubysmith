@@ -25,6 +25,7 @@ RSpec.describe Rubysmith::CLI::Configuration, :runcom do
         build_guard: true,
         build_pry: true,
         build_reek: true,
+        build_refinements: true,
         build_rspec: true,
         build_rubocop: true,
         build_setup: true,

@@ -20,8 +20,7 @@ module Rubysmith
           builder.call(realm.with(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
                  .replace(/\n{3,}/, "\n\n")
-                 .replace("  require", "require")
-                 .replace("  Simple", "Simple")
+                 .replace(/\n\s{2}(?=(require|Simple|using|Pathname|Dir))/, "\n")
         end
 
         private

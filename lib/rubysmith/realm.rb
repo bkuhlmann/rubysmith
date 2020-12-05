@@ -27,6 +27,7 @@ module Rubysmith
     build_guard
     build_pry
     build_reek
+    build_refinements
     build_rspec
     build_rubocop
     build_setup

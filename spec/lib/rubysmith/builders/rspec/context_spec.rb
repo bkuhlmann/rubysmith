@@ -12,13 +12,37 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
   describe "#call" do
     before { builder.call }
 
-    context "when enabled" do
+    context "when enabled with refinements" do
+      let(:realm) { default_realm.with build_rspec: true, build_refinements: true }
+
+      let :content do
+        <<~CONTENT
+          RSpec.shared_context "with temporary directory", :temp_dir do
+            using Refinements::Pathnames
+
+            let(:temp_dir) { Bundler.root.join "tmp/rspec" }
+
+            around do |example|
+              temp_dir.make_path
+              example.run
+              temp_dir.remove_tree
+            end
+          end
+        CONTENT
+      end
+
+      it "builds temporary directory shared context" do
+        expect(context_path.read).to eq(content)
+      end
+    end
+
+    context "when enabled without refinements" do
       let(:realm) { default_realm.with build_rspec: true }
 
       let :content do
         <<~CONTENT
           RSpec.shared_context "with temporary directory", :temp_dir do
-            let(:temp_dir) { Bundler.root.join "tmp", "rspec" }
+            let(:temp_dir) { Bundler.root.join "tmp/rspec" }
 
             around do |example|
               FileUtils.mkdir_p temp_dir

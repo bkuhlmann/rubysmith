@@ -19,6 +19,7 @@
   :minimum: false
   :pry: true
   :reek: true
+  :refinements: true
   :rspec: true
   :rubocop: true
   :setup: true

@@ -219,6 +219,29 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       it_behaves_like "a bundle"
     end
 
+    context "with only Refinements" do
+      let(:realm) { default_realm.with build_refinements: true }
+
+      let :proof do
+        <<~CONTENT
+          source "https://rubygems.org"
+
+          gem "refinements", "~> 7.16"
+
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with only RSpec" do
       let(:realm) { default_realm.with build_rspec: true }
 
@@ -338,6 +361,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
                            build_guard: true,
                            build_pry: true,
                            build_reek: true,
+                           build_refinements: true,
                            build_rspec: true,
                            build_rubocop: true,
                            build_simple_cov: true
@@ -346,6 +370,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       let :proof do
         <<~CONTENT
           source "https://rubygems.org"
+
+          gem "refinements", "~> 7.16"
 
           group :code_quality do
             gem "bundler-audit", "~> 0.7"

@@ -33,6 +33,7 @@ RSpec.describe Rubysmith::Realm do
         build_guard: nil,
         build_pry: nil,
         build_reek: nil,
+        build_refinements: nil,
         build_rspec: nil,
         build_rubocop: nil,
         build_simple_cov: nil,

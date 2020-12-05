@@ -17,9 +17,10 @@ module Rubysmith
         def call
           return unless realm.build_rspec
 
-          builder.call(
-            realm.with(template_path: "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb")
-          ).render
+          realm.with(template_path: "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb")
+               .then { |new_realm| builder.call new_realm }
+               .render
+               .replace(/\n\s+\n\s+/, "\n  ")
         end
 
         private

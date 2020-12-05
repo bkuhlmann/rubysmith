@@ -91,6 +91,12 @@ module Rubysmith
           end
         end
 
+        def add_refinements
+          client.on "--[no-]refinements", "Add Refinements." do |value|
+            options[:build_refinements] = value
+          end
+        end
+
         def add_rspec
           client.on "--[no-]rspec", "Add RSpec." do |value|
             options[:build_rspec] = value

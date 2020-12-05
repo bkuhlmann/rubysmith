@@ -125,6 +125,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_reek: false)
     end
 
+    it "enables refinements" do
+      parser.call %w[--refinements]
+      expect(options).to eq(build_refinements: true)
+    end
+
+    it "disables refinements" do
+      parser.call %w[--no-refinements]
+      expect(options).to eq(build_refinements: false)
+    end
+
     it "enables RSpec" do
       parser.call %w[--rspec]
       expect(options).to eq(build_rspec: true)
