@@ -244,6 +244,38 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       it_behaves_like "a bundle"
     end
 
+    context "with only RSpec and Rubocop" do
+      let(:realm) { default_realm.with build_rspec: true, build_rubocop: true }
+
+      let :proof do
+        <<~CONTENT
+          source "https://rubygems.org"
+
+          group :code_quality do
+            gem "rubocop", "~> 1.3"
+            gem "rubocop-performance", "~> 1.8"
+            gem "rubocop-rake", "~> 0.5"
+            gem "rubocop-rspec", "~> 2.0"
+          end
+
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+
+          group :test do
+            gem "rspec", "~> 3.10"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with only Rubocop" do
       let(:realm) { default_realm.with build_rubocop: true }
 
@@ -255,7 +287,6 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             gem "rubocop", "~> 1.3"
             gem "rubocop-performance", "~> 1.8"
             gem "rubocop-rake", "~> 0.5"
-            gem "rubocop-rspec", "~> 2.0"
           end
 
           group :development do
