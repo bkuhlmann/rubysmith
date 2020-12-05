@@ -1,11 +1,9 @@
 #! /usr/bin/env ruby
 
 require "bundler/setup"
-require "<%= realm.project_name %>"
-<% if realm.build_pry %>
-require "pry"
-require "pry-byebug"
-<% end %>
+Bundler.require :tools
+
+require_relative "../lib/<%= realm.project_name %>"
 require "irb"
 
 IRB.start __FILE__

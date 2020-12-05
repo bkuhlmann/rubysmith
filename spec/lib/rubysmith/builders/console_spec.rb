@@ -11,17 +11,17 @@ RSpec.describe Rubysmith::Builders::Console, :realm do
   it_behaves_like "a builder"
 
   describe "#call" do
-    context "when enabled with Pry enabled" do
-      let(:realm) { default_realm.with build_console: true, build_pry: true }
+    context "when enabled" do
+      let(:realm) { default_realm.with build_console: true }
 
-      it "builds console script without Pry support" do
+      it "builds console script" do
         proof = <<~CONTENT
           #! /usr/bin/env ruby
 
           require "bundler/setup"
-          require "test"
-          require "pry"
-          require "pry-byebug"
+          Bundler.require :tools
+
+          require_relative "../lib/test"
           require "irb"
 
           IRB.start __FILE__
@@ -35,26 +35,6 @@ RSpec.describe Rubysmith::Builders::Console, :realm do
       it "updates file permissions" do
         builder.call
         expect(build_path.stat.mode).to eq(33261)
-      end
-    end
-
-    context "when enabled and Pry disabled" do
-      let(:realm) { default_realm.with build_console: true, build_pry: false }
-
-      it "builds console script without Pry support" do
-        proof = <<~CONTENT
-          #! /usr/bin/env ruby
-
-          require "bundler/setup"
-          require "test"
-          require "irb"
-
-          IRB.start __FILE__
-        CONTENT
-
-        builder.call
-
-        expect(build_path.read).to eq(proof)
       end
     end
 
