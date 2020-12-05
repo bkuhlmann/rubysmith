@@ -26,7 +26,6 @@ module Rubysmith
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
           Builders::Pragma,
-          Builders::Rubocop,
           Builders::Git::Commit
         ].freeze
 
