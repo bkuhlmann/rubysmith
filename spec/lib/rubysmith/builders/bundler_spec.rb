@@ -43,12 +43,29 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       it "builds Gemfile" do
         builder.call
+        expect(gemfile_path.read).to eq(%(source "https://rubygems.org"\n\n))
+      end
 
-        expect(gemfile_path.read).to eq(
-          <<~CONTENT
-            source "https://rubygems.org"
-          CONTENT
-        )
+      it_behaves_like "a bundle"
+    end
+
+    context "with only Amazing Print" do
+      let(:realm) { default_realm.with build_amazing_print: true }
+
+      let :proof do
+        <<~CONTENT
+          source "https://rubygems.org"
+
+          group :development do
+            gem "amazing_print", "~> 1.2"
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
       end
 
       it_behaves_like "a bundle"
@@ -282,7 +299,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
     context "with all options" do
       let :realm do
-        default_realm.with build_bundler_audit: true,
+        default_realm.with build_amazing_print: true,
+                           build_bundler_audit: true,
                            build_bundler_leak: true,
                            build_git: true,
                            build_git_lint: true,
@@ -311,6 +329,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           end
 
           group :development do
+            gem "amazing_print", "~> 1.2"
             gem "pry", "~> 0.13"
             gem "pry-byebug", "~> 3.9"
             gem "rake", "~> 13.0"

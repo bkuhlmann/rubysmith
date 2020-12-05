@@ -17,6 +17,7 @@ module Rubysmith
     documentation_format
     documentation_license
     build_minimum
+    build_amazing_print
     build_bundler_audit
     build_bundler_leak
     build_console

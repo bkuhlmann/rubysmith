@@ -20,11 +20,10 @@ module Rubysmith
       def call
         builder.call(realm.with(template_path: "%project_name%/Gemfile.erb"))
                .render
-               .replace(/\n\s*group/, "\n\ngroup")
-               .replace(/\n\s*gem/, "\n  gem")
+               .replace(/\n\s+group/, "\n\ngroup")
+               .replace(/\n\s+gem/, "\n  gem")
                .replace(/\s{4}\n/, "")
                .replace("  end", "end")
-               .replace(/\n{1,}\Z/, "\n")
                .replace(/\n\ngroup :(code_quality|test) do\nend/, "")
         Dir.chdir(realm.project_root) { runner.start %w[install --quiet] }
         nil

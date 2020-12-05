@@ -23,6 +23,7 @@ RSpec.describe Rubysmith::Realm do
         documentation_format: nil,
         documentation_license: nil,
         build_minimum: nil,
+        build_amazing_print: nil,
         build_bundler_audit: nil,
         build_bundler_leak: nil,
         build_console: nil,

@@ -26,6 +26,9 @@ source "https://rubygems.org"
   end
 
   group :development do
+    <% if realm.build_amazing_print %>
+      gem "amazing_print", "~> 1.2"
+    <% end %>
     <% if realm.build_pry %>
       gem "pry", "~> 0.13"
       gem "pry-byebug", "~> 3.9"

@@ -31,6 +31,12 @@ module Rubysmith
           end
         end
 
+        def add_amazing_print
+          client.on "--[no-]amazing_print", "Add Amazing Print." do |value|
+            options[:build_amazing_print] = value
+          end
+        end
+
         def add_bundler_audit
           client.on "--[no-]bundler-audit", "Add Bundler Audit." do |value|
             options[:build_bundler_audit] = value

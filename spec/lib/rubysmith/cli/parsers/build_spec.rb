@@ -15,6 +15,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_minimum: true)
     end
 
+    it "enables amazing print" do
+      parser.call %w[--amazing_print]
+      expect(options).to eq(build_amazing_print: true)
+    end
+
+    it "disables amazing print" do
+      parser.call %w[--no-amazing_print]
+      expect(options).to eq(build_amazing_print: false)
+    end
+
     it "enables bundler audit" do
       parser.call %w[--bundler-audit]
       expect(options).to eq(build_bundler_audit: true)
