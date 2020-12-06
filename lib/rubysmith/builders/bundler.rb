@@ -24,7 +24,7 @@ module Rubysmith
                .replace(/\n\s+gem/, "\n  gem")
                .replace(/  (?=.+refinements)/, "")
                .replace(/(\n+|\s+)end/, "\nend")
-               .replace(/\n\ngroup :(code_quality|test) do\nend/, "")
+               .replace(/\n\ngroup :(code_quality|test|tools) do\nend/, "")
                .replace(/org"\n+/, "org\"\n\n")
         Dir.chdir(realm.project_root) { runner.start %w[install --quiet] }
         nil

@@ -18,6 +18,8 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
+
             desc "Run code quality checks"
             task code_quality: %i[]
 
@@ -33,6 +35,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "bundler/audit/task"
 
             Bundler::Audit::Task.new
@@ -52,6 +55,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "bundler/plumber/task"
 
             Bundler::Plumber::Task.new
@@ -71,6 +75,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "git/lint/rake/setup"
 
             desc "Run code quality checks"
@@ -88,6 +93,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "reek/rake/task"
 
             Reek::Rake::Task.new
@@ -107,6 +113,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "rspec/core/rake_task"
 
             RSpec::Core::RakeTask.new :spec
@@ -126,6 +133,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
           <<~CONTENT
+            require "bundler/setup"
             require "rubocop/rake_task"
 
             RuboCop::RakeTask.new
@@ -152,6 +160,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
 
       let :proof do
         <<~CONTENT
+          require "bundler/setup"
           require "bundler/audit/task"
           require "bundler/plumber/task"
           require "git/lint/rake/setup"

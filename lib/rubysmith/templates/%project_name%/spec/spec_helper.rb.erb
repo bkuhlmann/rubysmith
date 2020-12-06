@@ -1,14 +1,11 @@
 require "bundler/setup"
+Bundler.require :test, :tools
 
 <% if realm.build_simple_cov %>
   require "simplecov"
   SimpleCov.start { enable_coverage :branch }
 <% end %>
 
-<% if realm.build_pry %>
-  require "pry"
-  require "pry-byebug"
-<% end %>
 require "<%= realm.project_name %>"
 <% if realm.build_refinements %>
   require "refinements"

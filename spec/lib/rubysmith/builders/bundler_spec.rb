@@ -57,8 +57,11 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :development do
-            gem "amazing_print", "~> 1.2"
             gem "rake", "~> 13.0"
+          end
+
+          group :tools do
+            gem "amazing_print", "~> 1.2"
           end
         CONTENT
       end
@@ -154,11 +157,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :development do
+            gem "guard-rspec", "~> 4.7", require: false
             gem "rake", "~> 13.0"
-          end
-
-          group :test do
-            gem "guard-rspec", "~> 4.7"
           end
         CONTENT
       end
@@ -179,9 +179,12 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :development do
+            gem "rake", "~> 13.0"
+          end
+
+          group :tools do
             gem "pry", "~> 0.13"
             gem "pry-byebug", "~> 3.9"
-            gem "rake", "~> 13.0"
           end
         CONTENT
       end
@@ -275,8 +278,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "rubocop", "~> 1.3"
-            gem "rubocop-performance", "~> 1.8"
+            gem "rubocop", "~> 1.5"
+            gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
             gem "rubocop-rspec", "~> 2.0"
           end
@@ -307,8 +310,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "rubocop", "~> 1.3"
-            gem "rubocop-performance", "~> 1.8"
+            gem "rubocop", "~> 1.5"
+            gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
           end
 
@@ -333,12 +336,12 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
         <<~CONTENT
           source "https://rubygems.org"
 
-          group :code_quality do
-            gem "simplecov", "~> 0.19"
-          end
-
           group :development do
             gem "rake", "~> 13.0"
+          end
+
+          group :test do
+            gem "simplecov", "~> 0.20"
           end
         CONTENT
       end
@@ -378,23 +381,26 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             gem "bundler-leak", "~> 0.2"
             gem "git-lint", "~> 1.3"
             gem "reek", "~> 6.0"
-            gem "rubocop", "~> 1.3"
-            gem "rubocop-performance", "~> 1.8"
+            gem "rubocop", "~> 1.5"
+            gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
             gem "rubocop-rspec", "~> 2.0"
-            gem "simplecov", "~> 0.19"
           end
 
           group :development do
-            gem "amazing_print", "~> 1.2"
-            gem "pry", "~> 0.13"
-            gem "pry-byebug", "~> 3.9"
+            gem "guard-rspec", "~> 4.7", require: false
             gem "rake", "~> 13.0"
           end
 
           group :test do
-            gem "guard-rspec", "~> 4.7"
             gem "rspec", "~> 3.10"
+            gem "simplecov", "~> 0.20"
+          end
+
+          group :tools do
+            gem "amazing_print", "~> 1.2"
+            gem "pry", "~> 0.13"
+            gem "pry-byebug", "~> 3.9"
           end
         CONTENT
       end

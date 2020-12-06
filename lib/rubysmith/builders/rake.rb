@@ -16,11 +16,11 @@ module Rubysmith
       def call
         builder.call(realm.with(template_path: "%project_name%/Rakefile.erb"))
                .render
-               .replace(/\A\n+/, "")
                .replace(/\[\s+/, "[")
                .replace(/\s+\]/, "]")
-               .replace(/\n{2,}/, "\n\n")
                .replace("  ", "")
+               .replace(/\n+(?=require)/, "\n")
+               .replace(/\n{2,}/, "\n\n")
         nil
       end
 
