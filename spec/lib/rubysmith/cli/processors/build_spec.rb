@@ -7,6 +7,12 @@ RSpec.describe Rubysmith::CLI::Processors::Build do
 
   let(:builder) { class_spy Rubysmith::Builders::Core }
 
+  describe ".with_minimum" do
+    it "answers procesor" do
+      expect(described_class.with_minimum).to be_a(described_class)
+    end
+  end
+
   describe "#call" do
     it "calls builders" do
       processor.call project_name: "test"

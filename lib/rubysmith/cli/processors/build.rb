@@ -32,6 +32,10 @@ module Rubysmith
           Builders::Git::Commit
         ].freeze
 
+        def self.with_minimum
+          new builders: MINIMUM
+        end
+
         def initialize builders: MAXIMUM
           @builders = builders
         end
