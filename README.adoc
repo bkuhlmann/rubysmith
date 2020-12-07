@@ -26,6 +26,7 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/refinements[Refinements] Ruby core library enhancements.
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
+* Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
 * Supports link:https://github.com/rubysec/bundler-audit[Bundler Audit].
 * Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
 * Supports link:https://git-scm.com[Git].
@@ -33,8 +34,11 @@ toc::[]
 * Supports link:https://github.com/guard/guard[Guard].
 * Supports link:http://pryrepl.org[Pry].
 * Supports link:https://github.com/troessner/reek[Reek].
+* Supports link:https://www.alchemists.io/projects/refinements[Refinements].
 * Supports link:https://rspec.info[RSpec].
 * Supports link:https://github.com/rubocop-hq/rubocop[Rubocop].
+* Supports link:https://docs.rubocop.org/rubocop-performance[Rubocop Performance].
+* Supports link:https://github.com/rubocop-hq/rubocop-rake[Rubocop Rake].
 * Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
 * Supports common settings and a structured layout for building projects.
@@ -80,20 +84,22 @@ USAGE:
   -c, --config ACTION                      Manage gem configuration: edit or view.
 
 BUILD OPTIONS:
-      --[no-]bundler-audit                 Add Bundler Audit.
-      --[no-]bundler-leak                  Add Bundler Leak.
-      --[no-]console                       Add console script.
-      --[no-]documentation                 Add documentation.
-      --[no-]git                           Add Git.
-      --[no-]git-lint                      Add Git Lint.
-      --[no-]guard                         Add Guard.
-      --[no-]pry                           Add Pry.
-      --[no-]reek                          Add Reek.
-      --[no-]rspec                         Add RSpec.
-      --[no-]rubocop                       Add Rubocop.
-      --[no-]setup                         Add setup script.
-      --[no-]simple_cov                    Add SimpleCov.
-      --min                                Use minimum/no options.
+  --[no-]amazing_print                 Add Amazing Print.
+  --[no-]bundler-audit                 Add Bundler Audit.
+  --[no-]bundler-leak                  Add Bundler Leak.
+  --[no-]console                       Add console script.
+  --[no-]documentation                 Add documentation.
+  --[no-]git                           Add Git.
+  --[no-]git-lint                      Add Git Lint.
+  --[no-]guard                         Add Guard.
+  --[no-]pry                           Add Pry.
+  --[no-]reek                          Add Reek.
+  --[no-]refinements                   Add Refinements.
+  --[no-]rspec                         Add RSpec.
+  --[no-]rubocop                       Add Rubocop.
+  --[no-]setup                         Add setup script.
+  --[no-]simple_cov                    Add SimpleCov
+  --min                                Use minimum/no options.
 ....
 
 === Building
@@ -153,6 +159,7 @@ The default configuration is as follows:
   :format: "md"
   :license: "mit"
 :build:
+  :amazing_print: true
   :bundler_audit: true
   :bundler_leak: true
   :console: true
@@ -163,6 +170,7 @@ The default configuration is as follows:
   :minimum: false
   :pry: true
   :reek: true
+  :refinements: true
   :rspec: true
   :rubocop: true
   :setup: true

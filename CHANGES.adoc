@@ -1,11 +1,26 @@
 = Changes
 
+== 0.6.0 (2020-12-06)
+
+* Fixed Gemfile template to distinguish between dependency groups
+* Fixed Rubocop RSpec Gemfile template dependency
+* Added Amazing Print build option
+* Added CLI minimum processor
+* Added Gemfile groups
+* Added Refinements build option
+* Added Rubocop format builder
+* Added Rubocop setup builder
+* Updated console to require Bundler tools group
+* Updated to Refinements 7.16.0
+* Removed Rubocop builder
+* Refactored CLI shell to use minimum processor
+
 == 0.5.0 (2020-11-21)
 
-- Fixed Rubocop Performance/MethodObjectAsBlock issues
-- Fixed spec helper template to require project
-- Added Bundler Leak build option
-- Updated to Refinements 7.15.1
+* Fixed Rubocop Performance/MethodObjectAsBlock issues
+* Fixed spec helper template to require project
+* Added Bundler Leak build option
+* Updated to Refinements 7.15.1
 
 == 0.4.0 (2020-11-14)
 
