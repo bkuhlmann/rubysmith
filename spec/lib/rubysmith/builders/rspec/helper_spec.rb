@@ -18,7 +18,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
       let :proof do
         <<~BODY
           require "bundler/setup"
-          Bundler.require :test, :tools
+          Bundler.require :tools
 
           require "test"
 
@@ -58,7 +58,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
       let :proof do
         <<~BODY
           require "bundler/setup"
-          Bundler.require :test, :tools
+          Bundler.require :tools
 
           require "simplecov"
           SimpleCov.start { enable_coverage :branch }
@@ -101,7 +101,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
       let :proof do
         <<~BODY
           require "bundler/setup"
-          Bundler.require :test, :tools
+          Bundler.require :tools
 
           require "test"
 
@@ -141,7 +141,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
       let :proof do
         <<~BODY
           require "bundler/setup"
-          Bundler.require :test, :tools
+          Bundler.require :tools
 
           require "simplecov"
           SimpleCov.start { enable_coverage :branch }
@@ -189,7 +189,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
       let :proof do
         <<~BODY
           require "bundler/setup"
-          Bundler.require :test, :tools
+          Bundler.require :tools
 
           require "simplecov"
           SimpleCov.start { enable_coverage :branch }
