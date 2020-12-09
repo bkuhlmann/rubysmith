@@ -336,12 +336,12 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
         <<~CONTENT
           source "https://rubygems.org"
 
-          group :development do
-            gem "rake", "~> 13.0"
+          group :code_quality do
+            gem "simplecov", "~> 0.20"
           end
 
-          group :test do
-            gem "simplecov", "~> 0.20"
+          group :development do
+            gem "rake", "~> 13.0"
           end
         CONTENT
       end
@@ -385,6 +385,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
             gem "rubocop-rspec", "~> 2.0"
+            gem "simplecov", "~> 0.20"
           end
 
           group :development do
@@ -394,7 +395,6 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
           group :test do
             gem "rspec", "~> 3.10"
-            gem "simplecov", "~> 0.20"
           end
 
           group :tools do

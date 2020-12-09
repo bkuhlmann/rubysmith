@@ -26,6 +26,9 @@ source "https://rubygems.org"
     <% if realm.build_rspec && realm.build_rubocop %>
       gem "rubocop-rspec", "~> 2.0"
     <% end %>
+    <% if realm.build_simple_cov %>
+      gem "simplecov", "~> 0.20"
+    <% end %>
   end
 
   group :development do
@@ -38,9 +41,6 @@ source "https://rubygems.org"
   group :test do
     <% if realm.build_rspec %>
       gem "rspec", "~> 3.10"
-    <% end %>
-    <% if realm.build_simple_cov %>
-      gem "simplecov", "~> 0.20"
     <% end %>
   end
 
