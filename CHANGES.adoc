@@ -1,5 +1,11 @@
 = Changes
 
+== 0.6.1 (2020-12-10)
+
+* Fixed spec helper to only require tools
+* Updated Gemfile to put Guard RSpec in test group
+* Updated Gemfile to put SimpleCov in code quality group
+
 == 0.6.0 (2020-12-06)
 
 * Fixed Gemfile template to distinguish between dependency groups
