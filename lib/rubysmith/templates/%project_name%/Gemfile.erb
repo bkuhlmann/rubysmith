@@ -32,13 +32,13 @@ source "https://rubygems.org"
   end
 
   group :development do
-    <% if realm.build_guard %>
-      gem "guard-rspec", "~> 4.7", require: false
-    <% end %>
     gem "rake", "~> 13.0"
   end
 
   group :test do
+    <% if realm.build_guard %>
+      gem "guard-rspec", "~> 4.7", require: false
+    <% end %>
     <% if realm.build_rspec %>
       gem "rspec", "~> 3.10"
     <% end %>

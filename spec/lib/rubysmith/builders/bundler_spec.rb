@@ -157,8 +157,11 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           source "https://rubygems.org"
 
           group :development do
-            gem "guard-rspec", "~> 4.7", require: false
             gem "rake", "~> 13.0"
+          end
+
+          group :test do
+            gem "guard-rspec", "~> 4.7", require: false
           end
         CONTENT
       end
@@ -389,11 +392,11 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
           end
 
           group :development do
-            gem "guard-rspec", "~> 4.7", require: false
             gem "rake", "~> 13.0"
           end
 
           group :test do
+            gem "guard-rspec", "~> 4.7", require: false
             gem "rspec", "~> 3.10"
           end
 
