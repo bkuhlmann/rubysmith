@@ -22,6 +22,7 @@
   :refinements: true
   :rspec: true
   :rubocop: true
+  :ruby_critic: true
   :setup: true
   :simple_cov: true
 :builders:

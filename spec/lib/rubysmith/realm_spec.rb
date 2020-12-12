@@ -36,6 +36,7 @@ RSpec.describe Rubysmith::Realm do
         build_refinements: nil,
         build_rspec: nil,
         build_rubocop: nil,
+        build_ruby_critic: nil,
         build_simple_cov: nil,
         builders_pragmater_comments: nil,
         builders_pragmater_includes: nil,

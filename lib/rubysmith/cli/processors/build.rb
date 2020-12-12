@@ -29,6 +29,7 @@ module Rubysmith
           Builders::Pragma,
           Builders::Rubocop::Setup,
           Builders::Rubocop::Formatter,
+          Builders::RubyCritic,
           Builders::Git::Commit
         ].freeze
 

@@ -84,6 +84,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-reek
           --no-rspec
           --no-rubocop
+          --no-ruby_critic
           --no-setup
           --no-simple_cov
         ]
@@ -124,6 +125,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --reek
           --rspec
           --rubocop
+          --ruby_critic
           --setup
           --simple_cov
         ]
@@ -135,6 +137,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           "test/.git/MERGE_RR",
           "test/.reek.yml",
           "test/.rubocop.yml",
+          "test/.rubycritic.yml",
           "test/.ruby-version",
           "test/Gemfile",
           "test/Gemfile.lock",

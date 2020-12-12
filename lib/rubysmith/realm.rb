@@ -30,6 +30,7 @@ module Rubysmith
     build_refinements
     build_rspec
     build_rubocop
+    build_ruby_critic
     build_setup
     build_simple_cov
     builders_pragmater_comments

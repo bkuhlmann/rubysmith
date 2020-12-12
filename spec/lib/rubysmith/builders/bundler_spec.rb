@@ -332,6 +332,31 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
       it_behaves_like "a bundle"
     end
 
+    context "with only RubyCritic" do
+      let(:realm) { default_realm.with build_ruby_critic: true }
+
+      let :proof do
+        <<~CONTENT
+          source "https://rubygems.org"
+
+          group :code_quality do
+            gem "rubycritic", "~> 4.5", require: false
+          end
+
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with only SimpleCov" do
       let(:realm) { default_realm.with build_simple_cov: true }
 
@@ -370,6 +395,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
                            build_refinements: true,
                            build_rspec: true,
                            build_rubocop: true,
+                           build_ruby_critic: true,
                            build_simple_cov: true
       end
 
@@ -388,6 +414,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
             gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
             gem "rubocop-rspec", "~> 2.0"
+            gem "rubycritic", "~> 4.5", require: false
             gem "simplecov", "~> 0.20"
           end
 
