@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require "yaml"
+require "pathname"
 require "refinements/hashes"
 require "runcom"
+require "yaml"
 
 module Rubysmith
   module CLI
