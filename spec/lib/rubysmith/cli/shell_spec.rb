@@ -74,7 +74,9 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
         %w[
           --build
           test
+          --no-amazing_print
           --no-bundler-audit
+          --no-bundler-leak
           --no-console
           --no-documentation
           --no-git
@@ -82,6 +84,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-guard
           --no-pry
           --no-reek
+          --no-refinements
           --no-rspec
           --no-rubocop
           --no-ruby_critic
