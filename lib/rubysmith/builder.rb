@@ -10,10 +10,7 @@ module Rubysmith
   class Builder
     using Refinements::Pathnames
 
-    LOGGER = Logger.new(
-      STDOUT,
-      formatter: ->(severity, _at, _program, message) { "#{severity} #{message}\n" }
-    )
+    LOGGER = Logger.new(STDOUT, formatter: ->(_severity, _at, _program, message) { "#{message}\n" })
 
     HELPERS = {
       inserter: Text::Inserter,
