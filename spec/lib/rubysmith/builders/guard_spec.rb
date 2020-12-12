@@ -21,7 +21,6 @@ RSpec.describe Rubysmith::Builders::Guard, :realm do
           <<~CONTENT
             #! /usr/bin/env ruby
 
-            require "rubygems"
             require "bundler/setup"
 
             load Gem.bin_path "guard", "guard"

@@ -22,7 +22,6 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
             #! /usr/bin/env ruby
             # frozen_string_literal: true
 
-            require "rubygems"
             require "bundler/setup"
 
             load Gem.bin_path "rubocop", "rubocop"
