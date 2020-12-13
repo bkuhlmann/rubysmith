@@ -23,7 +23,6 @@ toc::[]
 == Features
 
 * Builds a Ruby project skeleton for custom design and development.
-* Uses link:https://www.alchemists.io/projects/refinements[Refinements] Ruby core library enhancements.
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
@@ -40,6 +39,7 @@ toc::[]
 * Supports link:https://docs.rubocop.org/rubocop-performance[Rubocop Performance].
 * Supports link:https://github.com/rubocop-hq/rubocop-rake[Rubocop Rake].
 * Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
+* Supports link:https://github.com/whitesmith/RubyCritic[RubyCritic].
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
@@ -97,8 +97,9 @@ BUILD OPTIONS:
   --[no-]refinements                   Add Refinements.
   --[no-]rspec                         Add RSpec.
   --[no-]rubocop                       Add Rubocop.
+  --[no-]ruby_critic                   Add RubyCritic.
   --[no-]setup                         Add setup script.
-  --[no-]simple_cov                    Add SimpleCov
+  --[no-]simple_cov                    Add SimpleCov.
   --min                                Use minimum/no options.
 ....
 
@@ -173,6 +174,7 @@ The default configuration is as follows:
   :refinements: true
   :rspec: true
   :rubocop: true
+  :ruby_critic: true
   :setup: true
   :simple_cov: true
 :builders:
