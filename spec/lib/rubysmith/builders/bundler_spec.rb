@@ -232,7 +232,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
         <<~CONTENT
           source "https://rubygems.org"
 
-          gem "refinements", "~> 7.16"
+          gem "refinements", "~> 7.18"
 
           group :development do
             gem "rake", "~> 13.0"
@@ -403,7 +403,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
         <<~CONTENT
           source "https://rubygems.org"
 
-          gem "refinements", "~> 7.16"
+          gem "refinements", "~> 7.18"
 
           group :code_quality do
             gem "bundler-audit", "~> 0.7"
