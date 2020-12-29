@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pragmater", "~> 8.1"
   spec.add_dependency "refinements", "~> 8.0"
   spec.add_dependency "rubocop", "~> 1.5"
-  spec.add_dependency "runcom", "~> 6.4"
+  spec.add_dependency "runcom", "~> 7.0"
 
   spec.files = Dir.glob "lib/**/*", File::FNM_DOTMATCH
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
