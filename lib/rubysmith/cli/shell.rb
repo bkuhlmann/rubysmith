@@ -48,7 +48,8 @@ module Rubysmith
       end
 
       def process_build kind, settings
-        processors.fetch(kind).call settings.rekey(build: :project_name).merge(now: Time.now)
+        processors.fetch(kind).call settings.transform_keys(build: :project_name)
+                                            .merge(now: Time.now)
       end
 
       def options
