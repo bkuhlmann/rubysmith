@@ -1,5 +1,19 @@
 = Changes
 
+== 0.8.0 (2020-12-30)
+
+* Fixed Circle CI configuration for Bundler config path - Brooke Kuhlmann
+* Added Circle CI explicit Bundle install configuration - Brooke Kuhlmann
+* Added private method sorting - Brooke Kuhlmann
+* Updated to Gemsmith 15.0.0 - Brooke Kuhlmann
+* Updated to Git Lint 2.0.0 - Brooke Kuhlmann
+* Updated to Pragmater 9.0.0 - Brooke Kuhlmann
+* Updated to Refinements 7.18.0 - Brooke Kuhlmann
+* Updated to Refinements 8.0.0 - Brooke Kuhlmann
+* Updated to Ruby 3.0.0 - Brooke Kuhlmann
+* Updated to Runcom 7.0.0 - Brooke Kuhlmann
+* Refactored shell to use Hash transform keys - Brooke Kuhlmann
+
 == 0.7.0 (2020-12-12)
 
 * Fixed CLI shell spec to disable all options
