@@ -28,7 +28,7 @@ module Rubysmith
         attr_reader :client, :options
 
         def collate
-          private_methods.grep(/add_/).each { |method| __send__ method }
+          private_methods.sort.grep(/add_/).each { |method| __send__ method }
         end
 
         def add_config
