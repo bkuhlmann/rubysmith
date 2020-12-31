@@ -5,6 +5,8 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
   subject(:builder) { described_class.new realm }
 
+  include_context "with temporary directory"
+
   let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 
   it_behaves_like "a builder"
@@ -17,7 +19,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
 
       let :content do
         <<~CONTENT
-          RSpec.shared_context "with temporary directory", :temp_dir do
+          RSpec.shared_context "with temporary directory" do
             using Refinements::Pathnames
 
             let(:temp_dir) { Bundler.root.join "tmp/rspec" }
@@ -41,7 +43,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
 
       let :content do
         <<~CONTENT
-          RSpec.shared_context "with temporary directory", :temp_dir do
+          RSpec.shared_context "with temporary directory" do
             let(:temp_dir) { Bundler.root.join "tmp/rspec" }
 
             around do |example|

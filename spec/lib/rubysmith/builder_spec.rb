@@ -2,10 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builder, :temp_dir do
-  using Refinements::Pathnames
-  using Refinements::StringIOs
-
+RSpec.describe Rubysmith::Builder do
   subject :builder do
     described_class.new realm.with(template_path: "%project_name%/bin/test.erb"),
                         helpers: {
@@ -15,6 +12,11 @@ RSpec.describe Rubysmith::Builder, :temp_dir do
                           logger: Logger.new(output_buffer)
                         }
   end
+
+  include_context "with temporary directory"
+
+  using Refinements::Pathnames
+  using Refinements::StringIOs
 
   let :realm do
     Rubysmith::Realm[
