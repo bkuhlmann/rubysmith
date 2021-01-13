@@ -16,19 +16,23 @@ RSpec.describe Rubysmith::Text::Inserter do
     it "inserts content before matched line" do
       inserter = described_class.new lines, :before
 
-      expect(inserter.call("Test insert", /iaculis ipsum/)).to eq([
-        "Curabitur eleifend",
-        "Test insert",
-        "wisi iaculis ipsum."
-      ])
+      expect(inserter.call("Test insert", /iaculis ipsum/)).to eq(
+        [
+          "Curabitur eleifend",
+          "Test insert",
+          "wisi iaculis ipsum."
+        ]
+      )
     end
 
     it "inserts content after matched line" do
-      expect(inserter.call("Test insert", /iaculis ipsum/)).to eq([
-        "Curabitur eleifend",
-        "wisi iaculis ipsum.",
-        "Test insert"
-      ])
+      expect(inserter.call("Test insert", /iaculis ipsum/)).to eq(
+        [
+          "Curabitur eleifend",
+          "wisi iaculis ipsum.",
+          "Test insert"
+        ]
+      )
     end
 
     it "fails with invalid kind" do
@@ -39,10 +43,12 @@ RSpec.describe Rubysmith::Text::Inserter do
     it "doesn't mutate lines" do
       inserter.call("Test insert", /iaculis ipsum/)
 
-      expect(lines).to eq([
-        "Curabitur eleifend",
-        "wisi iaculis ipsum."
-      ])
+      expect(lines).to eq(
+        [
+          "Curabitur eleifend",
+          "wisi iaculis ipsum."
+        ]
+      )
     end
 
     it "answers original lines when line doesn't match pattern" do

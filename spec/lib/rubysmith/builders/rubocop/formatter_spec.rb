@@ -15,10 +15,12 @@ RSpec.describe Rubysmith::Builders::Rubocop::Formatter, :realm do
     it "runs Rubocop" do
       builder.call
 
-      expect(client).to have_received(:run).with([
-        "--auto-correct",
-        default_realm.project_root.to_s
-      ])
+      expect(client).to have_received(:run).with(
+        [
+          "--auto-correct",
+          default_realm.project_root.to_s
+        ]
+      )
     end
   end
 end
