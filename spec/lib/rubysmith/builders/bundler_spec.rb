@@ -3,9 +3,9 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Bundler, :realm do
-  subject(:builder) { described_class.new realm, runner: runner }
+  subject(:builder) { described_class.new realm, client: client }
 
-  let(:runner) { class_spy Bundler::CLI }
+  let(:client) { class_spy Bundler::CLI }
   let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
 
   it_behaves_like "a builder"
@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     shared_examples_for "a bundle" do
       it "installs gems" do
         builder.call
-        expect(runner).to have_received(:start).with(%w[install --quiet])
+        expect(client).to have_received(:start).with(%w[install --quiet])
       end
     end
 

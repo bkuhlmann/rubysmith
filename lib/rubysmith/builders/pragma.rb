@@ -10,19 +10,19 @@ module Rubysmith
         new(realm).call
       end
 
-      def initialize realm, runner: Pragmater::Runner
+      def initialize realm, client: Pragmater::Runner
         @realm = realm
-        @runner = runner
+        @client = client
       end
 
       def call
-        runner.for(**attributes).call
+        client.for(**attributes).call
         nil
       end
 
       private
 
-      attr_reader :realm, :runner
+      attr_reader :realm, :client
 
       def attributes
         {
