@@ -26,6 +26,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
         expect(gemfile_path.read).to eq(
           <<~CONTENT
+            ruby File.read(".ruby-version").strip
+
             source "https://rubygems.org"
 
             group :development do
@@ -43,7 +45,15 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       it "builds Gemfile" do
         builder.call
-        expect(gemfile_path.read).to eq(%(source "https://rubygems.org"\n\n))
+
+        expect(gemfile_path.read).to eq(
+          <<~CONTENT
+            ruby File.read(".ruby-version").strip
+
+            source "https://rubygems.org"
+
+          CONTENT
+        )
       end
 
       it_behaves_like "a bundle"
@@ -54,6 +64,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :development do
@@ -79,6 +91,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -104,6 +118,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -129,6 +145,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -154,6 +172,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :development do
@@ -179,6 +199,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :content do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :development do
@@ -205,6 +227,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -230,6 +254,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           gem "refinements", "~> 8.0"
@@ -253,6 +279,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :development do
@@ -278,6 +306,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -310,6 +340,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -337,6 +369,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -362,6 +396,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           group :code_quality do
@@ -401,6 +437,8 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
 
       let :proof do
         <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
           source "https://rubygems.org"
 
           gem "refinements", "~> 8.0"
