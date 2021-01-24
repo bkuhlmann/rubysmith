@@ -8,22 +8,20 @@ RSpec.describe Rubysmith::Builders::Git::Commit, :realm do
   subject(:builder) { described_class.new realm }
 
   let(:project_dir) { temp_dir.join "test" }
-  let(:commit) { Dir.chdir(project_dir) { `git log --pretty=format:%s%n%b -1` } }
+  let(:commit) { project_dir.change_dir { `git log --pretty=format:%s%n%b -1` } }
 
   it_behaves_like "a builder"
 
   describe "#call" do
     before do
-      Dir.chdir temp_dir do
-        project_dir.mkdir
-        Dir.chdir project_dir do
-          `git init`
-          `git config user.name "#{realm.author_name}"`
-          `git config user.email "#{realm.author_email}"`
-        end
+      project_dir.make_path.change_dir do
+        `git init`
+        `git config user.name "#{realm.author_name}"`
+        `git config user.email "#{realm.author_email}"`
         project_dir.join("test.txt").touch
-        builder.call
       end
+
+      temp_dir.change_dir { builder.call }
     end
 
     context "when enabled" do

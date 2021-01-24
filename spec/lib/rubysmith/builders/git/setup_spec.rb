@@ -5,14 +5,16 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Git::Setup, :realm do
   subject(:builder) { described_class.new realm }
 
+  using Refinements::Pathnames
+
   let(:git_dir) { temp_dir.join "test", ".git" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
     before do
-      Dir.chdir temp_dir do
-        temp_dir.join("test").mkdir
+      temp_dir.change_dir do
+        temp_dir.join("test").make_path
         builder.call
       end
     end

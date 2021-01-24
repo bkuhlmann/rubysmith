@@ -13,9 +13,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
         configuration: runcom_configuration,
         kernel: kernel
       ),
-      build_minimum: Rubysmith::CLI::Processors::Build.new(
-        builders: Rubysmith::CLI::Processors::Build::MINIMUM
-      ),
+      build_minimum: Rubysmith::CLI::Processors::Build.with_minimum,
       build_maximum: Rubysmith::CLI::Processors::Build.new
     }
   end
@@ -60,7 +58,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds minimum skeleton" do
-        Dir.chdir temp_dir do
+        temp_dir.change_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
         end
@@ -104,7 +102,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds minimum skeleton" do
-        Dir.chdir temp_dir do
+        temp_dir.change_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
         end
@@ -165,7 +163,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       it "builds maximum skeleton" do
         next if ENV["CI"] == "true" # FIX: Needs a global Git configuration.
 
-        Dir.chdir temp_dir do
+        temp_dir.change_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
         end
