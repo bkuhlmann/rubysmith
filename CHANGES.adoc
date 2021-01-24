@@ -1,5 +1,16 @@
 = Changes
 
+== 0.9.0 (2021-01-24)
+
+* Fixed Rubocop Layout/ArrayAlignment issues - Brooke Kuhlmann
+* Added Ruby version to Gemfile template - Brooke Kuhlmann
+* Updated to Circle CI 2.1.0 - Brooke Kuhlmann
+* Updated to Rubocop 1.8.0 - Brooke Kuhlmann
+* Removed Ruby experimental feature disablement - Brooke Kuhlmann
+* Refactored Bundler and Pragmater builds to use clients - Brooke Kuhlmann
+* Refactored RSpec temporary directory shared context - Brooke Kuhlmann
+* Refactored implementation pathname usage - Brooke Kuhlmann
+
 == 0.8.0 (2020-12-30)
 
 * Fixed Circle CI configuration for Bundler config path - Brooke Kuhlmann
