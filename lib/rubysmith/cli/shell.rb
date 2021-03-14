@@ -24,11 +24,11 @@ module Rubysmith
         parse arguments
 
         case options
-          in config: action, **remainder then process_config action
-          in build_minimum: true, **remainder then process_build :build_minimum, options
-          in build:, **remainder then process_build :build_maximum, options
-          in version:, **remainder then puts version
-          in help:, **remainder then usage
+          in config: action then process_config action
+          in build_minimum: true then process_build :build_minimum, options
+          in build: then process_build :build_maximum, options
+          in version: then puts version
+          in help: then usage
           else usage
         end
       end
