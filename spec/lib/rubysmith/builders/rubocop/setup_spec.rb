@@ -41,9 +41,9 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
         expect(configuration_path.read).to eq(
           <<~CONTENT
             inherit_from:
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/ruby.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/rake.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/performance.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
           CONTENT
         )
       end
@@ -60,10 +60,10 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
         expect(configuration_path.read).to eq(
           <<~CONTENT
             inherit_from:
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/ruby.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/rake.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/performance.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/master/configurations/rubocop/rspec.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
+              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
           CONTENT
         )
       end
