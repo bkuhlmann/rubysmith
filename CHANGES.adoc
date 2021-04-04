@@ -1,5 +1,13 @@
 = Changes
 
+== 0.9.1 (2021-04-04)
+
+* Added Ruby garbage collection compaction - Brooke Kuhlmann
+* Updated Code Quality URLs - Brooke Kuhlmann
+* Updated to Docker Alpine Ruby image - Brooke Kuhlmann
+* Updated to Rubocop 1.10.0 - Brooke Kuhlmann
+* Removed shell remainder variable - Brooke Kuhlmann
+
 == 0.9.0 (2021-01-24)
 
 * Fixed Rubocop Layout/ArrayAlignment issues - Brooke Kuhlmann
