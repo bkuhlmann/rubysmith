@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
-require "runcom"
-
 module Rubysmith
   module CLI
     module Parsers
-      CLIENT = OptionParser.new nil, 40, "  "
-      SECTIONS = [Core, Build].freeze # Order is important.
-
       # Assembles and parses all Command Line Interface (CLI) options.
       class Assembler
+        SECTIONS = [Core, Build].freeze # Order is important.
+
         def initialize client = CLIENT, sections: SECTIONS, configuration: CLI::Configuration.new
           @client = client
           @sections = sections
