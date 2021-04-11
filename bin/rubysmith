@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require "rubysmith"
-require "rubysmith/cli/shell"
 
 Process.setproctitle Rubysmith::Identity::VERSION_LABEL
 Rubysmith::CLI::Shell.new.call ARGV
