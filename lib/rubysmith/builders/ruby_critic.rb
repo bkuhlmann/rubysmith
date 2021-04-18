@@ -4,9 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton RubyCritic code quality support.
     class RubyCritic
-      def self.call realm, builder: Builder
-        new(realm, builder: builder).call
-      end
+      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
       def initialize realm, builder: Builder
         @realm = realm

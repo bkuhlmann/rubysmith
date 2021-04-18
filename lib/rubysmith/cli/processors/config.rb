@@ -22,13 +22,9 @@ module Rubysmith
 
         attr_reader :configuration, :kernel
 
-        def edit
-          kernel.system "$EDITOR #{configuration.current}"
-        end
+        def edit = kernel.system("$EDITOR #{configuration.current}")
 
-        def view
-          kernel.system "cat #{configuration.current}"
-        end
+        def view = kernel.system("cat #{configuration.current}")
       end
     end
   end

@@ -6,7 +6,6 @@ require "logger"
 
 module Rubysmith
   # :reek:TooManyMethods
-  # rubocop:disable Metrics/ClassLength
   class Builder
     using Refinements::Pathnames
 
@@ -110,33 +109,18 @@ module Rubysmith
       end
     end
 
-    def inserter
-      helpers.fetch __method__
-    end
+    def inserter = helpers.fetch(__method__)
 
-    def renderer
-      helpers.fetch(__method__).new realm
-    end
+    def renderer = helpers.fetch(__method__).new(realm)
 
-    def kernel
-      helpers.fetch __method__
-    end
+    def kernel = helpers.fetch(__method__)
 
-    def logger
-      helpers.fetch __method__
-    end
+    def logger = helpers.fetch(__method__)
 
-    def relative_build_path
-      build_path.relative_path_from realm.build_root
-    end
+    def relative_build_path = build_path.relative_path_from(realm.build_root)
 
-    def build_path
-      pathway.end_path.gsub("%project_name%", realm.project_name).sub(".erb", "")
-    end
+    def build_path = pathway.end_path.gsub("%project_name%", realm.project_name).sub(".erb", "")
 
-    def pathway
-      realm.to_pathway
-    end
+    def pathway = realm.to_pathway
   end
-  # rubocop:enable Metrics/ClassLength
 end

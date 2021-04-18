@@ -5,9 +5,7 @@ module Rubysmith
     module RSpec
       # Builds RSpec shared context for temporary directories.
       class Context
-        def self.call realm, builder: Builder
-          new(realm, builder: builder).call
-        end
+        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
         def initialize realm, builder: Builder
           @realm = realm

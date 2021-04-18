@@ -18,9 +18,7 @@ module Rubysmith
         @client = client
       end
 
-      def to_h
-        client.to_h.flatten_keys
-      end
+      def to_h = client.to_h.flatten_keys
 
       private
 

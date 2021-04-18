@@ -51,21 +51,13 @@ module Rubysmith
       freeze
     end
 
-    def with attributes
-      self.class.new to_h.merge(attributes)
-    end
+    def with(attributes) = self.class.new(to_h.merge(attributes))
 
-    def project_label
-      project_name.titleize
-    end
+    def project_label = project_name.titleize
 
-    def project_class
-      project_name.camelcase
-    end
+    def project_class = project_name.camelcase
 
-    def project_root
-      build_root.join project_name
-    end
+    def project_root = build_root.join(project_name)
 
     def to_pathway
       Pathway[start_root: template_root, start_path: template_path, end_root: build_root]

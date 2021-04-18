@@ -10,9 +10,7 @@ module Rubysmith
     class Bundler
       using Refinements::Pathnames
 
-      def self.call realm, builder: Builder
-        new(realm, builder: builder).call
-      end
+      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
       def initialize realm, builder: Builder, client: ::Bundler::CLI
         @realm = realm

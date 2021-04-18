@@ -4,9 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton documentation.
     class Documentation
-      def self.call realm, builder: Builder
-        new(realm, builder: builder).call
-      end
+      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
       def initialize realm, builder: Builder
         @realm = realm
@@ -50,13 +48,9 @@ module Rubysmith
                .replace("\n\n\n", "\n\n")
       end
 
-      def kind
-        realm.documentation_format || "md"
-      end
+      def kind = realm.documentation_format || "md"
 
-      def license
-        realm.documentation_license || "mit"
-      end
+      def license = realm.documentation_license || "mit"
     end
   end
 end

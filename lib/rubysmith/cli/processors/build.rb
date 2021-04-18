@@ -41,17 +41,13 @@ module Rubysmith
           @builders = builders
         end
 
-        def call options
-          Realm[**options].then { |realm| process realm }
-        end
+        def call(options) = Realm[**options].then { |realm| process realm }
 
         private
 
         attr_reader :builders
 
-        def process realm
-          builders.each { |builder| builder.call realm }
-        end
+        def process(realm) = builders.each { |builder| builder.call realm }
       end
     end
   end

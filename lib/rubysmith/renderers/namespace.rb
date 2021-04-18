@@ -14,9 +14,7 @@ module Rubysmith
         @depth = namespace.scan("::").length
       end
 
-      def call content
-        "#{prefix}#{body content}#{suffix.chomp}"
-      end
+      def call(content) = "#{prefix}#{body content}#{suffix.chomp}"
 
       private
 

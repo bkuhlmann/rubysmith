@@ -5,9 +5,7 @@ module Rubysmith
     module RSpec
       # Builds RSpec spec helper for project skeleton.
       class Helper
-        def self.call realm, builder: Builder
-          new(realm, builder: builder).call
-        end
+        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
         def initialize realm, builder: Builder
           @realm = realm

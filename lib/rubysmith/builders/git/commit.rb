@@ -5,9 +5,7 @@ module Rubysmith
     module Git
       # Builds project skeleton initial Git commit message.
       class Commit
-        def self.call realm, builder: Builder
-          new(realm, builder: builder).call
-        end
+        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
         def initialize realm, builder: Builder
           @realm = realm
@@ -36,9 +34,7 @@ module Rubysmith
           CONTENT
         end
 
-        def project_name
-          realm.project_name
-        end
+        def project_name = realm.project_name
       end
     end
   end

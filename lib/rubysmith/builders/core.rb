@@ -4,9 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton core structure and minimum file support.
     class Core
-      def self.call realm, builder: Builder
-        new(realm, builder: builder).call
-      end
+      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
       def initialize realm, builder: Builder
         @realm = realm

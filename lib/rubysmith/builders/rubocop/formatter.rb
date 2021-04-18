@@ -10,9 +10,7 @@ module Rubysmith
       class Formatter
         using Refinements::IOs
 
-        def self.call realm
-          new(realm).call
-        end
+        def self.call(realm) = new(realm).call
 
         def initialize realm, client: RuboCop::CLI.new
           @realm = realm

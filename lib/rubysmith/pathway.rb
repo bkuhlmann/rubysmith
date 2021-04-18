@@ -14,17 +14,11 @@ module Rubysmith
       freeze
     end
 
-    def with attributes
-      self.class.new to_h.merge(attributes)
-    end
+    def with(attributes) = self.class.new(to_h.merge(attributes))
 
-    def end_path
-      end_root.join from_parent, start_path.basename
-    end
+    def end_path = end_root.join(from_parent, start_path.basename)
 
-    def partial?
-      start_path.basename.fnmatch? "_*"
-    end
+    def partial? = start_path.basename.fnmatch?("_*")
 
     private
 

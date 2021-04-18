@@ -4,9 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton Reek code quality support.
     class Reek
-      def self.call realm, builder: Builder
-        new(realm, builder: builder).call
-      end
+      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
 
       def initialize realm, builder: Builder
         @realm = realm

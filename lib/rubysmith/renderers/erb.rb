@@ -12,18 +12,14 @@ module Rubysmith
         @client = client
       end
 
-      def call content
-        client.new(content, trim_mode: "<>", eoutvar: "@buffer").result binding
-      end
+      def call(content) = client.new(content, trim_mode: "<>", eoutvar: "@buffer").result(binding)
 
       private
 
       attr_accessor :buffer
       attr_reader :realm, :scope, :client
 
-      def namespace
-        self.buffer = scope.call yield
-      end
+      def namespace = self.buffer = scope.call(yield)
     end
   end
 end
