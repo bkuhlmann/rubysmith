@@ -295,7 +295,7 @@ RSpec.describe Rubysmith::Builder do
     context "when minor failure" do
       it "logs information" do
         builder.run "hostname -x"
-        expect(output_buffer.reread).to match(/.+(illegal|invalid) option.+/m)
+        expect(output_buffer.reread).to match(/.+(illegal|unrecognized) option.+/m)
       end
 
       it "answers self" do
