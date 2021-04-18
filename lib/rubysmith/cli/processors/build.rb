@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module CLI
     module Processors
       # Handles the Command Line Interface (CLI) for building of a project skeleton.
       class Build
+        using Refinements::Structs
+
         # Order is important.
         MINIMUM = [
           Builders::Core,
@@ -37,17 +41,18 @@ module Rubysmith
           new builders: MINIMUM
         end
 
-        def initialize builders: MAXIMUM
+        def initialize configuration: Configuration::Content.new, builders: MAXIMUM
+          @configuration = configuration
           @builders = builders
         end
 
-        def call(options) = Realm[**options].then { |realm| process realm }
+        def call(options) = configuration.merge(**options).then { |config| process config }
 
         private
 
-        attr_reader :builders
+        attr_reader :configuration, :builders
 
-        def process(realm) = builders.each { |builder| builder.call realm }
+        def process(config) = builders.each { |builder| builder.call config }
       end
     end
   end

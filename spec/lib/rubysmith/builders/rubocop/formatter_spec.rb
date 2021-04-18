@@ -2,10 +2,12 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Rubocop::Formatter, :realm do
+RSpec.describe Rubysmith::Builders::Rubocop::Formatter do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new default_realm, client: client }
+  subject(:builder) { described_class.new default_configuration, client: client }
+
+  include_context "with configuration"
 
   let(:client) { instance_spy RuboCop::CLI }
 
@@ -18,7 +20,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Formatter, :realm do
       expect(client).to have_received(:run).with(
         [
           "--auto-correct",
-          default_realm.project_root.to_s
+          default_configuration.project_root.to_s
         ]
       )
     end

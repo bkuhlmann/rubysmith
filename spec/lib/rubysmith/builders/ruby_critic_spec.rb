@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::RubyCritic, :realm do
-  subject(:builder) { described_class.new realm }
+RSpec.describe Rubysmith::Builders::RubyCritic do
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:configuration_path) { temp_dir.join "test", ".rubycritic.yml" }
 
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::RubyCritic, :realm do
     before { builder.call }
 
     context "when enabled" do
-      let(:realm) { default_realm.with build_ruby_critic: true }
+      let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       it "builds configuration" do
         expect(configuration_path.read).to eq(
@@ -27,7 +29,7 @@ RSpec.describe Rubysmith::Builders::RubyCritic, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_ruby_critic: false }
+      let(:configuration) { default_configuration.with build_ruby_critic: false }
 
       it "doesn't build configuration" do
         expect(configuration_path.exist?).to eq(false)

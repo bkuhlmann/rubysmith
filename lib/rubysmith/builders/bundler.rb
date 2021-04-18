@@ -10,16 +10,16 @@ module Rubysmith
     class Bundler
       using Refinements::Pathnames
 
-      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-      def initialize realm, builder: Builder, client: ::Bundler::CLI
-        @realm = realm
+      def initialize configuration, builder: Builder, client: ::Bundler::CLI
+        @configuration = configuration
         @builder = builder
         @client = client
       end
 
       def call
-        builder.call(realm.with(template_path: "%project_name%/Gemfile.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/Gemfile.erb"))
                .render
                .replace(/\n\s+group/, "\n\ngroup")
                .replace(/\n\s+gem/, "\n  gem")
@@ -28,13 +28,13 @@ module Rubysmith
                .replace(/\n\ngroup :(code_quality|test|tools) do\nend/, "")
                .replace(/org"\n+/, "org\"\n\n")
 
-        realm.project_root.change_dir { client.start %w[install --quiet] }
+        configuration.project_root.change_dir { client.start %w[install --quiet] }
         nil
       end
 
       private
 
-      attr_reader :realm, :builder, :client
+      attr_reader :configuration, :builder, :client
     end
   end
 end

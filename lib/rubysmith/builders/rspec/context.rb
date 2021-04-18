@@ -5,25 +5,26 @@ module Rubysmith
     module RSpec
       # Builds RSpec shared context for temporary directories.
       class Context
-        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-        def initialize realm, builder: Builder
-          @realm = realm
+        def initialize configuration, builder: Builder
+          @configuration = configuration
           @builder = builder
         end
 
         def call
-          return unless realm.build_rspec
+          return unless configuration.build_rspec
 
-          realm.with(template_path: "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb")
-               .then { |new_realm| builder.call new_realm }
-               .render
-               .replace(/\n\s+\n\s+/, "\n  ")
+          template = "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb"
+          configuration.with(template_path: template)
+                       .then { |updated_configuration| builder.call updated_configuration }
+                       .render
+                       .replace(/\n\s+\n\s+/, "\n  ")
         end
 
         private
 
-        attr_reader :realm, :builder
+        attr_reader :configuration, :builder
       end
     end
   end

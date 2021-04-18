@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.shared_context "with realm", :realm do
+RSpec.shared_context "with configuration" do
   include_context "with temporary directory"
 
-  let :default_realm do
-    Rubysmith::Realm[
+  let :default_configuration do
+    Rubysmith::CLI::Configuration::Content[
       template_root: Bundler.root.join("lib", "rubysmith", "templates"),
       build_root: temp_dir,
       project_name: "test",

@@ -1,11 +1,11 @@
 RSpec.shared_context "with temporary directory" do
-  <% if realm.build_refinements %>using Refinements::Pathnames<% end %>
+  <% if configuration.build_refinements %>using Refinements::Pathnames<% end %>
 
   let(:temp_dir) { Bundler.root.join "tmp/rspec" }
 
   around do |example|
-    <%= realm.build_refinements ? "temp_dir.make_path" : "FileUtils.mkdir_p temp_dir" %>
+    <%= configuration.build_refinements ? "temp_dir.make_path" : "FileUtils.mkdir_p temp_dir" %>
     example.run
-    <%= realm.build_refinements ? "temp_dir.remove_tree" : "FileUtils.rm_rf temp_dir" %>
+    <%= configuration.build_refinements ? "temp_dir.remove_tree" : "FileUtils.rm_rf temp_dir" %>
   end
 end

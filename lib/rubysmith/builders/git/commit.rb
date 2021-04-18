@@ -5,17 +5,17 @@ module Rubysmith
     module Git
       # Builds project skeleton initial Git commit message.
       class Commit
-        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-        def initialize realm, builder: Builder
-          @realm = realm
+        def initialize configuration, builder: Builder
+          @configuration = configuration
           @builder = builder
         end
 
         def call
-          return unless realm.build_git
+          return unless configuration.build_git
 
-          builder.call(realm)
+          builder.call(configuration)
                  .run("git add .", chdir: project_name)
                  .run(
                    %(git commit --all --message "Added project skeleton" --message "#{body}"),
@@ -25,7 +25,7 @@ module Rubysmith
 
         private
 
-        attr_reader :realm, :builder
+        attr_reader :configuration, :builder
 
         def body
           <<~CONTENT
@@ -34,7 +34,7 @@ module Rubysmith
           CONTENT
         end
 
-        def project_name = realm.project_name
+        def project_name = configuration.project_name
       end
     end
   end

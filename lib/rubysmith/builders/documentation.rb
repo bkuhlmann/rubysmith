@@ -4,53 +4,54 @@ module Rubysmith
   module Builders
     # Builds project skeleton documentation.
     class Documentation
-      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-      def initialize realm, builder: Builder
-        @realm = realm
+      def initialize configuration, builder: Builder
+        @configuration = configuration
         @builder = builder
       end
 
       def call
-        return unless realm.build_documentation
+        return unless configuration.build_documentation
 
         private_methods.sort.grep(/render_/).each { |method| __send__ method }
       end
 
       private
 
-      attr_reader :realm, :builder
+      attr_reader :configuration, :builder
 
       def render_changes
-        builder.call(realm.with(template_path: "%project_name%/CHANGES.#{kind}.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/CHANGES.#{kind}.erb"))
                .render
       end
 
       def render_conduct
-        builder.call(realm.with(template_path: "%project_name%/CODE_OF_CONDUCT.#{kind}.erb"))
-               .render
+        configuration.with(template_path: "%project_name%/CODE_OF_CONDUCT.#{kind}.erb")
+                     .then { |updated_configuration| builder.call(updated_configuration).render }
       end
 
       def render_contributions
-        builder.call(realm.with(template_path: "%project_name%/CONTRIBUTING.#{kind}.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/CONTRIBUTING.#{kind}.erb"))
                .render
       end
 
       def render_license
-        builder.call(realm.with(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb"))
-               .render
-               .rename "LICENSE.#{kind}"
+        configuration.with(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
+                     .then do |updated_configuration|
+                       builder.call(updated_configuration).render.rename "LICENSE.#{kind}"
+                     end
       end
 
       def render_readme
-        builder.call(realm.with(template_path: "%project_name%/README.#{kind}.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/README.#{kind}.erb"))
                .render
                .replace("\n\n\n", "\n\n")
       end
 
-      def kind = realm.documentation_format || "md"
+      def kind = configuration.documentation_format || "md"
 
-      def license = realm.documentation_license || "mit"
+      def license = configuration.documentation_license || "mit"
     end
   end
 end

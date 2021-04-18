@@ -4,7 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builder do
   subject :builder do
-    described_class.new realm.with(template_path: "%project_name%/bin/test.erb"),
+    described_class.new configuration.with(template_path: "%project_name%/bin/test.erb"),
                         helpers: {
                           inserter: Rubysmith::Text::Inserter,
                           renderer: Rubysmith::Renderers::ERB,
@@ -18,8 +18,8 @@ RSpec.describe Rubysmith::Builder do
   using Refinements::Pathnames
   using Refinements::StringIOs
 
-  let :realm do
-    Rubysmith::Realm[
+  let :configuration do
+    Rubysmith::CLI::Configuration::Content[
       template_root: Bundler.root.join("spec", "support", "templates"),
       build_root: temp_dir,
       project_name: "test"
@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builder do
 
   describe ".call" do
     it "answers builder" do
-      expect(described_class.call(realm)).to be_a(described_class)
+      expect(described_class.call(configuration)).to be_a(described_class)
     end
   end
 
@@ -220,7 +220,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "inserts content at start of file" do
       builder.rename "test.backup"
-      expect(realm.build_root.join("test", "bin", "test.backup").exist?).to eq(true)
+      expect(configuration.build_root.join("test", "bin", "test.backup").exist?).to eq(true)
     end
 
     it "answers itself" do
@@ -327,7 +327,7 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "creates empty directory" do
-      described_class.new(realm.with(template_path: "test/path")).touch
+      described_class.new(configuration.with(template_path: "test/path")).touch
       expect(temp_dir.join("test", "path").exist?).to eq(true)
     end
 

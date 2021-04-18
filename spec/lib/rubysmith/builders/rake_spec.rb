@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Rake, :realm do
-  subject(:builder) { described_class.new realm }
+RSpec.describe Rubysmith::Builders::Rake do
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:rakefile_path) { temp_dir.join "test", "Rakefile" }
 
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     before { builder.call }
 
     context "with default options" do
-      let(:realm) { default_realm }
+      let(:configuration) { default_configuration }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -30,7 +32,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only Bundler Audit" do
-      let(:realm) { default_realm.with build_bundler_audit: true }
+      let(:configuration) { default_configuration.with build_bundler_audit: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -50,7 +52,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only Bundler Leak" do
-      let(:realm) { default_realm.with build_bundler_leak: true }
+      let(:configuration) { default_configuration.with build_bundler_leak: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -70,7 +72,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only Git and Git Lint" do
-      let(:realm) { default_realm.with build_git: true, build_git_lint: true }
+      let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -88,7 +90,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only Reek" do
-      let(:realm) { default_realm.with build_reek: true }
+      let(:configuration) { default_configuration.with build_reek: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -108,7 +110,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only RSpec" do
-      let(:realm) { default_realm.with build_rspec: true }
+      let(:configuration) { default_configuration.with build_rspec: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -128,7 +130,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only Rubocop" do
-      let(:realm) { default_realm.with build_rubocop: true }
+      let(:configuration) { default_configuration.with build_rubocop: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -148,7 +150,7 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with only RubyCritic" do
-      let(:realm) { default_realm.with build_ruby_critic: true }
+      let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(
@@ -168,15 +170,15 @@ RSpec.describe Rubysmith::Builders::Rake, :realm do
     end
 
     context "with all options" do
-      let :realm do
-        default_realm.with build_bundler_audit: true,
-                           build_bundler_leak: true,
-                           build_git: true,
-                           build_git_lint: true,
-                           build_reek: true,
-                           build_rspec: true,
-                           build_rubocop: true,
-                           build_ruby_critic: true
+      let :configuration do
+        default_configuration.with build_bundler_audit: true,
+                                   build_bundler_leak: true,
+                                   build_git: true,
+                                   build_git_lint: true,
+                                   build_reek: true,
+                                   build_rspec: true,
+                                   build_rubocop: true,
+                                   build_ruby_critic: true
       end
 
       let :proof do

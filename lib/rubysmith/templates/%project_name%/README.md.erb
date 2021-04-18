@@ -1,6 +1,6 @@
-# <%= realm.project_label %>
+# <%= configuration.project_label %>
 
-<% if realm.build_rubocop %>
+<% if configuration.build_rubocop %>
 [![Alchemists Style Guide](https://img.shields.io/badge/code_style-alchemists-brightgreen.svg)](https://www.alchemists.io/projects/code_quality)
 <% end %>
 
@@ -16,7 +16,7 @@
 1. [Ruby](https://www.ruby-lang.org)
 
 ## Setup
-<% if realm.build_setup %>
+<% if configuration.build_setup %>
 
 To set up the project, run:
 
@@ -26,7 +26,7 @@ To set up the project, run:
 ## Usage
 
 ## Development
-<% if realm.build_console %>
+<% if configuration.build_console %>
 
 You can also use the IRB console for direct access to all objects:
 
@@ -67,4 +67,4 @@ Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).
 
 ## Credits
 
-Engineered by [<%= realm.author_name %>](<%= realm.author_url %>).
+Engineered by [<%= configuration.author_name %>](<%= configuration.author_url %>).

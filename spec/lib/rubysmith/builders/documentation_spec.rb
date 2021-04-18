@@ -2,10 +2,12 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Documentation, :realm do
+RSpec.describe Rubysmith::Builders::Documentation do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new realm }
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   it_behaves_like "a builder"
 
@@ -44,12 +46,12 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
       end
 
       context "with maximum options" do
-        let :realm do
-          default_realm.with build_documentation: true,
-                             build_setup: true,
-                             build_console: true,
-                             build_rubocop: true,
-                             documentation_format: "md"
+        let :configuration do
+          default_configuration.with build_documentation: true,
+                                     build_setup: true,
+                                     build_console: true,
+                                     build_rubocop: true,
+                                     documentation_format: "md"
         end
 
         it "builds readme" do
@@ -69,23 +71,27 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
     end
 
     context "when enabled with Markdown format" do
-      let(:realm) { default_realm.with build_documentation: true, documentation_format: "md" }
+      let :configuration do
+        default_configuration.with build_documentation: true, documentation_format: "md"
+      end
 
       it_behaves_like "markdown documentation"
     end
 
     context "when enabled with Markdown format and MIT license" do
-      let :realm do
-        default_realm.with build_documentation: true,
-                           documentation_format: "md",
-                           documentation_license: "mit"
+      let :configuration do
+        default_configuration.with build_documentation: true,
+                                   documentation_format: "md",
+                                   documentation_license: "mit"
       end
 
       it_behaves_like "a Markdown, MIT license"
     end
 
     context "when enabled with ASCII Doc format" do
-      let(:realm) { default_realm.with build_documentation: true, documentation_format: "adoc" }
+      let :configuration do
+        default_configuration.with build_documentation: true, documentation_format: "adoc"
+      end
 
       it "builds changes" do
         expect(temp_dir.join("test", "CHANGES.adoc").read).to eq(
@@ -119,12 +125,12 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
     end
 
     context "when enabled with ASCII Doc format and maximum options" do
-      let :realm do
-        default_realm.with build_documentation: true,
-                           build_setup: true,
-                           build_console: true,
-                           build_rubocop: true,
-                           documentation_format: "adoc"
+      let :configuration do
+        default_configuration.with build_documentation: true,
+                                   build_setup: true,
+                                   build_console: true,
+                                   build_rubocop: true,
+                                   documentation_format: "adoc"
       end
 
       it "builds readme" do
@@ -135,10 +141,10 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
     end
 
     context "when enabled with ASCII Doc format and Apache license" do
-      let :realm do
-        default_realm.with build_documentation: true,
-                           documentation_format: "adoc",
-                           documentation_license: "apache"
+      let :configuration do
+        default_configuration.with build_documentation: true,
+                                   documentation_format: "adoc",
+                                   documentation_license: "apache"
       end
 
       it "builds license" do
@@ -149,14 +155,14 @@ RSpec.describe Rubysmith::Builders::Documentation, :realm do
     end
 
     context "when enabled without format or license defined" do
-      let(:realm) { default_realm.with build_documentation: true }
+      let(:configuration) { default_configuration.with build_documentation: true }
 
       it_behaves_like "markdown documentation"
       it_behaves_like "a Markdown, MIT license"
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_documentation: false }
+      let(:configuration) { default_configuration.with build_documentation: false }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

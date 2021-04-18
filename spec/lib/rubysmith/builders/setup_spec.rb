@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Setup, :realm do
-  subject(:builder) { described_class.new realm }
+RSpec.describe Rubysmith::Builders::Setup do
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:build_path) { temp_dir.join "test", "bin", "setup" }
 
@@ -11,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Setup, :realm do
 
   describe "#call" do
     context "when enabled" do
-      let(:realm) { default_realm.with build_setup: true }
+      let(:configuration) { default_configuration.with build_setup: true }
 
       it "builds setup script without Pry support" do
         proof = <<~CONTENT
@@ -37,7 +39,7 @@ RSpec.describe Rubysmith::Builders::Setup, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_setup: false }
+      let(:configuration) { default_configuration.with build_setup: false }
 
       it "does not build setup script" do
         builder.call

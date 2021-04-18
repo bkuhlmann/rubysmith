@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 
-require "<%= realm.project_name %>"
-<% if realm.build_pry %>
+require "<%= configuration.project_name %>"
+<% if configuration.build_pry %>
 require "pry"
 <% end %>
 

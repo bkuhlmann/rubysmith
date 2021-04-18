@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Core, :realm do
-  subject(:builder) { described_class.new default_realm }
+RSpec.describe Rubysmith::Builders::Core do
+  subject(:builder) { described_class.new default_configuration }
+
+  include_context "with configuration"
 
   it_behaves_like "a builder"
 

@@ -5,26 +5,26 @@ module Rubysmith
     module Rubocop
       # Builds project skeleton for Rubocop code quality support.
       class Setup
-        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-        def initialize realm, builder: Builder
-          @realm = realm
+        def initialize configuration, builder: Builder
+          @configuration = configuration
           @builder = builder
         end
 
         def call
-          return unless realm.build_rubocop
+          return unless configuration.build_rubocop
 
-          builder.call(realm.with(template_path: "%project_name%/bin/rubocop.erb"))
+          builder.call(configuration.with(template_path: "%project_name%/bin/rubocop.erb"))
                  .render
                  .permit 0o755
 
-          builder.call(realm.with(template_path: "%project_name%/.rubocop.yml.erb")).render
+          builder.call(configuration.with(template_path: "%project_name%/.rubocop.yml.erb")).render
         end
 
         private
 
-        attr_reader :realm, :builder
+        attr_reader :configuration, :builder
       end
     end
   end

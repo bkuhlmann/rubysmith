@@ -2,9 +2,9 @@
 :toclevels: 5
 :figure-caption!:
 
-= <%= realm.project_label %>
+= <%= configuration.project_label %>
 
-<% if realm.build_rubocop %>
+<% if configuration.build_rubocop %>
 [link=https://www.alchemists.io/projects/code_quality]
 image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchemists Style Guide]
 <% end %>
@@ -20,7 +20,7 @@ toc::[]
 . link:https://www.ruby-lang.org[Ruby].
 
 == Setup
-<% if realm.build_setup %>
+<% if configuration.build_setup %>
 
 To set up the project, run:
 
@@ -33,7 +33,7 @@ bin/setup
 == Usage
 
 == Development
-<% if realm.build_console %>
+<% if configuration.build_console %>
 
 You can also use the IRB console for direct access to all objects:
 
@@ -80,4 +80,4 @@ Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
 
 == Credits
 
-Engineered by link:<%= realm.author_url %>[<%= realm.author_name %>].
+Engineered by link:<%= configuration.author_url %>[<%= configuration.author_name %>].

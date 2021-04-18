@@ -6,6 +6,7 @@ require "logger"
 
 module Rubysmith
   # :reek:TooManyMethods
+  # Provides common functionality necessary for all builders.
   class Builder
     using Refinements::Pathnames
 
@@ -18,12 +19,12 @@ module Rubysmith
       logger: LOGGER
     }.freeze
 
-    def self.call realm, helpers: HELPERS
-      new realm, helpers: helpers
+    def self.call configuration, helpers: HELPERS
+      new configuration, helpers: helpers
     end
 
-    def initialize realm, helpers: HELPERS
-      @realm = realm
+    def initialize configuration, helpers: HELPERS
+      @configuration = configuration
       @helpers = helpers
     end
 
@@ -101,7 +102,7 @@ module Rubysmith
 
     private
 
-    attr_reader :realm, :helpers
+    attr_reader :configuration, :helpers
 
     def execute *command
       kernel.capture2e(*command).then do |result, status|
@@ -111,16 +112,18 @@ module Rubysmith
 
     def inserter = helpers.fetch(__method__)
 
-    def renderer = helpers.fetch(__method__).new(realm)
+    def renderer = helpers.fetch(__method__).new(configuration)
 
     def kernel = helpers.fetch(__method__)
 
     def logger = helpers.fetch(__method__)
 
-    def relative_build_path = build_path.relative_path_from(realm.build_root)
+    def relative_build_path = build_path.relative_path_from(configuration.build_root)
 
-    def build_path = pathway.end_path.gsub("%project_name%", realm.project_name).sub(".erb", "")
+    def build_path
+      pathway.end_path.gsub("%project_name%", configuration.project_name).sub ".erb", ""
+    end
 
-    def pathway = realm.to_pathway
+    def pathway = configuration.to_pathway
   end
 end

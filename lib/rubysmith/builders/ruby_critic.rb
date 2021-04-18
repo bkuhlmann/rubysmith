@@ -4,22 +4,22 @@ module Rubysmith
   module Builders
     # Builds project skeleton RubyCritic code quality support.
     class RubyCritic
-      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-      def initialize realm, builder: Builder
-        @realm = realm
+      def initialize configuration, builder: Builder
+        @configuration = configuration
         @builder = builder
       end
 
       def call
-        return unless realm.build_ruby_critic
+        return unless configuration.build_ruby_critic
 
-        builder.call(realm.with(template_path: "%project_name%/.rubycritic.yml.erb")).render
+        builder.call(configuration.with(template_path: "%project_name%/.rubycritic.yml.erb")).render
       end
 
       private
 
-      attr_reader :realm, :builder
+      attr_reader :configuration, :builder
     end
   end
 end

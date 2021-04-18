@@ -2,10 +2,12 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Git::Setup, :realm do
-  subject(:builder) { described_class.new realm }
-
+RSpec.describe Rubysmith::Builders::Git::Setup do
   using Refinements::Pathnames
+
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:git_dir) { temp_dir.join "test", ".git" }
 
@@ -20,7 +22,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup, :realm do
     end
 
     context "when enabled" do
-      let(:realm) { default_realm.with build_git: true }
+      let(:configuration) { default_configuration.with build_git: true }
 
       it "initializes repository" do
         expect(git_dir.exist?).to eq(true)
@@ -28,7 +30,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_git: false }
+      let(:configuration) { default_configuration.with build_git: false }
 
       it "doesn't initialize repository" do
         expect(git_dir.exist?).to eq(false)

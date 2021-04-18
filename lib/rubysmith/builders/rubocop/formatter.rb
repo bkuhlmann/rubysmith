@@ -10,21 +10,21 @@ module Rubysmith
       class Formatter
         using Refinements::IOs
 
-        def self.call(realm) = new(realm).call
+        def self.call(configuration) = new(configuration).call
 
-        def initialize realm, client: RuboCop::CLI.new
-          @realm = realm
+        def initialize configuration, client: RuboCop::CLI.new
+          @configuration = configuration
           @client = client
         end
 
         def call
-          STDOUT.squelch { client.run ["--auto-correct", realm.project_root.to_s] }
+          STDOUT.squelch { client.run ["--auto-correct", configuration.project_root.to_s] }
           nil
         end
 
         private
 
-        attr_reader :realm, :client
+        attr_reader :configuration, :client
       end
     end
   end

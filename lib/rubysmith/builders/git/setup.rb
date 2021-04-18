@@ -5,22 +5,22 @@ module Rubysmith
     module Git
       # Initializes project skeleton as a Git repository.
       class Setup
-        def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-        def initialize realm, builder: Builder
-          @realm = realm
+        def initialize configuration, builder: Builder
+          @configuration = configuration
           @builder = builder
         end
 
         def call
-          return unless realm.build_git
+          return unless configuration.build_git
 
-          builder.call(realm).run("git init", chdir: realm.project_name)
+          builder.call(configuration).run("git init", chdir: configuration.project_name)
         end
 
         private
 
-        attr_reader :realm, :builder
+        attr_reader :configuration, :builder
       end
     end
   end

@@ -2,10 +2,12 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
+RSpec.describe Rubysmith::Builders::Rubocop::Setup do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new realm }
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:binstub_path) { temp_dir.join "test", "bin", "rubocop" }
   let(:configuration_path) { temp_dir.join "test", ".rubocop.yml" }
@@ -31,7 +33,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
     end
 
     context "when enabled with no additional options" do
-      let(:realm) { default_realm.with build_rubocop: true }
+      let(:configuration) { default_configuration.with build_rubocop: true }
 
       it_behaves_like "a binstub"
 
@@ -50,7 +52,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
     end
 
     context "when enabled with RSpec" do
-      let(:realm) { default_realm.with build_rubocop: true, build_rspec: true }
+      let(:configuration) { default_configuration.with build_rubocop: true, build_rspec: true }
 
       it_behaves_like "a binstub"
 
@@ -70,7 +72,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_rubocop: false }
+      let(:configuration) { default_configuration.with build_rubocop: false }
 
       it "doesn't build binstub" do
         builder.call

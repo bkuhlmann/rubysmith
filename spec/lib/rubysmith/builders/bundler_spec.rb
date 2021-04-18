@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::Bundler, :realm do
-  subject(:builder) { described_class.new realm, client: client }
+RSpec.describe Rubysmith::Builders::Bundler do
+  subject(:builder) { described_class.new configuration, client: client }
+
+  include_context "with configuration"
 
   let(:client) { class_spy Bundler::CLI }
   let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
@@ -19,7 +21,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with default options" do
-      let(:realm) { default_realm }
+      let(:configuration) { default_configuration }
 
       it "builds Gemfile" do
         builder.call
@@ -41,7 +43,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with minimum options" do
-      let(:realm) { default_realm.with build_minimum: true }
+      let(:configuration) { default_configuration.with build_minimum: true }
 
       it "builds Gemfile" do
         builder.call
@@ -60,7 +62,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Amazing Print" do
-      let(:realm) { default_realm.with build_amazing_print: true }
+      let(:configuration) { default_configuration.with build_amazing_print: true }
 
       let :proof do
         <<~CONTENT
@@ -87,7 +89,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Bundler Audit" do
-      let(:realm) { default_realm.with build_bundler_audit: true }
+      let(:configuration) { default_configuration.with build_bundler_audit: true }
 
       let :proof do
         <<~CONTENT
@@ -114,7 +116,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Bundler Leak" do
-      let(:realm) { default_realm.with build_bundler_leak: true }
+      let(:configuration) { default_configuration.with build_bundler_leak: true }
 
       let :proof do
         <<~CONTENT
@@ -141,7 +143,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Git and Git Lint" do
-      let(:realm) { default_realm.with build_git: true, build_git_lint: true }
+      let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
 
       let :proof do
         <<~CONTENT
@@ -168,7 +170,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Guard" do
-      let(:realm) { default_realm.with build_guard: true }
+      let(:configuration) { default_configuration.with build_guard: true }
 
       let :proof do
         <<~CONTENT
@@ -195,7 +197,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Pry" do
-      let(:realm) { default_realm.with build_pry: true }
+      let(:configuration) { default_configuration.with build_pry: true }
 
       let :content do
         <<~CONTENT
@@ -223,7 +225,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Reek" do
-      let(:realm) { default_realm.with build_reek: true }
+      let(:configuration) { default_configuration.with build_reek: true }
 
       let :proof do
         <<~CONTENT
@@ -250,7 +252,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Refinements" do
-      let(:realm) { default_realm.with build_refinements: true }
+      let(:configuration) { default_configuration.with build_refinements: true }
 
       let :proof do
         <<~CONTENT
@@ -275,7 +277,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only RSpec" do
-      let(:realm) { default_realm.with build_rspec: true }
+      let(:configuration) { default_configuration.with build_rspec: true }
 
       let :proof do
         <<~CONTENT
@@ -302,7 +304,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only RSpec and Rubocop" do
-      let(:realm) { default_realm.with build_rspec: true, build_rubocop: true }
+      let(:configuration) { default_configuration.with build_rspec: true, build_rubocop: true }
 
       let :proof do
         <<~CONTENT
@@ -336,7 +338,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only Rubocop" do
-      let(:realm) { default_realm.with build_rubocop: true }
+      let(:configuration) { default_configuration.with build_rubocop: true }
 
       let :proof do
         <<~CONTENT
@@ -365,7 +367,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only RubyCritic" do
-      let(:realm) { default_realm.with build_ruby_critic: true }
+      let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       let :proof do
         <<~CONTENT
@@ -392,7 +394,7 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with only SimpleCov" do
-      let(:realm) { default_realm.with build_simple_cov: true }
+      let(:configuration) { default_configuration.with build_simple_cov: true }
 
       let :proof do
         <<~CONTENT
@@ -419,20 +421,20 @@ RSpec.describe Rubysmith::Builders::Bundler, :realm do
     end
 
     context "with all options" do
-      let :realm do
-        default_realm.with build_amazing_print: true,
-                           build_bundler_audit: true,
-                           build_bundler_leak: true,
-                           build_git: true,
-                           build_git_lint: true,
-                           build_guard: true,
-                           build_pry: true,
-                           build_reek: true,
-                           build_refinements: true,
-                           build_rspec: true,
-                           build_rubocop: true,
-                           build_ruby_critic: true,
-                           build_simple_cov: true
+      let :configuration do
+        default_configuration.with build_amazing_print: true,
+                                   build_bundler_audit: true,
+                                   build_bundler_leak: true,
+                                   build_git: true,
+                                   build_git_lint: true,
+                                   build_guard: true,
+                                   build_pry: true,
+                                   build_reek: true,
+                                   build_refinements: true,
+                                   build_rspec: true,
+                                   build_rubocop: true,
+                                   build_ruby_critic: true,
+                                   build_simple_cov: true
       end
 
       let :proof do

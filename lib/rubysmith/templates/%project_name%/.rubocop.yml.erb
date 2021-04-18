@@ -2,6 +2,6 @@ inherit_from:
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
-<% if realm.build_rspec %>
+<% if configuration.build_rspec %>
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
 <% end %>

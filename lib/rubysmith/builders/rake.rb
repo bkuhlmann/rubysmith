@@ -4,15 +4,15 @@ module Rubysmith
   module Builders
     # Builds project skeleton Rake support.
     class Rake
-      def self.call(realm, builder: Builder) = new(realm, builder: builder).call
+      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
 
-      def initialize realm, builder: Builder
-        @realm = realm
+      def initialize configuration, builder: Builder
+        @configuration = configuration
         @builder = builder
       end
 
       def call
-        builder.call(realm.with(template_path: "%project_name%/Rakefile.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/Rakefile.erb"))
                .render
                .replace(/\[\s+/, "[")
                .replace(/\s+\]/, "]")
@@ -24,7 +24,7 @@ module Rubysmith
 
       private
 
-      attr_reader :realm, :builder
+      attr_reader :configuration, :builder
     end
   end
 end

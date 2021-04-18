@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Realm do
-  subject(:realm) { described_class[project_name: "test"] }
+RSpec.describe Rubysmith::CLI::Configuration::Content do
+  subject(:content) { described_class[project_name: "test"] }
 
   let(:template_root) { Bundler.root.join "lib", "rubysmith", "templates" }
   let(:build_root) { Bundler.root }
@@ -53,36 +53,36 @@ RSpec.describe Rubysmith::Realm do
   describe "#with" do
     it "answers combination of old and new struct with single attribute" do
       proof = described_class[project_name: "test", help: true]
-      expect(realm.with(help: true)).to eq(proof)
+      expect(content.with(help: true)).to eq(proof)
     end
 
     it "answers combination of old and new struct with multiple attributes" do
       proof = described_class[project_name: "test", build_console: true, build_pry: true]
-      expect(realm.with(project_name: "test", build_console: true, build_pry: true)).to eq(proof)
+      expect(content.with(project_name: "test", build_console: true, build_pry: true)).to eq(proof)
     end
   end
 
   describe "#project_label" do
     it "answers label" do
-      expect(realm.project_label).to eq("Test")
+      expect(content.project_label).to eq("Test")
     end
   end
 
   describe "#project_class" do
     it "answers class" do
-      expect(realm.project_class).to eq("Test")
+      expect(content.project_class).to eq("Test")
     end
   end
 
   describe "#project_root" do
     it "answers path" do
-      expect(realm.project_root).to eq(Bundler.root.join("test"))
+      expect(content.project_root).to eq(Bundler.root.join("test"))
     end
   end
 
   describe "#to_pathway" do
     it "answers pathway" do
-      expect(realm.to_pathway).to eq(
+      expect(content.to_pathway).to eq(
         Rubysmith::Pathway[start_root: template_root, end_root: build_root]
       )
     end

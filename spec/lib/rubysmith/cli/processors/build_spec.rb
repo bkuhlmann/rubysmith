@@ -16,7 +16,10 @@ RSpec.describe Rubysmith::CLI::Processors::Build do
   describe "#call" do
     it "calls builders" do
       processor.call project_name: "test"
-      expect(builder).to have_received(:call).with(Rubysmith::Realm[project_name: "test"])
+
+      expect(builder).to have_received(:call).with(
+        Rubysmith::CLI::Configuration::Content[project_name: "test"]
+      )
     end
   end
 end

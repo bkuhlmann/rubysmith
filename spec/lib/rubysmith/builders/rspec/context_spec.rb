@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
-  subject(:builder) { described_class.new realm }
+RSpec.describe Rubysmith::Builders::RSpec::Context do
+  subject(:builder) { described_class.new configuration }
 
-  include_context "with temporary directory"
+  include_context "with configuration"
 
   let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 
@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
     before { builder.call }
 
     context "when enabled with refinements" do
-      let(:realm) { default_realm.with build_rspec: true, build_refinements: true }
+      let(:configuration) { default_configuration.with build_rspec: true, build_refinements: true }
 
       let :content do
         <<~CONTENT
@@ -39,7 +39,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
     end
 
     context "when enabled without refinements" do
-      let(:realm) { default_realm.with build_rspec: true }
+      let(:configuration) { default_configuration.with build_rspec: true }
 
       let :content do
         <<~CONTENT
@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_rspec: false }
+      let(:configuration) { default_configuration.with build_rspec: false }
 
       it "doesn't build temporary directory shared context" do
         expect(context_path.exist?).to eq(false)

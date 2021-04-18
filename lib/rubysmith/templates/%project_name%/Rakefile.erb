@@ -1,47 +1,47 @@
 require "bundler/setup"
 
-<% if realm.build_bundler_audit %>
+<% if configuration.build_bundler_audit %>
   require "bundler/audit/task"
 <% end %>
-<% if realm.build_bundler_leak %>
+<% if configuration.build_bundler_leak %>
   require "bundler/plumber/task"
 <% end %>
-<% if realm.build_git && realm.build_git_lint %>
+<% if configuration.build_git && configuration.build_git_lint %>
   require "git/lint/rake/setup"
 <% end %>
-<% if realm.build_reek %>
+<% if configuration.build_reek %>
   require "reek/rake/task"
 <% end %>
-<% if realm.build_rspec %>
+<% if configuration.build_rspec %>
   require "rspec/core/rake_task"
 <% end %>
-<% if realm.build_rubocop %>
+<% if configuration.build_rubocop %>
   require "rubocop/rake_task"
 <% end %>
-<% if realm.build_ruby_critic %>
+<% if configuration.build_ruby_critic %>
   require "rubycritic/rake_task"
 <% end %>
 
-<% if realm.build_bundler_audit %>
+<% if configuration.build_bundler_audit %>
   Bundler::Audit::Task.new
 <% end %>
-<% if realm.build_bundler_leak %>
+<% if configuration.build_bundler_leak %>
   Bundler::Plumber::Task.new
 <% end %>
-<% if realm.build_reek %>
+<% if configuration.build_reek %>
   Reek::Rake::Task.new
 <% end %>
-<% if realm.build_rspec %>
+<% if configuration.build_rspec %>
   RSpec::Core::RakeTask.new :spec
 <% end %>
-<% if realm.build_rubocop %>
+<% if configuration.build_rubocop %>
   RuboCop::RakeTask.new
 <% end %>
-<% if realm.build_ruby_critic %>
+<% if configuration.build_ruby_critic %>
   RubyCritic::RakeTask.new
 <% end %>
 
 desc "Run code quality checks"
-task code_quality: %i[<% if realm.build_bundler_audit %>bundle:audit<% end %> <% if realm.build_bundler_leak %>bundle:leak<% end %> <% if realm.build_git && realm.build_git_lint %>git_lint<% end %> <% if realm.build_reek %>reek<% end %> <% if realm.build_rubocop %>rubocop<% end %> <% if realm.build_ruby_critic %>rubycritic<% end %>]
+task code_quality: %i[<% if configuration.build_bundler_audit %>bundle:audit<% end %> <% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_rubocop %>rubocop<% end %> <% if configuration.build_ruby_critic %>rubycritic<% end %>]
 
-task default: %i[code_quality <% if realm.build_rspec %>spec<% end %>]
+task default: %i[code_quality <% if configuration.build_rspec %>spec<% end %>]

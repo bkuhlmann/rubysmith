@@ -2,8 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
-  subject(:builder) { described_class.new realm }
+RSpec.describe Rubysmith::Builders::RSpec::Helper do
+  subject(:builder) { described_class.new configuration }
+
+  include_context "with configuration"
 
   let(:spec_helper_path) { temp_dir.join "test", "spec", "spec_helper.rb" }
 
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     before { builder.call }
 
     context "when enabled with no options" do
-      let(:realm) { default_realm.with build_rspec: true }
+      let(:configuration) { default_configuration.with build_rspec: true }
 
       let :proof do
         <<~BODY
@@ -56,7 +58,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     end
 
     context "when enabled with SimpleCov only" do
-      let(:realm) { default_realm.with build_rspec: true, build_simple_cov: true }
+      let(:configuration) { default_configuration.with build_rspec: true, build_simple_cov: true }
 
       let :proof do
         <<~BODY
@@ -102,7 +104,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     end
 
     context "when enabled with Pry only" do
-      let(:realm) { default_realm.with build_rspec: true, build_pry: true }
+      let(:configuration) { default_configuration.with build_rspec: true, build_pry: true }
 
       let :proof do
         <<~BODY
@@ -145,7 +147,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     end
 
     context "when enabled with all options and no refinements" do
-      let(:realm) { default_realm.with build_rspec: true, build_simple_cov: true, build_pry: true }
+      let :configuration do
+        default_configuration.with build_rspec: true, build_simple_cov: true, build_pry: true
+      end
 
       let :proof do
         <<~BODY
@@ -191,11 +195,11 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     end
 
     context "when enabled with all options and refinements" do
-      let :realm do
-        default_realm.with build_rspec: true,
-                           build_refinements: true,
-                           build_simple_cov: true,
-                           build_pry: true
+      let :configuration do
+        default_configuration.with build_rspec: true,
+                                   build_refinements: true,
+                                   build_simple_cov: true,
+                                   build_pry: true
       end
 
       let :proof do
@@ -245,7 +249,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper, :realm do
     end
 
     context "when disabled" do
-      let(:realm) { default_realm.with build_rspec: false }
+      let(:configuration) { default_configuration.with build_rspec: false }
 
       it "doesn't build spec helper" do
         expect(spec_helper_path.exist?).to eq(false)

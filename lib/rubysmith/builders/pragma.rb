@@ -6,10 +6,10 @@ module Rubysmith
   module Builders
     # Builds project skeleton pragmas so all Ruby strings are frozen by default.
     class Pragma
-      def self.call(realm) = new(realm).call
+      def self.call(configuration) = new(configuration).call
 
-      def initialize realm, client: Pragmater::Runner
-        @realm = realm
+      def initialize configuration, client: Pragmater::Runner
+        @configuration = configuration
         @client = client
       end
 
@@ -17,14 +17,14 @@ module Rubysmith
 
       private
 
-      attr_reader :realm, :client
+      attr_reader :configuration, :client
 
       def attributes
         {
           action: :insert,
-          root_dir: realm.project_root,
-          comments: realm.builders_pragmater_comments,
-          includes: realm.builders_pragmater_includes
+          root_dir: configuration.project_root,
+          comments: configuration.builders_pragmater_comments,
+          includes: configuration.builders_pragmater_includes
         }
       end
     end

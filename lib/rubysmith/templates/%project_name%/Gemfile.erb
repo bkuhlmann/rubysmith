@@ -2,36 +2,36 @@ ruby File.read(".ruby-version").strip
 
 source "https://rubygems.org"
 
-<% unless realm.build_minimum %>
-  <% if realm.build_refinements %>
+<% unless configuration.build_minimum %>
+  <% if configuration.build_refinements %>
     gem "refinements", "~> 8.0"
   <% end %>
 
   group :code_quality do
-    <% if realm.build_bundler_audit %>
+    <% if configuration.build_bundler_audit %>
       gem "bundler-audit", "~> 0.7"
     <% end %>
-    <% if realm.build_bundler_leak %>
+    <% if configuration.build_bundler_leak %>
       gem "bundler-leak", "~> 0.2"
     <% end %>
-    <% if realm.build_git && realm.build_git_lint %>
+    <% if configuration.build_git && configuration.build_git_lint %>
       gem "git-lint", "~> 2.0"
     <% end %>
-    <% if realm.build_reek %>
+    <% if configuration.build_reek %>
       gem "reek", "~> 6.0"
     <% end %>
-    <% if realm.build_rubocop %>
+    <% if configuration.build_rubocop %>
       gem "rubocop", "~> 1.10"
       gem "rubocop-performance", "~> 1.9"
       gem "rubocop-rake", "~> 0.5"
     <% end %>
-    <% if realm.build_rspec && realm.build_rubocop %>
+    <% if configuration.build_rspec && configuration.build_rubocop %>
       gem "rubocop-rspec", "~> 2.0"
     <% end %>
-    <% if realm.build_ruby_critic %>
+    <% if configuration.build_ruby_critic %>
       gem "rubycritic", "~> 4.5", require: false
     <% end %>
-    <% if realm.build_simple_cov %>
+    <% if configuration.build_simple_cov %>
       gem "simplecov", "~> 0.20"
     <% end %>
   end
@@ -41,19 +41,19 @@ source "https://rubygems.org"
   end
 
   group :test do
-    <% if realm.build_guard %>
+    <% if configuration.build_guard %>
       gem "guard-rspec", "~> 4.7", require: false
     <% end %>
-    <% if realm.build_rspec %>
+    <% if configuration.build_rspec %>
       gem "rspec", "~> 3.10"
     <% end %>
   end
 
   group :tools do
-    <% if realm.build_amazing_print %>
+    <% if configuration.build_amazing_print %>
       gem "amazing_print", "~> 1.2"
     <% end %>
-    <% if realm.build_pry %>
+    <% if configuration.build_pry %>
       gem "pry", "~> 0.13"
       gem "pry-byebug", "~> 3.9"
     <% end %>
