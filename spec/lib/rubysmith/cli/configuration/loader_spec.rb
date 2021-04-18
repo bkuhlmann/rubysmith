@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration, :runcom do
+RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
   subject(:configuration) { described_class.new client: runcom_configuration }
 
   describe "#to_h" do

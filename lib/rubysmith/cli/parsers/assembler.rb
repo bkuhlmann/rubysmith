@@ -7,7 +7,9 @@ module Rubysmith
       class Assembler
         SECTIONS = [Core, Build].freeze # Order is important.
 
-        def initialize configuration: CLI::Configuration.new, sections: SECTIONS, client: CLIENT
+        def initialize configuration: CLI::Configuration::Loader.new,
+                       sections: SECTIONS,
+                       client: CLIENT
           @options = configuration.to_h
           @sections = sections
           @client = client

@@ -17,5 +17,8 @@ RSpec.shared_context "with Runcom", :runcom do
   end
 
   let(:gem_configuration_path) { temp_dir.join("configuration.yml").touch }
-  let(:gem_defaults) { YAML.load_file Bundler.root.join("lib/rubysmith/cli/defaults.yml") }
+
+  let :gem_defaults do
+    YAML.load_file Bundler.root.join("lib/rubysmith/cli/configuration/defaults.yml")
+  end
 end
