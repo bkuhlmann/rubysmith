@@ -1,5 +1,20 @@
 = Changes
 
+== 0.10.0 (2021-04-18)
+
+* Fixed RSpec helper build failure with template - Brooke Kuhlmann
+* Fixed builder spec failure with invalid option - Brooke Kuhlmann
+* Added CLI parsers module - Brooke Kuhlmann
+* Updated CLI configuration loader to be callable - Brooke Kuhlmann
+* Updated to Ruby 3.0.1 - Brooke Kuhlmann
+* Removed assembler option parser client - Brooke Kuhlmann
+* Removed shell requirement from gem binary - Brooke Kuhlmann
+* Refactored CLI parsers argument order - Brooke Kuhlmann
+* Refactored CLI shell - Brooke Kuhlmann
+* Refactored loading of configuration - Brooke Kuhlmann
+* Refactored realm as CLI configuration content - Brooke Kuhlmann
+* Refactored to endless methods - Brooke Kuhlmann
+
 == 0.9.1 (2021-04-04)
 
 * Added Ruby garbage collection compaction - Brooke Kuhlmann
