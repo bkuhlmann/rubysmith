@@ -6,13 +6,11 @@ module Rubysmith
       # Handles parsing of Command Line Interface (CLI) build options.
       # :reek:TooManyMethods
       class Build
-        def self.call client:, options:
-          new(client: client, options: options).call
-        end
+        def self.call(options: {}, client: CLIENT) = new(options: options, client: client).call
 
-        def initialize client: CLIENT, options: {}
-          @client = client
+        def initialize options: {}, client: CLIENT
           @options = options
+          @client = client
         end
 
         def call arguments = []
@@ -23,7 +21,7 @@ module Rubysmith
 
         private
 
-        attr_reader :client, :options
+        attr_reader :options, :client
 
         def add_minimum
           client.on "--min", "Use minimum/no options." do |value|

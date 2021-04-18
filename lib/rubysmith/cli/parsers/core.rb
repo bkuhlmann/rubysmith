@@ -7,13 +7,11 @@ module Rubysmith
     module Parsers
       # Handles parsing of Command Line Interface (CLI) core options.
       class Core
-        def self.call client:, options:
-          new(client: client, options: options).call
-        end
+        def self.call(options: {}, client: CLIENT) = new(options: options, client: client).call
 
-        def initialize client: CLIENT, options: {}
-          @client = client
+        def initialize options: {}, client: CLIENT
           @options = options
+          @client = client
         end
 
         def call arguments = []
@@ -25,11 +23,9 @@ module Rubysmith
 
         private
 
-        attr_reader :client, :options
+        attr_reader :options, :client
 
-        def collate
-          private_methods.sort.grep(/add_/).each { |method| __send__ method }
-        end
+        def collate = private_methods.sort.grep(/add_/).each { |method| __send__ method }
 
         def add_config
           client.on "-c",

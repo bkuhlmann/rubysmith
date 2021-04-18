@@ -7,10 +7,10 @@ module Rubysmith
       class Assembler
         SECTIONS = [Core, Build].freeze # Order is important.
 
-        def initialize client = CLIENT, sections: SECTIONS, configuration: CLI::Configuration.new
-          @client = client
-          @sections = sections
+        def initialize configuration: CLI::Configuration.new, sections: SECTIONS, client: CLIENT
           @options = configuration.to_h
+          @sections = sections
+          @client = client
         end
 
         def call arguments = []
@@ -19,17 +19,13 @@ module Rubysmith
           options
         end
 
-        def to_h
-          options
-        end
+        def to_h = options
 
-        def to_s
-          client.to_s
-        end
+        def to_s = client.to_s
 
         private
 
-        attr_reader :client, :sections, :options
+        attr_reader :options, :sections, :client
       end
     end
   end
