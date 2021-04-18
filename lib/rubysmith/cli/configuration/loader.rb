@@ -2,6 +2,7 @@
 
 require "pathname"
 require "refinements/hashes"
+require "refinements/structs"
 require "runcom"
 require "yaml"
 
@@ -11,19 +12,23 @@ module Rubysmith
       # Represents the fully assembled Command Line Interface (CLI) configuration.
       class Loader
         using Refinements::Hashes
+        using Refinements::Structs
 
         DEFAULTS = YAML.load_file(Pathname(__dir__).join("defaults.yml")).freeze
         CLIENT = Runcom::Config.new "#{Identity::NAME}/configuration.yml", defaults: DEFAULTS
 
-        def initialize client: CLIENT
+        def self.call = new.call
+
+        def initialize content: Content.new, client: CLIENT
+          @content = content
           @client = client
         end
 
-        def to_h = client.to_h.flatten_keys
+        def call = content.merge(**client.to_h.flatten_keys)
 
         private
 
-        attr_reader :client
+        attr_reader :content, :client
       end
     end
   end

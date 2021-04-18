@@ -41,7 +41,7 @@ module Rubysmith
           new builders: MINIMUM
         end
 
-        def initialize configuration: Configuration::Content.new, builders: MAXIMUM
+        def initialize configuration: Configuration::Loader.call, builders: MAXIMUM
           @configuration = configuration
           @builders = builders
         end
