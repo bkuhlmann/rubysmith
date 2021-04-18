@@ -7,7 +7,9 @@ Bundler.require :tools
 <% end %>
 
 require "<%= configuration.project_name %>"
-<% if configuration.build_refinements %>require "refinements"<% end %>
+<% if configuration.build_refinements %>
+  require "refinements"
+<% end %>
 
 GC.auto_compact = true
 GC.verify_compaction_references double_heap: true, toward: :empty
