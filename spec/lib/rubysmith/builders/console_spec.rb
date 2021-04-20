@@ -17,7 +17,9 @@ RSpec.describe Rubysmith::Builders::Console do
       let(:configuration) { default_configuration.with build_console: true }
 
       it "builds console script" do
-        proof = <<~CONTENT
+        builder.call
+
+        expect(build_path.read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
 
           require "bundler/setup"
@@ -28,10 +30,6 @@ RSpec.describe Rubysmith::Builders::Console do
 
           IRB.start __FILE__
         CONTENT
-
-        builder.call
-
-        expect(build_path.read).to eq(proof)
       end
 
       it "updates file permissions" do

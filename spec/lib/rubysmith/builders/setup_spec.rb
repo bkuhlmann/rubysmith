@@ -16,7 +16,9 @@ RSpec.describe Rubysmith::Builders::Setup do
       let(:configuration) { default_configuration.with build_setup: true }
 
       it "builds setup script without Pry support" do
-        proof = <<~CONTENT
+        builder.call
+
+        expect(build_path.read).to eq(<<~CONTENT)
           #! /usr/bin/env bash
 
           set -o nounset
@@ -26,10 +28,6 @@ RSpec.describe Rubysmith::Builders::Setup do
 
           bundle install
         CONTENT
-
-        builder.call
-
-        expect(build_path.read).to eq(proof)
       end
 
       it "updates script permissions" do

@@ -16,15 +16,13 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     shared_examples_for "markdown documentation" do
       it "builds changes" do
-        expect(temp_dir.join("test", "CHANGES.md").read).to eq(
-          <<~CONTENT
-            # Changes
+        expect(temp_dir.join("test", "CHANGES.md").read).to eq(<<~CONTENT)
+          # Changes
 
-            ## 0.1.0 (2020-01-01)
+          ## 0.1.0 (2020-01-01)
 
-            - Added initial implementation.
-          CONTENT
-        )
+          - Added initial implementation.
+        CONTENT
       end
 
       it "builds code of conduct" do
@@ -94,15 +92,13 @@ RSpec.describe Rubysmith::Builders::Documentation do
       end
 
       it "builds changes" do
-        expect(temp_dir.join("test", "CHANGES.adoc").read).to eq(
-          <<~CONTENT
-            = Changes
+        expect(temp_dir.join("test", "CHANGES.adoc").read).to eq(<<~CONTENT)
+          = Changes
 
-            == 0.1.0 (2020-01-01)
+          == 0.1.0 (2020-01-01)
 
-            * Added initial implementation.
-          CONTENT
-        )
+          * Added initial implementation.
+        CONTENT
       end
 
       it "builds code of conduct" do

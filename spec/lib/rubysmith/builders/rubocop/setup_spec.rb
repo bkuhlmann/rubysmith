@@ -19,16 +19,14 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
       it "builds binstub" do
         builder.call
 
-        expect(binstub_path.read).to eq(
-          <<~CONTENT
-            #! /usr/bin/env ruby
-            # frozen_string_literal: true
+        expect(binstub_path.read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
+          # frozen_string_literal: true
 
-            require "bundler/setup"
+          require "bundler/setup"
 
-            load Gem.bin_path "rubocop", "rubocop"
-          CONTENT
-        )
+          load Gem.bin_path "rubocop", "rubocop"
+        CONTENT
       end
     end
 
@@ -40,14 +38,12 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
       it "builds configuration" do
         builder.call
 
-        expect(configuration_path.read).to eq(
-          <<~CONTENT
-            inherit_from:
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
-          CONTENT
-        )
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          inherit_from:
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
+        CONTENT
       end
     end
 
@@ -59,15 +55,13 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
       it "builds configuration" do
         builder.call
 
-        expect(configuration_path.read).to eq(
-          <<~CONTENT
-            inherit_from:
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
-              - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
-          CONTENT
-        )
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          inherit_from:
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
+        CONTENT
       end
     end
 

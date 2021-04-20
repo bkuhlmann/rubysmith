@@ -18,13 +18,11 @@ RSpec.describe Rubysmith::Builders::Reek do
       let(:configuration) { default_configuration.with build_reek: true }
 
       it "builds configuration" do
-        expect(configuration_path.read).to eq(
-          <<~CONTENT
-            exclude_paths:
-              - tmp
-              - vendor
-          CONTENT
-        )
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          exclude_paths:
+            - tmp
+            - vendor
+        CONTENT
       end
     end
 

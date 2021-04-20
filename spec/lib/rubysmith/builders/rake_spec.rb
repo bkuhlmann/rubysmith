@@ -18,16 +18,14 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
 
-            desc "Run code quality checks"
-            task code_quality: %i[]
+          desc "Run code quality checks"
+          task code_quality: %i[]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -35,19 +33,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_bundler_audit: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "bundler/audit/task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "bundler/audit/task"
 
-            Bundler::Audit::Task.new
+          Bundler::Audit::Task.new
 
-            desc "Run code quality checks"
-            task code_quality: %i[bundle:audit]
+          desc "Run code quality checks"
+          task code_quality: %i[bundle:audit]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -55,19 +51,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_bundler_leak: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "bundler/plumber/task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "bundler/plumber/task"
 
-            Bundler::Plumber::Task.new
+          Bundler::Plumber::Task.new
 
-            desc "Run code quality checks"
-            task code_quality: %i[bundle:leak]
+          desc "Run code quality checks"
+          task code_quality: %i[bundle:leak]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -75,17 +69,15 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "git/lint/rake/setup"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "git/lint/rake/setup"
 
-            desc "Run code quality checks"
-            task code_quality: %i[git_lint]
+          desc "Run code quality checks"
+          task code_quality: %i[git_lint]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -93,19 +85,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_reek: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "reek/rake/task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "reek/rake/task"
 
-            Reek::Rake::Task.new
+          Reek::Rake::Task.new
 
-            desc "Run code quality checks"
-            task code_quality: %i[reek]
+          desc "Run code quality checks"
+          task code_quality: %i[reek]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -113,19 +103,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_rspec: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "rspec/core/rake_task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "rspec/core/rake_task"
 
-            RSpec::Core::RakeTask.new :spec
+          RSpec::Core::RakeTask.new :spec
 
-            desc "Run code quality checks"
-            task code_quality: %i[]
+          desc "Run code quality checks"
+          task code_quality: %i[]
 
-            task default: %i[code_quality spec]
-          CONTENT
-        )
+          task default: %i[code_quality spec]
+        CONTENT
       end
     end
 
@@ -133,19 +121,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_rubocop: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "rubocop/rake_task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "rubocop/rake_task"
 
-            RuboCop::RakeTask.new
+          RuboCop::RakeTask.new
 
-            desc "Run code quality checks"
-            task code_quality: %i[rubocop]
+          desc "Run code quality checks"
+          task code_quality: %i[rubocop]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 
@@ -153,19 +139,17 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(
-          <<~CONTENT
-            require "bundler/setup"
-            require "rubycritic/rake_task"
+        expect(rakefile_path.read).to eq(<<~CONTENT)
+          require "bundler/setup"
+          require "rubycritic/rake_task"
 
-            RubyCritic::RakeTask.new
+          RubyCritic::RakeTask.new
 
-            desc "Run code quality checks"
-            task code_quality: %i[rubycritic]
+          desc "Run code quality checks"
+          task code_quality: %i[rubycritic]
 
-            task default: %i[code_quality]
-          CONTENT
-        )
+          task default: %i[code_quality]
+        CONTENT
       end
     end
 

@@ -19,27 +19,23 @@ RSpec.describe Rubysmith::Builders::Guard do
       let(:configuration) { default_configuration.with build_guard: true }
 
       it "builds binstub" do
-        expect(binstub_path.read).to eq(
-          <<~CONTENT
-            #! /usr/bin/env ruby
+        expect(binstub_path.read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
 
-            require "bundler/setup"
+          require "bundler/setup"
 
-            load Gem.bin_path "guard", "guard"
-          CONTENT
-        )
+          load Gem.bin_path "guard", "guard"
+        CONTENT
       end
 
       it "builds configuration" do
-        expect(configuration_path.read).to eq(
-          <<~CONTENT
-            guard :rspec, cmd: "bundle exec rspec --format documentation" do
-              watch %r(^spec/.+_spec\\.rb$)
-              watch(%r(^lib/(.+)\\.rb$)) { |m| "spec/lib/\#{m[1]}_spec.rb" }
-              watch("spec/spec_helper.rb") { "spec" }
-            end
-          CONTENT
-        )
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          guard :rspec, cmd: "bundle exec rspec --format documentation" do
+            watch %r(^spec/.+_spec\\.rb$)
+            watch(%r(^lib/(.+)\\.rb$)) { |m| "spec/lib/\#{m[1]}_spec.rb" }
+            watch("spec/spec_helper.rb") { "spec" }
+          end
+        CONTENT
       end
     end
 

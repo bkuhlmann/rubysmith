@@ -26,17 +26,15 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it "builds Gemfile" do
         builder.call
 
-        expect(gemfile_path.read).to eq(
-          <<~CONTENT
-            ruby File.read(".ruby-version").strip
+        expect(gemfile_path.read).to eq(<<~CONTENT)
+          ruby File.read(".ruby-version").strip
 
-            source "https://rubygems.org"
+          source "https://rubygems.org"
 
-            group :development do
-              gem "rake", "~> 13.0"
-            end
-          CONTENT
-        )
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
       end
 
       it_behaves_like "a bundle"
@@ -48,14 +46,12 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it "builds Gemfile" do
         builder.call
 
-        expect(gemfile_path.read).to eq(
-          <<~CONTENT
-            ruby File.read(".ruby-version").strip
+        expect(gemfile_path.read).to eq(<<~CONTENT)
+          ruby File.read(".ruby-version").strip
 
-            source "https://rubygems.org"
+          source "https://rubygems.org"
 
-          CONTENT
-        )
+        CONTENT
       end
 
       it_behaves_like "a bundle"

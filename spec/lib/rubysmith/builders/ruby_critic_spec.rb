@@ -18,13 +18,11 @@ RSpec.describe Rubysmith::Builders::RubyCritic do
       let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       it "builds configuration" do
-        expect(configuration_path.read).to eq(
-          <<~CONTENT
-            paths:
-              - "lib"
-            no_browser: true
-          CONTENT
-        )
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          paths:
+            - "lib"
+          no_browser: true
+        CONTENT
       end
     end
 

@@ -44,7 +44,9 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "inserts content at end of file" do
-      proof = <<~CONTENT
+      builder.append %(puts "END"\n)
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         require "test"
@@ -52,9 +54,6 @@ RSpec.describe Rubysmith::Builder do
         puts "Test."
         puts "END"
       CONTENT
-
-      builder.append %(puts "END"\n)
-      expect(build_path.read).to eq(proof)
     end
 
     it "answers itself" do
@@ -92,7 +91,9 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "inserts content after regular expression" do
-      proof = <<~CONTENT
+      builder.insert_before(/require.+test/, %(require "pathname"\n))
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         require "pathname"
@@ -100,13 +101,12 @@ RSpec.describe Rubysmith::Builder do
 
         puts "Test."
       CONTENT
-
-      builder.insert_before(/require.+test/, %(require "pathname"\n))
-      expect(build_path.read).to eq(proof)
     end
 
     it "inserts content after string pattern" do
-      proof = <<~CONTENT
+      builder.insert_before %(require "test"\n), %(require "pathname"\n)
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         require "pathname"
@@ -114,9 +114,6 @@ RSpec.describe Rubysmith::Builder do
 
         puts "Test."
       CONTENT
-
-      builder.insert_before %(require "test"\n), %(require "pathname"\n)
-      expect(build_path.read).to eq(proof)
     end
 
     it "answers itself" do
@@ -133,7 +130,9 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "inserts content after regular expression" do
-      proof = <<~CONTENT
+      builder.insert_after(/require.+test/, %(require "pathname"\n))
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         require "test"
@@ -141,13 +140,12 @@ RSpec.describe Rubysmith::Builder do
 
         puts "Test."
       CONTENT
-
-      builder.insert_after(/require.+test/, %(require "pathname"\n))
-      expect(build_path.read).to eq(proof)
     end
 
     it "inserts content after string pattern" do
-      proof = <<~CONTENT
+      builder.insert_after %(require "test"\n), %(require "pathname"\n)
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         require "test"
@@ -155,9 +153,6 @@ RSpec.describe Rubysmith::Builder do
 
         puts "Test."
       CONTENT
-
-      builder.insert_after %(require "test"\n), %(require "pathname"\n)
-      expect(build_path.read).to eq(proof)
     end
 
     it "answers itself" do
@@ -192,7 +187,9 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "inserts content at start of file" do
-      proof = <<~CONTENT
+      builder.prepend "# This is a comment.\n"
+
+      expect(build_path.read).to eq(<<~CONTENT)
         # This is a comment.
         #! /usr/bin/env ruby
 
@@ -200,9 +197,6 @@ RSpec.describe Rubysmith::Builder do
 
         puts "Test."
       CONTENT
-
-      builder.prepend "# This is a comment.\n"
-      expect(build_path.read).to eq(proof)
     end
 
     it "answers itself" do
@@ -229,16 +223,6 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#render" do
-    let :content do
-      <<~CONTENT
-        #! /usr/bin/env ruby
-
-        require "test"
-
-        puts "Test."
-      CONTENT
-    end
-
     it "logs information" do
       builder.render
       expect(output_buffer.reread).to match(%r(Rendering: test/bin/test\n))
@@ -246,7 +230,14 @@ RSpec.describe Rubysmith::Builder do
 
     it "renders template" do
       builder.render
-      expect(build_path.read).to eq(content)
+
+      expect(build_path.read).to eq(<<~CONTENT)
+        #! /usr/bin/env ruby
+
+        require "test"
+
+        puts "Test."
+      CONTENT
     end
 
     it "answers itself" do
@@ -263,16 +254,15 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "inserts content at end of file" do
-      proof = <<~CONTENT
+      builder.replace(/^(puts|require).+/, "# Replaced.")
+
+      expect(build_path.read).to eq(<<~CONTENT)
         #! /usr/bin/env ruby
 
         # Replaced.
 
         # Replaced.
       CONTENT
-
-      builder.replace(/^(puts|require).+/, "# Replaced.")
-      expect(build_path.read).to eq(proof)
     end
 
     it "answers itself" do
