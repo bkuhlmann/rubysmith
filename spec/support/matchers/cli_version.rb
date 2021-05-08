@@ -3,11 +3,7 @@
 RSpec::Matchers.define :match_cli_version do
   expected = /Rubysmith\s\d+\.\d+\.\d+/
 
-  match do |actual|
-    actual.match? expected
-  end
+  match { |actual| actual.match? expected }
 
-  description do
-    "match /#{expected.source}/"
-  end
+  description { "match /#{expected.source}/" }
 end

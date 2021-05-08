@@ -43,12 +43,7 @@ RSpec.describe Rubysmith::Text::Inserter do
     it "doesn't mutate lines" do
       inserter.call("Test insert", /iaculis ipsum/)
 
-      expect(lines).to eq(
-        [
-          "Curabitur eleifend",
-          "wisi iaculis ipsum."
-        ]
-      )
+      expect(lines).to eq(["Curabitur eleifend", "wisi iaculis ipsum."])
     end
 
     it "answers original lines when line doesn't match pattern" do
