@@ -37,9 +37,7 @@ module Rubysmith
           Builders::Git::Commit
         ].freeze
 
-        def self.with_minimum
-          new builders: MINIMUM
-        end
+        def self.with_minimum = new(builders: MINIMUM)
 
         def initialize configuration: Configuration::Loader.call, builders: MAXIMUM
           @configuration = configuration
