@@ -9,7 +9,6 @@
   :license: "mit"
 :build:
   :amazing_print: true
-  :bundler_audit: true
   :bundler_leak: true
   :console: true
   :documentation: true

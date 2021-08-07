@@ -84,33 +84,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Bundler Audit" do
-      let(:configuration) { default_configuration.with build_bundler_audit: true }
-
-      let :proof do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :code_quality do
-            gem "bundler-audit", "~> 0.7"
-          end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-
-      it_behaves_like "a bundle"
-    end
-
     context "with only Bundler Leak" do
       let(:configuration) { default_configuration.with build_bundler_leak: true }
 
@@ -419,7 +392,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
     context "with all options" do
       let :configuration do
         default_configuration.with build_amazing_print: true,
-                                   build_bundler_audit: true,
                                    build_bundler_leak: true,
                                    build_git: true,
                                    build_git_lint: true,
@@ -442,7 +414,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "refinements", "~> 8.0"
 
           group :code_quality do
-            gem "bundler-audit", "~> 0.7"
             gem "bundler-leak", "~> 0.2"
             gem "git-lint", "~> 2.0"
             gem "reek", "~> 6.0"

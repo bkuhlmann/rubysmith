@@ -29,24 +29,6 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only Bundler Audit" do
-      let(:configuration) { default_configuration.with build_bundler_audit: true }
-
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "bundler/audit/task"
-
-          Bundler::Audit::Task.new
-
-          desc "Run code quality checks"
-          task code_quality: %i[bundle:audit]
-
-          task default: %i[code_quality]
-        CONTENT
-      end
-    end
-
     context "with only Bundler Leak" do
       let(:configuration) { default_configuration.with build_bundler_leak: true }
 
@@ -155,8 +137,7 @@ RSpec.describe Rubysmith::Builders::Rake do
 
     context "with all options" do
       let :configuration do
-        default_configuration.with build_bundler_audit: true,
-                                   build_bundler_leak: true,
+        default_configuration.with build_bundler_leak: true,
                                    build_git: true,
                                    build_git_lint: true,
                                    build_reek: true,
@@ -168,7 +149,6 @@ RSpec.describe Rubysmith::Builders::Rake do
       let :proof do
         <<~CONTENT
           require "bundler/setup"
-          require "bundler/audit/task"
           require "bundler/plumber/task"
           require "git/lint/rake/setup"
           require "reek/rake/task"
@@ -176,7 +156,6 @@ RSpec.describe Rubysmith::Builders::Rake do
           require "rubocop/rake_task"
           require "rubycritic/rake_task"
 
-          Bundler::Audit::Task.new
           Bundler::Plumber::Task.new
           Reek::Rake::Task.new
           RSpec::Core::RakeTask.new :spec
@@ -184,7 +163,7 @@ RSpec.describe Rubysmith::Builders::Rake do
           RubyCritic::RakeTask.new
 
           desc "Run code quality checks"
-          task code_quality: %i[bundle:audit bundle:leak git_lint reek rubocop rubycritic]
+          task code_quality: %i[bundle:leak git_lint reek rubocop rubycritic]
 
           task default: %i[code_quality spec]
         CONTENT

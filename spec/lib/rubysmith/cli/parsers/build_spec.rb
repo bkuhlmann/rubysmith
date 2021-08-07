@@ -25,16 +25,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_amazing_print: false)
     end
 
-    it "enables bundler audit" do
-      parser.call %w[--bundler-audit]
-      expect(options).to eq(build_bundler_audit: true)
-    end
-
-    it "disables bundler audit" do
-      parser.call %w[--no-bundler-audit]
-      expect(options).to eq(build_bundler_audit: false)
-    end
-
     it "enables bundler leak" do
       parser.call %w[--bundler-leak]
       expect(options).to eq(build_bundler_leak: true)

@@ -35,12 +35,6 @@ module Rubysmith
           end
         end
 
-        def add_bundler_audit
-          client.on "--[no-]bundler-audit", "Add Bundler Audit." do |value|
-            options[:build_bundler_audit] = value
-          end
-        end
-
         def add_bundler_leak
           client.on "--[no-]bundler-leak", "Add Bundler Leak." do |value|
             options[:build_bundler_leak] = value

@@ -8,9 +8,6 @@ source "https://rubygems.org"
   <% end %>
 
   group :code_quality do
-    <% if configuration.build_bundler_audit %>
-      gem "bundler-audit", "~> 0.7"
-    <% end %>
     <% if configuration.build_bundler_leak %>
       gem "bundler-leak", "~> 0.2"
     <% end %>

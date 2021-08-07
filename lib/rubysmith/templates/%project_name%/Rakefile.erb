@@ -1,8 +1,5 @@
 require "bundler/setup"
 
-<% if configuration.build_bundler_audit %>
-  require "bundler/audit/task"
-<% end %>
 <% if configuration.build_bundler_leak %>
   require "bundler/plumber/task"
 <% end %>
@@ -22,9 +19,6 @@ require "bundler/setup"
   require "rubycritic/rake_task"
 <% end %>
 
-<% if configuration.build_bundler_audit %>
-  Bundler::Audit::Task.new
-<% end %>
 <% if configuration.build_bundler_leak %>
   Bundler::Plumber::Task.new
 <% end %>
@@ -42,6 +36,6 @@ require "bundler/setup"
 <% end %>
 
 desc "Run code quality checks"
-task code_quality: %i[<% if configuration.build_bundler_audit %>bundle:audit<% end %> <% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_rubocop %>rubocop<% end %> <% if configuration.build_ruby_critic %>rubycritic<% end %>]
+task code_quality: %i[<% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_rubocop %>rubocop<% end %> <% if configuration.build_ruby_critic %>rubycritic<% end %>]
 
 task default: %i[code_quality <% if configuration.build_rspec %>spec<% end %>]
