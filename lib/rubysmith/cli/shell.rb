@@ -27,7 +27,6 @@ module Rubysmith
           in build_minimum: true then process_build :build_minimum, options
           in build: then process_build :build_maximum, options
           in version: String => version then puts version
-          in help: then usage
           else usage
         end
       end
