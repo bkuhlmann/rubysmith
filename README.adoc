@@ -26,7 +26,6 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
-* Supports link:https://github.com/rubysec/bundler-audit[Bundler Audit].
 * Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
@@ -79,13 +78,12 @@ From the command line, type: `rubysmith --help`
 ....
 USAGE:
   -b, --build NAME [options]               Build new project.
-  -v, --version                            Show gem version.
-  -h, --help                               Show this message.
   -c, --config ACTION                      Manage gem configuration: edit or view.
+  -h, --help                               Show this message.
+  -v, --version                            Show gem version.
 
 BUILD OPTIONS:
   --[no-]amazing_print                 Add Amazing Print.
-  --[no-]bundler-audit                 Add Bundler Audit.
   --[no-]bundler-leak                  Add Bundler Leak.
   --[no-]console                       Add console script.
   --[no-]documentation                 Add documentation.
@@ -161,7 +159,6 @@ The default configuration is as follows:
   :license: "mit"
 :build:
   :amazing_print: true
-  :bundler_audit: true
   :bundler_leak: true
   :console: true
   :documentation: true

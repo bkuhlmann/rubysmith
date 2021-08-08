@@ -1,5 +1,16 @@
 = Changes
 
+== 0.11.0 (2021-08-07)
+
+* Fixed Rubocop Layout/RedundantLineBreak issues - Brooke Kuhlmann
+* Fixed Rubocop Lint/DuplicateBranch issue - Brooke Kuhlmann
+* Updated to Rubocop 1.14.0 - Brooke Kuhlmann
+* Updated to Ruby 3.0.2 - Brooke Kuhlmann
+* Removed Bundler Audit - Brooke Kuhlmann
+* Refactored RSpec heredoc usage - Brooke Kuhlmann
+* Refactored builder and build processor to use endless methods - Brooke Kuhlmann
+* Refactored namespace renderer spec to use heredoc - Brooke Kuhlmann
+
 == 0.10.0 (2021-04-18)
 
 * Fixed RSpec helper build failure with template - Brooke Kuhlmann
