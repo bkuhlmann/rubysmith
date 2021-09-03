@@ -35,6 +35,7 @@ module Rubysmith
         :build_ruby_critic,
         :build_setup,
         :build_simple_cov,
+        :build_zeitwerk,
         :builders_pragmater_comments,
         :builders_pragmater_includes,
         :version,

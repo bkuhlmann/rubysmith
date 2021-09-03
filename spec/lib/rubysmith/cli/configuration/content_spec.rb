@@ -37,6 +37,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_rubocop: nil,
         build_ruby_critic: nil,
         build_simple_cov: nil,
+        build_zeitwerk: nil,
         builders_pragmater_comments: nil,
         builders_pragmater_includes: nil,
         version: nil,

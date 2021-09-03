@@ -389,6 +389,31 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
+    context "with only Zeitwerk" do
+      let(:configuration) { default_configuration.with build_zeitwerk: true }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          gem "zeitwerk", "~> 2.4"
+
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with all options" do
       let :configuration do
         default_configuration.with build_amazing_print: true,
@@ -402,7 +427,8 @@ RSpec.describe Rubysmith::Builders::Bundler do
                                    build_rspec: true,
                                    build_rubocop: true,
                                    build_ruby_critic: true,
-                                   build_simple_cov: true
+                                   build_simple_cov: true,
+                                   build_zeitwerk: true
       end
 
       let :proof do
@@ -412,6 +438,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "refinements", "~> 8.0"
+          gem "zeitwerk", "~> 2.4"
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"

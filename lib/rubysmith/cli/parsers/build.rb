@@ -118,6 +118,12 @@ module Rubysmith
             options[:build_simple_cov] = value
           end
         end
+
+        def add_zeitwerk
+          client.on "--[no-]zeitwerk", "Add Zeitwerk." do |value|
+            options[:build_zeitwerk] = value
+          end
+        end
       end
     end
   end

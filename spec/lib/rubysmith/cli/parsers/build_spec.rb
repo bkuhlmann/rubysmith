@@ -165,6 +165,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_simple_cov: false)
     end
 
+    it "enables Zeitwerk" do
+      parser.call %w[--zeitwerk]
+      expect(options).to eq(build_zeitwerk: true)
+    end
+
+    it "disables Zeitwerk" do
+      parser.call %w[--no-zeitwerk]
+      expect(options).to eq(build_zeitwerk: false)
+    end
+
     it "fails with invalid option" do
       expectation = proc { parser.call %w[--bogus] }
       expect(&expectation).to raise_error(OptionParser::InvalidOption, /--bogus/)

@@ -1,3 +1,10 @@
-# The project namespace.
+<% if configuration.build_zeitwerk %>
+  require "zeitwerk"
+
+  loader = Zeitwerk::Loader.for_gem
+  loader.setup
+<% end %>
+
+# Main namespace.
 module <%= configuration.project_class %>
 end

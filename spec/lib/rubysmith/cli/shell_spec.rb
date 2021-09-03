@@ -87,6 +87,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-ruby_critic
           --no-setup
           --no-simple_cov
+          --no-zeitwerk
         ]
       end
 
@@ -127,6 +128,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --ruby_critic
           --setup
           --simple_cov
+          --zeitwerk
         ]
       end
 

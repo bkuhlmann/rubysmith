@@ -29,6 +29,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
       build_ruby_critic: true,
       build_setup: true,
       build_simple_cov: true,
+      build_zeitwerk: true,
       builders_pragmater_comments: ["# frozen_string_literal: true"],
       builders_pragmater_includes: [
         "**/*.rb",
