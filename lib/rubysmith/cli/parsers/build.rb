@@ -4,7 +4,6 @@ module Rubysmith
   module CLI
     module Parsers
       # Handles parsing of Command Line Interface (CLI) build options.
-      # :reek:TooManyMethods
       class Build
         def self.call(...) = new(...).call
 

@@ -3,3 +3,7 @@ inherit_from:
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
+
+Metrics/ClassLength:
+  Exclude:
+    - "lib/rubysmith/cli/parsers/build.rb"
