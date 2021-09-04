@@ -14,7 +14,7 @@ module Rubysmith
         @depth = namespace.scan("::").length
       end
 
-      def call(content) = "#{prefix}#{body content}#{suffix.chomp}"
+      def call(content = nil) = "#{prefix}#{body content}#{suffix}"
 
       private
 
@@ -28,7 +28,7 @@ module Rubysmith
 
       # :reek:FeatureEnvy
       def body content
-        content.lstrip.split("\n").reduce "" do |snippet, line|
+        String(content).lstrip.split("\n").reduce "" do |snippet, line|
           next "#{snippet}\n" if line.blank?
 
           "#{snippet}#{line.gsub(/^\s{2}/, "").indent depth + 1}\n"

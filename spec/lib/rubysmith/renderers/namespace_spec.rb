@@ -17,7 +17,20 @@ RSpec.describe Rubysmith::Renderers::Namespace do
   end
 
   describe "#call" do
-    context "with single module" do
+    context "with single empty module" do
+      let :expected_content do
+        <<~CONTENT
+          module Example
+          end
+        CONTENT
+      end
+
+      it "renders single module" do
+        expect(renderer.call).to eq(expected_content)
+      end
+    end
+
+    context "with single filled module" do
       let :expected_content do
         <<~CONTENT
           module Example
@@ -32,11 +45,30 @@ RSpec.describe Rubysmith::Renderers::Namespace do
       end
 
       it "renders single module" do
-        expect(renderer.call(content)).to eq(expected_content.chomp)
+        expect(renderer.call(content)).to eq(expected_content)
       end
     end
 
-    context "with multiple modules" do
+    context "with multiple empty modules" do
+      let(:name) { "One::Two::Three" }
+
+      let :expected_content do
+        <<~CONTENT
+          module One
+            module Two
+              module Three
+              end
+            end
+          end
+        CONTENT
+      end
+
+      it "renders nested modules" do
+        expect(renderer.call).to eq(expected_content)
+      end
+    end
+
+    context "with multiple filled modules" do
       let(:name) { "One::Two::Three" }
 
       let :expected_content do
@@ -57,7 +89,7 @@ RSpec.describe Rubysmith::Renderers::Namespace do
       end
 
       it "renders nested modules" do
-        expect(renderer.call(content)).to eq(expected_content.chomp)
+        expect(renderer.call(content)).to eq(expected_content)
       end
     end
 
@@ -85,7 +117,7 @@ RSpec.describe Rubysmith::Renderers::Namespace do
       end
 
       it "removes carriage return" do
-        expect(renderer.call(content)).to eq(expected_content.chomp)
+        expect(renderer.call(content)).to eq(expected_content)
       end
     end
   end
