@@ -12,10 +12,10 @@ module Rubysmith
       end
 
       def call
-        builder.call(configuration.with(template_path: "%project_name%/lib/%project_name%.rb.erb"))
+        builder.call(configuration.with(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
-               .replace(/\A\n/, "")
-               .replace(/  /, "")
+               .replace(/\A\n#/m, "#")
+               .replace(/  (?!(module|end))/, "")
 
         builder.call(configuration.with(template_path: "%project_name%/.ruby-version.erb")).render
         nil
