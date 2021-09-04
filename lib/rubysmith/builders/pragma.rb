@@ -6,7 +6,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton pragmas so all Ruby strings are frozen by default.
     class Pragma
-      def self.call(configuration) = new(configuration).call
+      def self.call(...) = new(...).call
 
       def initialize configuration, client: Pragmater::Runner
         @configuration = configuration

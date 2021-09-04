@@ -10,7 +10,7 @@ module Rubysmith
       class Formatter
         using Refinements::IOs
 
-        def self.call(configuration) = new(configuration).call
+        def self.call(...) = new(...).call
 
         def initialize configuration, client: RuboCop::CLI.new
           @configuration = configuration

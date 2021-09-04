@@ -4,7 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton Guard support for a red, green, refactor loop.
     class Guard
-      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
+      def self.call(...) = new(...).call
 
       def initialize configuration, builder: Builder
         @configuration = configuration

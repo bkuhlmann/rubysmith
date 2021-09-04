@@ -7,7 +7,7 @@ module Rubysmith
     module Parsers
       # Handles parsing of Command Line Interface (CLI) core options.
       class Core
-        def self.call(options: {}, client: CLIENT) = new(options: options, client: client).call
+        def self.call(...) = new(...).call
 
         def initialize options: {}, client: CLIENT
           @options = options

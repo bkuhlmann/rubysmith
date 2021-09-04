@@ -6,7 +6,7 @@ module Rubysmith
       # Handles parsing of Command Line Interface (CLI) build options.
       # :reek:TooManyMethods
       class Build
-        def self.call(options: {}, client: CLIENT) = new(options: options, client: client).call
+        def self.call(...) = new(...).call
 
         def initialize options: {}, client: CLIENT
           @options = options

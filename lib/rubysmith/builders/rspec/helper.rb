@@ -5,7 +5,7 @@ module Rubysmith
     module RSpec
       # Builds RSpec spec helper for project skeleton.
       class Helper
-        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
+        def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
           @configuration = configuration

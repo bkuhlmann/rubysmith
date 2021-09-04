@@ -5,7 +5,7 @@ module Rubysmith
     module Git
       # Builds project skeleton initial Git commit message.
       class Commit
-        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
+        def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
           @configuration = configuration

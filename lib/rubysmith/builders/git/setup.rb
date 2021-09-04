@@ -5,7 +5,7 @@ module Rubysmith
     module Git
       # Initializes project skeleton as a Git repository.
       class Setup
-        def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
+        def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
           @configuration = configuration

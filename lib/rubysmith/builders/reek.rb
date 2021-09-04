@@ -4,7 +4,7 @@ module Rubysmith
   module Builders
     # Builds project skeleton Reek code quality support.
     class Reek
-      def self.call(configuration, builder: Builder) = new(configuration, builder: builder).call
+      def self.call(...) = new(...).call
 
       def initialize configuration, builder: Builder
         @configuration = configuration

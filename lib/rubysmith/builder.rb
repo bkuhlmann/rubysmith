@@ -19,7 +19,7 @@ module Rubysmith
       logger: LOGGER
     }.freeze
 
-    def self.call(configuration, helpers: HELPERS) = new(configuration, helpers: helpers)
+    def self.call(...) = new(...)
 
     def initialize configuration, helpers: HELPERS
       @configuration = configuration
