@@ -6,7 +6,7 @@ Bundler.require :tools
   SimpleCov.start { enable_coverage :branch }
 <% end %>
 
-require "<%= configuration.project_name %>"
+require "<%= configuration.project_path %>"
 <% if configuration.build_refinements %>
   require "refinements"
 <% end %>

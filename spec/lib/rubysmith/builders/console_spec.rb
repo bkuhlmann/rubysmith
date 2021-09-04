@@ -7,13 +7,12 @@ RSpec.describe Rubysmith::Builders::Console do
 
   include_context "with configuration"
 
-  let(:template_root) { Bundler.root.join "lib", "rubysmith", "templates" }
-  let(:build_path) { temp_dir.join "test", "bin", "console" }
+  let(:build_path) { temp_dir.join "test/bin/console" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    context "when enabled" do
+    context "when enabled with non-dashed project name" do
       let(:configuration) { default_configuration.with build_console: true }
 
       it "builds console script" do
@@ -26,6 +25,35 @@ RSpec.describe Rubysmith::Builders::Console do
           Bundler.require :tools
 
           require_relative "../lib/test"
+          require "irb"
+
+          IRB.start __FILE__
+        CONTENT
+      end
+
+      it "updates file permissions" do
+        builder.call
+        expect(build_path.stat.mode).to eq(33261)
+      end
+    end
+
+    context "when enabled with dashed project name" do
+      let :configuration do
+        default_configuration.with project_name: "demo-test", build_console: true
+      end
+
+      let(:build_path) { temp_dir.join "demo-test/bin/console" }
+
+      it "builds console script" do
+        builder.call
+
+        expect(build_path.read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
+
+          require "bundler/setup"
+          Bundler.require :tools
+
+          require_relative "../lib/demo/test"
           require "irb"
 
           IRB.start __FILE__

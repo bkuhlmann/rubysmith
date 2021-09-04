@@ -14,7 +14,6 @@ module Rubysmith
       def call
         builder.call(configuration.with(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
-               .replace(/\A\n#/m, "#")
                .replace(/  (?!(module|end))/, "")
 
         builder.call(configuration.with(template_path: "%project_name%/.ruby-version.erb")).render

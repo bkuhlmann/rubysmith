@@ -1,9 +1,13 @@
 <% if configuration.build_zeitwerk %>
   require "zeitwerk"
-
-  loader = Zeitwerk::Loader.for_gem
-  loader.setup
+  <% if configuration.project_path.include? "/" %>
+    loader = Zeitwerk::Loader.new
+    loader.push_dir "#{__dir__}/.."
+    loader.setup
+  <% else %>
+    loader = Zeitwerk::Loader.for_gem
+    loader.setup
+  <% end %>
 <% end %>
-
 # Main namespace.
 <% namespace %>
