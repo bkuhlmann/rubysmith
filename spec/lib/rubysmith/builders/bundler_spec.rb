@@ -31,9 +31,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -57,7 +54,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Amazing Print" do
+    context "with Amazing Print only" do
       let(:configuration) { default_configuration.with build_amazing_print: true }
 
       let :proof do
@@ -65,10 +62,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           ruby File.read(".ruby-version").strip
 
           source "https://rubygems.org"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
 
           group :tools do
             gem "amazing_print", "~> 1.2"
@@ -84,7 +77,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Bundler Leak" do
+    context "with Bundler Leak only" do
       let(:configuration) { default_configuration.with build_bundler_leak: true }
 
       let :proof do
@@ -96,10 +89,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -111,7 +100,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Git and Git Lint" do
+    context "with Git and Git Lint only" do
       let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
 
       let :proof do
@@ -123,10 +112,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :code_quality do
             gem "git-lint", "~> 2.0"
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -138,7 +123,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Guard" do
+    context "with Guard only" do
       let(:configuration) { default_configuration.with build_guard: true }
 
       let :proof do
@@ -146,10 +131,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           ruby File.read(".ruby-version").strip
 
           source "https://rubygems.org"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
 
           group :test do
             gem "guard-rspec", "~> 4.7", require: false
@@ -165,7 +146,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Pry" do
+    context "with Pry only" do
       let(:configuration) { default_configuration.with build_pry: true }
 
       let :content do
@@ -173,10 +154,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           ruby File.read(".ruby-version").strip
 
           source "https://rubygems.org"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
 
           group :tools do
             gem "pry", "~> 0.13"
@@ -193,7 +170,30 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Reek" do
+    context "with Rake only" do
+      let(:configuration) { default_configuration.with build_rake: true }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :development do
+            gem "rake", "~> 13.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
+    context "with Reek only" do
       let(:configuration) { default_configuration.with build_reek: true }
 
       let :proof do
@@ -205,10 +205,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :code_quality do
             gem "reek", "~> 6.0"
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -220,7 +216,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Refinements" do
+    context "with Refinements only" do
       let(:configuration) { default_configuration.with build_refinements: true }
 
       let :proof do
@@ -230,10 +226,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "refinements", "~> 8.0"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -245,7 +237,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only RSpec" do
+    context "with RSpec only" do
       let(:configuration) { default_configuration.with build_rspec: true }
 
       let :proof do
@@ -253,10 +245,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           ruby File.read(".ruby-version").strip
 
           source "https://rubygems.org"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
 
           group :test do
             gem "rspec", "~> 3.10"
@@ -272,7 +260,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only RSpec and Rubocop" do
+    context "with RSpec and Rubocop only" do
       let(:configuration) { default_configuration.with build_rspec: true, build_rubocop: true }
 
       let :proof do
@@ -288,10 +276,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "rubocop-rspec", "~> 2.0"
           end
 
-          group :development do
-            gem "rake", "~> 13.0"
-          end
-
           group :test do
             gem "rspec", "~> 3.10"
           end
@@ -306,7 +290,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Rubocop" do
+    context "with Rubocop only" do
       let(:configuration) { default_configuration.with build_rubocop: true }
 
       let :proof do
@@ -320,10 +304,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -335,7 +315,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only RubyCritic" do
+    context "with RubyCritic only" do
       let(:configuration) { default_configuration.with build_ruby_critic: true }
 
       let :proof do
@@ -347,10 +327,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :code_quality do
             gem "rubycritic", "~> 4.5", require: false
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -362,7 +338,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only SimpleCov" do
+    context "with SimpleCov only" do
       let(:configuration) { default_configuration.with build_simple_cov: true }
 
       let :proof do
@@ -374,10 +350,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :code_quality do
             gem "simplecov", "~> 0.20"
           end
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -389,7 +361,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with only Zeitwerk" do
+    context "with Zeitwerk only" do
       let(:configuration) { default_configuration.with build_zeitwerk: true }
 
       let :proof do
@@ -399,10 +371,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "zeitwerk", "~> 2.4"
-
-          group :development do
-            gem "rake", "~> 13.0"
-          end
         CONTENT
       end
 
@@ -422,6 +390,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
                                    build_git_lint: true,
                                    build_guard: true,
                                    build_pry: true,
+                                   build_rake: true,
                                    build_reek: true,
                                    build_refinements: true,
                                    build_rspec: true,

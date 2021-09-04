@@ -36,9 +36,11 @@ source "https://rubygems.org"
     <% end %>
   end
 
-  group :development do
-    gem "rake", "~> 13.0"
-  end
+  <% if configuration.build_rake %>
+    group :development do
+      gem "rake", "~> 13.0"
+    end
+  <% end %>
 
   group :test do
     <% if configuration.build_guard %>

@@ -77,6 +77,12 @@ module Rubysmith
           end
         end
 
+        def add_rake
+          client.on "--[no-]rake", "Add Rake." do |value|
+            options[:build_rake] = value
+          end
+        end
+
         def add_reek
           client.on "--[no-]reek", "Add Reek." do |value|
             options[:build_reek] = value

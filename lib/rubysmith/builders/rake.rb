@@ -12,6 +12,8 @@ module Rubysmith
       end
 
       def call
+        return unless configuration.build_rake
+
         builder.call(configuration.with(template_path: "%project_name%/Rakefile.erb"))
                .render
                .replace(/\[\s+/, "[")

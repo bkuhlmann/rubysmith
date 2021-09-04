@@ -28,6 +28,7 @@ module Rubysmith
         :build_git_lint,
         :build_guard,
         :build_pry,
+        :build_rake,
         :build_reek,
         :build_refinements,
         :build_rspec,

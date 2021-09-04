@@ -80,6 +80,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-git-lint
           --no-guard
           --no-pry
+          --no-rake
           --no-reek
           --no-refinements
           --no-rspec
@@ -96,7 +97,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           "test/.ruby-version",
           "test/Gemfile",
           "test/Gemfile.lock",
-          "test/Rakefile",
           "test/lib/test.rb"
         ]
       end
@@ -122,6 +122,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --git-lint
           --guard
           --pry
+          --rake
           --reek
           --rspec
           --rubocop

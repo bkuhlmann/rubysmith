@@ -105,6 +105,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_pry: false)
     end
 
+    it "enables rake" do
+      parser.call %w[--rake]
+      expect(options).to eq(build_rake: true)
+    end
+
+    it "disables rake" do
+      parser.call %w[--no-rake]
+      expect(options).to eq(build_rake: false)
+    end
+
     it "enables reek" do
       parser.call %w[--reek]
       expect(options).to eq(build_reek: true)

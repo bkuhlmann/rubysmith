@@ -33,6 +33,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git_lint: nil,
         build_guard: nil,
         build_pry: nil,
+        build_rake: nil,
         build_reek: nil,
         build_refinements: nil,
         build_rspec: nil,

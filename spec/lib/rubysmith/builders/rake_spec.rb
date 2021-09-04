@@ -14,8 +14,8 @@ RSpec.describe Rubysmith::Builders::Rake do
   describe "#call" do
     before { builder.call }
 
-    context "with default options" do
-      let(:configuration) { default_configuration }
+    context "when enabled with default options" do
+      let(:configuration) { default_configuration.with build_rake: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -29,8 +29,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only Bundler Leak" do
-      let(:configuration) { default_configuration.with build_bundler_leak: true }
+    context "when enabled with only Bundler Leak" do
+      let(:configuration) { default_configuration.with build_rake: true, build_bundler_leak: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -47,8 +47,10 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only Git and Git Lint" do
-      let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
+    context "when enabled with only Git and Git Lint" do
+      let :configuration do
+        default_configuration.with build_rake: true, build_git: true, build_git_lint: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -63,8 +65,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only Reek" do
-      let(:configuration) { default_configuration.with build_reek: true }
+    context "when enabled with only Reek" do
+      let(:configuration) { default_configuration.with build_rake: true, build_reek: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -81,8 +83,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only RSpec" do
-      let(:configuration) { default_configuration.with build_rspec: true }
+    context "when enabled with only RSpec" do
+      let(:configuration) { default_configuration.with build_rake: true, build_rspec: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -99,8 +101,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only Rubocop" do
-      let(:configuration) { default_configuration.with build_rubocop: true }
+    context "when enabled with only Rubocop" do
+      let(:configuration) { default_configuration.with build_rake: true, build_rubocop: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -117,8 +119,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with only RubyCritic" do
-      let(:configuration) { default_configuration.with build_ruby_critic: true }
+    context "when enabled with only RubyCritic" do
+      let(:configuration) { default_configuration.with build_rake: true, build_ruby_critic: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -135,9 +137,10 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "with all options" do
+    context "when enabled with all options" do
       let :configuration do
-        default_configuration.with build_bundler_leak: true,
+        default_configuration.with build_rake: true,
+                                   build_bundler_leak: true,
                                    build_git: true,
                                    build_git_lint: true,
                                    build_reek: true,
@@ -171,6 +174,14 @@ RSpec.describe Rubysmith::Builders::Rake do
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(proof)
+      end
+    end
+
+    context "when disabled" do
+      let(:configuration) { default_configuration.with build_rake: false }
+
+      it "builds Rakefile" do
+        expect(rakefile_path.exist?).to eq(false)
       end
     end
   end
