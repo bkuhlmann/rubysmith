@@ -60,6 +60,8 @@ module Rubysmith
 
         def project_root = build_root.join(project_name)
 
+        def project_path = project_name.snakecase
+
         def to_pathway
           Pathway[start_root: template_root, start_path: template_path, end_root: build_root]
         end

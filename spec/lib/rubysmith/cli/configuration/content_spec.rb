@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Configuration::Content do
+  using Refinements::Structs
+
   subject(:content) { described_class[project_name: "test"] }
 
   let(:template_root) { Bundler.root.join "lib", "rubysmith", "templates" }
@@ -63,20 +65,66 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   end
 
   describe "#project_label" do
-    it "answers label" do
+    it "answers capitalized project label with single project name" do
       expect(content.project_label).to eq("Test")
+    end
+
+    it "answers titleized label with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_label).to eq("Test Underscore")
+    end
+
+    it "answers titleized project label with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_label).to eq("Test Dash")
     end
   end
 
   describe "#project_class" do
-    it "answers class" do
+    it "answers capitalized project class with single project name" do
       expect(content.project_class).to eq("Test")
+    end
+
+    it "answers camelcased project class with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_class).to eq("TestUnderscore")
+    end
+
+    it "answers namespaced project class with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_class).to eq("Test::Dash")
     end
   end
 
   describe "#project_root" do
-    it "answers path" do
+    it "answers unchanged project root path with single project name" do
       expect(content.project_root).to eq(Bundler.root.join("test"))
+    end
+
+    it "answers unchanged project root path with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_root).to eq(Bundler.root.join("test_underscore"))
+    end
+
+    it "answers unchanged project root path with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_root).to eq(Bundler.root.join("test-dash"))
+    end
+  end
+
+  describe "#project_path" do
+    it "answers single project path with single project name" do
+      expect(content.project_path).to eq("test")
+    end
+
+    it "answers underscored project path with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_path).to eq("test_underscore")
+    end
+
+    it "answers nested project path with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_path).to eq("test/dash")
     end
   end
 
