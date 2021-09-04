@@ -4,13 +4,8 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builder do
   subject :builder do
-    described_class.new configuration.with(template_path: "%project_name%/bin/test.erb"),
-                        helpers: {
-                          inserter: Rubysmith::Text::Inserter,
-                          renderer: Rubysmith::Renderers::ERB,
-                          kernel: Open3,
-                          logger: Logger.new(output_buffer)
-                        }
+    described_class.new configuration,
+                        helpers: described_class::HELPERS.merge(logger: Logger.new(output_buffer))
   end
 
   include_context "with temporary directory"
@@ -21,12 +16,13 @@ RSpec.describe Rubysmith::Builder do
   let :configuration do
     Rubysmith::CLI::Configuration::Content[
       template_root: Bundler.root.join("spec", "support", "templates"),
+      template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
       build_root: temp_dir,
-      project_name: "test"
+      project_name: "demo-test"
     ]
   end
 
-  let(:build_path) { temp_dir.join "test", "bin", "test" }
+  let(:build_path) { temp_dir.join "demo-test", "lib", "demo", "test", "identity.rb" }
   let(:output_buffer) { StringIO.new }
 
   describe ".call" do
@@ -40,19 +36,17 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.append ""
-      expect(output_buffer.reread).to match(%r(Appending: test/bin/test\n))
+      expect(output_buffer.reread).to match(%r(Appending: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "inserts content at end of file" do
-      builder.append %(puts "END"\n)
+      builder.append "# END\n"
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "test"
-
-        puts "Test."
-        puts "END"
+        module Identity
+          NAME = "demo-test"
+        end
+        # END
       CONTENT
     end
 
@@ -66,7 +60,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.delete
-      expect(output_buffer.reread).to match(%r(Deleting: test/bin/test\n))
+      expect(output_buffer.reread).to match(%r(Deleting: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "deletes existing file" do
@@ -83,41 +77,37 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      builder.insert_before(/require.+test/, "# Test\n")
+      builder.insert_before "module Identity", "# Test\n"
 
       expect(output_buffer.reread).to match(
-        %r(Inserting content before pattern in: test/bin/test\n)
+        %r(Inserting content before pattern in: demo-test/lib/demo/test/identity.rb\n)
       )
     end
 
     it "inserts content after regular expression" do
-      builder.insert_before(/require.+test/, %(require "pathname"\n))
+      builder.insert_before(/NAME.+/, "  # Test\n")
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "pathname"
-        require "test"
-
-        puts "Test."
+        module Identity
+          # Test
+          NAME = "demo-test"
+        end
       CONTENT
     end
 
     it "inserts content after string pattern" do
-      builder.insert_before %(require "test"\n), %(require "pathname"\n)
+      builder.insert_before %(NAME = "demo-test"), "  # Test\n"
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "pathname"
-        require "test"
-
-        puts "Test."
+        module Identity
+          # Test
+          NAME = "demo-test"
+        end
       CONTENT
     end
 
     it "answers itself" do
-      expect(builder.insert_before(/.+test/, "# Test\n")).to be_a(described_class)
+      expect(builder.insert_before("module Identity", "# Test\n")).to be_a(described_class)
     end
   end
 
@@ -125,33 +115,32 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      builder.insert_after(/require.+test/, "# Test\n")
-      expect(output_buffer.reread).to match(%r(Inserting content after pattern in: test/bin/test\n))
+      builder.insert_after(/NAME.+/, "  # Test\n")
+
+      expect(output_buffer.reread).to match(
+        %r(Inserting content after pattern in: demo-test/lib/demo/test/identity.rb\n)
+      )
     end
 
     it "inserts content after regular expression" do
-      builder.insert_after(/require.+test/, %(require "pathname"\n))
+      builder.insert_after(/NAME.+/, "  # Test\n")
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "test"
-        require "pathname"
-
-        puts "Test."
+        module Identity
+          NAME = "demo-test"
+          # Test
+        end
       CONTENT
     end
 
     it "inserts content after string pattern" do
-      builder.insert_after %(require "test"\n), %(require "pathname"\n)
+      builder.insert_after %(NAME = "demo-test"), "  # Test\n"
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "test"
-        require "pathname"
-
-        puts "Test."
+        module Identity
+          NAME = "demo-test"
+          # Test
+        end
       CONTENT
     end
 
@@ -165,7 +154,10 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.permit 0o755
-      expect(output_buffer.reread).to match(%r(Changing permissions for: test/bin/test\n))
+
+      expect(output_buffer.reread).to match(
+        %r(Changing permissions for: demo-test/lib/demo/test/identity.rb\n)
+      )
     end
 
     it "changes file permissions" do
@@ -183,7 +175,10 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.prepend "# This is a comment.\n"
-      expect(output_buffer.reread).to match(%r(Prepending content to: test/bin/test\n))
+
+      expect(output_buffer.reread).to match(
+        %r(Prepending content to: demo-test/lib/demo/test/identity.rb\n)
+      )
     end
 
     it "inserts content at start of file" do
@@ -191,11 +186,9 @@ RSpec.describe Rubysmith::Builder do
 
       expect(build_path.read).to eq(<<~CONTENT)
         # This is a comment.
-        #! /usr/bin/env ruby
-
-        require "test"
-
-        puts "Test."
+        module Identity
+          NAME = "demo-test"
+        end
       CONTENT
     end
 
@@ -208,36 +201,59 @@ RSpec.describe Rubysmith::Builder do
     before { build_path.make_ancestors.touch }
 
     it "logs information" do
-      builder.rename "test.backup"
-      expect(output_buffer.reread).to match(/Renaming: test to test.backup/)
+      builder.rename "identity.backup"
+      expect(output_buffer.reread).to match(/Renaming: identity.rb to identity.backup/)
     end
 
     it "inserts content at start of file" do
-      builder.rename "test.backup"
-      expect(configuration.build_root.join("test", "bin", "test.backup").exist?).to eq(true)
+      builder.rename "identity.backup"
+      build_path = configuration.build_root.join "demo-test/lib/demo/test/identity.backup"
+
+      expect(build_path.exist?).to eq(true)
     end
 
     it "answers itself" do
-      expect(builder.rename("test.backup")).to be_a(described_class)
+      expect(builder.rename("identity.backup")).to be_a(described_class)
     end
   end
 
   describe "#render" do
     it "logs information" do
       builder.render
-      expect(output_buffer.reread).to match(%r(Rendering: test/bin/test\n))
+      expect(output_buffer.reread).to match(%r(Rendering: demo-test/lib/demo/test/identity.rb\n))
     end
 
-    it "renders template" do
+    it "renders template using nested project name and path" do
       builder.render
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        require "test"
-
-        puts "Test."
+        module Identity
+          NAME = "demo-test"
+        end
       CONTENT
+    end
+
+    context "with duplicated project name in path" do
+      let :configuration do
+        Rubysmith::CLI::Configuration::Content[
+          template_root: Bundler.root.join("spec", "support", "templates"),
+          template_path: "%project_name%/bin/%project_name%.erb",
+          build_root: temp_dir,
+          project_name: "demo-test"
+        ]
+      end
+
+      it "renders template" do
+        builder.render
+
+        expect(temp_dir.join("demo-test/bin/demo-test").read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
+
+          require "demo-test"
+
+          puts "Test."
+        CONTENT
+      end
     end
 
     it "answers itself" do
@@ -249,24 +265,24 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      builder.replace(/^(puts|require).+/, "# Replaced.")
-      expect(output_buffer.reread).to match(%r(Replacing content for patterns in: test/bin/test\n))
+      builder.replace(/NAME.+/, %(LABEL = "Replaced"))
+      expect(output_buffer.reread).to match(
+        %r(Replacing content for patterns in: demo-test/lib/demo/test/identity.rb\n)
+      )
     end
 
-    it "inserts content at end of file" do
-      builder.replace(/^(puts|require).+/, "# Replaced.")
+    it "replaces existing content with new content" do
+      builder.replace(/NAME.+/, %(LABEL = "Replaced"))
 
       expect(build_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
-
-        # Replaced.
-
-        # Replaced.
+        module Identity
+          LABEL = "Replaced"
+        end
       CONTENT
     end
 
     it "answers itself" do
-      expect(builder.replace(/^puts.+/, "# Replaced.")).to be_a(described_class)
+      expect(builder.replace("demo-test", "replaced")).to be_a(described_class)
     end
   end
 
@@ -308,7 +324,7 @@ RSpec.describe Rubysmith::Builder do
   describe "#touch" do
     it "logs information" do
       builder.touch
-      expect(output_buffer.reread).to match(%r(Touching: test/bin/test\n))
+      expect(output_buffer.reread).to match(%r(Touching: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "creates empty file" do

@@ -119,7 +119,10 @@ module Rubysmith
     def relative_build_path = build_path.relative_path_from(configuration.build_root)
 
     def build_path
-      pathway.end_path.gsub("%project_name%", configuration.project_name).sub ".erb", ""
+      pathway.end_path
+             .gsub("%project_name%", configuration.project_name)
+             .sub("%project_path%", configuration.project_path)
+             .sub ".erb", ""
     end
 
     def pathway = configuration.to_pathway
