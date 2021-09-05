@@ -315,29 +315,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with RubyCritic only" do
-      let(:configuration) { default_configuration.with build_ruby_critic: true }
-
-      let :proof do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :code_quality do
-            gem "rubycritic", "~> 4.5", require: false
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-
-      it_behaves_like "a bundle"
-    end
-
     context "with SimpleCov only" do
       let(:configuration) { default_configuration.with build_simple_cov: true }
 
@@ -395,7 +372,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
                                    build_refinements: true,
                                    build_rspec: true,
                                    build_rubocop: true,
-                                   build_ruby_critic: true,
                                    build_simple_cov: true,
                                    build_zeitwerk: true
       end
@@ -417,7 +393,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "rubocop-performance", "~> 1.9"
             gem "rubocop-rake", "~> 0.5"
             gem "rubocop-rspec", "~> 2.0"
-            gem "rubycritic", "~> 4.5", require: false
             gem "simplecov", "~> 0.20"
           end
 

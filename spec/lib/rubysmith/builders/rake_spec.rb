@@ -119,24 +119,6 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "when enabled with only RubyCritic" do
-      let(:configuration) { default_configuration.with build_rake: true, build_ruby_critic: true }
-
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "rubycritic/rake_task"
-
-          RubyCritic::RakeTask.new
-
-          desc "Run code quality checks"
-          task code_quality: %i[rubycritic]
-
-          task default: %i[code_quality]
-        CONTENT
-      end
-    end
-
     context "when enabled with all options" do
       let :configuration do
         default_configuration.with build_rake: true,
@@ -145,8 +127,7 @@ RSpec.describe Rubysmith::Builders::Rake do
                                    build_git_lint: true,
                                    build_reek: true,
                                    build_rspec: true,
-                                   build_rubocop: true,
-                                   build_ruby_critic: true
+                                   build_rubocop: true
       end
 
       let :proof do
@@ -157,16 +138,14 @@ RSpec.describe Rubysmith::Builders::Rake do
           require "reek/rake/task"
           require "rspec/core/rake_task"
           require "rubocop/rake_task"
-          require "rubycritic/rake_task"
 
           Bundler::Plumber::Task.new
           Reek::Rake::Task.new
           RSpec::Core::RakeTask.new :spec
           RuboCop::RakeTask.new
-          RubyCritic::RakeTask.new
 
           desc "Run code quality checks"
-          task code_quality: %i[bundle:leak git_lint reek rubocop rubycritic]
+          task code_quality: %i[bundle:leak git_lint reek rubocop]
 
           task default: %i[code_quality spec]
         CONTENT

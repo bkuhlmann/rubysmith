@@ -106,12 +106,6 @@ module Rubysmith
           end
         end
 
-        def add_ruby_critic
-          client.on "--[no-]ruby_critic", "Add RubyCritic." do |value|
-            options[:build_ruby_critic] = value
-          end
-        end
-
         def add_setup
           client.on "--[no-]setup", "Add setup script." do |value|
             options[:build_setup] = value

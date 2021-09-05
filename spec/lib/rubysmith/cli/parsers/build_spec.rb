@@ -155,16 +155,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_rubocop: false)
     end
 
-    it "enables RubyCritic" do
-      parser.call %w[--ruby_critic]
-      expect(options).to eq(build_ruby_critic: true)
-    end
-
-    it "disables RubyCritic" do
-      parser.call %w[--no-ruby_critic]
-      expect(options).to eq(build_ruby_critic: false)
-    end
-
     it "enables SimpleCov" do
       parser.call %w[--simple_cov]
       expect(options).to eq(build_simple_cov: true)

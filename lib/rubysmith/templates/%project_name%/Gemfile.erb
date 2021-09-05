@@ -28,9 +28,6 @@ source "https://rubygems.org"
     <% if configuration.build_rspec && configuration.build_rubocop %>
       gem "rubocop-rspec", "~> 2.0"
     <% end %>
-    <% if configuration.build_ruby_critic %>
-      gem "rubycritic", "~> 4.5", require: false
-    <% end %>
     <% if configuration.build_simple_cov %>
       gem "simplecov", "~> 0.20"
     <% end %>

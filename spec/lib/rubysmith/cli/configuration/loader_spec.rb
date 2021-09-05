@@ -27,7 +27,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
       build_refinements: true,
       build_rspec: true,
       build_rubocop: true,
-      build_ruby_critic: true,
       build_setup: true,
       build_simple_cov: true,
       build_zeitwerk: true,
