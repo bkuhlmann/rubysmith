@@ -15,8 +15,11 @@ Rubysmith is a command line interface for smithing Ruby projects.
 
 This gem is useful in situations in which you need something more sophisticated than a
 link:https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html[Bundler Inline] script but
-less complicated than a Ruby Gem as provided by
-link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+less complicated than a link:https://www.alchemists.io/projects/gemsmith[Gemsmith] gem. Rubysmith is
+the foundation of Gemsmith and provides a lot of the same functionality as Gemsmith but solely
+tailored for pure Ruby projects. Again, this is a great tool for spiking quick Ruby implementations,
+sharing code snippets with others, or building full blown Ruby projects for collaboration with
+others.
 
 toc::[]
 
