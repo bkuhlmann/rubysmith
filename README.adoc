@@ -34,6 +34,7 @@ toc::[]
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
 * Supports link:http://pryrepl.org[Pry].
+* Supports link:https://github.com/ruby/rake[Rake].
 * Supports link:https://github.com/troessner/reek[Reek].
 * Supports link:https://www.alchemists.io/projects/refinements[Refinements].
 * Supports link:https://rspec.info[RSpec].
@@ -41,7 +42,6 @@ toc::[]
 * Supports link:https://docs.rubocop.org/rubocop-performance[Rubocop Performance].
 * Supports link:https://github.com/rubocop-hq/rubocop-rake[Rubocop Rake].
 * Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
-* Supports link:https://github.com/whitesmith/RubyCritic[RubyCritic].
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
@@ -93,15 +93,16 @@ BUILD OPTIONS:
   --[no-]git                           Add Git.
   --[no-]git-lint                      Add Git Lint.
   --[no-]guard                         Add Guard.
+  --min                                Use minimum/no options.
   --[no-]pry                           Add Pry.
+  --[no-]rake                          Add Rake.
   --[no-]reek                          Add Reek.
   --[no-]refinements                   Add Refinements.
   --[no-]rspec                         Add RSpec.
   --[no-]rubocop                       Add Rubocop.
-  --[no-]ruby_critic                   Add RubyCritic.
   --[no-]setup                         Add setup script.
   --[no-]simple_cov                    Add SimpleCov.
-  --min                                Use minimum/no options.
+  --[no-]zeitwerk                      Add Zeitwerk.
 ....
 
 === Building
@@ -170,13 +171,14 @@ The default configuration is as follows:
   :guard: true
   :minimum: false
   :pry: true
+  :rake: true
   :reek: true
   :refinements: true
   :rspec: true
   :rubocop: true
-  :ruby_critic: true
   :setup: true
   :simple_cov: true
+  :zeitwerk: true
 :builders:
   :pragmater:
     :comments:
