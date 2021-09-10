@@ -43,6 +43,7 @@ toc::[]
 * Supports link:https://github.com/rubocop-hq/rubocop-rake[Rubocop Rake].
 * Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
+* Supports link:https://github.com/fxn/zeitwerk[Zeitwerk].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
 ** README
