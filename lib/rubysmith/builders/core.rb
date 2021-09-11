@@ -14,7 +14,9 @@ module Rubysmith
       def call
         builder.call(configuration.with(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
-               .replace(/  (?!(module|end))/, "")
+               .replace("  require", "require")
+               .replace(/    (?=(Zeit|\.tap|\.setup))/, "")
+               .replace("\n  \n", "\n\n")
 
         builder.call(configuration.with(template_path: "%project_name%/.ruby-version.erb")).render
         nil
