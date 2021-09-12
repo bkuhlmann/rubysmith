@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
-  subject(:configuration) { described_class.new client: runcom_configuration }
+  subject(:configuration) { described_class.with_defaults }
 
   let :content do
     Rubysmith::CLI::Configuration::Content[
@@ -46,7 +46,13 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
 
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call).to eq(content)
+      expect(described_class.call).to be_a(Rubysmith::CLI::Configuration::Content)
+    end
+  end
+
+  describe ".with_defaults" do
+    it "answers default configuration" do
+      expect(described_class.with_defaults.call).to eq(content)
     end
   end
 
