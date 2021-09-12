@@ -45,6 +45,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(options).to eq(build_console: false)
     end
 
+    it "enables debug" do
+      parser.call %w[--debug]
+      expect(options).to eq(build_debug: true)
+    end
+
+    it "disables debug" do
+      parser.call %w[--no-debug]
+      expect(options).to eq(build_debug: false)
+    end
+
     it "enables documentation" do
       parser.call %w[--documentation]
       expect(options).to eq(build_documentation: true)

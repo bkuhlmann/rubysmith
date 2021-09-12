@@ -17,6 +17,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
       build_amazing_print: true,
       build_bundler_leak: true,
       build_console: true,
+      build_debug: true,
       build_documentation: true,
       build_git: true,
       build_git_lint: true,

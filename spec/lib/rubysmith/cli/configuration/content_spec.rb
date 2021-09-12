@@ -28,6 +28,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_amazing_print: nil,
         build_bundler_leak: nil,
         build_console: nil,
+        build_debug: nil,
         build_documentation: nil,
         build_git: nil,
         build_git_lint: nil,

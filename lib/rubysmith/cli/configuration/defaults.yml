@@ -11,6 +11,7 @@
   :amazing_print: true
   :bundler_leak: true
   :console: true
+  :debug: true
   :documentation: true
   :git: true
   :git_lint: true

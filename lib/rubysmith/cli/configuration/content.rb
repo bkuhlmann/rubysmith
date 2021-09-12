@@ -23,6 +23,7 @@ module Rubysmith
         :build_amazing_print,
         :build_bundler_leak,
         :build_console,
+        :build_debug,
         :build_documentation,
         :build_git,
         :build_git_lint,

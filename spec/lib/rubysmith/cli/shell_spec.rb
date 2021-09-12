@@ -75,6 +75,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-amazing_print
           --no-bundler-leak
           --no-console
+          --no-debug
           --no-documentation
           --no-git
           --no-git-lint
@@ -118,6 +119,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           test
           --console
           --documentation
+          --debug
           --git
           --git-lint
           --guard

@@ -46,6 +46,12 @@ module Rubysmith
           end
         end
 
+        def add_debug
+          client.on "--[no-]debug", "Add Debug." do |value|
+            options[:build_debug] = value
+          end
+        end
+
         def add_documentation
           client.on "--[no-]documentation", "Add documentation." do |value|
             options[:build_documentation] = value

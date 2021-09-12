@@ -100,6 +100,29 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
+    context "with Debug only" do
+      let(:configuration) { default_configuration.with build_debug: true }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :tools do
+            gem "debug", "~> 1.1"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with Git and Git Lint only" do
       let(:configuration) { default_configuration.with build_git: true, build_git_lint: true }
 
@@ -363,6 +386,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       let :configuration do
         default_configuration.with build_amazing_print: true,
                                    build_bundler_leak: true,
+                                   build_debug: true,
                                    build_git: true,
                                    build_git_lint: true,
                                    build_guard: true,
@@ -407,6 +431,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.3"
+            gem "debug", "~> 1.1"
             gem "pry", "~> 0.13"
             gem "pry-byebug", "~> 3.9"
           end
