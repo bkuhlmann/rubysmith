@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
+RSpec.describe Rubysmith::CLI::Configuration::Loader do
   subject(:configuration) { described_class.with_defaults }
 
   let :content do
@@ -13,6 +13,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader, :runcom do
       author_url: nil,
       documentation_format: "md",
       documentation_license: "mit",
+      build_any: nil,
       build_minimum: false,
       build_amazing_print: true,
       build_bundler_leak: true,

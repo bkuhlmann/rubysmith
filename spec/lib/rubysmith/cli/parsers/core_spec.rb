@@ -3,31 +3,31 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Parsers::Core do
-  subject(:parser) { described_class.new options: options }
+  subject(:parser) { described_class.new }
 
-  let(:options) { {} }
+  include_context "with application container"
 
   it_behaves_like "a parser"
 
   describe "#call" do
     it "answers config edit (short)" do
       parser.call %w[-c edit]
-      expect(options).to eq(config: :edit)
+      expect(application_configuration.config).to eq(:edit)
     end
 
     it "answers config edit (long)" do
       parser.call %w[--config edit]
-      expect(options).to eq(config: :edit)
+      expect(application_configuration.config).to eq(:edit)
     end
 
     it "answers config view (short)" do
       parser.call %w[-c view]
-      expect(options).to eq(config: :view)
+      expect(application_configuration.config).to eq(:view)
     end
 
     it "answers config view (long)" do
       parser.call %w[--config view]
-      expect(options).to eq(config: :view)
+      expect(application_configuration.config).to eq(:view)
     end
 
     it "fails with missing config action" do
@@ -40,14 +40,24 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
       expect(&expectation).to raise_error(OptionParser::InvalidArgument, /bogus/)
     end
 
+    it "answers build any project (short)" do
+      parser.call %w[-b test]
+      expect(application_configuration.build_any).to eq(true)
+    end
+
+    it "answers build any project (long)" do
+      parser.call %w[--build test]
+      expect(application_configuration.build_any).to eq(true)
+    end
+
     it "answers build project name (short)" do
       parser.call %w[-b test]
-      expect(options).to eq(build: "test")
+      expect(application_configuration.project_name).to eq("test")
     end
 
     it "answers build project name (long)" do
       parser.call %w[--build test]
-      expect(options).to eq(build: "test")
+      expect(application_configuration.project_name).to eq("test")
     end
 
     it "fails with missing build name" do
@@ -57,22 +67,22 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
 
     it "answers version (short)" do
       parser.call %w[-v]
-      expect(options[:version]).to match_cli_version
+      expect(application_configuration.version).to match_cli_version
     end
 
     it "answers version (long)" do
       parser.call %w[--version]
-      expect(options[:version]).to match_cli_version
+      expect(application_configuration.version).to match_cli_version
     end
 
     it "enables help (short)" do
       parser.call %w[-h]
-      expect(options).to eq(help: true)
+      expect(application_configuration.help).to eq(true)
     end
 
     it "enables help (long)" do
       parser.call %w[--help]
-      expect(options).to eq(help: true)
+      expect(application_configuration.help).to eq(true)
     end
   end
 end

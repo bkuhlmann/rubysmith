@@ -3,7 +3,8 @@
 RSpec.shared_examples_for "a parser" do
   describe ".call" do
     it "answers empty array" do
-      expect(described_class.call(client: OptionParser.new, options: {a: 1})).to eq([])
+      parser = described_class.call client: OptionParser.new
+      expect(parser).to eq([])
     end
   end
 end

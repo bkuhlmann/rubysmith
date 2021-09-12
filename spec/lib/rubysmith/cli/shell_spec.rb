@@ -2,23 +2,12 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Shell, :runcom do
+RSpec.describe Rubysmith::CLI::Shell do
   using Refinements::Pathnames
 
-  subject(:shell) { described_class.new processors: processors }
+  subject(:shell) { described_class.new }
 
-  let :processors do
-    {
-      config: Rubysmith::CLI::Processors::Config.new(
-        configuration: runcom_configuration,
-        kernel: kernel
-      ),
-      build_minimum: Rubysmith::CLI::Processors::Build.with_minimum,
-      build_maximum: Rubysmith::CLI::Processors::Build.new
-    }
-  end
-
-  let(:kernel) { class_spy Kernel }
+  include_context "with application container"
 
   describe "#call" do
     let :project_files do
@@ -31,12 +20,12 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
 
     it "edits configuration" do
       shell.call %w[--config edit]
-      expect(kernel).to have_received(:system).with(/\$EDITOR\s.+configuration.yml/)
+      expect(kernel).to have_received(:system).with(include("EDITOR"))
     end
 
     it "views configuration" do
       shell.call %w[--config view]
-      expect(kernel).to have_received(:system).with(/cat\s.+configuration.yml/)
+      expect(kernel).to have_received(:system).with(include("cat"))
     end
 
     context "with minimum forced build" do
@@ -58,6 +47,8 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds minimum skeleton" do
+        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
+
         temp_dir.change_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
@@ -86,7 +77,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --no-refinements
           --no-rspec
           --no-rubocop
-          --no-ruby_critic
           --no-setup
           --no-simple_cov
           --no-zeitwerk
@@ -103,6 +93,8 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds minimum skeleton" do
+        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
+
         temp_dir.change_dir do
           Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
@@ -128,7 +120,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           --reek
           --rspec
           --rubocop
-          --ruby_critic
           --setup
           --simple_cov
           --zeitwerk
@@ -141,7 +132,6 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
           "test/.git/MERGE_RR",
           "test/.reek.yml",
           "test/.rubocop.yml",
-          "test/.rubycritic.yml",
           "test/.ruby-version",
           "test/Gemfile",
           "test/Gemfile.lock",
@@ -164,7 +154,7 @@ RSpec.describe Rubysmith::CLI::Shell, :runcom do
       end
 
       it "builds maximum skeleton" do
-        next if ENV["CI"] == "true" # FIX: Needs a global Git configuration.
+        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
 
         temp_dir.change_dir do
           Bundler.definition true

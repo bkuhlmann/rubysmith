@@ -3,186 +3,186 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Parsers::Build do
-  subject(:parser) { described_class.new options: options }
+  subject(:parser) { described_class.new }
 
-  let(:options) { {} }
+  include_context "with application container"
 
   it_behaves_like "a parser"
 
   describe "#call" do
     it "enables minimum options" do
       parser.call %w[--min]
-      expect(options).to eq(build_minimum: true)
+      expect(application_configuration.build_minimum).to eq(true)
     end
 
     it "enables amazing print" do
       parser.call %w[--amazing_print]
-      expect(options).to eq(build_amazing_print: true)
+      expect(application_configuration.build_amazing_print).to eq(true)
     end
 
     it "disables amazing print" do
       parser.call %w[--no-amazing_print]
-      expect(options).to eq(build_amazing_print: false)
+      expect(application_configuration.build_amazing_print).to eq(false)
     end
 
     it "enables bundler leak" do
       parser.call %w[--bundler-leak]
-      expect(options).to eq(build_bundler_leak: true)
+      expect(application_configuration.build_bundler_leak).to eq(true)
     end
 
     it "disables bundler leak" do
       parser.call %w[--no-bundler-leak]
-      expect(options).to eq(build_bundler_leak: false)
+      expect(application_configuration.build_bundler_leak).to eq(false)
     end
 
     it "enables console" do
       parser.call %w[--console]
-      expect(options).to eq(build_console: true)
+      expect(application_configuration.build_console).to eq(true)
     end
 
     it "disables console" do
       parser.call %w[--no-console]
-      expect(options).to eq(build_console: false)
+      expect(application_configuration.build_console).to eq(false)
     end
 
     it "enables debug" do
       parser.call %w[--debug]
-      expect(options).to eq(build_debug: true)
+      expect(application_configuration.build_debug).to eq(true)
     end
 
     it "disables debug" do
       parser.call %w[--no-debug]
-      expect(options).to eq(build_debug: false)
+      expect(application_configuration.build_debug).to eq(false)
     end
 
     it "enables documentation" do
       parser.call %w[--documentation]
-      expect(options).to eq(build_documentation: true)
+      expect(application_configuration.build_documentation).to eq(true)
     end
 
     it "disables documentation" do
       parser.call %w[--no-documentation]
-      expect(options).to eq(build_documentation: false)
+      expect(application_configuration.build_documentation).to eq(false)
     end
 
     it "enables Git" do
       parser.call %w[--git]
-      expect(options).to eq(build_git: true)
+      expect(application_configuration.build_git).to eq(true)
     end
 
     it "disables Git" do
       parser.call %w[--no-git]
-      expect(options).to eq(build_git: false)
+      expect(application_configuration.build_git).to eq(false)
     end
 
     it "enables Git Lint" do
       parser.call %w[--git-lint]
-      expect(options).to eq(build_git_lint: true)
+      expect(application_configuration.build_git_lint).to eq(true)
     end
 
     it "disables Git Lint" do
       parser.call %w[--no-git-lint]
-      expect(options).to eq(build_git_lint: false)
+      expect(application_configuration.build_git_lint).to eq(false)
     end
 
     it "enables guard" do
       parser.call %w[--guard]
-      expect(options).to eq(build_guard: true)
+      expect(application_configuration.build_guard).to eq(true)
     end
 
     it "disables guard" do
       parser.call %w[--no-guard]
-      expect(options).to eq(build_guard: false)
+      expect(application_configuration.build_guard).to eq(false)
     end
 
     it "enables setup" do
       parser.call %w[--setup]
-      expect(options).to eq(build_setup: true)
+      expect(application_configuration.build_setup).to eq(true)
     end
 
     it "disables setup" do
       parser.call %w[--no-setup]
-      expect(options).to eq(build_setup: false)
+      expect(application_configuration.build_setup).to eq(false)
     end
 
     it "enables pry" do
       parser.call %w[--pry]
-      expect(options).to eq(build_pry: true)
+      expect(application_configuration.build_pry).to eq(true)
     end
 
     it "disables pry" do
       parser.call %w[--no-pry]
-      expect(options).to eq(build_pry: false)
+      expect(application_configuration.build_pry).to eq(false)
     end
 
     it "enables rake" do
       parser.call %w[--rake]
-      expect(options).to eq(build_rake: true)
+      expect(application_configuration.build_rake).to eq(true)
     end
 
     it "disables rake" do
       parser.call %w[--no-rake]
-      expect(options).to eq(build_rake: false)
+      expect(application_configuration.build_rake).to eq(false)
     end
 
     it "enables reek" do
       parser.call %w[--reek]
-      expect(options).to eq(build_reek: true)
+      expect(application_configuration.build_reek).to eq(true)
     end
 
     it "disables reek" do
       parser.call %w[--no-reek]
-      expect(options).to eq(build_reek: false)
+      expect(application_configuration.build_reek).to eq(false)
     end
 
     it "enables refinements" do
       parser.call %w[--refinements]
-      expect(options).to eq(build_refinements: true)
+      expect(application_configuration.build_refinements).to eq(true)
     end
 
     it "disables refinements" do
       parser.call %w[--no-refinements]
-      expect(options).to eq(build_refinements: false)
+      expect(application_configuration.build_refinements).to eq(false)
     end
 
     it "enables RSpec" do
       parser.call %w[--rspec]
-      expect(options).to eq(build_rspec: true)
+      expect(application_configuration.build_rspec).to eq(true)
     end
 
     it "disables RSpec" do
       parser.call %w[--no-rspec]
-      expect(options).to eq(build_rspec: false)
+      expect(application_configuration.build_rspec).to eq(false)
     end
 
     it "enables Rubocop" do
       parser.call %w[--rubocop]
-      expect(options).to eq(build_rubocop: true)
+      expect(application_configuration.build_rubocop).to eq(true)
     end
 
     it "disables Rubocop" do
       parser.call %w[--no-rubocop]
-      expect(options).to eq(build_rubocop: false)
+      expect(application_configuration.build_rubocop).to eq(false)
     end
 
     it "enables SimpleCov" do
       parser.call %w[--simple_cov]
-      expect(options).to eq(build_simple_cov: true)
+      expect(application_configuration.build_simple_cov).to eq(true)
     end
 
     it "disables SimpleCov" do
       parser.call %w[--no-simple_cov]
-      expect(options).to eq(build_simple_cov: false)
+      expect(application_configuration.build_simple_cov).to eq(false)
     end
 
     it "enables Zeitwerk" do
       parser.call %w[--zeitwerk]
-      expect(options).to eq(build_zeitwerk: true)
+      expect(application_configuration.build_zeitwerk).to eq(true)
     end
 
     it "disables Zeitwerk" do
       parser.call %w[--no-zeitwerk]
-      expect(options).to eq(build_zeitwerk: false)
+      expect(application_configuration.build_zeitwerk).to eq(false)
     end
 
     it "fails with invalid option" do

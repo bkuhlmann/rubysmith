@@ -1,31 +1,26 @@
 # frozen_string_literal: true
 
-require "refinements/hashes"
-
 module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      using Refinements::Hashes
-
       PROCESSORS = {
         config: Processors::Config.new,
         build_minimum: Processors::Build.with_minimum,
         build_maximum: Processors::Build.new
       }.freeze
 
-      def initialize parser: Parsers::Assembler.new, processors: PROCESSORS
+      def initialize parser: Parsers::Assembler.new, processors: PROCESSORS, container: Container
         @parser = parser
         @processors = processors
+        @container = container
       end
 
       def call arguments = []
-        parse arguments
-
-        case options
+        case parse arguments
           in config: Symbol => action then process_config action
-          in build_minimum: true then process_build :build_minimum, options
-          in build: then process_build :build_maximum, options
+          in build_minimum: true then process_build :build_minimum
+          in build_any: true then process_build :build_maximum
           in version: String => version then puts version
           else usage
         end
@@ -33,7 +28,7 @@ module Rubysmith
 
       private
 
-      attr_reader :parser, :processors
+      attr_reader :parser, :processors, :container
 
       def parse arguments = []
         parser.call arguments
@@ -43,14 +38,11 @@ module Rubysmith
 
       def process_config(action) = processors.fetch(:config).call(action)
 
-      def process_build kind, settings
-        processors.fetch(kind).call settings.transform_keys(build: :project_name)
-                                            .merge(now: Time.now)
-      end
+      def process_build(kind) = processors.fetch(kind).call
 
-      def options = parser.to_h
+      def usage = logger.unknown(parser.to_s)
 
-      def usage = puts(parser.to_s)
+      def logger = container[__method__]
     end
   end
 end

@@ -5,6 +5,8 @@ require "spec_helper"
 RSpec.describe Rubysmith::CLI::Processors::Build do
   subject(:processor) { described_class.new builders: [builder] }
 
+  include_context "with application container"
+
   let(:builder) { class_spy Rubysmith::Builders::Core }
 
   describe ".with_minimum" do
@@ -15,8 +17,8 @@ RSpec.describe Rubysmith::CLI::Processors::Build do
 
   describe "#call" do
     it "calls builders" do
-      processor.call project_name: "test"
-      expect(builder).to have_received(:call).with(have_attributes(project_name: "test"))
+      processor.call
+      expect(builder).to have_received(:call).with(application_configuration)
     end
   end
 end
