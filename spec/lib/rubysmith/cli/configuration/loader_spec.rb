@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Configuration::Loader do
-  subject(:configuration) { described_class.with_defaults }
+  subject(:loader) { described_class.with_defaults now: now }
 
   let :content do
     Rubysmith::CLI::Configuration::Content[
@@ -41,25 +41,28 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
         "**/*Gemfile",
         "**/*Guardfile",
         "**/*Rakefile"
-      ]
+      ],
+      now: now
     ]
   end
 
+  let(:now) { Time.now }
+
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call).to be_a(Rubysmith::CLI::Configuration::Content)
+      expect(described_class.call(now: now)).to be_a(Rubysmith::CLI::Configuration::Content)
     end
   end
 
   describe ".with_defaults" do
     it "answers default configuration" do
-      expect(described_class.with_defaults.call).to eq(content)
+      expect(described_class.with_defaults(now: now).call).to eq(content)
     end
   end
 
   describe "#call" do
     it "answers default configuration" do
-      expect(configuration.call).to eq(content)
+      expect(loader.call).to eq(content)
     end
   end
 end
