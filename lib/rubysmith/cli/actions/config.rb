@@ -2,8 +2,8 @@
 
 module Rubysmith
   module CLI
-    module Processors
-      # Handles the Command Line Interface (CLI) configuration processing.
+    module Actions
+      # Handles the config action.
       class Config
         def initialize client: CLI::Configuration::Loader::CLIENT, container: Container
           @client = client

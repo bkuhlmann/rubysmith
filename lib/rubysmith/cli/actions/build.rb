@@ -2,8 +2,8 @@
 
 module Rubysmith
   module CLI
-    module Processors
-      # Handles the Command Line Interface (CLI) for building of a project skeleton.
+    module Actions
+      # Handles the build action.
       class Build
         # Order is important.
         MINIMUM = [

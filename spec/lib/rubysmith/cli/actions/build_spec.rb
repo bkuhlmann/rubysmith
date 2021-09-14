@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Processors::Build do
-  subject(:processor) { described_class.new builders: [builder] }
+RSpec.describe Rubysmith::CLI::Actions::Build do
+  subject(:action) { described_class.new builders: [builder] }
 
   include_context "with application container"
 
@@ -17,7 +17,7 @@ RSpec.describe Rubysmith::CLI::Processors::Build do
 
   describe "#call" do
     it "calls builders" do
-      processor.call
+      action.call
       expect(builder).to have_received(:call).with(application_configuration)
     end
   end

@@ -4,15 +4,15 @@ module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      PROCESSORS = {
-        config: Processors::Config.new,
-        build_minimum: Processors::Build.with_minimum,
-        build_maximum: Processors::Build.new
+      ACTIONS = {
+        config: Actions::Config.new,
+        build_minimum: Actions::Build.with_minimum,
+        build_maximum: Actions::Build.new
       }.freeze
 
-      def initialize parser: Parsers::Assembler.new, processors: PROCESSORS, container: Container
+      def initialize parser: Parsers::Assembler.new, actions: ACTIONS, container: Container
         @parser = parser
-        @processors = processors
+        @actions = actions
         @container = container
       end
 
@@ -28,7 +28,7 @@ module Rubysmith
 
       private
 
-      attr_reader :parser, :processors, :container
+      attr_reader :parser, :actions, :container
 
       def parse arguments = []
         parser.call arguments
@@ -36,9 +36,9 @@ module Rubysmith
         puts error.message
       end
 
-      def process_config(action) = processors.fetch(:config).call(action)
+      def process_config(action) = actions.fetch(:config).call(action)
 
-      def process_build(kind) = processors.fetch(kind).call
+      def process_build(kind) = actions.fetch(kind).call
 
       def usage = logger.unknown(parser.to_s)
 
