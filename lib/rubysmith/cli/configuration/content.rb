@@ -51,10 +51,16 @@ module Rubysmith
 
           self[:template_root] ||= Pathname(__dir__).join("../../templates").expand_path
           self[:build_root] ||= Pathname.pwd
-          freeze
         end
 
         def with(attributes) = self.class.new(to_h.merge(attributes))
+
+        def minimize
+          to_h.except(:build_root, :build_minimum)
+              .select { |key, value| key.start_with? "build_" }
+              .each { |key, value| self[key] = false }
+              .then { self }
+        end
 
         def project_label = project_name.titleize
 

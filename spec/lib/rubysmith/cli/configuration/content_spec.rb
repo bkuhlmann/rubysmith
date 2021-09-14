@@ -66,6 +66,41 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     end
   end
 
+  describe "#minimize" do
+    it "disables all build options except minimum" do
+      content.build_minimum = true
+      expect(content.minimize).to eq(described_class[
+        build_root: build_root,
+        build_any: false,
+        build_amazing_print: false,
+        build_bundler_leak: false,
+        build_console: false,
+        build_debug: false,
+        build_documentation: false,
+        build_git: false,
+        build_git_lint: false,
+        build_guard: false,
+        build_minimum: true,
+        build_pry: false,
+        build_rake: false,
+        build_reek: false,
+        build_refinements: false,
+        build_rspec: false,
+        build_rubocop: false,
+        build_setup: false,
+        build_simple_cov: false,
+        build_zeitwerk: false,
+        project_name: "test",
+        template_root: template_root
+      ])
+    end
+
+    it "mutates itself" do
+      content.minimize
+      expect(content).to have_attributes(build_amazing_print: false)
+    end
+  end
+
   describe "#project_label" do
     it "answers capitalized project label with single project name" do
       expect(content.project_label).to eq("Test")
