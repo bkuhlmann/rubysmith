@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   subject(:content) { described_class[project_name: "test"] }
 
   let(:template_root) { Bundler.root.join "lib", "rubysmith", "templates" }
-  let(:build_root) { Bundler.root }
+  let(:target_root) { Bundler.root }
 
   describe "#initialize" do
     let :proof do
@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         config: nil,
         template_root: template_root,
         template_path: nil,
-        build_root: build_root,
+        target_root: target_root,
         project_name: nil,
         author_name: nil,
         author_email: nil,
@@ -70,7 +70,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     it "disables all build options except minimum" do
       content.build_minimum = true
       expect(content.minimize).to eq(described_class[
-        build_root: build_root,
+        target_root: target_root,
         build_any: false,
         build_amazing_print: false,
         build_bundler_leak: false,
@@ -168,7 +168,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   describe "#to_pathway" do
     it "answers pathway" do
       expect(content.to_pathway).to eq(
-        Rubysmith::Pathway[start_root: template_root, end_root: build_root]
+        Rubysmith::Pathway[start_root: template_root, end_root: target_root]
       )
     end
   end

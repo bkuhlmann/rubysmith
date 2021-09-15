@@ -110,7 +110,7 @@ module Rubysmith
 
     def logger = container[__method__]
 
-    def relative_build_path = build_path.relative_path_from(configuration.build_root)
+    def relative_build_path = build_path.relative_path_from(configuration.target_root)
 
     def build_path
       pathway.end_path

@@ -12,7 +12,7 @@ RSpec.shared_context "with application container" do
   let :application_configuration do
     Rubysmith::CLI::Configuration::Loader.with_defaults
                                          .call
-                                         .merge build_root: temp_dir,
+                                         .merge target_root: temp_dir,
                                                 project_name: "test",
                                                 author_name: "Jill Smith",
                                                 author_email: "jill@example.com",

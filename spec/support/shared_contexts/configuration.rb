@@ -6,7 +6,7 @@ RSpec.shared_context "with configuration" do
   let :default_configuration do
     Rubysmith::CLI::Configuration::Content[
       template_root: Bundler.root.join("lib", "rubysmith", "templates"),
-      build_root: temp_dir,
+      target_root: temp_dir,
       project_name: "test",
       author_name: "Jill Smith",
       author_email: "jill@example.com",

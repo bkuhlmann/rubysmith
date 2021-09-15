@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builder do
     Rubysmith::CLI::Configuration::Content[
       template_root: Bundler.root.join("spec", "support", "templates"),
       template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
-      build_root: temp_dir,
+      target_root: temp_dir,
       project_name: "demo-test"
     ]
   end
@@ -203,7 +203,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "inserts content at start of file" do
       builder.rename "identity.backup"
-      build_path = configuration.build_root.join "demo-test/lib/demo/test/identity.backup"
+      build_path = configuration.target_root.join "demo-test/lib/demo/test/identity.backup"
 
       expect(build_path.exist?).to eq(true)
     end
@@ -234,7 +234,7 @@ RSpec.describe Rubysmith::Builder do
         Rubysmith::CLI::Configuration::Content[
           template_root: Bundler.root.join("spec", "support", "templates"),
           template_path: "%project_name%/bin/%project_name%.erb",
-          build_root: temp_dir,
+          target_root: temp_dir,
           project_name: "demo-test"
         ]
       end

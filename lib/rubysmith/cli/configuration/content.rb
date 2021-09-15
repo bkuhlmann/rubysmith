@@ -11,7 +11,7 @@ module Rubysmith
         :config,
         :template_root,
         :template_path,
-        :build_root,
+        :target_root,
         :project_name,
         :author_name,
         :author_email,
@@ -50,13 +50,13 @@ module Rubysmith
           super
 
           self[:template_root] ||= Pathname(__dir__).join("../../templates").expand_path
-          self[:build_root] ||= Pathname.pwd
+          self[:target_root] ||= Pathname.pwd
         end
 
         def with(attributes) = self.class.new(to_h.merge(attributes))
 
         def minimize
-          to_h.except(:build_root, :build_minimum)
+          to_h.except(:build_minimum)
               .select { |key, value| key.start_with? "build_" }
               .each { |key, value| self[key] = false }
               .then { self }
@@ -66,12 +66,12 @@ module Rubysmith
 
         def project_class = project_name.camelcase
 
-        def project_root = build_root.join(project_name)
+        def project_root = target_root.join(project_name)
 
         def project_path = project_name.snakecase
 
         def to_pathway
-          Pathway[start_root: template_root, start_path: template_path, end_root: build_root]
+          Pathway[start_root: template_root, start_path: template_path, end_root: target_root]
         end
       end
     end
