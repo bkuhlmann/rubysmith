@@ -22,12 +22,6 @@ module Rubysmith
 
         attr_reader :client, :container
 
-        def add_minimum
-          client.on "--min", "Use minimum/no options." do |value|
-            configuration.build_minimum = value
-          end
-        end
-
         def add_amazing_print
           client.on "--[no-]amazing_print", "Add Amazing Print." do |value|
             configuration.build_amazing_print = value
@@ -73,6 +67,12 @@ module Rubysmith
         def add_guard
           client.on "--[no-]guard", "Add Guard." do |value|
             configuration.build_guard = value
+          end
+        end
+
+        def add_minimum
+          client.on "--min", "Use minimum/no options." do |value|
+            configuration.build_minimum = value
           end
         end
 

@@ -10,27 +10,22 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
-    it "enables minimum options" do
-      parser.call %w[--min]
-      expect(application_configuration.build_minimum).to eq(true)
-    end
-
-    it "enables amazing print" do
+    it "enables Amazing Print" do
       parser.call %w[--amazing_print]
       expect(application_configuration.build_amazing_print).to eq(true)
     end
 
-    it "disables amazing print" do
+    it "disables Amazing Print" do
       parser.call %w[--no-amazing_print]
       expect(application_configuration.build_amazing_print).to eq(false)
     end
 
-    it "enables bundler leak" do
+    it "enables Bundler Leak" do
       parser.call %w[--bundler-leak]
       expect(application_configuration.build_bundler_leak).to eq(true)
     end
 
-    it "disables bundler leak" do
+    it "disables Bundler Leak" do
       parser.call %w[--no-bundler-leak]
       expect(application_configuration.build_bundler_leak).to eq(false)
     end
@@ -45,12 +40,12 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_console).to eq(false)
     end
 
-    it "enables debug" do
+    it "enables Debug" do
       parser.call %w[--debug]
       expect(application_configuration.build_debug).to eq(true)
     end
 
-    it "disables debug" do
+    it "disables Debug" do
       parser.call %w[--no-debug]
       expect(application_configuration.build_debug).to eq(false)
     end
@@ -85,24 +80,19 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_git_lint).to eq(false)
     end
 
-    it "enables guard" do
+    it "enables Guard" do
       parser.call %w[--guard]
       expect(application_configuration.build_guard).to eq(true)
     end
 
-    it "disables guard" do
+    it "disables Guard" do
       parser.call %w[--no-guard]
       expect(application_configuration.build_guard).to eq(false)
     end
 
-    it "enables setup" do
-      parser.call %w[--setup]
-      expect(application_configuration.build_setup).to eq(true)
-    end
-
-    it "disables setup" do
-      parser.call %w[--no-setup]
-      expect(application_configuration.build_setup).to eq(false)
+    it "enables minimum options" do
+      parser.call %w[--min]
+      expect(application_configuration.build_minimum).to eq(true)
     end
 
     it "enables pry" do
@@ -115,32 +105,32 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_pry).to eq(false)
     end
 
-    it "enables rake" do
+    it "enables Rake" do
       parser.call %w[--rake]
       expect(application_configuration.build_rake).to eq(true)
     end
 
-    it "disables rake" do
+    it "disables Rake" do
       parser.call %w[--no-rake]
       expect(application_configuration.build_rake).to eq(false)
     end
 
-    it "enables reek" do
+    it "enables Reek" do
       parser.call %w[--reek]
       expect(application_configuration.build_reek).to eq(true)
     end
 
-    it "disables reek" do
+    it "disables Reek" do
       parser.call %w[--no-reek]
       expect(application_configuration.build_reek).to eq(false)
     end
 
-    it "enables refinements" do
+    it "enables Refinements" do
       parser.call %w[--refinements]
       expect(application_configuration.build_refinements).to eq(true)
     end
 
-    it "disables refinements" do
+    it "disables Refinements" do
       parser.call %w[--no-refinements]
       expect(application_configuration.build_refinements).to eq(false)
     end
@@ -163,6 +153,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "disables Rubocop" do
       parser.call %w[--no-rubocop]
       expect(application_configuration.build_rubocop).to eq(false)
+    end
+
+    it "enables setup" do
+      parser.call %w[--setup]
+      expect(application_configuration.build_setup).to eq(true)
+    end
+
+    it "disables setup" do
+      parser.call %w[--no-setup]
+      expect(application_configuration.build_setup).to eq(false)
     end
 
     it "enables SimpleCov" do
