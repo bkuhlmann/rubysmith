@@ -10,6 +10,29 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
+    let :disabled_attributes do
+      {
+        build_amazing_print: false,
+        build_bundler_leak: false,
+        build_console: false,
+        build_debug: false,
+        build_documentation: false,
+        build_git: false,
+        build_git_lint: false,
+        build_guard: false,
+        build_minimum: true,
+        build_pry: false,
+        build_rake: false,
+        build_reek: false,
+        build_refinements: false,
+        build_rspec: false,
+        build_rubocop: false,
+        build_setup: false,
+        build_simple_cov: false,
+        build_zeitwerk: false
+      }
+    end
+
     it "enables Amazing Print" do
       parser.call %w[--amazing_print]
       expect(application_configuration.build_amazing_print).to eq(true)
@@ -90,9 +113,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_guard).to eq(false)
     end
 
-    it "enables minimum options" do
+    it "enables minimum option" do
       parser.call %w[--min]
       expect(application_configuration.build_minimum).to eq(true)
+    end
+
+    it "enables minimum and disables all other build options" do
+      parser.call %w[--min]
+      expect(application_configuration).to have_attributes(disabled_attributes)
     end
 
     it "enables pry" do

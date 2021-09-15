@@ -4,11 +4,7 @@ module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      ACTIONS = {
-        config: Actions::Config.new,
-        build_minimum: Actions::Build.with_minimum,
-        build_maximum: Actions::Build.new
-      }.freeze
+      ACTIONS = {config: Actions::Config.new, build: Actions::Build.new}.freeze
 
       def initialize parser: Parsers::Assembler.new, actions: ACTIONS, container: Container
         @parser = parser
@@ -18,10 +14,9 @@ module Rubysmith
 
       def call arguments = []
         case parse arguments
-          in config: Symbol => action then process_config action
-          in build_minimum: true then process_build :build_minimum
-          in build_custom: true then process_build :build_maximum
-          in version: String => version then puts version
+          in action_config: Symbol => action then config action
+          in action_build: true then build
+          in action_version: String => version then puts version
           else usage
         end
       end
@@ -36,9 +31,9 @@ module Rubysmith
         puts error.message
       end
 
-      def process_config(action) = actions.fetch(:config).call(action)
+      def config(action) = actions.fetch(__method__).call(action)
 
-      def process_build(kind) = actions.fetch(kind).call
+      def build = actions.fetch(__method__).call
 
       def usage = logger.unknown(parser.to_s)
 

@@ -72,7 +72,7 @@ module Rubysmith
 
         def add_minimum
           client.on "--min", "Use minimum/no options." do |value|
-            configuration.build_minimum = value
+            configuration.minimize.build_minimum = value
           end
         end
 

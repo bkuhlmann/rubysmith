@@ -13,7 +13,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       author_url: nil,
       documentation_format: "md",
       documentation_license: "mit",
-      build_custom: nil,
       build_minimum: false,
       build_amazing_print: true,
       build_bundler_leak: true,

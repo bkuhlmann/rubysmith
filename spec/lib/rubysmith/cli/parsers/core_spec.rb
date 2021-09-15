@@ -12,22 +12,22 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
   describe "#call" do
     it "answers config edit (short)" do
       parser.call %w[-c edit]
-      expect(application_configuration.config).to eq(:edit)
+      expect(application_configuration.action_config).to eq(:edit)
     end
 
     it "answers config edit (long)" do
       parser.call %w[--config edit]
-      expect(application_configuration.config).to eq(:edit)
+      expect(application_configuration.action_config).to eq(:edit)
     end
 
     it "answers config view (short)" do
       parser.call %w[-c view]
-      expect(application_configuration.config).to eq(:view)
+      expect(application_configuration.action_config).to eq(:view)
     end
 
     it "answers config view (long)" do
       parser.call %w[--config view]
-      expect(application_configuration.config).to eq(:view)
+      expect(application_configuration.action_config).to eq(:view)
     end
 
     it "fails with missing config action" do
@@ -40,14 +40,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
       expect(&expectation).to raise_error(OptionParser::InvalidArgument, /bogus/)
     end
 
-    it "answers build custom (short)" do
+    it "answers build (short)" do
       parser.call %w[-b test]
-      expect(application_configuration.build_custom).to eq(true)
+      expect(application_configuration.action_build).to eq(true)
     end
 
-    it "answers build custom (long)" do
+    it "answers build (long)" do
       parser.call %w[--build test]
-      expect(application_configuration.build_custom).to eq(true)
+      expect(application_configuration.action_build).to eq(true)
     end
 
     it "answers project name (short)" do
@@ -67,22 +67,22 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
 
     it "answers version (short)" do
       parser.call %w[-v]
-      expect(application_configuration.version).to match_cli_version
+      expect(application_configuration.action_version).to match_cli_version
     end
 
     it "answers version (long)" do
       parser.call %w[--version]
-      expect(application_configuration.version).to match_cli_version
+      expect(application_configuration.action_version).to match_cli_version
     end
 
     it "enables help (short)" do
       parser.call %w[-h]
-      expect(application_configuration.help).to eq(true)
+      expect(application_configuration.action_help).to eq(true)
     end
 
     it "enables help (long)" do
       parser.call %w[--help]
-      expect(application_configuration.help).to eq(true)
+      expect(application_configuration.action_help).to eq(true)
     end
   end
 end

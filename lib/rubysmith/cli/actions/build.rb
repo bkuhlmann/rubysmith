@@ -6,15 +6,7 @@ module Rubysmith
       # Handles the build action.
       class Build
         # Order is important.
-        MINIMUM = [
-          Builders::Core,
-          Builders::Bundler,
-          Builders::Pragma,
-          Builders::Rubocop::Formatter
-        ].freeze
-
-        # Order is important.
-        MAXIMUM = [
+        BUILDERS = [
           Builders::Core,
           Builders::Documentation,
           Builders::Git::Setup,
@@ -32,9 +24,7 @@ module Rubysmith
           Builders::Git::Commit
         ].freeze
 
-        def self.with_minimum = new(builders: MINIMUM)
-
-        def initialize builders: MAXIMUM, container: Container
+        def initialize builders: BUILDERS, container: Container
           @builders = builders
           @container = container
         end

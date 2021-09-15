@@ -13,7 +13,10 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   describe "#initialize" do
     let :proof do
       {
-        config: nil,
+        action_config: nil,
+        action_build: nil,
+        action_version: nil,
+        action_help: nil,
         template_root: template_root,
         template_path: nil,
         target_root: target_root,
@@ -24,7 +27,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         now: nil,
         documentation_format: nil,
         documentation_license: nil,
-        build_custom: nil,
         build_minimum: nil,
         build_amazing_print: nil,
         build_bundler_leak: nil,
@@ -43,9 +45,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_simple_cov: nil,
         build_zeitwerk: nil,
         builders_pragmater_comments: nil,
-        builders_pragmater_includes: nil,
-        version: nil,
-        help: nil
+        builders_pragmater_includes: nil
       }
     end
 
@@ -56,8 +56,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
 
   describe "#with" do
     it "answers combination of old and new struct with single attribute" do
-      proof = described_class[project_name: "test", help: true]
-      expect(content.with(help: true)).to eq(proof)
+      proof = described_class[project_name: "test", action_help: true]
+      expect(content.with(action_help: true)).to eq(proof)
     end
 
     it "answers combination of old and new struct with multiple attributes" do
@@ -67,11 +67,9 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   end
 
   describe "#minimize" do
-    it "disables all build options except minimum" do
-      content.build_minimum = true
-      expect(content.minimize).to eq(described_class[
+    let :proof do
+      described_class[
         target_root: target_root,
-        build_custom: false,
         build_amazing_print: false,
         build_bundler_leak: false,
         build_console: false,
@@ -92,7 +90,12 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_zeitwerk: false,
         project_name: "test",
         template_root: template_root
-      ])
+      ]
+    end
+
+    it "disables all build options except minimum" do
+      content.build_minimum = true
+      expect(content.minimize).to eq(proof)
     end
 
     it "mutates itself" do

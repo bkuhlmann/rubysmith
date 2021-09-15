@@ -8,7 +8,10 @@ module Rubysmith
     module Configuration
       # Defines the common configuration content for use throughout the gem.
       Content = Struct.new(
-        :config,
+        :action_config,
+        :action_build,
+        :action_version,
+        :action_help,
         :template_root,
         :template_path,
         :target_root,
@@ -19,7 +22,6 @@ module Rubysmith
         :now,
         :documentation_format,
         :documentation_license,
-        :build_custom,
         :build_minimum,
         :build_amazing_print,
         :build_bundler_leak,
@@ -40,8 +42,6 @@ module Rubysmith
         :build_zeitwerk,
         :builders_pragmater_comments,
         :builders_pragmater_includes,
-        :version,
-        :help,
         keyword_init: true
       ) do
         using Refinements::Strings
@@ -57,8 +57,8 @@ module Rubysmith
 
         def minimize
           to_h.except(:build_minimum)
-              .select { |key, value| key.start_with? "build_" }
-              .each { |key, value| self[key] = false }
+              .select { |key, _value| key.start_with? "build_" }
+              .each { |key, _value| self[key] = false }
               .then { self }
         end
 

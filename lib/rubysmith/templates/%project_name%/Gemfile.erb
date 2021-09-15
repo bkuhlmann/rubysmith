@@ -2,62 +2,60 @@ ruby File.read(".ruby-version").strip
 
 source "https://rubygems.org"
 
-<% unless configuration.build_minimum %>
-  <% if configuration.build_refinements %>
-    gem "refinements", "~> 8.0"
+<% if configuration.build_refinements %>
+  gem "refinements", "~> 8.0"
+<% end %>
+<% if configuration.build_zeitwerk %>
+  gem "zeitwerk", "~> 2.4"
+<% end %>
+
+group :code_quality do
+  <% if configuration.build_bundler_leak %>
+    gem "bundler-leak", "~> 0.2"
   <% end %>
-  <% if configuration.build_zeitwerk %>
-    gem "zeitwerk", "~> 2.4"
+  <% if configuration.build_git && configuration.build_git_lint %>
+    gem "git-lint", "~> 2.0"
   <% end %>
-
-  group :code_quality do
-    <% if configuration.build_bundler_leak %>
-      gem "bundler-leak", "~> 0.2"
-    <% end %>
-    <% if configuration.build_git && configuration.build_git_lint %>
-      gem "git-lint", "~> 2.0"
-    <% end %>
-    <% if configuration.build_reek %>
-      gem "reek", "~> 6.0"
-    <% end %>
-    <% if configuration.build_rubocop %>
-      gem "rubocop", "~> 1.20"
-      gem "rubocop-performance", "~> 1.11"
-      gem "rubocop-rake", "~> 0.6"
-    <% end %>
-    <% if configuration.build_rspec && configuration.build_rubocop %>
-      gem "rubocop-rspec", "~> 2.4"
-    <% end %>
-    <% if configuration.build_simple_cov %>
-      gem "simplecov", "~> 0.20"
-    <% end %>
-  end
-
-  <% if configuration.build_rake %>
-    group :development do
-      gem "rake", "~> 13.0"
-    end
+  <% if configuration.build_reek %>
+    gem "reek", "~> 6.0"
   <% end %>
+  <% if configuration.build_rubocop %>
+    gem "rubocop", "~> 1.20"
+    gem "rubocop-performance", "~> 1.11"
+    gem "rubocop-rake", "~> 0.6"
+  <% end %>
+  <% if configuration.build_rspec && configuration.build_rubocop %>
+    gem "rubocop-rspec", "~> 2.4"
+  <% end %>
+  <% if configuration.build_simple_cov %>
+    gem "simplecov", "~> 0.20"
+  <% end %>
+end
 
-  group :test do
-    <% if configuration.build_guard %>
-      gem "guard-rspec", "~> 4.7", require: false
-    <% end %>
-    <% if configuration.build_rspec %>
-      gem "rspec", "~> 3.10"
-    <% end %>
-  end
-
-  group :tools do
-    <% if configuration.build_amazing_print %>
-      gem "amazing_print", "~> 1.3"
-    <% end %>
-    <% if configuration.build_debug %>
-      gem "debug", "~> 1.1"
-    <% end %>
-    <% if configuration.build_pry %>
-      gem "pry", "~> 0.13"
-      gem "pry-byebug", "~> 3.9"
-    <% end %>
+<% if configuration.build_rake %>
+  group :development do
+    gem "rake", "~> 13.0"
   end
 <% end %>
+
+group :test do
+  <% if configuration.build_guard %>
+    gem "guard-rspec", "~> 4.7", require: false
+  <% end %>
+  <% if configuration.build_rspec %>
+    gem "rspec", "~> 3.10"
+  <% end %>
+end
+
+group :tools do
+  <% if configuration.build_amazing_print %>
+    gem "amazing_print", "~> 1.3"
+  <% end %>
+  <% if configuration.build_debug %>
+    gem "debug", "~> 1.1"
+  <% end %>
+  <% if configuration.build_pry %>
+    gem "pry", "~> 0.13"
+    gem "pry-byebug", "~> 3.9"
+  <% end %>
+end

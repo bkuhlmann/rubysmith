@@ -9,7 +9,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Assembler do
 
   describe "#call" do
     it "answers hash with valid option" do
-      expect(parser.call(%w[--help])).to have_attributes(help: true)
+      expect(parser.call(%w[--help])).to have_attributes(action_help: true)
     end
 
     it "fails with invalid option" do
