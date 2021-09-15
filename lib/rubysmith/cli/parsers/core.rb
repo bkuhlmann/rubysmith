@@ -41,7 +41,7 @@ module Rubysmith
 
         def add_build
           client.on "-b", "--build NAME [options]", "Build new project." do |name|
-            configuration.merge! build_any: true, project_name: name
+            configuration.merge! build_custom: true, project_name: name
           end
         end
 

@@ -40,22 +40,22 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
       expect(&expectation).to raise_error(OptionParser::InvalidArgument, /bogus/)
     end
 
-    it "answers build any project (short)" do
+    it "answers build custom (short)" do
       parser.call %w[-b test]
-      expect(application_configuration.build_any).to eq(true)
+      expect(application_configuration.build_custom).to eq(true)
     end
 
-    it "answers build any project (long)" do
+    it "answers build custom (long)" do
       parser.call %w[--build test]
-      expect(application_configuration.build_any).to eq(true)
+      expect(application_configuration.build_custom).to eq(true)
     end
 
-    it "answers build project name (short)" do
+    it "answers project name (short)" do
       parser.call %w[-b test]
       expect(application_configuration.project_name).to eq("test")
     end
 
-    it "answers build project name (long)" do
+    it "answers project name (long)" do
       parser.call %w[--build test]
       expect(application_configuration.project_name).to eq("test")
     end

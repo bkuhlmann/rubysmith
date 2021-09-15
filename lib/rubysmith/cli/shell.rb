@@ -20,7 +20,7 @@ module Rubysmith
         case parse arguments
           in config: Symbol => action then process_config action
           in build_minimum: true then process_build :build_minimum
-          in build_any: true then process_build :build_maximum
+          in build_custom: true then process_build :build_maximum
           in version: String => version then puts version
           else usage
         end

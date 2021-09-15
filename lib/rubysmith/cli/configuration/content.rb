@@ -19,7 +19,7 @@ module Rubysmith
         :now,
         :documentation_format,
         :documentation_license,
-        :build_any,
+        :build_custom,
         :build_minimum,
         :build_amazing_print,
         :build_bundler_leak,

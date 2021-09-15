@@ -24,7 +24,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         now: nil,
         documentation_format: nil,
         documentation_license: nil,
-        build_any: nil,
+        build_custom: nil,
         build_minimum: nil,
         build_amazing_print: nil,
         build_bundler_leak: nil,
@@ -71,7 +71,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
       content.build_minimum = true
       expect(content.minimize).to eq(described_class[
         target_root: target_root,
-        build_any: false,
+        build_custom: false,
         build_amazing_print: false,
         build_bundler_leak: false,
         build_console: false,
