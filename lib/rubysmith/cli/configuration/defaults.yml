@@ -17,7 +17,6 @@
   :git_lint: true
   :guard: true
   :minimum: false
-  :pry: true
   :rake: true
   :reek: true
   :refinements: true

@@ -36,7 +36,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git: nil,
         build_git_lint: nil,
         build_guard: nil,
-        build_pry: nil,
         build_rake: nil,
         build_reek: nil,
         build_refinements: nil,
@@ -61,8 +60,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     end
 
     it "answers combination of old and new struct with multiple attributes" do
-      proof = described_class[project_name: "test", build_console: true, build_pry: true]
-      expect(content.with(project_name: "test", build_console: true, build_pry: true)).to eq(proof)
+      proof = described_class[project_name: "test", build_console: true, build_git: true]
+      expect(content.with(project_name: "test", build_console: true, build_git: true)).to eq(proof)
     end
   end
 
@@ -79,7 +78,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git_lint: false,
         build_guard: false,
         build_minimum: true,
-        build_pry: false,
         build_rake: false,
         build_reek: false,
         build_refinements: false,

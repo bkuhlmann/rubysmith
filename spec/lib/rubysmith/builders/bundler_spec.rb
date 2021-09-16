@@ -169,30 +169,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
-    context "with Pry only" do
-      let(:configuration) { default_configuration.with build_pry: true }
-
-      let :content do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :tools do
-            gem "pry", "~> 0.13"
-            gem "pry-byebug", "~> 3.9"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(content)
-      end
-
-      it_behaves_like "a bundle"
-    end
-
     context "with Rake only" do
       let(:configuration) { default_configuration.with build_rake: true }
 
@@ -390,7 +366,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
                                    build_git: true,
                                    build_git_lint: true,
                                    build_guard: true,
-                                   build_pry: true,
                                    build_rake: true,
                                    build_reek: true,
                                    build_refinements: true,
@@ -432,8 +407,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.3"
             gem "debug", "~> 1.1"
-            gem "pry", "~> 0.13"
-            gem "pry-byebug", "~> 3.9"
           end
         CONTENT
       end

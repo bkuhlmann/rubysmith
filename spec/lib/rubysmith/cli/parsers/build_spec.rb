@@ -21,7 +21,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_git_lint: false,
         build_guard: false,
         build_minimum: true,
-        build_pry: false,
         build_rake: false,
         build_reek: false,
         build_refinements: false,
@@ -121,16 +120,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "enables minimum and disables all other build options" do
       parser.call %w[--min]
       expect(application_configuration).to have_attributes(disabled_attributes)
-    end
-
-    it "enables pry" do
-      parser.call %w[--pry]
-      expect(application_configuration.build_pry).to eq(true)
-    end
-
-    it "disables pry" do
-      parser.call %w[--no-pry]
-      expect(application_configuration.build_pry).to eq(false)
     end
 
     it "enables Rake" do

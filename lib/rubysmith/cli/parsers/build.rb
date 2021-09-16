@@ -76,12 +76,6 @@ module Rubysmith
           end
         end
 
-        def add_pry
-          client.on "--[no-]pry", "Add Pry." do |value|
-            configuration.build_pry = value
-          end
-        end
-
         def add_rake
           client.on "--[no-]rake", "Add Rake." do |value|
             configuration.build_rake = value

@@ -71,7 +71,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-git
           --no-git-lint
           --no-guard
-          --no-pry
           --no-rake
           --no-reek
           --no-refinements
@@ -115,7 +114,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --git
           --git-lint
           --guard
-          --pry
           --rake
           --reek
           --rspec

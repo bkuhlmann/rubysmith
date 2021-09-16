@@ -1,8 +1,8 @@
 #! /usr/bin/env ruby
 
 require "<%= configuration.project_name %>"
-<% if configuration.build_pry %>
-require "pry"
+<% if configuration.build_debug %>
+require "debug"
 <% end %>
 
 puts "Test."

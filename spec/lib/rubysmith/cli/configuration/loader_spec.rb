@@ -22,7 +22,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_git: true,
       build_git_lint: true,
       build_guard: true,
-      build_pry: true,
       build_rake: true,
       build_reek: true,
       build_refinements: true,
