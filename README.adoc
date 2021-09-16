@@ -30,10 +30,10 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
 * Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
+* Supports link:https://github.com/ruby/debug[Debug].
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
-* Supports link:http://pryrepl.org[Pry].
 * Supports link:https://github.com/ruby/rake[Rake].
 * Supports link:https://github.com/troessner/reek[Reek].
 * Supports link:https://www.alchemists.io/projects/refinements[Refinements].
@@ -90,12 +90,12 @@ BUILD OPTIONS:
   --[no-]amazing_print                 Add Amazing Print.
   --[no-]bundler-leak                  Add Bundler Leak.
   --[no-]console                       Add console script.
+  --[no-]debug                         Add Debug.
   --[no-]documentation                 Add documentation.
   --[no-]git                           Add Git.
   --[no-]git-lint                      Add Git Lint.
   --[no-]guard                         Add Guard.
   --min                                Use minimum/no options.
-  --[no-]pry                           Add Pry.
   --[no-]rake                          Add Rake.
   --[no-]reek                          Add Reek.
   --[no-]refinements                   Add Refinements.
@@ -121,12 +121,12 @@ to disable specific options, you can use the `--no-*` prefix. Example:
 
 [source,bash]
 ----
-rubysmith --build demo --no-pry --no-guard
+rubysmith --build demo --no-debug --no-guard
 ----
 
-With the above example, both Pry and Guard support would have been disabled when building the `demo`
-project. Taking this a step further, you can also use the `--min` option to generate a project with
-bare minimum of options. Example:
+With the above example, both Debug and Guard support would have been disabled when building the
+`demo` project. Taking this a step further, you can also use the `--min` option to generate a
+project with bare minimum of options. Example:
 
 [source,bash]
 ----
@@ -137,8 +137,19 @@ The above is essentially the same as building with _all_ options disabled. This 
 situations where you need to quickly script something up for sharing with others yet still want to
 avoid using a Bundler Inline script so gem dependencies are not installed each time the code is run.
 
-To have specific options enabled/disabled _every time_ you build a new Ruby project, you can edit
-your global configuration for making these settings permanent (see below for details).
+As shown earlier, you can combine options but the order options can be handy in certain situations
+especially when used with the minimum build option. Example:
+
+[source,bash]
+----
+rubysmith --build demo --min --zeitwerk
+----
+
+The above will disable _all_ options except for Zeitwerk which will be enabled in this situation.
+This can be a handy way to build a new project with all options disabled with only a few select
+options enabled. To have specific options enabled/disabled _every time_ you build a new Ruby
+project, you can edit your global configuration for making these settings permanent (see below for
+details).
 
 === Configuration
 
@@ -166,12 +177,12 @@ The default configuration is as follows:
   :amazing_print: true
   :bundler_leak: true
   :console: true
+  :debug: true
   :documentation: true
   :git: true
   :git_lint: true
   :guard: true
   :minimum: false
-  :pry: true
   :rake: true
   :reek: true
   :refinements: true

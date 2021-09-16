@@ -1,5 +1,28 @@
 = Changes
 
+== 0.13.0 (2021-09-15)
+
+* Added CLI configuration content minimization - Brooke Kuhlmann
+* Added CLI configuration loader current time - Brooke Kuhlmann
+* Added CLI configuration loader with defaults - Brooke Kuhlmann
+* Added CLI debug option - Brooke Kuhlmann
+* Added Debug gem - Brooke Kuhlmann
+* Added Dry Container gem - Brooke Kuhlmann
+* Added Pastel gem - Brooke Kuhlmann
+* Added Zeitwerk to README feature list - Brooke Kuhlmann
+* Added application container - Brooke Kuhlmann
+* Updated build root as target root - Brooke Kuhlmann
+* Updated implementation to use application container - Brooke Kuhlmann
+* Removed CLI option for Pry - Brooke Kuhlmann
+* Removed Pry dependencies - Brooke Kuhlmann
+* Removed RSpec Runcom shared context - Brooke Kuhlmann
+* Removed minimum and maximum builders - Brooke Kuhlmann
+* Refactored CLI build parser options to be alphabetically sorted - Brooke Kuhlmann
+* Refactored CLI processors as actions - Brooke Kuhlmann
+* Refactored Zeitwerk loader - Brooke Kuhlmann
+* Refactored build any option as build custom option - Brooke Kuhlmann
+* Refactored configuration content to be alphabetically sorted - Brooke Kuhlmann
+
 == 0.12.0 (2021-09-05)
 
 * Fixed Rubocop Style/MutableConstant issue - Brooke Kuhlmann
