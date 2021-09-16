@@ -7,13 +7,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
 
   let :content do
     Rubysmith::CLI::Configuration::Content[
-      project_name: nil,
-      author_name: nil,
-      author_email: nil,
-      author_url: nil,
-      documentation_format: "md",
-      documentation_license: "mit",
-      build_minimum: false,
       build_amazing_print: true,
       build_bundler_leak: true,
       build_console: true,
@@ -22,6 +15,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_git: true,
       build_git_lint: true,
       build_guard: true,
+      build_minimum: false,
       build_rake: true,
       build_reek: true,
       build_refinements: true,
@@ -40,6 +34,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
         "**/*Guardfile",
         "**/*Rakefile"
       ],
+      documentation_format: "md",
+      documentation_license: "mit",
       now: now
     ]
   end

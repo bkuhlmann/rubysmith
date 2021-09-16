@@ -8,21 +8,13 @@ module Rubysmith
     module Configuration
       # Defines the common configuration content for use throughout the gem.
       Content = Struct.new(
-        :action_config,
         :action_build,
-        :action_version,
+        :action_config,
         :action_help,
-        :template_root,
-        :template_path,
-        :target_root,
-        :project_name,
-        :author_name,
+        :action_version,
         :author_email,
+        :author_name,
         :author_url,
-        :now,
-        :documentation_format,
-        :documentation_license,
-        :build_minimum,
         :build_amazing_print,
         :build_bundler_leak,
         :build_console,
@@ -31,6 +23,7 @@ module Rubysmith
         :build_git,
         :build_git_lint,
         :build_guard,
+        :build_minimum,
         :build_rake,
         :build_reek,
         :build_refinements,
@@ -41,6 +34,13 @@ module Rubysmith
         :build_zeitwerk,
         :builders_pragmater_comments,
         :builders_pragmater_includes,
+        :documentation_format,
+        :documentation_license,
+        :now,
+        :project_name,
+        :target_root,
+        :template_path,
+        :template_root,
         keyword_init: true
       ) do
         using Refinements::Strings

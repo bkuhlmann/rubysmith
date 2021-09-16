@@ -13,21 +13,13 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   describe "#initialize" do
     let :proof do
       {
-        action_config: nil,
         action_build: nil,
-        action_version: nil,
+        action_config: nil,
         action_help: nil,
-        template_root: template_root,
-        template_path: nil,
-        target_root: target_root,
-        project_name: nil,
-        author_name: nil,
+        action_version: nil,
         author_email: nil,
+        author_name: nil,
         author_url: nil,
-        now: nil,
-        documentation_format: nil,
-        documentation_license: nil,
-        build_minimum: nil,
         build_amazing_print: nil,
         build_bundler_leak: nil,
         build_console: nil,
@@ -36,15 +28,24 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git: nil,
         build_git_lint: nil,
         build_guard: nil,
+        build_minimum: nil,
         build_rake: nil,
         build_reek: nil,
         build_refinements: nil,
         build_rspec: nil,
         build_rubocop: nil,
+        build_setup: nil,
         build_simple_cov: nil,
         build_zeitwerk: nil,
         builders_pragmater_comments: nil,
-        builders_pragmater_includes: nil
+        builders_pragmater_includes: nil,
+        documentation_format: nil,
+        documentation_license: nil,
+        now: nil,
+        project_name: nil,
+        target_root: target_root,
+        template_path: nil,
+        template_root: template_root
       }
     end
 
@@ -68,7 +69,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
   describe "#minimize" do
     let :proof do
       described_class[
-        target_root: target_root,
         build_amazing_print: false,
         build_bundler_leak: false,
         build_console: false,
@@ -87,6 +87,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_simple_cov: false,
         build_zeitwerk: false,
         project_name: "test",
+        target_root: target_root,
         template_root: template_root
       ]
     end
