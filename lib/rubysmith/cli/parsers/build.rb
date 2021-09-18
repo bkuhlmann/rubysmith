@@ -23,120 +23,187 @@ module Rubysmith
         attr_reader :client, :container
 
         def add_amazing_print
-          client.on "--[no-]amazing_print", "Add Amazing Print." do |value|
+          client.on(
+            "--[no-]amazing_print",
+            "Add Amazing Print gem. #{default __method__}."
+          ) do |value|
             configuration.build_amazing_print = value
           end
         end
 
         def add_bundler_leak
-          client.on "--[no-]bundler-leak", "Add Bundler Leak." do |value|
+          client.on(
+            "--[no-]bundler-leak",
+            "Add Bundler Leak gem. #{default __method__}."
+          ) do |value|
             configuration.build_bundler_leak = value
           end
         end
 
         def add_console
-          client.on "--[no-]console", "Add console script." do |value|
+          client.on(
+            "--[no-]console",
+            "Add console script. #{default __method__}."
+          ) do |value|
             configuration.build_console = value
           end
         end
 
         def add_circle_ci
-          client.on "--[no-]circle_ci", "Add Circle CI." do |value|
+          client.on(
+            "--[no-]circle_ci",
+            "Add Circle CI configuration and badge. #{default __method__}."
+          ) do |value|
             configuration.build_circle_ci = value
           end
         end
 
         def add_debug
-          client.on "--[no-]debug", "Add Debug." do |value|
+          client.on(
+            "--[no-]debug",
+            "Add Debug gem. #{default __method__}."
+          ) do |value|
             configuration.build_debug = value
           end
         end
 
         def add_documentation
-          client.on "--[no-]documentation", "Add documentation." do |value|
+          client.on(
+            "--[no-]documentation",
+            "Add documentation. #{default __method__}."
+          ) do |value|
             configuration.build_documentation = value
           end
         end
 
         def add_git
-          client.on "--[no-]git", "Add Git." do |value|
+          client.on(
+            "--[no-]git",
+            "Add Git. #{default __method__}."
+          ) do |value|
             configuration.build_git = value
           end
         end
 
         def add_git_hub
-          client.on "--[no-]git_hub", "Add GitHub." do |value|
+          client.on(
+            "--[no-]git_hub",
+            "Add GitHub templates. #{default __method__}."
+          ) do |value|
             configuration.build_git_hub = value
           end
         end
 
         def add_git_lint
-          client.on "--[no-]git-lint", "Add Git Lint." do |value|
+          client.on(
+            "--[no-]git-lint",
+            "Add Git Lint gem. #{default __method__}."
+          ) do |value|
             configuration.build_git_lint = value
           end
         end
 
         def add_guard
-          client.on "--[no-]guard", "Add Guard." do |value|
+          client.on(
+            "--[no-]guard",
+            "Add Guard gem. #{default __method__}."
+          ) do |value|
             configuration.build_guard = value
           end
         end
 
         def add_minimum
-          client.on "--min", "Use minimum/no options." do |value|
+          client.on(
+            "--min",
+            "Use minimum/disabled options. #{default __method__}."
+          ) do |value|
             configuration.minimize.build_minimum = value
           end
         end
 
         def add_rake
-          client.on "--[no-]rake", "Add Rake." do |value|
+          client.on(
+            "--[no-]rake",
+            "Add Rake gem. #{default __method__}."
+          ) do |value|
             configuration.build_rake = value
           end
         end
 
         def add_reek
-          client.on "--[no-]reek", "Add Reek." do |value|
+          client.on(
+            "--[no-]reek",
+            "Add Reek gem. #{default __method__}."
+          ) do |value|
             configuration.build_reek = value
           end
         end
 
         def add_refinements
-          client.on "--[no-]refinements", "Add Refinements." do |value|
+          client.on(
+            "--[no-]refinements",
+            "Add Refinements gem. #{default __method__}."
+          ) do |value|
             configuration.build_refinements = value
           end
         end
 
         def add_rspec
-          client.on "--[no-]rspec", "Add RSpec." do |value|
+          client.on(
+            "--[no-]rspec",
+            "Add RSpec gem. #{default __method__}."
+          ) do |value|
             configuration.build_rspec = value
           end
         end
 
         def add_rubocop
-          client.on "--[no-]rubocop", "Add Rubocop." do |value|
+          client.on(
+            "--[no-]rubocop",
+            "Add Rubocop gems. #{default __method__}."
+          ) do |value|
             configuration.build_rubocop = value
           end
         end
 
         def add_setup
-          client.on "--[no-]setup", "Add setup script." do |value|
+          client.on(
+            "--[no-]setup",
+            "Add setup script. #{default __method__}."
+          ) do |value|
             configuration.build_setup = value
           end
         end
 
         def add_simple_cov
-          client.on "--[no-]simple_cov", "Add SimpleCov." do |value|
+          client.on(
+            "--[no-]simple_cov",
+            "Add SimpleCov gem. #{default __method__}."
+          ) do |value|
             configuration.build_simple_cov = value
           end
         end
 
         def add_zeitwerk
-          client.on "--[no-]zeitwerk", "Add Zeitwerk." do |value|
+          client.on(
+            "--[no-]zeitwerk",
+            "Add Zeitwerk gem. #{default __method__}."
+          ) do |value|
             configuration.build_zeitwerk = value
           end
         end
 
+        def default option
+          option.to_s
+                .sub("add_", "build_")
+                .then { |attribute| configuration.public_send attribute }
+                .then { |boolean| boolean ? colorizer.green(boolean) : colorizer.red(boolean) }
+                .then { |colored_boolean| "Default: #{colored_boolean}" }
+        end
+
         def configuration = container[__method__]
+
+        def colorizer = container[__method__]
       end
     end
   end
