@@ -103,6 +103,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_git).to eq(false)
     end
 
+    it "enables Git Hub" do
+      parser.call %w[--git_hub]
+      expect(application_configuration.build_git_hub).to eq(true)
+    end
+
+    it "disables Git Hub" do
+      parser.call %w[--no-git_hub]
+      expect(application_configuration.build_git_hub).to eq(false)
+    end
+
     it "enables Git Lint" do
       parser.call %w[--git-lint]
       expect(application_configuration.build_git_lint).to eq(true)

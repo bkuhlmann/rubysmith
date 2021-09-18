@@ -10,6 +10,7 @@
   :debug: true
   :documentation: true
   :git: true
+  :git_hub: false
   :git_lint: true
   :guard: true
   :minimum: false

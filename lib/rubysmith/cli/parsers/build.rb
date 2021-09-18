@@ -64,6 +64,12 @@ module Rubysmith
           end
         end
 
+        def add_git_hub
+          client.on "--[no-]git_hub", "Add GitHub." do |value|
+            configuration.build_git_hub = value
+          end
+        end
+
         def add_git_lint
           client.on "--[no-]git-lint", "Add Git Lint." do |value|
             configuration.build_git_lint = value

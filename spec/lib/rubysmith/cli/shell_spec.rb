@@ -70,6 +70,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-debug
           --no-documentation
           --no-git
+          --no-git_hub
           --no-git-lint
           --no-guard
           --no-rake
@@ -116,6 +117,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --debug
           --documentation
           --git
+          --git_hub
           --git-lint
           --guard
           --rake
@@ -132,6 +134,8 @@ RSpec.describe Rubysmith::CLI::Shell do
       let :files do
         [
           "test/.circleci/config.yml",
+          "test/.github/ISSUE_TEMPLATE.md",
+          "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.git/COMMIT_EDITMSG",
           "test/.git/MERGE_RR",
           "test/.reek.yml",

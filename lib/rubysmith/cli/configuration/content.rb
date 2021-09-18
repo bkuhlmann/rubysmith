@@ -22,6 +22,7 @@ module Rubysmith
         :build_debug,
         :build_documentation,
         :build_git,
+        :build_git_hub,
         :build_git_lint,
         :build_guard,
         :build_minimum,
