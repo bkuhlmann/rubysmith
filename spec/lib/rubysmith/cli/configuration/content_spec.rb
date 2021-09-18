@@ -46,7 +46,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         project_name: nil,
         target_root: target_root,
         template_path: nil,
-        template_root: template_root
+        template_root: template_root,
+        version: nil
       }
     end
 

@@ -42,6 +42,7 @@ module Rubysmith
         :target_root,
         :template_path,
         :template_root,
+        :version,
         keyword_init: true
       ) do
         using Refinements::Strings
