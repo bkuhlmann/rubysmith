@@ -14,6 +14,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       {
         build_amazing_print: false,
         build_bundler_leak: false,
+        build_circle_ci: false,
         build_console: false,
         build_debug: false,
         build_documentation: false,
@@ -50,6 +51,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "disables Bundler Leak" do
       parser.call %w[--no-bundler-leak]
       expect(application_configuration.build_bundler_leak).to eq(false)
+    end
+
+    it "enables Circle CI" do
+      parser.call %w[--circle_ci]
+      expect(application_configuration.build_circle_ci).to eq(true)
+    end
+
+    it "disables Circle CI" do
+      parser.call %w[--no-circle_ci]
+      expect(application_configuration.build_circle_ci).to eq(false)
     end
 
     it "enables console" do

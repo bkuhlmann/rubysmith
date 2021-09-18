@@ -12,13 +12,19 @@ RSpec.shared_context "with application container" do
   let :application_configuration do
     Rubysmith::CLI::Configuration::Loader.with_defaults
                                          .call
-                                         .merge target_root: temp_dir,
-                                                project_name: "test",
-                                                author_name: "Jill Smith",
+                                         .merge author_name: "Jill Smith",
                                                 author_email: "jill@example.com",
                                                 author_url: "https://www.jillsmith.com",
+                                                builders_pragmater_includes: ["**/*.rb"],
+                                                git_hub_user: "hubber",
+                                                project_name: "test",
                                                 now: Time.utc(2020, 1, 1, 0, 0, 0),
-                                                builders_pragmater_includes: ["**/*.rb"]
+                                                target_root: temp_dir,
+                                                template_root: Bundler.root.join(
+                                                  "lib",
+                                                  "rubysmith",
+                                                  "templates"
+                                                )
   end
 
   let(:kernel) { class_spy Kernel }

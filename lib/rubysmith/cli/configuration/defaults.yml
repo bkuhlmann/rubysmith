@@ -5,6 +5,7 @@
 :build:
   :amazing_print: true
   :bundler_leak: true
+  :circle_ci: false
   :console: true
   :debug: true
   :documentation: true

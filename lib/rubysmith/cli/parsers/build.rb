@@ -40,6 +40,12 @@ module Rubysmith
           end
         end
 
+        def add_circle_ci
+          client.on "--[no-]circle_ci", "Add Circle CI." do |value|
+            configuration.build_circle_ci = value
+          end
+        end
+
         def add_debug
           client.on "--[no-]debug", "Add Debug." do |value|
             configuration.build_debug = value

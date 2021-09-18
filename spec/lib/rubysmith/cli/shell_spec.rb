@@ -65,6 +65,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           test
           --no-amazing_print
           --no-bundler-leak
+          --no-circle_ci
           --no-console
           --no-debug
           --no-documentation
@@ -108,14 +109,18 @@ RSpec.describe Rubysmith::CLI::Shell do
         %w[
           --build
           test
+          --amazing_print
+          --bundler-leak
+          --circle_ci
           --console
-          --documentation
           --debug
+          --documentation
           --git
           --git-lint
           --guard
           --rake
           --reek
+          --refinements
           --rspec
           --rubocop
           --setup
@@ -126,6 +131,7 @@ RSpec.describe Rubysmith::CLI::Shell do
 
       let :files do
         [
+          "test/.circleci/config.yml",
           "test/.git/COMMIT_EDITMSG",
           "test/.git/MERGE_RR",
           "test/.reek.yml",

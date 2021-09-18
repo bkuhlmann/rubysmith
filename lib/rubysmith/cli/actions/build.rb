@@ -13,6 +13,7 @@ module Rubysmith
           Builders::Bundler,
           Builders::Rake,
           Builders::Console,
+          Builders::CircleCI,
           Builders::Setup,
           Builders::Guard,
           Builders::Reek,

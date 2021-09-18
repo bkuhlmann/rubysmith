@@ -22,6 +22,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         author_url: nil,
         build_amazing_print: nil,
         build_bundler_leak: nil,
+        build_circle_ci: nil,
         build_console: nil,
         build_debug: nil,
         build_documentation: nil,
@@ -73,6 +74,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
       described_class[
         build_amazing_print: false,
         build_bundler_leak: false,
+        build_circle_ci: false,
         build_console: false,
         build_debug: false,
         build_documentation: false,

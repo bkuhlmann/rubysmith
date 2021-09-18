@@ -46,9 +46,10 @@ RSpec.describe Rubysmith::Builders::Documentation do
       context "with maximum options" do
         let :configuration do
           default_configuration.with build_documentation: true,
-                                     build_setup: true,
+                                     build_circle_ci: true,
                                      build_console: true,
                                      build_rubocop: true,
+                                     build_setup: true,
                                      documentation_format: "md"
         end
 
@@ -74,6 +75,23 @@ RSpec.describe Rubysmith::Builders::Documentation do
       end
 
       it_behaves_like "markdown documentation"
+    end
+
+    context "when enabled with Markdown format and maximum options" do
+      let :configuration do
+        default_configuration.with build_documentation: true,
+                                   build_setup: true,
+                                   build_console: true,
+                                   build_circle_ci: true,
+                                   build_rubocop: true,
+                                   documentation_format: "md"
+      end
+
+      it "builds readme" do
+        expect(temp_dir.join("test", "README.md").read).to eq(
+          Bundler.root.join("spec", "support", "boms", "readme-maximum.md").read
+        )
+      end
     end
 
     context "when enabled with Markdown format and MIT license" do
@@ -123,9 +141,10 @@ RSpec.describe Rubysmith::Builders::Documentation do
     context "when enabled with ASCII Doc format and maximum options" do
       let :configuration do
         default_configuration.with build_documentation: true,
-                                   build_setup: true,
+                                   build_circle_ci: true,
                                    build_console: true,
                                    build_rubocop: true,
+                                   build_setup: true,
                                    documentation_format: "adoc"
       end
 

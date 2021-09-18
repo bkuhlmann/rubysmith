@@ -1,6 +1,7 @@
 # Test
 
 [![Alchemists Style Guide](https://img.shields.io/badge/code_style-alchemists-brightgreen.svg)](https://www.alchemists.io/projects/code_quality)
+[![Circle CI Status](https://circleci.com/gh/hubber/test.svg?style=svg)](https://circleci.com/gh/hubber/test)
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
