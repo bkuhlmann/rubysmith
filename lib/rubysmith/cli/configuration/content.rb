@@ -36,6 +36,7 @@ module Rubysmith
         :builders_pragmater_includes,
         :documentation_format,
         :documentation_license,
+        :git_hub_user,
         :now,
         :project_name,
         :target_root,

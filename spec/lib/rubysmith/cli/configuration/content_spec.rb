@@ -41,6 +41,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         builders_pragmater_includes: nil,
         documentation_format: nil,
         documentation_license: nil,
+        git_hub_user: nil,
         now: nil,
         project_name: nil,
         target_root: target_root,

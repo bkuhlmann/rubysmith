@@ -36,6 +36,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       ],
       documentation_format: "md",
       documentation_license: "mit",
+      git_hub_user: nil,
       now: now
     ]
   end
