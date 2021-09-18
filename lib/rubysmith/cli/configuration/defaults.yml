@@ -1,12 +1,7 @@
-:project:
-  :name:
 :author:
   :name:
   :email:
   :url:
-:documentation:
-  :format: "md"
-  :license: "mit"
 :build:
   :amazing_print: true
   :bundler_leak: true
@@ -37,3 +32,6 @@
       - "**/*Gemfile"
       - "**/*Guardfile"
       - "**/*Rakefile"
+:documentation:
+  :format: "md"
+  :license: "mit"
