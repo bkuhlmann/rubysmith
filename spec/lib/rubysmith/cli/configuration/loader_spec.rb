@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Configuration::Loader do
-  subject(:loader) { described_class.with_defaults now: now }
+  subject(:loader) { described_class.with_defaults }
 
   let :content do
     Rubysmith::CLI::Configuration::Content[
@@ -37,27 +37,35 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       documentation_format: "md",
       documentation_license: "mit",
       git_hub_user: nil,
-      now: now
+      now: nil
     ]
   end
 
-  let(:now) { Time.now }
-
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call(now: now)).to be_a(Rubysmith::CLI::Configuration::Content)
+      expect(described_class.call).to be_a(Rubysmith::CLI::Configuration::Content)
     end
   end
 
   describe ".with_defaults" do
     it "answers default configuration" do
-      expect(described_class.with_defaults(now: now).call).to eq(content)
+      expect(described_class.with_defaults.call).to eq(content)
     end
   end
 
   describe "#call" do
     it "answers default configuration" do
       expect(loader.call).to eq(content)
+    end
+
+    it "answers enhanced configuration" do
+      now = Time.now
+
+      loader = described_class.new enhancers: [
+        Rubysmith::CLI::Configuration::Enhancers::CurrentTime.new(now)
+      ]
+
+      expect(loader.call).to have_attributes(now: now)
     end
   end
 end
