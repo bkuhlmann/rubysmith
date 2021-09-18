@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
 
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:project_dir) { temp_dir.join "test" }
   let(:commit) { project_dir.change_dir { `git log --pretty=format:%s%n%b -1` } }
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_git: true }
+      let(:configuration) { minimum_configuration.with build_git: true }
 
       it "creates commit" do
         expect(commit).to match(
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_git: false }
+      let(:configuration) { minimum_configuration.with build_git: false }
 
       it "doesn't create commit" do
         expect(commit).to eq("")

@@ -5,10 +5,10 @@ require "spec_helper"
 RSpec.describe Rubysmith::Renderers::ERB do
   subject(:renderer) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   describe "#call" do
-    let(:configuration) { default_configuration }
+    let(:configuration) { minimum_configuration }
 
     it "answers result" do
       expect(renderer.call("Name: <%= configuration.project_name %>.")).to eq("Name: test.")
@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace" do
-      let(:configuration) { default_configuration.with project_name: "example" }
+      let(:configuration) { minimum_configuration.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single filled namespace" do
-      let(:configuration) { default_configuration.with project_name: "example" }
+      let(:configuration) { minimum_configuration.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single empty namespace" do
-      let(:configuration) { default_configuration.with project_name: "example" }
+      let(:configuration) { minimum_configuration.with project_name: "example" }
 
       let(:content) { "<% namespace %>" }
 
@@ -83,7 +83,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple empty namespaces" do
-      let(:configuration) { default_configuration.with project_name: "example-one-two" }
+      let(:configuration) { minimum_configuration.with project_name: "example-one-two" }
 
       let(:content) { "<% namespace %>" }
 
@@ -105,7 +105,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple filled namespaces" do
-      let(:configuration) { default_configuration.with project_name: "example-one-two" }
+      let(:configuration) { minimum_configuration.with project_name: "example-one-two" }
 
       let :content do
         <<~CONTENT

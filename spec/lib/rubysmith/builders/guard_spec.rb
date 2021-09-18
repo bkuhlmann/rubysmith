@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Guard do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:binstub_path) { temp_dir.join "test", "bin", "guard" }
   let(:configuration_path) { temp_dir.join "test", "Guardfile" }
@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::Builders::Guard do
     before { builder.call }
 
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_guard: true }
+      let(:configuration) { minimum_configuration.with build_guard: true }
 
       it "builds binstub" do
         expect(binstub_path.read).to eq(<<~CONTENT)
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::Guard do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_guard: false }
+      let(:configuration) { minimum_configuration.with build_guard: false }
 
       it "doesn't build binstub" do
         expect(binstub_path.exist?).to eq(false)

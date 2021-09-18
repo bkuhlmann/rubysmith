@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Setup do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:build_path) { temp_dir.join "test", "bin", "setup" }
 
@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Setup do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_setup: true }
+      let(:configuration) { minimum_configuration.with build_setup: true }
 
       it "builds setup script without Pry support" do
         builder.call
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_setup: false }
+      let(:configuration) { minimum_configuration.with build_setup: false }
 
       it "does not build setup script" do
         builder.call

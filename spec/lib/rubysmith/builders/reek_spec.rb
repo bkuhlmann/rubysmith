@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Reek do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:configuration_path) { temp_dir.join "test", ".reek.yml" }
 
@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     before { builder.call }
 
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_reek: true }
+      let(:configuration) { minimum_configuration.with build_reek: true }
 
       it "builds configuration" do
         expect(configuration_path.read).to eq(<<~CONTENT)
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_reek: false }
+      let(:configuration) { minimum_configuration.with build_reek: false }
 
       it "doesn't build configuration" do
         expect(configuration_path.exist?).to eq(false)

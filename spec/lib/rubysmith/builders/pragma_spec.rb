@@ -5,9 +5,9 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Pragma do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new default_configuration }
+  subject(:builder) { described_class.new minimum_configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:test_path) { temp_dir.join "test", "test.rb" }
 

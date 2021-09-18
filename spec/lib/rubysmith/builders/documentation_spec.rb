@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   it_behaves_like "a builder"
 
@@ -45,7 +45,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
       context "with maximum options" do
         let :configuration do
-          default_configuration.with build_documentation: true,
+          minimum_configuration.with build_documentation: true,
                                      build_circle_ci: true,
                                      build_console: true,
                                      build_rubocop: true,
@@ -71,7 +71,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with Markdown format" do
       let :configuration do
-        default_configuration.with build_documentation: true, documentation_format: "md"
+        minimum_configuration.with build_documentation: true, documentation_format: "md"
       end
 
       it_behaves_like "markdown documentation"
@@ -79,7 +79,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with Markdown format and maximum options" do
       let :configuration do
-        default_configuration.with build_documentation: true,
+        minimum_configuration.with build_documentation: true,
                                    build_setup: true,
                                    build_console: true,
                                    build_circle_ci: true,
@@ -96,7 +96,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with Markdown format and MIT license" do
       let :configuration do
-        default_configuration.with build_documentation: true,
+        minimum_configuration.with build_documentation: true,
                                    documentation_format: "md",
                                    documentation_license: "mit"
       end
@@ -106,7 +106,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with ASCII Doc format" do
       let :configuration do
-        default_configuration.with build_documentation: true, documentation_format: "adoc"
+        minimum_configuration.with build_documentation: true, documentation_format: "adoc"
       end
 
       it "builds changes" do
@@ -140,7 +140,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with ASCII Doc format and maximum options" do
       let :configuration do
-        default_configuration.with build_documentation: true,
+        minimum_configuration.with build_documentation: true,
                                    build_circle_ci: true,
                                    build_console: true,
                                    build_rubocop: true,
@@ -157,7 +157,7 @@ RSpec.describe Rubysmith::Builders::Documentation do
 
     context "when enabled with ASCII Doc format and Apache license" do
       let :configuration do
-        default_configuration.with build_documentation: true,
+        minimum_configuration.with build_documentation: true,
                                    documentation_format: "adoc",
                                    documentation_license: "apache"
       end
@@ -170,14 +170,14 @@ RSpec.describe Rubysmith::Builders::Documentation do
     end
 
     context "when enabled without format or license defined" do
-      let(:configuration) { default_configuration.with build_documentation: true }
+      let(:configuration) { minimum_configuration.with build_documentation: true }
 
       it_behaves_like "markdown documentation"
       it_behaves_like "a Markdown, MIT license"
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_documentation: false }
+      let(:configuration) { minimum_configuration.with build_documentation: false }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
 
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:binstub_path) { temp_dir.join "test", "bin", "rubocop" }
   let(:configuration_path) { temp_dir.join "test", ".rubocop.yml" }
@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with no additional options" do
-      let(:configuration) { default_configuration.with build_rubocop: true }
+      let(:configuration) { minimum_configuration.with build_rubocop: true }
 
       it_behaves_like "a binstub"
 
@@ -48,7 +48,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with RSpec" do
-      let(:configuration) { default_configuration.with build_rubocop: true, build_rspec: true }
+      let(:configuration) { minimum_configuration.with build_rubocop: true, build_rspec: true }
 
       it_behaves_like "a binstub"
 
@@ -66,7 +66,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_rubocop: false }
+      let(:configuration) { minimum_configuration.with build_rubocop: false }
 
       it "doesn't build binstub" do
         builder.call

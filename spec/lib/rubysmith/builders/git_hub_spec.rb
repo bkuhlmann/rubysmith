@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::GitHub do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:issue_path) { temp_dir.join "test/.github/ISSUE_TEMPLATE.md" }
   let(:pull_request_path) { temp_dir.join "test/.github/PULL_REQUEST_TEMPLATE.md" }
@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_git_hub: true }
+      let(:configuration) { minimum_configuration.with build_git_hub: true }
 
       it "builds issue template" do
         builder.call
@@ -57,7 +57,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_git_hub: false }
+      let(:configuration) { minimum_configuration.with build_git_hub: false }
 
       it "does not build issue template" do
         builder.call

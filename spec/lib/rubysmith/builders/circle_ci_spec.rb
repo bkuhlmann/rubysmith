@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::CircleCI do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   let(:build_path) { temp_dir.join "test/.circleci/config.yml" }
 
@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { default_configuration.with build_circle_ci: true }
+      let(:configuration) { minimum_configuration.with build_circle_ci: true }
 
       it "builds configuration" do
         builder.call
@@ -55,7 +55,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     end
 
     context "when disabled" do
-      let(:configuration) { default_configuration.with build_circle_ci: false }
+      let(:configuration) { minimum_configuration.with build_circle_ci: false }
 
       it "does not build configuration" do
         builder.call

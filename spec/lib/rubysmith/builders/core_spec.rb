@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Core do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with configuration"
+  include_context "with application container"
 
   using Refinements::Structs
 
@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Core do
     before { builder.call }
 
     context "with default configuration" do
-      let(:configuration) { default_configuration }
+      let(:configuration) { minimum_configuration }
 
       it "builds project file" do
         expect(temp_dir.join("test", "lib", "test.rb").read).to eq(<<~CONTENT)
@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with dashed project name" do
-      let(:configuration) { default_configuration.merge project_name: "demo-test" }
+      let(:configuration) { minimum_configuration.merge project_name: "demo-test" }
 
       it "builds project file" do
         expect(temp_dir.join("demo-test", "lib", "demo", "test.rb").read).to eq(<<~CONTENT)
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with default configuration and Zeitwerk enabled" do
-      let(:configuration) { default_configuration.with build_zeitwerk: true }
+      let(:configuration) { minimum_configuration.with build_zeitwerk: true }
 
       it "builds project file" do
         expect(temp_dir.join("test", "lib", "test.rb").read).to eq(<<~CONTENT)
@@ -70,7 +70,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
     context "with dashed project name and Zeitwerk enabled" do
       let :configuration do
-        default_configuration.merge project_name: "demo-test", build_zeitwerk: true
+        minimum_configuration.merge project_name: "demo-test", build_zeitwerk: true
       end
 
       it "builds project file" do

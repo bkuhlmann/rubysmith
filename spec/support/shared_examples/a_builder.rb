@@ -3,7 +3,7 @@
 RSpec.shared_examples_for "a builder" do
   describe ".call" do
     it "calls builder" do
-      expect(described_class.call(default_configuration)).to eq(nil)
+      expect(described_class.call(minimum_configuration)).to eq(nil)
     end
   end
 end
