@@ -1,5 +1,34 @@
 = Changes
 
+== 0.14.0 (2021-09-19)
+
+* Added CLI CHANGES build option - Brooke Kuhlmann
+* Added CLI CODE_OF_CONDUCT build option - Brooke Kuhlmann
+* Added CLI CONTRIBUTING build option - Brooke Kuhlmann
+* Added CLI Circle CI build option - Brooke Kuhlmann
+* Added CLI GitHub build option - Brooke Kuhlmann
+* Added CLI GitHub configuration enhancer - Brooke Kuhlmann
+* Added CLI LICENSE build option - Brooke Kuhlmann
+* Added CLI README build option - Brooke Kuhlmann
+* Added CLI configuration content version attribute - Brooke Kuhlmann
+* Added CLI configuration enhancers to loader - Brooke Kuhlmann
+* Added CLI configuration for GitHub user - Brooke Kuhlmann
+* Added CLI content ASCII Doc and Markdown detection - Brooke Kuhlmann
+* Added CLI current time configuration enhancer - Brooke Kuhlmann
+* Added CLI maximum build option - Brooke Kuhlmann
+* Added CLI version configuration enhancer - Brooke Kuhlmann
+* Added Git+ gem - Brooke Kuhlmann
+* Added Tocer gem - Brooke Kuhlmann
+* Added Tocer to Gemfile skeleton when Markdown format is enabled - Brooke Kuhlmann
+* Added documentation builder table of contents generation - Brooke Kuhlmann
+* Updated CLI build parser documentation to include defaults - Brooke Kuhlmann
+* Updated CLI core parser to use configuration version - Brooke Kuhlmann
+* Removed CLI documentation option - Brooke Kuhlmann
+* Removed RSpec CLI version matcher - Brooke Kuhlmann
+* Removed RSpec minimum configuration - Brooke Kuhlmann
+* Refactored CLI default configuration keys to be alphabetically sorted - Brooke Kuhlmann
+* Refactored RSpec application container to include minimum configuration - Brooke Kuhlmann
+
 == 0.13.0 (2021-09-15)
 
 * Added CLI configuration content minimization - Brooke Kuhlmann

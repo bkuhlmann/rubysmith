@@ -30,8 +30,10 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
 * Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
+* Supports link:https://circleci.com[Circle CI].
 * Supports link:https://github.com/ruby/debug[Debug].
 * Supports link:https://git-scm.com[Git].
+* Supports link:https://github.com[GitHub].
 * Supports link:https://www.alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
 * Supports link:https://github.com/ruby/rake[Rake].
@@ -48,8 +50,8 @@ toc::[]
 * Provides common documentation:
 ** README
 ** CHANGES
-** CONTRIBUTING
 ** CODE OF CONDUCT
+** CONTRIBUTING
 ** LICENSE
 
 // == Screencasts
@@ -87,23 +89,30 @@ USAGE:
   -v, --version                            Show gem version.
 
 BUILD OPTIONS:
-  --[no-]amazing_print                 Add Amazing Print.
-  --[no-]bundler-leak                  Add Bundler Leak.
-  --[no-]console                       Add console script.
-  --[no-]debug                         Add Debug.
-  --[no-]documentation                 Add documentation.
-  --[no-]git                           Add Git.
-  --[no-]git-lint                      Add Git Lint.
-  --[no-]guard                         Add Guard.
-  --min                                Use minimum/no options.
-  --[no-]rake                          Add Rake.
-  --[no-]reek                          Add Reek.
-  --[no-]refinements                   Add Refinements.
-  --[no-]rspec                         Add RSpec.
-  --[no-]rubocop                       Add Rubocop.
-  --[no-]setup                         Add setup script.
-  --[no-]simple_cov                    Add SimpleCov.
-  --[no-]zeitwerk                      Add Zeitwerk.
+  --[no-]amazing_print                 Add Amazing Print gem. Default: true.
+  --[no-]bundler-leak                  Add Bundler Leak gem. Default: true.
+  --[no-]changes                       Add CHANGES documentation. Default: true.
+  --[no-]circle_ci                     Add Circle CI configuration and badge. Default: false.
+  --[no-]conduct                       Add CODE_OF_CONDUCT documentation. Default: true.
+  --[no-]console                       Add console script. Default: true.
+  --[no-]contributions                 Add CONTRIBUTING documentation. Default: true.
+  --[no-]debug                         Add Debug gem. Default: true.
+  --[no-]git                           Add Git. Default: true.
+  --[no-]git_hub                       Add GitHub templates. Default: false.
+  --[no-]git-lint                      Add Git Lint gem. Default: true.
+  --[no-]guard                         Add Guard gem. Default: true.
+  --[no-]license                       Add LICENSE documentation. Default: true.
+  --max                                Use maximum/enabled options. Default: false.
+  --min                                Use minimum/disabled options. Default: false.
+  --[no-]rake                          Add Rake gem. Default: true.
+  --[no-]readme                        Add README documentation. Default: true.
+  --[no-]reek                          Add Reek gem. Default: true.
+  --[no-]refinements                   Add Refinements gem. Default: true.
+  --[no-]rspec                         Add RSpec gem. Default: true.
+  --[no-]rubocop                       Add Rubocop gems. Default: true.
+  --[no-]setup                         Add setup script. Default: true.
+  --[no-]simple_cov                    Add SimpleCov gem. Default: true.
+  --[no-]zeitwerk                      Add Zeitwerk gem. Default: true.
 ....
 
 === Building
@@ -137,19 +146,20 @@ The above is essentially the same as building with _all_ options disabled. This 
 situations where you need to quickly script something up for sharing with others yet still want to
 avoid using a Bundler Inline script so gem dependencies are not installed each time the code is run.
 
-As shown earlier, you can combine options but the order options can be handy in certain situations
-especially when used with the minimum build option. Example:
+As shown earlier, you can combine options but be aware that order matters. Take the following, for
+example, where both minimum and maximum options are used in conjunction with other options:
 
 [source,bash]
 ----
 rubysmith --build demo --min --zeitwerk
+rubysmith --build demo --max --no-debug
 ----
 
-The above will disable _all_ options except for Zeitwerk which will be enabled in this situation.
-This can be a handy way to build a new project with all options disabled with only a few select
-options enabled. To have specific options enabled/disabled _every time_ you build a new Ruby
-project, you can edit your global configuration for making these settings permanent (see below for
-details).
+With the above examples, the first line will _disable_ all options except for Zeitwerk while the
+second line will _enable_ all options except for Debug. This can be a handy way to build a new
+project with all options either disabled or enabled with only a few select options modified. To have
+specific options enabled/disabled _every time_ you build a new Ruby project, you can edit your
+global configuration for making these settings permanent (see below for details).
 
 === Configuration
 
@@ -160,9 +170,7 @@ $HOME/.config/rubysmith/configuration.yml
 ....
 
 It can also be configured via link:https://www.alchemists.io/projects/xdg[XDG] environment
-variables.
-
-The default configuration is as follows:
+variables. The default configuration is as follows:
 
 [source,yaml]
 ----
@@ -170,20 +178,24 @@ The default configuration is as follows:
   :name:
   :email:
   :url:
-:documentation:
-  :format: "md"
-  :license: "mit"
 :build:
   :amazing_print: true
   :bundler_leak: true
+  :changes: true
+  :circle_ci: false
+  :conduct: true
   :console: true
+  :contributions: true
   :debug: true
-  :documentation: true
   :git: true
+  :git_hub: false
   :git_lint: true
   :guard: true
+  :license: true
+  :maximum: false
   :minimum: false
   :rake: true
+  :readme: true
   :reek: true
   :refinements: true
   :rspec: true
@@ -203,10 +215,54 @@ The default configuration is as follows:
       - "**/*Gemfile"
       - "**/*Guardfile"
       - "**/*Rakefile"
+:documentation:
+  :format: "md"
+  :license: "mit"
+:git_hub:
+  :user:
 ----
 
 Feel free to take this default configuration, modify, and save as your own custom
 `configuration.yml`.
+
+==== Author
+
+Author information is used when generating project documentation and is recommended you fill this
+information in before building a project. Example:
+
+    :author:
+      :name: Jill Smith
+      :email: jsmith@example.com
+      :url: https://www.exmaple.com/team/jsmith
+
+==== Build
+
+Build options are booleans so can only be `true` or `false` by default. Should you want a different
+configuration than what is enabled/disabled by default, you'll want to customize these options as
+you see fit. When changing build options, they will dynamically show up when viewing usage (i.e.
+`rubysmith --help`).
+
+==== Builders
+
+Builders are additional tooling which can be configured specifically for Rubysmith. At the moment,
+only link:https://www.alchemists.io/projects/pragmater[Pragmater] is supported so view the Pragmater
+project page to learn more.
+
+==== Documentation
+
+Documentation can be configured as follows:
+
+* *Format*: Use `md` for Markdown or `adoc` for ASCCI Doc.
+* *License*: Use `mit` for MIT or `Apache` for Apache 2.0.0 license.
+
+No other licenses are supported at this time but might be expanded up on in the future.
+
+==== GitHub
+
+Your GitHub user is whatever handle you setup when you creating your GitHub account. This
+information is used for documentation purposes and Circle CI badge association. If you don't define
+this information, Rubysmith will automatically fallback to pulling this information from your Git
+configuration (i.e. `github.user`). If all else fails, then nothing will be used.
 
 == Development
 
