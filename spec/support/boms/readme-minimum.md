@@ -1,6 +1,23 @@
 # Test
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
+
+## Table of Contents
+
+  - [Features](#features)
+  - [Screencasts](#screencasts)
+  - [Requirements](#requirements)
+  - [Setup](#setup)
+  - [Usage](#usage)
+  - [Development](#development)
+  - [Tests](#tests)
+  - [Versioning](#versioning)
+  - [Code of Conduct](#code-of-conduct)
+  - [Contributions](#contributions)
+  - [License](#license)
+  - [History](#history)
+  - [Credits](#credits)
+
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
 
 ## Features

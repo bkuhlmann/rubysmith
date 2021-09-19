@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
+require "tocer"
+
 module Rubysmith
   module Builders
     # Builds project skeleton documentation.
     class Documentation
       def self.call(...) = new(...).call
 
-      def initialize configuration, builder: Builder
+      def initialize configuration, builder: Builder, tocer: Tocer::Writer.new
         @configuration = configuration
         @builder = builder
+        @tocer = tocer
       end
 
       def call
@@ -19,7 +22,7 @@ module Rubysmith
 
       private
 
-      attr_reader :configuration, :builder
+      attr_reader :configuration, :builder, :tocer
 
       def render_changes
         builder.call(configuration.with(template_path: "%project_name%/CHANGES.#{kind}.erb"))
@@ -47,6 +50,12 @@ module Rubysmith
         builder.call(configuration.with(template_path: "%project_name%/README.#{kind}.erb"))
                .render
                .replace("\n\n\n", "\n\n")
+      end
+
+      def render_table_of_contents
+        configuration.project_root
+                     .join("README.md")
+                     .then { |path| tocer.call path if path.exist? }
       end
 
       def kind = configuration.documentation_format || "md"
