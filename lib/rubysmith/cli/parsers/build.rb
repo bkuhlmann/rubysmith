@@ -67,15 +67,6 @@ module Rubysmith
           end
         end
 
-        def add_documentation
-          client.on(
-            "--[no-]documentation",
-            "Add documentation. #{default __method__}."
-          ) do |value|
-            configuration.build_documentation = value
-          end
-        end
-
         def add_git
           client.on(
             "--[no-]git",

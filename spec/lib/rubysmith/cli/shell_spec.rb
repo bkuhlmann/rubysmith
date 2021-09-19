@@ -68,7 +68,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-circle_ci
           --no-console
           --no-debug
-          --no-documentation
           --no-git
           --no-git_hub
           --no-git-lint
@@ -115,7 +114,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --circle_ci
           --console
           --debug
-          --documentation
           --git
           --git_hub
           --git-lint
@@ -143,13 +141,8 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/.ruby-version",
           "test/Gemfile",
           "test/Gemfile.lock",
-          "test/CHANGES.md",
-          "test/CODE_OF_CONDUCT.md",
-          "test/CONTRIBUTING.md",
-          "test/LICENSE.md",
           "test/Guardfile",
           "test/Rakefile",
-          "test/README.md",
           "test/bin/console",
           "test/bin/guard",
           "test/bin/rubocop",

@@ -17,7 +17,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_circle_ci: false,
         build_console: false,
         build_debug: false,
-        build_documentation: false,
         build_git: false,
         build_git_lint: false,
         build_guard: false,
@@ -81,16 +80,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "disables Debug" do
       parser.call %w[--no-debug]
       expect(application_configuration.build_debug).to eq(false)
-    end
-
-    it "enables documentation" do
-      parser.call %w[--documentation]
-      expect(application_configuration.build_documentation).to eq(true)
-    end
-
-    it "disables documentation" do
-      parser.call %w[--no-documentation]
-      expect(application_configuration.build_documentation).to eq(false)
     end
 
     it "enables Git" do
