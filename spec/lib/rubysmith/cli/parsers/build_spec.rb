@@ -52,6 +52,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_bundler_leak).to eq(false)
     end
 
+    it "enables CHANGES" do
+      parser.call %w[--changes]
+      expect(application_configuration.build_changes).to eq(true)
+    end
+
+    it "disables CHANGES" do
+      parser.call %w[--no-changes]
+      expect(application_configuration.build_changes).to eq(false)
+    end
+
     it "enables Circle CI" do
       parser.call %w[--circle_ci]
       expect(application_configuration.build_circle_ci).to eq(true)

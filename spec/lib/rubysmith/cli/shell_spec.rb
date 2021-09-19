@@ -65,6 +65,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           test
           --no-amazing_print
           --no-bundler-leak
+          --no-changes
           --no-circle_ci
           --no-console
           --no-debug
@@ -112,6 +113,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           test
           --amazing_print
           --bundler-leak
+          --changes
           --circle_ci
           --console
           --debug
@@ -145,6 +147,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/guard",
           "test/bin/rubocop",
           "test/bin/setup",
+          "test/CHANGES.md",
           "test/Gemfile",
           "test/Gemfile.lock",
           "test/Guardfile",

@@ -9,6 +9,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
     Rubysmith::CLI::Configuration::Content[
       build_amazing_print: true,
       build_bundler_leak: true,
+      build_changes: true,
       build_circle_ci: false,
       build_console: true,
       build_debug: true,

@@ -40,6 +40,15 @@ module Rubysmith
           end
         end
 
+        def add_changes
+          client.on(
+            "--[no-]changes",
+            "Add CHANGES documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_changes = value
+          end
+        end
+
         def add_console
           client.on(
             "--[no-]console",
