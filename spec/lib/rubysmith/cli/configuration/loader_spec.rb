@@ -18,6 +18,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_guard: true,
       build_minimum: false,
       build_rake: true,
+      build_readme: true,
       build_reek: true,
       build_refinements: true,
       build_rspec: true,

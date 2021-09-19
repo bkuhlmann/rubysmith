@@ -14,6 +14,7 @@
   :guard: true
   :minimum: false
   :rake: true
+  :readme: true
   :reek: true
   :refinements: true
   :rspec: true

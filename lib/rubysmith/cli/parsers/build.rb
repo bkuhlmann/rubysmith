@@ -121,6 +121,15 @@ module Rubysmith
           end
         end
 
+        def add_readme
+          client.on(
+            "--[no-]readme",
+            "Add README documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_readme = value
+          end
+        end
+
         def add_reek
           client.on(
             "--[no-]reek",

@@ -26,6 +26,7 @@ module Rubysmith
         :build_guard,
         :build_minimum,
         :build_rake,
+        :build_readme,
         :build_reek,
         :build_refinements,
         :build_rspec,

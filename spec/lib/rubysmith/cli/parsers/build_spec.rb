@@ -142,6 +142,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_rake).to eq(false)
     end
 
+    it "enables README" do
+      parser.call %w[--readme]
+      expect(application_configuration.build_readme).to eq(true)
+    end
+
+    it "disables README" do
+      parser.call %w[--no-readme]
+      expect(application_configuration.build_readme).to eq(false)
+    end
+
     it "enables Reek" do
       parser.call %w[--reek]
       expect(application_configuration.build_reek).to eq(true)

@@ -8,6 +8,7 @@ module Rubysmith
         # Order is important.
         BUILDERS = [
           Builders::Core,
+          Builders::Documentation::Readme,
           Builders::Git::Setup,
           Builders::Bundler,
           Builders::Rake,

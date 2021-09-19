@@ -73,6 +73,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-git-lint
           --no-guard
           --no-rake
+          --no-readme
           --no-reek
           --no-refinements
           --no-rspec
@@ -119,6 +120,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --git-lint
           --guard
           --rake
+          --readme
           --reek
           --refinements
           --rspec
@@ -132,24 +134,25 @@ RSpec.describe Rubysmith::CLI::Shell do
       let :files do
         [
           "test/.circleci/config.yml",
-          "test/.github/ISSUE_TEMPLATE.md",
-          "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.git/COMMIT_EDITMSG",
           "test/.git/MERGE_RR",
+          "test/.github/ISSUE_TEMPLATE.md",
+          "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.reek.yml",
           "test/.rubocop.yml",
           "test/.ruby-version",
-          "test/Gemfile",
-          "test/Gemfile.lock",
-          "test/Guardfile",
-          "test/Rakefile",
           "test/bin/console",
           "test/bin/guard",
           "test/bin/rubocop",
           "test/bin/setup",
+          "test/Gemfile",
+          "test/Gemfile.lock",
+          "test/Guardfile",
           "test/lib/test.rb",
-          "test/spec/support/shared_contexts/temp_dir.rb",
+          "test/Rakefile",
+          "test/README.md",
           "test/spec/spec_helper.rb",
+          "test/spec/support/shared_contexts/temp_dir.rb",
           "test/tags"
         ]
       end
