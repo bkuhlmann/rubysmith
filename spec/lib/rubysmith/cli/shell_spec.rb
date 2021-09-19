@@ -75,6 +75,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-git_hub
           --no-git-lint
           --no-guard
+          --no-license
           --no-rake
           --no-readme
           --no-reek
@@ -125,6 +126,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --git_hub
           --git-lint
           --guard
+          --license
           --rake
           --readme
           --reek
@@ -158,6 +160,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/Gemfile.lock",
           "test/Guardfile",
           "test/lib/test.rb",
+          "test/LICENSE.md",
           "test/Rakefile",
           "test/README.md",
           "test/spec/spec_helper.rb",

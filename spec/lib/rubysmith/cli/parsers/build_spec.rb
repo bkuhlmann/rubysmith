@@ -152,6 +152,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_guard).to eq(false)
     end
 
+    it "enables LICENSE" do
+      parser.call %w[--license]
+      expect(application_configuration.build_license).to eq(true)
+    end
+
+    it "disables LICENSE" do
+      parser.call %w[--no-license]
+      expect(application_configuration.build_license).to eq(false)
+    end
+
     it "enables minimum option" do
       parser.call %w[--min]
       expect(application_configuration.build_minimum).to eq(true)

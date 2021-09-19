@@ -27,6 +27,7 @@ module Rubysmith
         :build_git_hub,
         :build_git_lint,
         :build_guard,
+        :build_license,
         :build_minimum,
         :build_rake,
         :build_readme,

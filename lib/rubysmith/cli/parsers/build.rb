@@ -130,6 +130,15 @@ module Rubysmith
           end
         end
 
+        def add_license
+          client.on(
+            "--[no-]license",
+            "Add LICENSE documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_license = value
+          end
+        end
+
         def add_minimum
           client.on(
             "--min",

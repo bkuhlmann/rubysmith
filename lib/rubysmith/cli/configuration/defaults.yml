@@ -15,6 +15,7 @@
   :git_hub: false
   :git_lint: true
   :guard: true
+  :license: true
   :minimum: false
   :rake: true
   :readme: true
