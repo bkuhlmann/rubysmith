@@ -25,7 +25,7 @@ module Rubysmith
                .replace(/\n\s+gem/, "\n  gem")
                .replace(/  (?=.+(refinements|zeitwerk))/, "")
                .replace(/(\n+|\s+)end/, "\nend")
-               .replace(/\n\ngroup :(code_quality|test|tools) do\nend/, "")
+               .replace(/\n\ngroup :(code_quality|development|test|tools) do\nend/, "")
                .replace(/org"\n+/, "org\"\n\n")
 
         configuration.project_root.change_dir { client.start %w[install --quiet] }

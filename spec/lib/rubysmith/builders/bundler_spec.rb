@@ -358,6 +358,29 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
+    context "with Markdown only" do
+      let(:configuration) { minimum_configuration.with documentation_format: "md" }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :development do
+            gem "tocer", "~> 12.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with all options" do
       let :configuration do
         minimum_configuration.with build_amazing_print: true,
@@ -372,7 +395,8 @@ RSpec.describe Rubysmith::Builders::Bundler do
                                    build_rspec: true,
                                    build_rubocop: true,
                                    build_simple_cov: true,
-                                   build_zeitwerk: true
+                                   build_zeitwerk: true,
+                                   documentation_format: "md"
       end
 
       let :proof do
@@ -397,6 +421,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :development do
             gem "rake", "~> 13.0"
+            gem "tocer", "~> 12.0"
           end
 
           group :test do
