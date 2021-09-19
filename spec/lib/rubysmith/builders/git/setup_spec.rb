@@ -22,7 +22,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
     end
 
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_git: true }
+      let(:configuration) { application_configuration.minimize.with build_git: true }
 
       it "initializes repository" do
         expect(git_dir.exist?).to eq(true)
@@ -30,7 +30,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_git: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't initialize repository" do
         expect(git_dir.exist?).to eq(false)

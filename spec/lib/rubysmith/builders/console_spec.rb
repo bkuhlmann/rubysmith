@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
   describe "#call" do
     context "when enabled with non-dashed project name" do
-      let(:configuration) { minimum_configuration.with build_console: true }
+      let(:configuration) { application_configuration.minimize.with build_console: true }
 
       it "builds console script" do
         builder.call
@@ -39,7 +39,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
     context "when enabled with dashed project name" do
       let :configuration do
-        minimum_configuration.with project_name: "demo-test", build_console: true
+        application_configuration.minimize.with project_name: "demo-test", build_console: true
       end
 
       let(:build_path) { temp_dir.join "demo-test/bin/console" }
@@ -67,7 +67,7 @@ RSpec.describe Rubysmith::Builders::Console do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_console: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "does not build console script" do
         builder.call

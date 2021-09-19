@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_circle_ci: true }
+      let(:configuration) { application_configuration.minimize.with build_circle_ci: true }
 
       it "builds configuration" do
         builder.call
@@ -55,7 +55,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_circle_ci: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "does not build configuration" do
         builder.call

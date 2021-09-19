@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::Builders::Guard do
     before { builder.call }
 
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_guard: true }
+      let(:configuration) { application_configuration.minimize.with build_guard: true }
 
       it "builds binstub" do
         expect(binstub_path.read).to eq(<<~CONTENT)
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::Guard do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_guard: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build binstub" do
         expect(binstub_path.exist?).to eq(false)

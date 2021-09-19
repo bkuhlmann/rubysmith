@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
   include_context "with application container"
 
   describe "#call" do
-    let(:configuration) { minimum_configuration }
+    let(:configuration) { application_configuration.minimize }
 
     it "answers result" do
       expect(renderer.call("Name: <%= configuration.project_name %>.")).to eq("Name: test.")
@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace" do
-      let(:configuration) { minimum_configuration.with project_name: "example" }
+      let(:configuration) { application_configuration.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single filled namespace" do
-      let(:configuration) { minimum_configuration.with project_name: "example" }
+      let(:configuration) { application_configuration.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single empty namespace" do
-      let(:configuration) { minimum_configuration.with project_name: "example" }
+      let(:configuration) { application_configuration.minimize.with project_name: "example" }
 
       let(:content) { "<% namespace %>" }
 
@@ -83,7 +83,9 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple empty namespaces" do
-      let(:configuration) { minimum_configuration.with project_name: "example-one-two" }
+      let :configuration do
+        application_configuration.minimize.with project_name: "example-one-two"
+      end
 
       let(:content) { "<% namespace %>" }
 
@@ -105,7 +107,9 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple filled namespaces" do
-      let(:configuration) { minimum_configuration.with project_name: "example-one-two" }
+      let :configuration do
+        application_configuration.minimize.with project_name: "example-one-two"
+      end
 
       let :content do
         <<~CONTENT

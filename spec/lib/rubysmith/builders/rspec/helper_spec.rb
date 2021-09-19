@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     before { builder.call }
 
     context "when enabled with no options" do
-      let(:configuration) { minimum_configuration.with build_rspec: true }
+      let(:configuration) { application_configuration.minimize.with build_rspec: true }
 
       let :proof do
         <<~BODY
@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
     context "when enabled with dashed project name" do
       let :configuration do
-        minimum_configuration.with project_name: "demo-test", build_rspec: true
+        application_configuration.minimize.with project_name: "demo-test", build_rspec: true
       end
 
       let :proof do
@@ -103,7 +103,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     end
 
     context "when enabled with Refinements only" do
-      let(:configuration) { minimum_configuration.with build_rspec: true, build_refinements: true }
+      let :configuration do
+        application_configuration.minimize.with build_rspec: true, build_refinements: true
+      end
 
       let :proof do
         <<~BODY
@@ -149,7 +151,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     end
 
     context "when enabled with SimpleCov only" do
-      let(:configuration) { minimum_configuration.with build_rspec: true, build_simple_cov: true }
+      let :configuration do
+        application_configuration.minimize.with build_rspec: true, build_simple_cov: true
+      end
 
       let :proof do
         <<~BODY
@@ -195,11 +199,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     end
 
     context "when enabled with all options" do
-      let :configuration do
-        minimum_configuration.with build_rspec: true,
-                                   build_refinements: true,
-                                   build_simple_cov: true
-      end
+      let(:configuration) { application_configuration.maximize }
 
       let :proof do
         <<~BODY
@@ -248,7 +248,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_rspec: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build spec helper" do
         expect(spec_helper_path.exist?).to eq(false)

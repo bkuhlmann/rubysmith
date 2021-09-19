@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Setup do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_setup: true }
+      let(:configuration) { application_configuration.minimize.with build_setup: true }
 
       it "builds setup script without Pry support" do
         builder.call
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_setup: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "does not build setup script" do
         builder.call

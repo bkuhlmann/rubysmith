@@ -10,23 +10,17 @@ RSpec.shared_context "with application container" do
   let(:application_container) { Rubysmith::Container }
 
   let :application_configuration do
-    Rubysmith::CLI::Configuration::Loader.with_defaults.call.merge(**minimum_configuration.to_h)
-  end
-
-  let :minimum_configuration do
-    Rubysmith::CLI::Configuration::Content[
+    Rubysmith::CLI::Configuration::Loader.with_defaults.call.merge(
       author_email: "jill@example.com",
       author_name: "Jill Smith",
       author_url: "https://www.jillsmith.com",
-      builders_pragmater_comments: ["# frozen_string_literal: true"],
-      builders_pragmater_includes: ["**/*.rb"],
       git_hub_user: "hubber",
       now: Time.local(2020, 1, 1, 0, 0, 0),
       project_name: "test",
       target_root: temp_dir,
       template_root: Bundler.root.join("lib/rubysmith/templates"),
       version: Rubysmith::Identity::VERSION_LABEL
-    ]
+    )
   end
 
   let(:kernel) { class_spy Kernel }

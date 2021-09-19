@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     before { builder.call }
 
     context "when enabled with default options" do
-      let(:configuration) { minimum_configuration.with build_rake: true }
+      let(:configuration) { application_configuration.minimize.with build_rake: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -30,7 +30,9 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only Bundler Leak" do
-      let(:configuration) { minimum_configuration.with build_rake: true, build_bundler_leak: true }
+      let :configuration do
+        application_configuration.minimize.with build_rake: true, build_bundler_leak: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -49,7 +51,9 @@ RSpec.describe Rubysmith::Builders::Rake do
 
     context "when enabled with only Git and Git Lint" do
       let :configuration do
-        minimum_configuration.with build_rake: true, build_git: true, build_git_lint: true
+        application_configuration.minimize.with build_rake: true,
+                                                build_git: true,
+                                                build_git_lint: true
       end
 
       it "builds Rakefile" do
@@ -66,7 +70,9 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only Reek" do
-      let(:configuration) { minimum_configuration.with build_rake: true, build_reek: true }
+      let :configuration do
+        application_configuration.minimize.with build_rake: true, build_reek: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -84,7 +90,9 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only RSpec" do
-      let(:configuration) { minimum_configuration.with build_rake: true, build_rspec: true }
+      let :configuration do
+        application_configuration.minimize.with build_rake: true, build_rspec: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -102,7 +110,9 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only Rubocop" do
-      let(:configuration) { minimum_configuration.with build_rake: true, build_rubocop: true }
+      let :configuration do
+        application_configuration.minimize.with build_rake: true, build_rubocop: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -120,15 +130,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with all options" do
-      let :configuration do
-        minimum_configuration.with build_rake: true,
-                                   build_bundler_leak: true,
-                                   build_git: true,
-                                   build_git_lint: true,
-                                   build_reek: true,
-                                   build_rspec: true,
-                                   build_rubocop: true
-      end
+      let(:configuration) { application_configuration.maximize }
 
       let :proof do
         <<~CONTENT
@@ -157,7 +159,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_rake: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "builds Rakefile" do
         expect(rakefile_path.exist?).to eq(false)

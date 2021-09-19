@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_git: true }
+      let(:configuration) { application_configuration.minimize.with build_git: true }
 
       it "creates commit" do
         expect(commit).to match(
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_git: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't create commit" do
         expect(commit).to eq("")

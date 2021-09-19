@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled without any format" do
       let :configuration do
-        minimum_configuration.with build_readme: true, documentation_format: nil
+        application_configuration.minimize.with build_readme: true, documentation_format: nil
       end
 
       it "builds README with minimum options" do
@@ -28,7 +28,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled with Markdown format" do
       let :configuration do
-        minimum_configuration.with build_readme: true, documentation_format: "md"
+        application_configuration.minimize.with build_readme: true, documentation_format: "md"
       end
 
       it "builds README with minimum options" do
@@ -40,12 +40,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled with Markdown format and maximum options" do
       let :configuration do
-        minimum_configuration.with build_readme: true,
-                                   build_setup: true,
-                                   build_console: true,
-                                   build_circle_ci: true,
-                                   build_rubocop: true,
-                                   documentation_format: "md"
+        application_configuration.maximize.with build_readme: true, documentation_format: "md"
       end
 
       it "builds README" do
@@ -57,7 +52,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled with ASCII Doc format and minimum options" do
       let :configuration do
-        minimum_configuration.with build_readme: true, documentation_format: "adoc"
+        application_configuration.minimize.with build_readme: true, documentation_format: "adoc"
       end
 
       it "builds README" do
@@ -68,14 +63,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with ASCII Doc format and maximum options" do
-      let :configuration do
-        minimum_configuration.with build_readme: true,
-                                   build_circle_ci: true,
-                                   build_console: true,
-                                   build_rubocop: true,
-                                   build_setup: true,
-                                   documentation_format: "adoc"
-      end
+      let(:configuration) { application_configuration.maximize.with documentation_format: "adoc" }
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(
@@ -85,7 +73,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.minimize }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

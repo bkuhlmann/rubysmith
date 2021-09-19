@@ -16,7 +16,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Contribution do
 
     context "when enabled with Markdown format" do
       let :configuration do
-        minimum_configuration.with build_contributions: true, documentation_format: "md"
+        application_configuration.minimize.with build_contributions: true,
+                                                documentation_format: "md"
       end
 
       it "builds CONTRIBUTING" do
@@ -28,7 +29,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Contribution do
 
     context "when enabled with ASCII Doc format" do
       let :configuration do
-        minimum_configuration.with build_contributions: true, documentation_format: "adoc"
+        application_configuration.minimize.with build_contributions: true,
+                                                documentation_format: "adoc"
       end
 
       it "builds CONTRIBUTING" do
@@ -39,7 +41,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Contribution do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.minimize }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

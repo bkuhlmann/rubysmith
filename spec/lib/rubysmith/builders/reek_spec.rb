@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     before { builder.call }
 
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_reek: true }
+      let(:configuration) { application_configuration.minimize.with build_reek: true }
 
       it "builds configuration" do
         expect(configuration_path.read).to eq(<<~CONTENT)
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_reek: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build configuration" do
         expect(configuration_path.exist?).to eq(false)

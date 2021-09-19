@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { minimum_configuration.with build_git_hub: true }
+      let(:configuration) { application_configuration.minimize.with build_git_hub: true }
 
       it "builds issue template" do
         builder.call
@@ -57,7 +57,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_git_hub: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "does not build issue template" do
         builder.call

@@ -16,9 +16,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with MIT and Markdown format" do
       let :configuration do
-        minimum_configuration.with build_license: true,
-                                   documentation_license: "mit",
-                                   documentation_format: "md"
+        application_configuration.minimize.with build_license: true,
+                                                documentation_license: "mit",
+                                                documentation_format: "md"
       end
 
       it "builds LICENSE" do
@@ -30,9 +30,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with Apache and ASCII Doc format" do
       let :configuration do
-        minimum_configuration.with build_license: true,
-                                   documentation_license: "apache",
-                                   documentation_format: "adoc"
+        application_configuration.minimize.with build_license: true,
+                                                documentation_license: "apache",
+                                                documentation_format: "adoc"
       end
 
       it "builds LICENSE" do
@@ -43,7 +43,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.minimize }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

@@ -21,7 +21,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_git_lint: true,
         build_guard: true,
         build_maximum: true,
-        build_minimum: nil,
+        build_minimum: false,
         build_rake: true,
         build_reek: true,
         build_refinements: true,

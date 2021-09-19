@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with no additional options" do
-      let(:configuration) { minimum_configuration.with build_rubocop: true }
+      let(:configuration) { application_configuration.minimize.with build_rubocop: true }
 
       it_behaves_like "a binstub"
 
@@ -48,7 +48,9 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with RSpec" do
-      let(:configuration) { minimum_configuration.with build_rubocop: true, build_rspec: true }
+      let :configuration do
+        application_configuration.minimize.with build_rubocop: true, build_rspec: true
+      end
 
       it_behaves_like "a binstub"
 
@@ -66,7 +68,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { minimum_configuration.with build_rubocop: false }
+      let(:configuration) { application_configuration.minimize }
 
       it "doesn't build binstub" do
         builder.call
