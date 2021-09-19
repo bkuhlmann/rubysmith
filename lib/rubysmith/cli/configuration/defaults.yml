@@ -7,6 +7,7 @@
   :bundler_leak: true
   :changes: true
   :circle_ci: false
+  :conduct: true
   :console: true
   :debug: true
   :git: true

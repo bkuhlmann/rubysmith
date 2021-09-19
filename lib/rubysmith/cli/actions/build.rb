@@ -10,6 +10,7 @@ module Rubysmith
           Builders::Core,
           Builders::Documentation::Readme,
           Builders::Documentation::Change,
+          Builders::Documentation::Conduct,
           Builders::Git::Setup,
           Builders::Bundler,
           Builders::Rake,

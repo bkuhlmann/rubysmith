@@ -72,6 +72,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_circle_ci).to eq(false)
     end
 
+    it "enables CODE_OF_CONDUCT" do
+      parser.call %w[--conduct]
+      expect(application_configuration.build_conduct).to eq(true)
+    end
+
+    it "disables CODE_OF_CONDUCT" do
+      parser.call %w[--no-conduct]
+      expect(application_configuration.build_conduct).to eq(false)
+    end
+
     it "enables console" do
       parser.call %w[--console]
       expect(application_configuration.build_console).to eq(true)

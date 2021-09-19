@@ -67,6 +67,15 @@ module Rubysmith
           end
         end
 
+        def add_conduct
+          client.on(
+            "--[no-]conduct",
+            "Add CODE_OF_CONDUCT documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_conduct = value
+          end
+        end
+
         def add_debug
           client.on(
             "--[no-]debug",

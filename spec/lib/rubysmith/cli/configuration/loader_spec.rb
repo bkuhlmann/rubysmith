@@ -11,6 +11,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_bundler_leak: true,
       build_changes: true,
       build_circle_ci: false,
+      build_conduct: true,
       build_console: true,
       build_debug: true,
       build_git: true,
