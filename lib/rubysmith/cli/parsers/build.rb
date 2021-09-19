@@ -58,6 +58,15 @@ module Rubysmith
           end
         end
 
+        def add_contributions
+          client.on(
+            "--[no-]contributions",
+            "Add CONTRIBUTING documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_contributions = value
+          end
+        end
+
         def add_circle_ci
           client.on(
             "--[no-]circle_ci",

@@ -69,6 +69,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-circle_ci
           --no-conduct
           --no-console
+          --no-contributions
           --no-debug
           --no-git
           --no-git_hub
@@ -118,6 +119,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --circle_ci
           --conduct
           --console
+          --contributions
           --debug
           --git
           --git_hub
@@ -151,6 +153,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/setup",
           "test/CHANGES.md",
           "test/CODE_OF_CONDUCT.md",
+          "test/CONTRIBUTING.md",
           "test/Gemfile",
           "test/Gemfile.lock",
           "test/Guardfile",

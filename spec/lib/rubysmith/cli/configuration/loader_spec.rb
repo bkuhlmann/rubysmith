@@ -13,6 +13,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_circle_ci: false,
       build_conduct: true,
       build_console: true,
+      build_contributions: true,
       build_debug: true,
       build_git: true,
       build_git_hub: false,

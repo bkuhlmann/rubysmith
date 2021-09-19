@@ -9,6 +9,7 @@
   :circle_ci: false
   :conduct: true
   :console: true
+  :contributions: true
   :debug: true
   :git: true
   :git_hub: false

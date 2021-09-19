@@ -92,6 +92,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_console).to eq(false)
     end
 
+    it "enables contributions" do
+      parser.call %w[--contributions]
+      expect(application_configuration.build_contributions).to eq(true)
+    end
+
+    it "disables contributions" do
+      parser.call %w[--no-contributions]
+      expect(application_configuration.build_contributions).to eq(false)
+    end
+
     it "enables Debug" do
       parser.call %w[--debug]
       expect(application_configuration.build_debug).to eq(true)

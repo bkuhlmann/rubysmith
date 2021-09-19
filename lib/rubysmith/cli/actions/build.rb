@@ -11,6 +11,7 @@ module Rubysmith
           Builders::Documentation::Readme,
           Builders::Documentation::Change,
           Builders::Documentation::Conduct,
+          Builders::Documentation::Contribution,
           Builders::Git::Setup,
           Builders::Bundler,
           Builders::Rake,

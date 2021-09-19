@@ -21,6 +21,7 @@ module Rubysmith
         :build_circle_ci,
         :build_conduct,
         :build_console,
+        :build_contributions,
         :build_debug,
         :build_git,
         :build_git_hub,
