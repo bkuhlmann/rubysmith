@@ -139,6 +139,15 @@ module Rubysmith
           end
         end
 
+        def add_maximum
+          client.on(
+            "--max",
+            "Use maximum/enabled options. #{default __method__}."
+          ) do |value|
+            configuration.maximize.build_maximum = value
+          end
+        end
+
         def add_minimum
           client.on(
             "--min",

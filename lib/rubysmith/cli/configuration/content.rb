@@ -28,6 +28,7 @@ module Rubysmith
         :build_git_lint,
         :build_guard,
         :build_license,
+        :build_maximum,
         :build_minimum,
         :build_rake,
         :build_readme,
@@ -62,12 +63,9 @@ module Rubysmith
 
         def with(attributes) = self.class.new(to_h.merge(attributes))
 
-        def minimize
-          to_h.except(:build_minimum)
-              .select { |key, _value| key.start_with? "build_" }
-              .each { |key, _value| self[key] = false }
-              .then { self }
-        end
+        def maximize = update_build_options(true)
+
+        def minimize = update_build_options(false)
 
         def project_label = project_name.titleize
 
@@ -83,6 +81,15 @@ module Rubysmith
 
         def to_pathway
           Pathway[start_root: template_root, start_path: template_path, end_root: target_root]
+        end
+
+        private
+
+        def update_build_options value
+          to_h.except(:build_minimum)
+              .select { |key, _value| key.start_with? "build_" }
+              .each { |key, _value| self[key] = value }
+              .then { self }
         end
       end
     end

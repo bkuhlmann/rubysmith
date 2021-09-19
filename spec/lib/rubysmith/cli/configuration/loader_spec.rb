@@ -20,6 +20,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_git_lint: true,
       build_guard: true,
       build_license: true,
+      build_maximum: false,
       build_minimum: false,
       build_rake: true,
       build_readme: true,

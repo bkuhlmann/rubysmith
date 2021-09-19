@@ -33,6 +33,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git_lint: nil,
         build_guard: nil,
         build_license: nil,
+        build_maximum: nil,
         build_minimum: nil,
         build_rake: nil,
         build_readme: nil,
@@ -74,6 +75,50 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     end
   end
 
+  describe "#maximum" do
+    let :proof do
+      described_class[
+        build_amazing_print: true,
+        build_bundler_leak: true,
+        build_changes: true,
+        build_circle_ci: true,
+        build_conduct: true,
+        build_console: true,
+        build_contributions: true,
+        build_debug: true,
+        build_git: true,
+        build_git_hub: true,
+        build_git_lint: true,
+        build_guard: true,
+        build_license: true,
+        build_maximum: true,
+        build_minimum: nil,
+        build_rake: true,
+        build_readme: true,
+        build_reek: true,
+        build_refinements: true,
+        build_rspec: true,
+        build_rubocop: true,
+        build_setup: true,
+        build_simple_cov: true,
+        build_zeitwerk: true,
+        project_name: "test",
+        target_root: target_root,
+        template_root: template_root
+      ]
+    end
+
+    it "disables all build options except minimum" do
+      content.build_maximum = true
+      expect(content.maximize).to eq(proof)
+    end
+
+    it "mutates itself" do
+      content.maximize
+      expect(content).to have_attributes(build_amazing_print: true)
+    end
+  end
+
   describe "#minimize" do
     let :proof do
       described_class[
@@ -90,6 +135,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_git_lint: false,
         build_guard: false,
         build_license: false,
+        build_maximum: false,
         build_minimum: true,
         build_rake: false,
         build_readme: false,

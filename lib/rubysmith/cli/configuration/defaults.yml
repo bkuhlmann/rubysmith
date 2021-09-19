@@ -16,6 +16,7 @@
   :git_lint: true
   :guard: true
   :license: true
+  :maximum: false
   :minimum: false
   :rake: true
   :readme: true

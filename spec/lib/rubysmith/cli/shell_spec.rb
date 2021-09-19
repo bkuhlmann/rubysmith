@@ -109,7 +109,58 @@ RSpec.describe Rubysmith::CLI::Shell do
       end
     end
 
-    context "with maximum build" do
+    context "with maximum forced build" do
+      let :options do
+        %w[
+          --build
+          test
+          --max
+        ]
+      end
+
+      let :files do
+        [
+          "test/.circleci/config.yml",
+          "test/.git/COMMIT_EDITMSG",
+          "test/.git/MERGE_RR",
+          "test/.github/ISSUE_TEMPLATE.md",
+          "test/.github/PULL_REQUEST_TEMPLATE.md",
+          "test/.reek.yml",
+          "test/.rubocop.yml",
+          "test/.ruby-version",
+          "test/bin/console",
+          "test/bin/guard",
+          "test/bin/rubocop",
+          "test/bin/setup",
+          "test/CHANGES.md",
+          "test/CODE_OF_CONDUCT.md",
+          "test/CONTRIBUTING.md",
+          "test/Gemfile",
+          "test/Gemfile.lock",
+          "test/Guardfile",
+          "test/lib/test.rb",
+          "test/LICENSE.md",
+          "test/Rakefile",
+          "test/README.md",
+          "test/spec/spec_helper.rb",
+          "test/spec/support/shared_contexts/temp_dir.rb",
+          "test/tags"
+        ]
+      end
+
+      it "builds maximum skeleton" do
+        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
+
+        temp_dir.change_dir do
+          Bundler.definition true
+          Bundler.with_unbundled_env { shell.call options }
+        end
+
+        expect(project_files).to contain_exactly(*files)
+      end
+    end
+
+    context "with maximum optional build" do
       let :options do
         %w[
           --build

@@ -10,6 +10,29 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
+    let :enabled_attributes do
+      {
+        build_amazing_print: true,
+        build_bundler_leak: true,
+        build_circle_ci: true,
+        build_console: true,
+        build_debug: true,
+        build_git: true,
+        build_git_lint: true,
+        build_guard: true,
+        build_maximum: true,
+        build_minimum: nil,
+        build_rake: true,
+        build_reek: true,
+        build_refinements: true,
+        build_rspec: true,
+        build_rubocop: true,
+        build_setup: true,
+        build_simple_cov: true,
+        build_zeitwerk: true
+      }
+    end
+
     let :disabled_attributes do
       {
         build_amazing_print: false,
@@ -20,6 +43,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_git: false,
         build_git_lint: false,
         build_guard: false,
+        build_maximum: false,
         build_minimum: true,
         build_rake: false,
         build_reek: false,
@@ -160,6 +184,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "disables LICENSE" do
       parser.call %w[--no-license]
       expect(application_configuration.build_license).to eq(false)
+    end
+
+    it "enables maximum option" do
+      parser.call %w[--max]
+      expect(application_configuration.build_maximum).to eq(true)
+    end
+
+    it "enables maximum and disables all other build options" do
+      parser.call %w[--max]
+      expect(application_configuration).to have_attributes(enabled_attributes)
     end
 
     it "enables minimum option" do
