@@ -73,6 +73,10 @@ module Rubysmith
 
         def project_path = project_name.snakecase
 
+        def ascii_doc? = documentation_format == "adoc"
+
+        def markdown? = documentation_format == "md"
+
         def to_pathway
           Pathway[start_root: template_root, start_path: template_path, end_root: target_root]
         end

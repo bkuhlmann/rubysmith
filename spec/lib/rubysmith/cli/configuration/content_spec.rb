@@ -173,6 +173,30 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     end
   end
 
+  describe "#ascii_doc?" do
+    it "answers true when ASCII Doc format" do
+      updated_content = content.merge documentation_format: "adoc"
+      expect(updated_content.ascii_doc?).to eq(true)
+    end
+
+    it "answers false when other format" do
+      updated_content = content.merge documentation_format: "test"
+      expect(updated_content.ascii_doc?).to eq(false)
+    end
+  end
+
+  describe "#markdown?" do
+    it "answers true when Markdown format" do
+      updated_content = content.merge documentation_format: "md"
+      expect(updated_content.markdown?).to eq(true)
+    end
+
+    it "answers false when other format" do
+      updated_content = content.merge documentation_format: "test"
+      expect(updated_content.markdown?).to eq(false)
+    end
+  end
+
   describe "#to_pathway" do
     it "answers pathway" do
       expect(content.to_pathway).to eq(
