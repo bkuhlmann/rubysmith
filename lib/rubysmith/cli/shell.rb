@@ -16,7 +16,7 @@ module Rubysmith
         case parse arguments
           in action_config: Symbol => action then config action
           in action_build: true then build
-          in action_version: String => version then puts version
+          in action_version: true then logger.info configuration.version
           else usage
         end
       end
@@ -28,7 +28,7 @@ module Rubysmith
       def parse arguments = []
         parser.call arguments
       rescue StandardError => error
-        puts error.message
+        logger.error error.message
       end
 
       def config(action) = actions.fetch(__method__).call(action)
@@ -36,6 +36,8 @@ module Rubysmith
       def build = actions.fetch(__method__).call
 
       def usage = logger.unknown(parser.to_s)
+
+      def configuration = container[__method__]
 
       def logger = container[__method__]
     end

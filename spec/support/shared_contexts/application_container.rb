@@ -24,7 +24,8 @@ RSpec.shared_context "with application container" do
       now: Time.local(2020, 1, 1, 0, 0, 0),
       project_name: "test",
       target_root: temp_dir,
-      template_root: Bundler.root.join("lib/rubysmith/templates")
+      template_root: Bundler.root.join("lib/rubysmith/templates"),
+      version: Rubysmith::Identity::VERSION_LABEL
     ]
   end
 

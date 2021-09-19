@@ -47,7 +47,7 @@ module Rubysmith
 
         def add_version
           client.on "-v", "--version", "Show gem version." do
-            configuration.action_version = Identity::VERSION_LABEL
+            configuration.action_version = true
           end
         end
 

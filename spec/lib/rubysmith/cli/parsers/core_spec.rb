@@ -67,12 +67,12 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
 
     it "answers version (short)" do
       parser.call %w[-v]
-      expect(application_configuration.action_version).to match_cli_version
+      expect(application_configuration.action_version).to eq(true)
     end
 
     it "answers version (long)" do
       parser.call %w[--version]
-      expect(application_configuration.action_version).to match_cli_version
+      expect(application_configuration.action_version).to eq(true)
     end
 
     it "enables help (short)" do

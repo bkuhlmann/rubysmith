@@ -175,7 +175,7 @@ RSpec.describe Rubysmith::CLI::Shell do
 
     it "prints version" do
       expectation = proc { shell.call %w[--version] }
-      expect(&expectation).to output(match_cli_version).to_stdout
+      expect(&expectation).to output(/Rubysmith\s\d+\.\d+\.\d+/).to_stdout
     end
 
     it "prints help (usage)" do
