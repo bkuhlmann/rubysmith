@@ -24,9 +24,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
 
-          GC.auto_compact = true
-          GC.verify_compaction_references double_heap: true, toward: :empty
-
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
 
           RSpec.configure do |config|
@@ -68,9 +65,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           Bundler.require :tools
 
           require "demo/test"
-
-          GC.auto_compact = true
-          GC.verify_compaction_references double_heap: true, toward: :empty
 
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
 
@@ -114,9 +108,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
           require "refinements"
-
-          GC.auto_compact = true
-          GC.verify_compaction_references double_heap: true, toward: :empty
 
           using Refinements::Pathnames
 
@@ -165,9 +156,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
 
-          GC.auto_compact = true
-          GC.verify_compaction_references double_heap: true, toward: :empty
-
           Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
 
           RSpec.configure do |config|
@@ -211,9 +199,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
           require "refinements"
-
-          GC.auto_compact = true
-          GC.verify_compaction_references double_heap: true, toward: :empty
 
           using Refinements::Pathnames
 

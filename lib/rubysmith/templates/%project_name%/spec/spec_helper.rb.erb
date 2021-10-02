@@ -11,9 +11,6 @@ require "<%= configuration.project_path %>"
   require "refinements"
 <% end %>
 
-GC.auto_compact = true
-GC.verify_compaction_references double_heap: true, toward: :empty
-
 <% if configuration.build_refinements %>
   using Refinements::Pathnames
 
