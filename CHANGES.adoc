@@ -1,5 +1,12 @@
 = Changes
 
+== 0.15.0 (2021-10-09)
+
+* Updated to Refinements 8.4.0 - Brooke Kuhlmann
+* Updated to Tocer 12.1.0 - Brooke Kuhlmann
+* Removed RSpec spec helper GC automatic compaction - Brooke Kuhlmann
+* Refactored RSpec fixtures - Brooke Kuhlmann
+
 == 0.14.0 (2021-09-19)
 
 * Added CLI CHANGES build option - Brooke Kuhlmann
