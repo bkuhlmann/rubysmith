@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Pragma do
 
   describe "#call" do
     it "adds pragmas" do
-      test_path.make_ancestors.touch
+      test_path.deep_touch
       builder.call
 
       expect(test_path.read).to eq("# frozen_string_literal: true\n")

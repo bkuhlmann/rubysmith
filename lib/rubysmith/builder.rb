@@ -88,7 +88,7 @@ module Rubysmith
 
     def touch
       logger.info "Touching: #{relative_build_path}"
-      build_path.make_ancestors.touch
+      build_path.deep_touch
       self
     end
 

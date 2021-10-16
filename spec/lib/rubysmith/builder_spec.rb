@@ -52,7 +52,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#delete" do
-    before { build_path.make_ancestors.touch }
+    before { build_path.deep_touch }
 
     it "logs information" do
       build = proc { builder.delete }
@@ -146,7 +146,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#permit" do
-    before { build_path.make_ancestors.touch }
+    before { build_path.deep_touch }
 
     it "logs information" do
       build = proc { builder.permit 0o755 }
@@ -194,7 +194,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#rename" do
-    before { build_path.make_ancestors.touch }
+    before { build_path.deep_touch }
 
     it "logs information" do
       build = proc { builder.rename "identity.backup" }
