@@ -49,9 +49,6 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
           ## Details
           <!-- Optional. List the key features/highlights as bullet points. -->
-
-          ## Notes
-          <!-- Optional. List additional notes/references as bullet points. -->
         CONTENT
       end
     end
