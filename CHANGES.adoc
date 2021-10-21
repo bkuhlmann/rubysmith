@@ -1,5 +1,13 @@
 = Changes
 
+== 0.16.0 (2021-10-20)
+
+* Updated to Refinements 8.5.0 - Brooke Kuhlmann
+* Updated to Zeitwerk 2.5.0 - Brooke Kuhlmann
+* Removed notes from pull request template - Brooke Kuhlmann
+* Refactored Git builder specs to use path argument - Brooke Kuhlmann
+* Refactored implementation to use Pathname deep touch - Brooke Kuhlmann
+
 == 0.15.0 (2021-10-09)
 
 * Updated to Refinements 8.4.0 - Brooke Kuhlmann
