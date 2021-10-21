@@ -16,11 +16,11 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
 
   describe "#call" do
     before do
-      project_dir.make_path.change_dir do
+      project_dir.make_path.change_dir do |path|
         `git init`
         `git config user.name "#{configuration.author_name}"`
         `git config user.email "#{configuration.author_email}"`
-        project_dir.join("test.txt").touch
+        path.join("test.txt").touch
       end
 
       temp_dir.change_dir { builder.call }

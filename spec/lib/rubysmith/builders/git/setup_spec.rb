@@ -15,8 +15,8 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
 
   describe "#call" do
     before do
-      temp_dir.change_dir do
-        temp_dir.join("test").make_path
+      temp_dir.change_dir do |path|
+        path.join("test").make_path
         builder.call
       end
     end
