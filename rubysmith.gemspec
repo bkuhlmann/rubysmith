@@ -33,8 +33,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "tocer", "~> 12.1"
   spec.add_dependency "zeitwerk", "~> 2.5"
 
-  spec.files = Dir.glob "lib/**/*", File::FNM_DOTMATCH
-  spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
+  spec.bindir = "exe"
   spec.executables << "rubysmith"
+  spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
+  spec.files = Dir.glob "lib/**/*", File::FNM_DOTMATCH
   spec.require_paths = ["lib"]
 end
