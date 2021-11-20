@@ -87,6 +87,31 @@ RSpec.describe Rubysmith::Builders::Bundler do
       it_behaves_like "a bundle"
     end
 
+    context "with Dead End only" do
+      let :configuration do
+        application_configuration.minimize.with build_dead_end: true, documentation_format: nil
+      end
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :tools do
+            gem "dead_end", "~> 3.0"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+
+      it_behaves_like "a bundle"
+    end
+
     context "with Debug only" do
       let :configuration do
         application_configuration.minimize.with build_debug: true, documentation_format: nil
@@ -429,6 +454,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.3"
+            gem "dead_end", "~> 3.0"
             gem "debug", "~> 1.1"
           end
         CONTENT

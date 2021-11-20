@@ -94,6 +94,15 @@ module Rubysmith
           end
         end
 
+        def add_dead_end
+          client.on(
+            "--[no-]dead_end",
+            "Add Dead End gem. #{default __method__}."
+          ) do |value|
+            configuration.build_dead_end = value
+          end
+        end
+
         def add_debug
           client.on(
             "--[no-]debug",

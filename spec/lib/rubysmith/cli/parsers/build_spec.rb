@@ -16,6 +16,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_bundler_leak: true,
         build_circle_ci: true,
         build_console: true,
+        build_dead_end: true,
         build_debug: true,
         build_git: true,
         build_git_lint: true,
@@ -39,6 +40,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
         build_bundler_leak: false,
         build_circle_ci: false,
         build_console: false,
+        build_dead_end: false,
         build_debug: false,
         build_git: false,
         build_git_lint: false,
@@ -134,6 +136,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     it "disables contributions" do
       parser.call %w[--no-contributions]
       expect(application_configuration.build_contributions).to eq(false)
+    end
+
+    it "enables DeadEnd" do
+      parser.call %w[--dead_end]
+      expect(application_configuration.build_dead_end).to eq(true)
+    end
+
+    it "disables Dead End" do
+      parser.call %w[--no-dead_end]
+      expect(application_configuration.build_dead_end).to eq(false)
     end
 
     it "enables Debug" do

@@ -23,6 +23,7 @@ module Rubysmith
         :build_conduct,
         :build_console,
         :build_contributions,
+        :build_dead_end,
         :build_debug,
         :build_git,
         :build_git_hub,
