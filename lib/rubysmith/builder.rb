@@ -5,7 +5,6 @@ require "open3"
 require "logger"
 
 module Rubysmith
-  # :reek:TooManyMethods
   # Provides common functionality necessary for all builders.
   class Builder
     using Refinements::Pathnames
