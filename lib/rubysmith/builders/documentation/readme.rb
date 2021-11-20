@@ -29,6 +29,7 @@ module Rubysmith
           builder.call(configuration.with(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace("\n\n\n", "\n\n")
+                 .replace("\n\n\n\n\n", "\n\n")
         end
 
         def render_table_of_contents

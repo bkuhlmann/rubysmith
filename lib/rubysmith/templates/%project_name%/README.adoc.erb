@@ -64,14 +64,18 @@ Read link:https://semver.org[Semantic Versioning] for details. Briefly, it means
 * Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
 * Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
 
+<% if configuration.build_conduct %>
 == Code of Conduct
 
 Please note that this project is released with a link:CODE_OF_CONDUCT.adoc[CODE OF CONDUCT]. By
 participating in this project you agree to abide by its terms.
+<% end %>
 
+<% if configuration.build_contributions %>
 == Contributions
 
 Read link:CONTRIBUTING.adoc[CONTRIBUTING] for details.
+<% end %>
 
 <% if configuration.build_community %>
 == Community
@@ -80,14 +84,18 @@ Feel free to link:<%= configuration.community_url %>[join the commmunity] for di
 to this project and much more.
 <% end %>
 
+<% if configuration.build_license %>
 == License
 
 Read link:LICENSE.adoc[LICENSE] for details.
+<% end %>
 
+<% if configuration.build_changes %>
 == History
 
 Read link:CHANGES.adoc[CHANGES] for details.
 Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+<% end %>
 
 == Credits
 

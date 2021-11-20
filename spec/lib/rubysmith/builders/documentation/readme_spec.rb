@@ -40,8 +40,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled with Markdown format and maximum options" do
       let :configuration do
-        application_configuration.maximize.with build_readme: true,
-                                                community_url: "https://www.example.com/community",
+        application_configuration.maximize.with community_url: "https://www.example.com/community",
                                                 documentation_format: "md"
       end
 
