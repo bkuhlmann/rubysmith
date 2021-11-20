@@ -19,7 +19,7 @@
   - [Contributions](#contributions)
   - [Community](#community)
   - [License](#license)
-  - [History](#history)
+  - [Changes](#changes)
   - [Credits](#credits)
 
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
@@ -78,7 +78,7 @@ project and much more.
 
 Read [LICENSE](LICENSE.md) for details.
 
-## History
+## Changes
 
 Read [CHANGES](CHANGES.md) for details.
 
