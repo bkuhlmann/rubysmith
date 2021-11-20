@@ -43,7 +43,7 @@ module Rubysmith
         def add_changes
           client.on(
             "--[no-]changes",
-            "Add CHANGES documentation. #{default __method__}."
+            "Add changes documentation. #{default __method__}."
           ) do |value|
             configuration.build_changes = value
           end
@@ -61,7 +61,7 @@ module Rubysmith
         def add_contributions
           client.on(
             "--[no-]contributions",
-            "Add CONTRIBUTING documentation. #{default __method__}."
+            "Add contributions documentation. #{default __method__}."
           ) do |value|
             configuration.build_contributions = value
           end
@@ -88,7 +88,7 @@ module Rubysmith
         def add_conduct
           client.on(
             "--[no-]conduct",
-            "Add CODE_OF_CONDUCT documentation. #{default __method__}."
+            "Add code of conduct documentation. #{default __method__}."
           ) do |value|
             configuration.build_conduct = value
           end
@@ -142,7 +142,7 @@ module Rubysmith
         def add_license
           client.on(
             "--[no-]license",
-            "Add LICENSE documentation. #{default __method__}."
+            "Add license documentation. #{default __method__}."
           ) do |value|
             configuration.build_license = value
           end
@@ -178,7 +178,7 @@ module Rubysmith
         def add_readme
           client.on(
             "--[no-]readme",
-            "Add README documentation. #{default __method__}."
+            "Add readme documentation. #{default __method__}."
           ) do |value|
             configuration.build_readme = value
           end
