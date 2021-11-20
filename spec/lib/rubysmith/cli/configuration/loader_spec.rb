@@ -31,8 +31,10 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_setup: true,
       build_simple_cov: true,
       build_zeitwerk: true,
-      builders_pragmater_comments: ["# frozen_string_literal: true"],
-      builders_pragmater_includes: [
+      documentation_format: "md",
+      documentation_license: "mit",
+      extensions_pragmater_comments: ["# frozen_string_literal: true"],
+      extensions_pragmater_includes: [
         "**/*.rb",
         "**/*bin/console",
         "**/*bin/guard",
@@ -41,8 +43,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
         "**/*Guardfile",
         "**/*Rakefile"
       ],
-      documentation_format: "md",
-      documentation_license: "mit",
       git_hub_user: nil,
       now: nil
     ]

@@ -23,8 +23,8 @@ module Rubysmith
         {
           action: :insert,
           root_dir: configuration.project_root,
-          comments: configuration.builders_pragmater_comments,
-          includes: configuration.builders_pragmater_includes
+          comments: configuration.extensions_pragmater_comments,
+          includes: configuration.extensions_pragmater_includes
         }
       end
     end

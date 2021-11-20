@@ -203,7 +203,10 @@ variables. The default configuration is as follows:
   :setup: true
   :simple_cov: true
   :zeitwerk: true
-:builders:
+:documentation:
+  :format: "md"
+  :license: "mit"
+:extensions:
   :pragmater:
     :comments:
       - "# frozen_string_literal: true"
@@ -215,9 +218,6 @@ variables. The default configuration is as follows:
       - "**/*Gemfile"
       - "**/*Guardfile"
       - "**/*Rakefile"
-:documentation:
-  :format: "md"
-  :license: "mit"
 :git_hub:
   :user:
 ----

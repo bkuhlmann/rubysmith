@@ -27,7 +27,10 @@
   :setup: true
   :simple_cov: true
   :zeitwerk: true
-:builders:
+:documentation:
+  :format: "md"
+  :license: "mit"
+:extensions:
   :pragmater:
     :comments:
       - "# frozen_string_literal: true"
@@ -39,8 +42,5 @@
       - "**/*Gemfile"
       - "**/*Guardfile"
       - "**/*Rakefile"
-:documentation:
-  :format: "md"
-  :license: "mit"
 :git_hub:
   :user:
