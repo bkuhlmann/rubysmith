@@ -320,8 +320,8 @@ Read link:LICENSE.adoc[LICENSE] for details.
 == History
 
 Read link:CHANGES.adoc[CHANGES] for details.
-Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
 
 == Credits
 
-Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
+* Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+* Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].

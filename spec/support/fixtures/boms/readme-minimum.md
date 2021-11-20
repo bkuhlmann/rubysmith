@@ -46,4 +46,5 @@ Read [Semantic Versioning](https://semver.org) for details. Briefly, it means:
 
 ## Credits
 
-Engineered by [Jill Smith](https://www.jillsmith.com).
+- Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).
+- Engineered by [Jill Smith](https://www.jillsmith.com).

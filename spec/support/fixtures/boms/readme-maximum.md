@@ -81,8 +81,8 @@ Read [LICENSE](LICENSE.md) for details.
 ## History
 
 Read [CHANGES](CHANGES.md) for details.
-Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).
 
 ## Credits
 
-Engineered by [Jill Smith](https://www.jillsmith.com).
+- Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).
+- Engineered by [Jill Smith](https://www.jillsmith.com).

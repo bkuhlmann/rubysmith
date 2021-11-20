@@ -39,4 +39,5 @@ Read link:https://semver.org[Semantic Versioning] for details. Briefly, it means
 
 == Credits
 
-Engineered by link:https://www.jillsmith.com[Jill Smith].
+* Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+* Engineered by link:https://www.jillsmith.com[Jill Smith].

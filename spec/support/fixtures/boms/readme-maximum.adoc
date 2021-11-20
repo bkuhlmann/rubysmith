@@ -77,8 +77,8 @@ Read link:LICENSE.adoc[LICENSE] for details.
 == History
 
 Read link:CHANGES.adoc[CHANGES] for details.
-Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
 
 == Credits
 
-Engineered by link:https://www.jillsmith.com[Jill Smith].
+* Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+* Engineered by link:https://www.jillsmith.com[Jill Smith].
