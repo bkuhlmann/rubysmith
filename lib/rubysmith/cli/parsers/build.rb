@@ -76,6 +76,15 @@ module Rubysmith
           end
         end
 
+        def add_community
+          client.on(
+            "--[no-]community",
+            "Add community documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_community = value
+          end
+        end
+
         def add_conduct
           client.on(
             "--[no-]conduct",

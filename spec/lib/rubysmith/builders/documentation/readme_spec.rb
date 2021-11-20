@@ -40,7 +40,9 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
     context "when enabled with Markdown format and maximum options" do
       let :configuration do
-        application_configuration.maximize.with build_readme: true, documentation_format: "md"
+        application_configuration.maximize.with build_readme: true,
+                                                community_url: "https://www.example.com/community",
+                                                documentation_format: "md"
       end
 
       it "builds README" do
@@ -63,7 +65,10 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with ASCII Doc format and maximum options" do
-      let(:configuration) { application_configuration.maximize.with documentation_format: "adoc" }
+      let :configuration do
+        application_configuration.maximize.with community_url: "https://www.example.com/community",
+                                                documentation_format: "adoc"
+      end
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(

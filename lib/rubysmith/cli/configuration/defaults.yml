@@ -7,6 +7,7 @@
   :bundler_leak: true
   :changes: true
   :circle_ci: false
+  :community: false
   :conduct: true
   :console: true
   :contributions: true
@@ -27,6 +28,8 @@
   :setup: true
   :simple_cov: true
   :zeitwerk: true
+:community:
+  :url:
 :documentation:
   :format: "md"
   :license: "mit"

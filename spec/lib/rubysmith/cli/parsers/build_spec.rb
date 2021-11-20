@@ -96,6 +96,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_circle_ci).to eq(false)
     end
 
+    it "enables community documentation" do
+      parser.call %w[--community]
+      expect(application_configuration.build_community).to eq(true)
+    end
+
+    it "disables community documentation" do
+      parser.call %w[--no-community]
+      expect(application_configuration.build_community).to eq(false)
+    end
+
     it "enables CODE_OF_CONDUCT" do
       parser.call %w[--conduct]
       expect(application_configuration.build_conduct).to eq(true)

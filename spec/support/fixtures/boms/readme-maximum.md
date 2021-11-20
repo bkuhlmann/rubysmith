@@ -17,6 +17,7 @@
   - [Versioning](#versioning)
   - [Code of Conduct](#code-of-conduct)
   - [Contributions](#contributions)
+  - [Community](#community)
   - [License](#license)
   - [History](#history)
   - [Credits](#credits)
@@ -67,6 +68,11 @@ participating in this project you agree to abide by its terms.
 ## Contributions
 
 Read [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Community
+
+Feel free to [join the community](https://www.example.com/community) for discussions related to this
+project and much more.
 
 ## License
 
