@@ -10,53 +10,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
-    let :enabled_attributes do
-      {
-        build_amazing_print: true,
-        build_bundler_leak: true,
-        build_circle_ci: true,
-        build_console: true,
-        build_dead_end: true,
-        build_debug: true,
-        build_git: true,
-        build_git_lint: true,
-        build_guard: true,
-        build_maximum: true,
-        build_minimum: false,
-        build_rake: true,
-        build_reek: true,
-        build_refinements: true,
-        build_rspec: true,
-        build_rubocop: true,
-        build_setup: true,
-        build_simple_cov: true,
-        build_zeitwerk: true
-      }
-    end
-
-    let :disabled_attributes do
-      {
-        build_amazing_print: false,
-        build_bundler_leak: false,
-        build_circle_ci: false,
-        build_console: false,
-        build_dead_end: false,
-        build_debug: false,
-        build_git: false,
-        build_git_lint: false,
-        build_guard: false,
-        build_maximum: false,
-        build_minimum: true,
-        build_rake: false,
-        build_reek: false,
-        build_refinements: false,
-        build_rspec: false,
-        build_rubocop: false,
-        build_setup: false,
-        build_simple_cov: false,
-        build_zeitwerk: false
-      }
-    end
+    let(:empty_configuration) { Rubysmith::CLI::Configuration::Content.new }
 
     it "enables Amazing Print" do
       parser.call %w[--amazing_print]
@@ -215,7 +169,12 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
 
     it "enables maximum and disables all other build options" do
       parser.call %w[--max]
-      expect(application_configuration).to have_attributes(enabled_attributes)
+      proof = empty_configuration.maximize
+                                 .to_h
+                                 .select { |key, _value| key.start_with? "build_" }
+                                 .merge build_minimum: false
+
+      expect(application_configuration).to have_attributes(proof)
     end
 
     it "enables minimum option" do
@@ -225,7 +184,12 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
 
     it "enables minimum and disables all other build options" do
       parser.call %w[--min]
-      expect(application_configuration).to have_attributes(disabled_attributes)
+      proof = empty_configuration.minimize
+                                 .to_h
+                                 .select { |key, _value| key.start_with? "build_" }
+                                 .merge build_maximum: false
+
+      expect(application_configuration).to have_attributes(proof)
     end
 
     it "enables Rake" do

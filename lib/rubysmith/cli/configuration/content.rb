@@ -89,9 +89,9 @@ module Rubysmith
         private
 
         def update_build_options value
-          to_h.except(:build_minimum)
-              .select { |key, _value| key.start_with? "build_" }
+          to_h.select { |key, _value| key.start_with? "build_" }
               .each { |key, _value| self[key] = value }
+              .tap { self[:build_minimum] = !value }
               .then { self }
         end
       end

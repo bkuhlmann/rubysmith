@@ -97,7 +97,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_guard: true,
         build_license: true,
         build_maximum: true,
-        build_minimum: nil,
+        build_minimum: false,
         build_rake: true,
         build_readme: true,
         build_reek: true,
