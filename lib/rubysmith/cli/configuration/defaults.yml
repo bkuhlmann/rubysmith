@@ -32,8 +32,8 @@
 :community:
   :url:
 :documentation:
-  :format: "md"
-  :license: "mit"
+  :format: "adoc"
+  :license: "hippocratic"
 :extensions:
   :pragmater:
     :comments:

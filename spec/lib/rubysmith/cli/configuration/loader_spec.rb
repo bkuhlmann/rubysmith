@@ -34,8 +34,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_simple_cov: true,
       build_zeitwerk: true,
       community_url: nil,
-      documentation_format: "md",
-      documentation_license: "mit",
+      documentation_format: "adoc",
+      documentation_license: "hippocratic",
       extensions_pragmater_comments: ["# frozen_string_literal: true"],
       extensions_pragmater_includes: [
         "**/*.rb",
