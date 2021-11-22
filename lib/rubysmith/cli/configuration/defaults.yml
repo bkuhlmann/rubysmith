@@ -34,6 +34,7 @@
   :url:
 :documentation:
   :format: "adoc"
+  :url:
 :extensions:
   :pragmater:
     :comments:

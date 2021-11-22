@@ -44,6 +44,7 @@ module Rubysmith
         :build_zeitwerk,
         :community_url,
         :documentation_format,
+        :documentation_url,
         :extensions_pragmater_comments,
         :extensions_pragmater_includes,
         :git_hub_user,

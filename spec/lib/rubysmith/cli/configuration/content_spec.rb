@@ -49,6 +49,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_zeitwerk: nil,
         community_url: nil,
         documentation_format: nil,
+        documentation_url: nil,
         extensions_pragmater_comments: nil,
         extensions_pragmater_includes: nil,
         git_hub_user: nil,
