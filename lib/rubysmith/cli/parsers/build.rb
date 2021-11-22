@@ -7,7 +7,7 @@ module Rubysmith
       class Build
         def self.call(...) = new(...).call
 
-        def initialize client: CLIENT, container: Container
+        def initialize client: Parser::CLIENT, container: Container
           @client = client
           @container = container
         end

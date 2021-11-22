@@ -6,7 +6,7 @@ module Rubysmith
     class Shell
       ACTIONS = {config: Actions::Config.new, build: Actions::Build.new}.freeze
 
-      def initialize parser: Parsers::Assembler.new, actions: ACTIONS, container: Container
+      def initialize parser: Parser.new, actions: ACTIONS, container: Container
         @parser = parser
         @actions = actions
         @container = container

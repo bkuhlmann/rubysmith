@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Parsers::Assembler do
+RSpec.describe Rubysmith::CLI::Parser do
   subject(:parser) { described_class.new }
 
   include_context "with application container"
