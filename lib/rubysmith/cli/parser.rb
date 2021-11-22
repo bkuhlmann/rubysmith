@@ -15,7 +15,7 @@ module Rubysmith
 
       def call arguments = []
         sections.each { |parser| parser.call client: client }
-        client.parse! arguments
+        client.parse arguments
         configuration
       end
 

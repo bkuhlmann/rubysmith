@@ -15,7 +15,7 @@ module Rubysmith
         def call arguments = []
           client.separator "\nBUILD OPTIONS:\n"
           private_methods.sort.grep(/add_/).each { |method| __send__ method }
-          arguments.empty? ? arguments : client.parse!(arguments)
+          arguments.empty? ? arguments : client.parse(arguments)
         end
 
         private
