@@ -2,11 +2,11 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Enhancers::Version do
+RSpec.describe Rubysmith::Configuration::Enhancers::Version do
   subject(:enhancer) { described_class.new version }
 
   let(:version) { "1.2.3" }
-  let(:content) { Rubysmith::CLI::Configuration::Content.new }
+  let(:content) { Rubysmith::Configuration::Content.new }
 
   describe "#call" do
     it "answers current time" do

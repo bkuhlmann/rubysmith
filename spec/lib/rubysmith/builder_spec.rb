@@ -11,7 +11,7 @@ RSpec.describe Rubysmith::Builder do
   using Refinements::StringIOs
 
   let :configuration do
-    Rubysmith::CLI::Configuration::Content[
+    Rubysmith::Configuration::Content[
       template_root: Bundler.root.join("spec/support/fixtures/templates"),
       template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
       target_root: temp_dir,
@@ -231,7 +231,7 @@ RSpec.describe Rubysmith::Builder do
 
     context "with duplicated project name in path" do
       let :configuration do
-        Rubysmith::CLI::Configuration::Content[
+        Rubysmith::Configuration::Content[
           template_root: Bundler.root.join("spec/support/fixtures/templates"),
           template_path: "%project_name%/bin/%project_name%.erb",
           target_root: temp_dir,

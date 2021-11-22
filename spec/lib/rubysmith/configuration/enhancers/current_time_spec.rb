@@ -2,11 +2,11 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Enhancers::CurrentTime do
+RSpec.describe Rubysmith::Configuration::Enhancers::CurrentTime do
   subject(:enhancer) { described_class.new now }
 
   let(:now) { Time.now }
-  let(:content) { Rubysmith::CLI::Configuration::Content.new }
+  let(:content) { Rubysmith::Configuration::Content.new }
 
   describe "#call" do
     it "answers current time" do

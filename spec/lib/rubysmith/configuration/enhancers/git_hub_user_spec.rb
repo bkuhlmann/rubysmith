@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Enhancers::GitHubUser do
+RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
   subject(:enhancer) { described_class.new repository: repository }
 
-  let(:content) { Rubysmith::CLI::Configuration::Content.new }
+  let(:content) { Rubysmith::Configuration::Content.new }
   let(:repository) { instance_double GitPlus::Repository, config_get: user }
 
   describe "#call" do

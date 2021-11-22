@@ -5,7 +5,7 @@ module Rubysmith
     module Actions
       # Handles the config action.
       class Config
-        def initialize client: CLI::Configuration::Loader::CLIENT, container: Container
+        def initialize client: Configuration::Loader::CLIENT, container: Container
           @client = client
           @container = container
         end

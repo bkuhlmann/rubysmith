@@ -10,7 +10,7 @@ RSpec.shared_context "with application container" do
   let(:application_container) { Rubysmith::Container }
 
   let :application_configuration do
-    Rubysmith::CLI::Configuration::Loader.with_defaults.call.merge(
+    Rubysmith::Configuration::Loader.with_defaults.call.merge(
       author_email: "jill@example.com",
       author_family_name: "Smith",
       author_given_name: "Jill",

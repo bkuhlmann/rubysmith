@@ -2,11 +2,11 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Loader do
+RSpec.describe Rubysmith::Configuration::Loader do
   subject(:loader) { described_class.with_defaults }
 
   let :content do
-    Rubysmith::CLI::Configuration::Content[
+    Rubysmith::Configuration::Content[
       build_amazing_print: true,
       build_bundler_leak: true,
       build_changes: true,
@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
 
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call).to be_a(Rubysmith::CLI::Configuration::Content)
+      expect(described_class.call).to be_a(Rubysmith::Configuration::Content)
     end
   end
 
@@ -80,7 +80,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       now = Time.now
 
       loader = described_class.new enhancers: [
-        Rubysmith::CLI::Configuration::Enhancers::CurrentTime.new(now)
+        Rubysmith::Configuration::Enhancers::CurrentTime.new(now)
       ]
 
       expect(loader.call).to have_attributes(now: now)

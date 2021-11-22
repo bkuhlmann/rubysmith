@@ -10,7 +10,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
   it_behaves_like "a parser"
 
   describe "#call" do
-    let(:empty_configuration) { Rubysmith::CLI::Configuration::Content.new }
+    let(:empty_configuration) { Rubysmith::Configuration::Content.new }
 
     it "enables Amazing Print" do
       parser.call %w[--amazing_print]

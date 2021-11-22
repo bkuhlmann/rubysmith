@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::CLI::Configuration::Content do
+RSpec.describe Rubysmith::Configuration::Content do
   using Refinements::Structs
 
   subject(:content) { described_class[project_name: "test"] }
