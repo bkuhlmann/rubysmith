@@ -53,6 +53,7 @@ module Rubysmith
         :license_version,
         :now,
         :project_name,
+        :project_version,
         :target_root,
         :template_path,
         :template_root,

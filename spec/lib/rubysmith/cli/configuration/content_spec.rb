@@ -58,6 +58,7 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         license_version: nil,
         now: nil,
         project_name: nil,
+        project_version: nil,
         target_root: target_root,
         template_path: nil,
         template_root: template_root,

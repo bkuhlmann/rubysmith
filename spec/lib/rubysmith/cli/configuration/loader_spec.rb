@@ -50,7 +50,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       license_label: "Hippocratic",
       license_name: "hippocratic",
       license_version: 3.0,
-      now: nil
+      now: nil,
+      project_version: "0.1.0"
     ]
   end
 
