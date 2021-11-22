@@ -34,7 +34,6 @@
   :url:
 :documentation:
   :format: "adoc"
-  :license: "hippocratic"
 :extensions:
   :pragmater:
     :comments:
@@ -49,3 +48,7 @@
       - "**/*Rakefile"
 :git_hub:
   :user:
+:license:
+  :label: Hippocratic
+  :name: hippocratic
+  :version: 3.0

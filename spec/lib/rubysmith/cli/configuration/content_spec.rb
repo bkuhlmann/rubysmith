@@ -49,10 +49,12 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         build_zeitwerk: nil,
         community_url: nil,
         documentation_format: nil,
-        documentation_license: nil,
         extensions_pragmater_comments: nil,
         extensions_pragmater_includes: nil,
         git_hub_user: nil,
+        license_label: nil,
+        license_name: nil,
+        license_version: nil,
         now: nil,
         project_name: nil,
         target_root: target_root,
@@ -198,6 +200,36 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
 
     it "answers blank string name doesn't exist" do
       expect(content.author_name).to eq("")
+    end
+  end
+
+  describe "#license_label_version" do
+    it "answers label and version" do
+      content.license_label = "Hippocratic"
+      content.license_version = "3.0"
+
+      expect(content.license_label_version).to eq("Hippocratic-3.0")
+    end
+
+    it "answers partial label when there is an empty string" do
+      content.license_label = ""
+      content.license_version = "3.0"
+
+      expect(content.license_label_version).to eq("3.0")
+    end
+
+    it "answers label only" do
+      content.license_label = "Hippocratic"
+      expect(content.license_label_version).to eq("Hippocratic")
+    end
+
+    it "answers version only" do
+      content.license_label = "3.0"
+      expect(content.license_label_version).to eq("3.0")
+    end
+
+    it "answers blank string when label and version don't exist" do
+      expect(content.license_label_version).to eq("")
     end
   end
 

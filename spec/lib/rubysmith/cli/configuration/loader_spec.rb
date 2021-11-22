@@ -35,7 +35,6 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
       build_zeitwerk: true,
       community_url: nil,
       documentation_format: "adoc",
-      documentation_license: "hippocratic",
       extensions_pragmater_comments: ["# frozen_string_literal: true"],
       extensions_pragmater_includes: [
         "**/*.rb",
@@ -47,6 +46,9 @@ RSpec.describe Rubysmith::CLI::Configuration::Loader do
         "**/*Rakefile"
       ],
       git_hub_user: nil,
+      license_label: "Hippocratic",
+      license_name: "hippocratic",
+      license_version: 3.0,
       now: nil
     ]
   end

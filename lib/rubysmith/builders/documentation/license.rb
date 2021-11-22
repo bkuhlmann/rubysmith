@@ -29,7 +29,7 @@ module Rubysmith
 
         def kind = configuration.documentation_format || "md"
 
-        def license = configuration.documentation_license || "mit"
+        def license = configuration.license_name
       end
     end
   end

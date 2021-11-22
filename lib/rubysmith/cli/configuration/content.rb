@@ -44,10 +44,12 @@ module Rubysmith
         :build_zeitwerk,
         :community_url,
         :documentation_format,
-        :documentation_license,
         :extensions_pragmater_comments,
         :extensions_pragmater_includes,
         :git_hub_user,
+        :license_label,
+        :license_name,
+        :license_version,
         :now,
         :project_name,
         :target_root,
@@ -73,6 +75,8 @@ module Rubysmith
         def minimize = update_build_options(false)
 
         def author_name = [author_given_name, author_family_name].compress.join(" ")
+
+        def license_label_version = [license_label, license_version].compress.join("-")
 
         def project_label = project_name.titleize
 
