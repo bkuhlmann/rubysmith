@@ -13,7 +13,8 @@ module Rubysmith
         :action_help,
         :action_version,
         :author_email,
-        :author_name,
+        :author_family_name,
+        :author_given_name,
         :author_url,
         :build_amazing_print,
         :build_bundler_leak,
@@ -56,6 +57,7 @@ module Rubysmith
         keyword_init: true
       ) do
         using Refinements::Strings
+        using Refinements::Arrays
 
         def initialize *arguments
           super
@@ -69,6 +71,8 @@ module Rubysmith
         def maximize = update_build_options(true)
 
         def minimize = update_build_options(false)
+
+        def author_name = [author_given_name, author_family_name].compress.join(" ")
 
         def project_label = project_name.titleize
 

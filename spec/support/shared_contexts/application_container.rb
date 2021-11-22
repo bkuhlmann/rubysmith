@@ -12,7 +12,8 @@ RSpec.shared_context "with application container" do
   let :application_configuration do
     Rubysmith::CLI::Configuration::Loader.with_defaults.call.merge(
       author_email: "jill@example.com",
-      author_name: "Jill Smith",
+      author_family_name: "Smith",
+      author_given_name: "Jill",
       author_url: "https://www.jillsmith.com",
       git_hub_user: "hubber",
       now: Time.local(2020, 1, 1, 0, 0, 0),

@@ -18,7 +18,8 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
         action_help: nil,
         action_version: nil,
         author_email: nil,
-        author_name: nil,
+        author_family_name: nil,
+        author_given_name: nil,
         author_url: nil,
         build_amazing_print: nil,
         build_bundler_leak: nil,
@@ -167,6 +168,36 @@ RSpec.describe Rubysmith::CLI::Configuration::Content do
     it "mutates itself" do
       content.minimize
       expect(content).to have_attributes(build_amazing_print: false)
+    end
+  end
+
+  describe "#author_name" do
+    it "answers given and family name" do
+      content.author_given_name = "Test"
+      content.author_family_name = "Example"
+
+      expect(content.author_name).to eq("Test Example")
+    end
+
+    it "answers partial name when there is an empty string" do
+      content.author_given_name = ""
+      content.author_family_name = "Example"
+
+      expect(content.author_name).to eq("Example")
+    end
+
+    it "answers given name only" do
+      content.author_given_name = "Test"
+      expect(content.author_name).to eq("Test")
+    end
+
+    it "answers family name only" do
+      content.author_family_name = "Example"
+      expect(content.author_name).to eq("Example")
+    end
+
+    it "answers blank string name doesn't exist" do
+      expect(content.author_name).to eq("")
     end
   end
 

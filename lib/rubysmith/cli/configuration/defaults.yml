@@ -1,6 +1,7 @@
 :author:
-  :name:
   :email:
+  :family_name:
+  :given_name:
   :url:
 :build:
   :amazing_print: true
