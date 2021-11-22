@@ -76,6 +76,15 @@ module Rubysmith
           end
         end
 
+        def add_citation
+          client.on(
+            "--[no-]citation",
+            "Add citation documentation. #{default __method__}."
+          ) do |value|
+            configuration.build_citation = value
+          end
+        end
+
         def add_community
           client.on(
             "--[no-]community",

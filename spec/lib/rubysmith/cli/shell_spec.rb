@@ -67,6 +67,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-bundler-leak
           --no-changes
           --no-circle_ci
+          --no-citation
           --no-conduct
           --no-console
           --no-contributions
@@ -133,6 +134,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/rubocop",
           "test/bin/setup",
           "test/CHANGES.adoc",
+          "test/CITATION.cff",
           "test/CODE_OF_CONDUCT.adoc",
           "test/CONTRIBUTING.adoc",
           "test/Gemfile",
@@ -169,6 +171,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --bundler-leak
           --changes
           --circle_ci
+          --citation
           --conduct
           --console
           --contributions
@@ -205,6 +208,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/rubocop",
           "test/bin/setup",
           "test/CHANGES.adoc",
+          "test/CITATION.cff",
           "test/CODE_OF_CONDUCT.adoc",
           "test/CONTRIBUTING.adoc",
           "test/Gemfile",

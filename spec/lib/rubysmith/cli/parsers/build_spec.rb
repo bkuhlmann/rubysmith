@@ -52,6 +52,16 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(application_configuration.build_circle_ci).to eq(false)
     end
 
+    it "enables CITATION" do
+      parser.call %w[--citation]
+      expect(application_configuration.build_citation).to eq(true)
+    end
+
+    it "disables CITATION" do
+      parser.call %w[--no-citation]
+      expect(application_configuration.build_citation).to eq(false)
+    end
+
     it "enables community documentation" do
       parser.call %w[--community]
       expect(application_configuration.build_community).to eq(true)

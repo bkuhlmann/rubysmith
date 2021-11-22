@@ -8,6 +8,7 @@
   :bundler_leak: true
   :changes: true
   :circle_ci: false
+  :citation: true
   :community: false
   :conduct: true
   :console: true
@@ -30,6 +31,10 @@
   :setup: true
   :simple_cov: true
   :zeitwerk: true
+:citation:
+  :affiliation:
+  :message: Please use the following metadata when citing this project in your work.
+  :orcid:
 :community:
   :url:
 :documentation:
