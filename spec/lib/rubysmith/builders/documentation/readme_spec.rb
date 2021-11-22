@@ -14,43 +14,6 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
   describe "#call" do
     before { builder.call }
 
-    context "when enabled without any format" do
-      let :configuration do
-        application_configuration.minimize.with build_readme: true, documentation_format: nil
-      end
-
-      it "builds README with minimum options" do
-        expect(temp_dir.join("test/README.md").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-minimum.md").read
-        )
-      end
-    end
-
-    context "when enabled with Markdown format" do
-      let :configuration do
-        application_configuration.minimize.with build_readme: true, documentation_format: "md"
-      end
-
-      it "builds README with minimum options" do
-        expect(temp_dir.join("test/README.md").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-minimum.md").read
-        )
-      end
-    end
-
-    context "when enabled with Markdown format and maximum options" do
-      let :configuration do
-        application_configuration.maximize.with community_url: "https://www.example.com/community",
-                                                documentation_format: "md"
-      end
-
-      it "builds README" do
-        expect(temp_dir.join("test/README.md").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-maximum.md").read
-        )
-      end
-    end
-
     context "when enabled with ASCII Doc format and minimum options" do
       let :configuration do
         application_configuration.minimize.with build_readme: true, documentation_format: "adoc"
@@ -64,14 +27,33 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with ASCII Doc format and maximum options" do
-      let :configuration do
-        application_configuration.maximize.with community_url: "https://www.example.com/community",
-                                                documentation_format: "adoc"
-      end
+      let(:configuration) { application_configuration.maximize.with documentation_format: "adoc" }
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(
           Bundler.root.join("spec/support/fixtures/boms/readme-maximum.adoc").read
+        )
+      end
+    end
+
+    context "when enabled with Markdown format and minimum options" do
+      let :configuration do
+        application_configuration.minimize.with build_readme: true, documentation_format: "md"
+      end
+
+      it "builds README with minimum options" do
+        expect(temp_dir.join("test/README.md").read).to eq(
+          Bundler.root.join("spec/support/fixtures/boms/readme-minimum.md").read
+        )
+      end
+    end
+
+    context "when enabled with Markdown format and maximum options" do
+      let(:configuration) { application_configuration.maximize.with documentation_format: "md" }
+
+      it "builds README" do
+        expect(temp_dir.join("test/README.md").read).to eq(
+          Bundler.root.join("spec/support/fixtures/boms/readme-maximum.md").read
         )
       end
     end

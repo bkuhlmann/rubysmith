@@ -25,7 +25,7 @@ module Rubysmith
 
         attr_reader :configuration, :builder
 
-        def kind = configuration.documentation_format || "md"
+        def kind = configuration.documentation_format
       end
     end
   end

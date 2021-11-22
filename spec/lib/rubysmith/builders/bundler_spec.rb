@@ -21,7 +21,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with minimum options" do
-      let(:configuration) { application_configuration.minimize.with documentation_format: nil }
+      let(:configuration) { application_configuration.minimize }
 
       it "builds Gemfile" do
         builder.call
@@ -38,9 +38,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Amazing Print only" do
-      let :configuration do
-        application_configuration.minimize.with build_amazing_print: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_amazing_print: true }
 
       let :proof do
         <<~CONTENT
@@ -63,9 +61,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Bundler Leak only" do
-      let :configuration do
-        application_configuration.minimize.with build_bundler_leak: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_bundler_leak: true }
 
       let :proof do
         <<~CONTENT
@@ -88,9 +84,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Dead End only" do
-      let :configuration do
-        application_configuration.minimize.with build_dead_end: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_dead_end: true }
 
       let :proof do
         <<~CONTENT
@@ -113,9 +107,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Debug only" do
-      let :configuration do
-        application_configuration.minimize.with build_debug: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_debug: true }
 
       let :proof do
         <<~CONTENT
@@ -139,9 +131,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
     context "with Git and Git Lint only" do
       let :configuration do
-        application_configuration.minimize.with build_git: true,
-                                                build_git_lint: true,
-                                                documentation_format: nil
+        application_configuration.minimize.with build_git: true, build_git_lint: true
       end
 
       let :proof do
@@ -165,9 +155,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Guard only" do
-      let :configuration do
-        application_configuration.minimize.with build_guard: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_guard: true }
 
       let :proof do
         <<~CONTENT
@@ -190,9 +178,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Rake only" do
-      let :configuration do
-        application_configuration.minimize.with build_rake: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_rake: true }
 
       let :proof do
         <<~CONTENT
@@ -215,9 +201,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Reek only" do
-      let :configuration do
-        application_configuration.minimize.with build_reek: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_reek: true }
 
       let :proof do
         <<~CONTENT
@@ -240,9 +224,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Refinements only" do
-      let :configuration do
-        application_configuration.minimize.with build_refinements: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_refinements: true }
 
       let :proof do
         <<~CONTENT
@@ -263,9 +245,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with RSpec only" do
-      let :configuration do
-        application_configuration.minimize.with build_rspec: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_rspec: true }
 
       let :proof do
         <<~CONTENT
@@ -289,9 +269,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
     context "with RSpec and Rubocop only" do
       let :configuration do
-        application_configuration.minimize.with build_rspec: true,
-                                                build_rubocop: true,
-                                                documentation_format: nil
+        application_configuration.minimize.with build_rspec: true, build_rubocop: true
       end
 
       let :proof do
@@ -322,9 +300,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Rubocop only" do
-      let :configuration do
-        application_configuration.minimize.with build_rubocop: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_rubocop: true }
 
       let :proof do
         <<~CONTENT
@@ -349,9 +325,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with SimpleCov only" do
-      let :configuration do
-        application_configuration.minimize.with build_simple_cov: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_simple_cov: true }
 
       let :proof do
         <<~CONTENT
@@ -374,9 +348,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     context "with Zeitwerk only" do
-      let :configuration do
-        application_configuration.minimize.with build_zeitwerk: true, documentation_format: nil
-      end
+      let(:configuration) { application_configuration.minimize.with build_zeitwerk: true }
 
       let :proof do
         <<~CONTENT

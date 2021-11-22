@@ -13,12 +13,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
 
   describe "#call" do
     context "when enabled" do
-      let :configuration do
-        application_configuration.minimize.with build_citation: true,
-                                                citation_affiliation: "ACME",
-                                                citation_orcid: "0000-1111-2222-3333",
-                                                documentation_url: "https://example.com/projects"
-      end
+      let(:configuration) { application_configuration.minimize.with build_citation: true }
 
       it "builds citation" do
         builder.call

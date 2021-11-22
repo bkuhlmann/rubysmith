@@ -38,7 +38,7 @@ module Rubysmith
                        .then { |path| tocer.call path if path.exist? }
         end
 
-        def kind = configuration.documentation_format || "md"
+        def kind = configuration.documentation_format
       end
     end
   end
