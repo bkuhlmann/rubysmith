@@ -15,10 +15,12 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_conduct
+          return configuration unless configuration.build_conduct
 
           configuration.with(template_path: "%project_name%/CODE_OF_CONDUCT.#{kind}.erb")
                        .then { |updated_configuration| builder.call(updated_configuration).render }
+
+          configuration
         end
 
         private

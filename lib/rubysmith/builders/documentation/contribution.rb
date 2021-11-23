@@ -15,10 +15,12 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_contributions
+          return configuration unless configuration.build_contributions
 
           builder.call(configuration.with(template_path: "%project_name%/CONTRIBUTING.#{kind}.erb"))
                  .render
+
+          configuration
         end
 
         private

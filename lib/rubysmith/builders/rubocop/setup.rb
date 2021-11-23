@@ -13,13 +13,14 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_rubocop
+          return configuration unless configuration.build_rubocop
 
           builder.call(configuration.with(template_path: "%project_name%/bin/rubocop.erb"))
                  .render
                  .permit 0o755
 
           builder.call(configuration.with(template_path: "%project_name%/.rubocop.yml.erb")).render
+          configuration
         end
 
         private

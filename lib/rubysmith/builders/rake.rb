@@ -12,7 +12,7 @@ module Rubysmith
       end
 
       def call
-        return unless configuration.build_rake
+        return configuration unless configuration.build_rake
 
         builder.call(configuration.with(template_path: "%project_name%/Rakefile.erb"))
                .render
@@ -21,7 +21,8 @@ module Rubysmith
                .replace("  ", "")
                .replace(/\n+(?=require)/, "\n")
                .replace(/\n{2,}/, "\n\n")
-        nil
+
+        configuration
       end
 
       private

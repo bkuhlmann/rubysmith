@@ -13,13 +13,15 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_rspec
+          return configuration unless configuration.build_rspec
 
           template = "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb"
           configuration.with(template_path: template)
                        .then { |updated_configuration| builder.call updated_configuration }
                        .render
                        .replace(/\n\s+\n\s+/, "\n  ")
+
+          configuration
         end
 
         private

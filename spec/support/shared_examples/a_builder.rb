@@ -2,8 +2,14 @@
 
 RSpec.shared_examples_for "a builder" do
   describe ".call" do
-    it "calls builder" do
-      expect(described_class.call(configuration.minimize)).to eq(nil)
+    it "answers maximum configuration" do
+      maximum = configuration.maximize
+      expect(described_class.call(maximum)).to eq(maximum)
+    end
+
+    it "answers minimum configuration" do
+      minimum = configuration.minimize
+      expect(described_class.call(minimum)).to eq(minimum)
     end
   end
 end

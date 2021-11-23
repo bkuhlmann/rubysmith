@@ -13,9 +13,10 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_citation
+          return configuration unless configuration.build_citation
 
           builder.call(configuration.with(template_path: "%project_name%/CITATION.cff.erb")).render
+          configuration
         end
 
         private

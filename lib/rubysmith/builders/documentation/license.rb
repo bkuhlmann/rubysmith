@@ -15,12 +15,14 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_license
+          return configuration unless configuration.build_license
 
           configuration.with(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
                        .then do |updated_configuration|
                          builder.call(updated_configuration).render.rename "LICENSE.#{kind}"
                        end
+
+          configuration
         end
 
         private

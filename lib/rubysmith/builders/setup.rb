@@ -12,11 +12,13 @@ module Rubysmith
       end
 
       def call
-        return unless configuration.build_setup
+        return configuration unless configuration.build_setup
 
         builder.call(configuration.with(template_path: "%project_name%/bin/setup.erb"))
                .render
                .permit 0o755
+
+        configuration
       end
 
       private

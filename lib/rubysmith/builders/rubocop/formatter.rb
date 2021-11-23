@@ -19,7 +19,7 @@ module Rubysmith
 
         def call
           STDOUT.squelch { client.run ["--auto-correct", configuration.project_root.to_s] }
-          nil
+          configuration
         end
 
         private

@@ -12,10 +12,11 @@ module Rubysmith
       end
 
       def call
-        return unless configuration.build_git_hub
+        return configuration unless configuration.build_git_hub
 
         builder.call(with_issue_template).render
         builder.call(with_pull_request_template).render
+        configuration
       end
 
       private

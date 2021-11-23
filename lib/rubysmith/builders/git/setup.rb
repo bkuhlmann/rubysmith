@@ -13,9 +13,10 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_git
+          return configuration unless configuration.build_git
 
           builder.call(configuration).run("git init", chdir: configuration.project_name)
+          configuration
         end
 
         private

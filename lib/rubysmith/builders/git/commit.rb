@@ -13,7 +13,7 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_git
+          return configuration unless configuration.build_git
 
           builder.call(configuration)
                  .run("git add .", chdir: project_name)
@@ -21,6 +21,8 @@ module Rubysmith
                    %(git commit --all --message "Added project skeleton" --message "#{body}"),
                    chdir: project_name
                  )
+
+          configuration
         end
 
         private

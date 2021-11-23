@@ -19,7 +19,7 @@ module Rubysmith
                .replace("\n  \n", "\n\n")
 
         builder.call(configuration.with(template_path: "%project_name%/.ruby-version.erb")).render
-        nil
+        configuration
       end
 
       private

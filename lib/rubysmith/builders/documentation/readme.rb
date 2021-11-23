@@ -16,9 +16,10 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_readme
+          return configuration unless configuration.build_readme
 
           private_methods.sort.grep(/render_/).each { |method| __send__ method }
+          configuration
         end
 
         private

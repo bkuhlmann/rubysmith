@@ -13,7 +13,7 @@ module Rubysmith
         @client = client
       end
 
-      def call = client.for(**attributes).call && nil
+      def call = client.for(**attributes).call && configuration
 
       private
 

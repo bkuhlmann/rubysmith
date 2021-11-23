@@ -13,12 +13,14 @@ module Rubysmith
         end
 
         def call
-          return unless configuration.build_rspec
+          return configuration unless configuration.build_rspec
 
           builder.call(configuration.with(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
                  .replace(/\n{3,}/, "\n\n")
                  .replace(/\n\s{2}(?=(require|Simple|using|Pathname|Dir))/, "\n")
+
+          configuration
         end
 
         private

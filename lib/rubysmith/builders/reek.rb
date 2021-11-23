@@ -12,9 +12,10 @@ module Rubysmith
       end
 
       def call
-        return unless configuration.build_reek
+        return configuration unless configuration.build_reek
 
         builder.call(configuration.with(template_path: "%project_name%/.reek.yml.erb")).render
+        configuration
       end
 
       private

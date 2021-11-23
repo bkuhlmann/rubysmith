@@ -29,7 +29,7 @@ module Rubysmith
                .replace(/org"\n+/, "org\"\n\n")
 
         configuration.project_root.change_dir { client.start %w[install --quiet] }
-        nil
+        configuration
       end
 
       private

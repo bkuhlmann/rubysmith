@@ -12,10 +12,12 @@ module Rubysmith
       end
 
       def call
-        return unless configuration.build_circle_ci
+        return configuration unless configuration.build_circle_ci
 
         builder.call(configuration.with(template_path: "%project_name%/.circleci/config.yml.erb"))
                .render
+
+        configuration
       end
 
       private
