@@ -92,7 +92,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :tools do
+          group :code_quality do
             gem "dead_end", "~> 3.0"
           end
         CONTENT
@@ -405,6 +405,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
+            gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 2.0"
             gem "reek", "~> 6.0"
             gem "rubocop", "~> 1.20"
@@ -426,7 +427,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.3"
-            gem "dead_end", "~> 3.0"
             gem "debug", "~> 1.1"
           end
         CONTENT
