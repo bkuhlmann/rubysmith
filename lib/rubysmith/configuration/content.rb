@@ -3,6 +3,7 @@
 require "pathname"
 require "refinements/arrays"
 require "refinements/strings"
+require "refinements/structs"
 
 module Rubysmith
   module Configuration
@@ -66,6 +67,7 @@ module Rubysmith
     ) do
       using Refinements::Arrays
       using Refinements::Strings
+      using Refinements::Structs
 
       def initialize *arguments
         super
@@ -75,7 +77,7 @@ module Rubysmith
         freeze
       end
 
-      def with(attributes) = self.class.new(**to_h, **attributes)
+      def with(attributes) = dup.merge!(**attributes).freeze
 
       def maximize = update_build_options(true)
 
@@ -106,7 +108,8 @@ module Rubysmith
       def update_build_options value
         to_h.select { |key, _value| key.start_with? "build_" }
             .transform_values { value }
-            .then { |attributes| self.class.new(**to_h, **attributes, build_minimum: !value) }
+            .then { |attributes| dup.merge!(**attributes, build_minimum: !value) }
+            .freeze
       end
     end
   end

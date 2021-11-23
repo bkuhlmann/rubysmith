@@ -85,6 +85,14 @@ RSpec.describe Rubysmith::Configuration::Content do
       proof = described_class[project_name: "test", build_console: true, build_git: true]
       expect(content.with(project_name: "test", build_console: true, build_git: true)).to eq(proof)
     end
+
+    it "doesn't mutate itself" do
+      expect(content.with(project_version: "1.2.3")).not_to eq(content)
+    end
+
+    it "answers as frozen" do
+      expect(content.with(project_version: "1.2.3")).to be_frozen
+    end
   end
 
   describe "#maximum" do
@@ -130,6 +138,10 @@ RSpec.describe Rubysmith::Configuration::Content do
     it "doesn't mutate itself" do
       expect(content.maximize).not_to eq(content)
     end
+
+    it "answers as frozen" do
+      expect(content.maximize).to be_frozen
+    end
   end
 
   describe "#minimize" do
@@ -174,6 +186,10 @@ RSpec.describe Rubysmith::Configuration::Content do
 
     it "doesn't mutate itself" do
       expect(content.minimize).not_to eq(content)
+    end
+
+    it "answers as frozen" do
+      expect(content.minimize).to be_frozen
     end
   end
 
