@@ -17,8 +17,9 @@ module Rubysmith
       CLIENT = Runcom::Config.new "#{Identity::NAME}/configuration.yml", defaults: DEFAULTS
 
       ENHANCERS = [
-        Enhancers::GitHubUser.new,
         Enhancers::CurrentTime.new,
+        Enhancers::GitHubUser.new,
+        Enhancers::GitUser.new,
         Enhancers::Version.new
       ].freeze
 
