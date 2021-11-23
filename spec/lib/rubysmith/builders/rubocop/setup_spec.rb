@@ -28,6 +28,11 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
           load Gem.bin_path "rubocop", "rubocop"
         CONTENT
       end
+
+      it "updates file permissions" do
+        builder.call
+        expect(binstub_path.stat.mode).to eq(33261)
+      end
     end
 
     context "when enabled with no additional options" do

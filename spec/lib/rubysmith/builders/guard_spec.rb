@@ -37,6 +37,11 @@ RSpec.describe Rubysmith::Builders::Guard do
           end
         CONTENT
       end
+
+      it "updates file permissions" do
+        builder.call
+        expect(binstub_path.stat.mode).to eq(33261)
+      end
     end
 
     context "when disabled" do
