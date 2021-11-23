@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Git::Setup do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -22,7 +22,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
     end
 
     context "when enabled" do
-      let(:configuration) { application_configuration.minimize.with build_git: true }
+      let(:test_configuration) { configuration.minimize.with build_git: true }
 
       it "initializes repository" do
         expect(git_dir.exist?).to eq(true)
@@ -30,7 +30,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't initialize repository" do
         expect(git_dir.exist?).to eq(false)

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Git::Commit do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when enabled" do
-      let(:configuration) { application_configuration.minimize.with build_git: true }
+      let(:test_configuration) { configuration.minimize.with build_git: true }
 
       it "creates commit" do
         expect(commit).to match(
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't create commit" do
         expect(commit).to eq("")

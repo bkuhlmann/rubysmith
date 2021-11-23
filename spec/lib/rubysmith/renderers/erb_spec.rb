@@ -3,12 +3,12 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Renderers::ERB do
-  subject(:renderer) { described_class.new configuration }
+  subject(:renderer) { described_class.new test_configuration }
 
   include_context "with application container"
 
   describe "#call" do
-    let(:configuration) { application_configuration.minimize }
+    let(:test_configuration) { configuration.minimize }
 
     it "answers result" do
       expect(renderer.call("Name: <%= configuration.project_name %>.")).to eq("Name: test.")
@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace" do
-      let(:configuration) { application_configuration.minimize.with project_name: "example" }
+      let(:test_configuration) { configuration.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single filled namespace" do
-      let(:configuration) { application_configuration.minimize.with project_name: "example" }
+      let(:test_configuration) { configuration.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single empty namespace" do
-      let(:configuration) { application_configuration.minimize.with project_name: "example" }
+      let(:test_configuration) { configuration.minimize.with project_name: "example" }
 
       let(:content) { "<% namespace %>" }
 
@@ -83,8 +83,8 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple empty namespaces" do
-      let :configuration do
-        application_configuration.minimize.with project_name: "example-one-two"
+      let :test_configuration do
+        configuration.minimize.with project_name: "example-one-two"
       end
 
       let(:content) { "<% namespace %>" }
@@ -107,8 +107,8 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with multiple filled namespaces" do
-      let :configuration do
-        application_configuration.minimize.with project_name: "example-one-two"
+      let :test_configuration do
+        configuration.minimize.with project_name: "example-one-two"
       end
 
       let :content do

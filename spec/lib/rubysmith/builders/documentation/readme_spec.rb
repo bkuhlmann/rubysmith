@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Documentation::Readme do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -15,8 +15,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     before { builder.call }
 
     context "when enabled with ASCII Doc format and minimum options" do
-      let :configuration do
-        application_configuration.minimize.with build_readme: true, documentation_format: "adoc"
+      let :test_configuration do
+        configuration.minimize.with build_readme: true, documentation_format: "adoc"
       end
 
       it "builds README" do
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with ASCII Doc format and maximum options" do
-      let(:configuration) { application_configuration.maximize.with documentation_format: "adoc" }
+      let(:test_configuration) { configuration.maximize.with documentation_format: "adoc" }
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(
@@ -37,8 +37,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with Markdown format and minimum options" do
-      let :configuration do
-        application_configuration.minimize.with build_readme: true, documentation_format: "md"
+      let :test_configuration do
+        configuration.minimize.with build_readme: true, documentation_format: "md"
       end
 
       it "builds README with minimum options" do
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when enabled with Markdown format and maximum options" do
-      let(:configuration) { application_configuration.maximize.with documentation_format: "md" }
+      let(:test_configuration) { configuration.maximize.with documentation_format: "md" }
 
       it "builds README" do
         expect(temp_dir.join("test/README.md").read).to eq(
@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

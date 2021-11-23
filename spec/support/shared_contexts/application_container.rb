@@ -7,9 +7,9 @@ RSpec.shared_context "with application container" do
 
   include_context "with temporary directory"
 
-  let(:application_container) { Rubysmith::Container }
+  let(:container) { Rubysmith::Container }
 
-  let :application_configuration do
+  let :configuration do
     Rubysmith::Configuration::Loader.with_defaults.call.merge(
       author_email: "jill@example.com",
       author_family_name: "Smith",
@@ -31,13 +31,13 @@ RSpec.shared_context "with application container" do
   let(:kernel) { class_spy Kernel }
 
   before do
-    application_container.enable_stubs!
-    application_container.stub :configuration, application_configuration
-    application_container.stub :kernel, kernel
+    container.enable_stubs!
+    container.stub :configuration, configuration
+    container.stub :kernel, kernel
   end
 
   after do
-    application_container.unstub :configuration
-    application_container.unstub :kernel
+    container.unstub :configuration
+    container.unstub :kernel
   end
 end

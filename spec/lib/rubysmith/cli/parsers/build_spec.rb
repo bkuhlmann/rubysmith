@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Parsers::Build do
-  subject(:parser) { described_class.new application_configuration.dup }
+  subject(:parser) { described_class.new configuration.dup }
 
   include_context "with application container"
 
@@ -145,10 +145,10 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     end
 
     it "enables maximum and disables all other build options" do
-      proof = application_configuration.maximize
-                                       .to_h
-                                       .select { |key, _value| key.start_with? "build_" }
-                                       .merge build_minimum: false
+      proof = configuration.maximize
+                           .to_h
+                           .select { |key, _value| key.start_with? "build_" }
+                           .merge build_minimum: false
 
       expect(parser.call(%w[--max])).to have_attributes(proof)
     end
@@ -158,10 +158,10 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     end
 
     it "enables minimum and disables all other build options" do
-      proof = application_configuration.minimize
-                                       .to_h
-                                       .select { |key, _value| key.start_with? "build_" }
-                                       .merge build_maximum: false
+      proof = configuration.minimize
+                           .to_h
+                           .select { |key, _value| key.start_with? "build_" }
+                           .merge build_maximum: false
 
       expect(parser.call(%w[--min])).to have_attributes(proof)
     end

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Rubocop::Setup do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with no additional options" do
-      let(:configuration) { application_configuration.minimize.with build_rubocop: true }
+      let(:test_configuration) { configuration.minimize.with build_rubocop: true }
 
       it_behaves_like "a binstub"
 
@@ -48,8 +48,8 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when enabled with RSpec" do
-      let :configuration do
-        application_configuration.minimize.with build_rubocop: true, build_rspec: true
+      let :test_configuration do
+        configuration.minimize.with build_rubocop: true, build_rspec: true
       end
 
       it_behaves_like "a binstub"
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't build binstub" do
         builder.call

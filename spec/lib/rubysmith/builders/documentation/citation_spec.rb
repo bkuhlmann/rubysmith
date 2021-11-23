@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Documentation::Citation do
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { application_configuration.minimize.with build_citation: true }
+      let(:test_configuration) { configuration.minimize.with build_citation: true }
 
       it "builds citation" do
         builder.call
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "does not build configuration" do
         builder.call

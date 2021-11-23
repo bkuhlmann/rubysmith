@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Documentation::License do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -15,10 +15,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     before { builder.call }
 
     context "when enabled with Apache and ASCII Doc format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "adoc",
-                                                license_name: "apache"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "adoc",
+                                    license_name: "apache"
       end
 
       it "builds LICENSE" do
@@ -29,10 +29,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when enabled with Apache and Markdown format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "md",
-                                                license_name: "apache"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "md",
+                                    license_name: "apache"
       end
 
       it "builds LICENSE" do
@@ -43,10 +43,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when enabled with Hippocratic and ASCII Doc format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "adoc",
-                                                license_name: "hippocratic"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "adoc",
+                                    license_name: "hippocratic"
       end
 
       it "builds LICENSE" do
@@ -55,10 +55,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when enabled with Hippocratic and Markdown format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "md",
-                                                license_name: "hippocratic"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "md",
+                                    license_name: "hippocratic"
       end
 
       it "builds LICENSE" do
@@ -67,10 +67,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when enabled with MIT and ASCII Doc format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "adoc",
-                                                license_name: "mit"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "adoc",
+                                    license_name: "mit"
       end
 
       it "builds LICENSE" do
@@ -81,10 +81,10 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when enabled with MIT and Markdown format" do
-      let :configuration do
-        application_configuration.minimize.with build_license: true,
-                                                documentation_format: "md",
-                                                license_name: "mit"
+      let :test_configuration do
+        configuration.minimize.with build_license: true,
+                                    documentation_format: "md",
+                                    license_name: "mit"
       end
 
       it "builds LICENSE" do
@@ -95,7 +95,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

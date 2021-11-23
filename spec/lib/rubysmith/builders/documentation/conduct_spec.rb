@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Documentation::Conduct do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -15,8 +15,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Conduct do
     before { builder.call }
 
     context "when enabled with Markdown format" do
-      let :configuration do
-        application_configuration.minimize.with build_conduct: true, documentation_format: "md"
+      let :test_configuration do
+        configuration.minimize.with build_conduct: true, documentation_format: "md"
       end
 
       it "builds CODE_OF_CONDUCT" do
@@ -27,8 +27,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Conduct do
     end
 
     context "when enabled with ASCII Doc format" do
-      let :configuration do
-        application_configuration.minimize.with build_conduct: true, documentation_format: "adoc"
+      let :test_configuration do
+        configuration.minimize.with build_conduct: true, documentation_format: "adoc"
       end
 
       it "builds CODE_OF_CONDUCT" do
@@ -39,7 +39,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Conduct do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "doesn't build documentation" do
         expect(temp_dir.files.empty?).to eq(true)

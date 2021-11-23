@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Pragma do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new application_configuration.minimize }
+  subject(:builder) { described_class.new configuration.minimize }
 
   include_context "with application container"
 

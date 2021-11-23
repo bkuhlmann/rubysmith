@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Parsers::Core do
-  subject(:parser) { described_class.new application_configuration.dup }
+  subject(:parser) { described_class.new configuration.dup }
 
   include_context "with application container"
 

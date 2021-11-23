@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::GitHub do
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
   describe "#call" do
     context "when enabled" do
-      let(:configuration) { application_configuration.minimize.with build_git_hub: true }
+      let(:test_configuration) { configuration.minimize.with build_git_hub: true }
 
       it "builds issue template" do
         builder.call
@@ -54,7 +54,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
     end
 
     context "when disabled" do
-      let(:configuration) { application_configuration.minimize }
+      let(:test_configuration) { configuration.minimize }
 
       it "does not build issue template" do
         builder.call
