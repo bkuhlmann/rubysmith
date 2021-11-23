@@ -18,9 +18,9 @@ RSpec.describe Rubysmith::CLI::Actions::Config do
       expect(kernel).to have_received(:system).with(include("cat"))
     end
 
-    it "fails with invalid configuration" do
+    it "logs invalid configuration" do
       expectation = proc { action.call :bogus }
-      expect(&expectation).to raise_error(StandardError, /Invalid configuration selection: bogus./)
+      expect(&expectation).to output(/Invalid configuration selection: bogus./).to_stdout
     end
   end
 end

@@ -14,7 +14,7 @@ module Rubysmith
           case selection
             when :edit then edit
             when :view then view
-            else fail StandardError, "Invalid configuration selection: #{selection}."
+            else logger.error { "Invalid configuration selection: #{selection}." }
           end
         end
 
@@ -27,6 +27,8 @@ module Rubysmith
         def view = kernel.system("cat #{client.current}")
 
         def kernel = container[__method__]
+
+        def logger = container[__method__]
       end
     end
   end
