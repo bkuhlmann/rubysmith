@@ -32,7 +32,10 @@ module Rubysmith
         @enhancers = enhancers
       end
 
-      def call = enhancers.reduce(preload_content) { |preload, enhancer| enhancer.call preload }
+      def call
+        enhancers.reduce(preload_content) { |preload, enhancer| enhancer.call preload }
+                 .freeze
+      end
 
       private
 

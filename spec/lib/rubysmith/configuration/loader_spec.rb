@@ -85,5 +85,9 @@ RSpec.describe Rubysmith::Configuration::Loader do
 
       expect(loader.call).to have_attributes(now: now)
     end
+
+    it "answers frozen configuration" do
+      expect(loader.call).to be_frozen
+    end
   end
 end
