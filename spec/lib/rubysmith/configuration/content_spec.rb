@@ -333,9 +333,9 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
-  describe "#to_pathway" do
+  describe "#pathway" do
     it "answers pathway" do
-      expect(content.to_pathway).to eq(
+      expect(content.pathway).to eq(
         Rubysmith::Pathway[start_root: template_root, end_root: target_root]
       )
     end

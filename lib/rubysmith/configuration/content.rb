@@ -99,7 +99,7 @@ module Rubysmith
 
       def markdown? = documentation_format == "md"
 
-      def to_pathway
+      def pathway
         Pathway[start_root: template_root, start_path: template_path, end_root: target_root]
       end
 

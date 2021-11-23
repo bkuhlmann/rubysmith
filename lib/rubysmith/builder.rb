@@ -118,6 +118,6 @@ module Rubysmith
              .sub ".erb", ""
     end
 
-    def pathway = configuration.to_pathway
+    def pathway = configuration.pathway
   end
 end
