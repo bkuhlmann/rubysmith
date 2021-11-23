@@ -13,31 +13,29 @@ module Rubysmith
       end
 
       def call arguments = []
-        case parse arguments
-          in action_config: Symbol => action then config action
-          in action_build: true then build
-          in action_version: true then logger.info configuration.version
-          else usage
-        end
+        perform parser.call(arguments)
+      rescue OptionParser::ParseError => error
+        logger.error { error.message }
       end
 
       private
 
       attr_reader :parser, :actions, :container
 
-      def parse arguments = []
-        parser.call arguments
-      rescue StandardError => error
-        logger.error error.message
+      def perform configuration
+        case configuration
+          in action_config: Symbol => action then config action
+          in action_build: true then build configuration
+          in action_version: true then logger.info configuration.version
+          else usage
+        end
       end
 
       def config(action) = actions.fetch(__method__).call(action)
 
-      def build = actions.fetch(__method__).call
+      def build(configuration) = actions.fetch(__method__).call(configuration)
 
       def usage = logger.unknown(parser.to_s)
-
-      def configuration = container[__method__]
 
       def logger = container[__method__]
     end

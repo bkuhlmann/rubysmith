@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
   subject(:enhancer) { described_class.new repository: repository }
 
-  let(:content) { Rubysmith::Configuration::Content.new }
+  let(:content) { Rubysmith::Configuration::Content[git_hub_user: "manual"] }
   let(:repository) { instance_double GitPlus::Repository, config_get: user }
 
   describe "#call" do
@@ -13,6 +13,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
       let(:user) { nil }
 
       it "answers nil user" do
+        content = Rubysmith::Configuration::Content.new
         expect(enhancer.call(content)).to have_attributes(git_hub_user: nil)
       end
     end
@@ -21,7 +22,6 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
       let(:user) { nil }
 
       it "answers manually defined user" do
-        content.git_hub_user = "manual"
         expect(enhancer.call(content)).to have_attributes(git_hub_user: "manual")
       end
     end
@@ -30,7 +30,6 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
       let(:user) { "" }
 
       it "answers manually defined user" do
-        content.git_hub_user = "manual"
         expect(enhancer.call(content)).to have_attributes(git_hub_user: "manual")
       end
     end
@@ -39,7 +38,6 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
       let(:user) { "dynamic" }
 
       it "answers nil user" do
-        content.git_hub_user = "manual"
         expect(enhancer.call(content)).to have_attributes(git_hub_user: "manual")
       end
     end
@@ -48,6 +46,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
       let(:user) { "dynamic" }
 
       it "answers nil user" do
+        content = Rubysmith::Configuration::Content[git_hub_user: "dynamic"]
         expect(enhancer.call(content)).to have_attributes(git_hub_user: "dynamic")
       end
     end

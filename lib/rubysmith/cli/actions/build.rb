@@ -31,18 +31,15 @@ module Rubysmith
           Builders::Git::Commit
         ].freeze
 
-        def initialize builders: BUILDERS, container: Container
+        def initialize builders: BUILDERS
           @builders = builders
-          @container = container
         end
 
-        def call = builders.each { |builder| builder.call configuration }
+        def call(configuration) = builders.each { |builder| builder.call configuration }
 
         private
 
-        attr_reader :builders, :container
-
-        def configuration = container[__method__]
+        attr_reader :configuration, :builders
       end
     end
   end

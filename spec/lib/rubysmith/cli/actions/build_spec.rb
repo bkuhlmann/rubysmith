@@ -11,7 +11,7 @@ RSpec.describe Rubysmith::CLI::Actions::Build do
 
   describe "#call" do
     it "calls builders" do
-      action.call
+      action.call application_configuration
       expect(builder).to have_received(:call).with(application_configuration)
     end
   end

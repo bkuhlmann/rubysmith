@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Parsers::Build do
-  subject(:parser) { described_class.new }
+  subject(:parser) { described_class.new application_configuration.dup }
 
   include_context "with application container"
 
@@ -13,283 +13,229 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
     let(:empty_configuration) { Rubysmith::Configuration::Content.new }
 
     it "enables Amazing Print" do
-      parser.call %w[--amazing_print]
-      expect(application_configuration.build_amazing_print).to eq(true)
+      expect(parser.call(%w[--amazing_print])).to have_attributes(build_amazing_print: true)
     end
 
     it "disables Amazing Print" do
-      parser.call %w[--no-amazing_print]
-      expect(application_configuration.build_amazing_print).to eq(false)
+      expect(parser.call(%w[--no-amazing_print])).to have_attributes(build_amazing_print: false)
     end
 
     it "enables Bundler Leak" do
-      parser.call %w[--bundler-leak]
-      expect(application_configuration.build_bundler_leak).to eq(true)
+      expect(parser.call(%w[--bundler-leak])).to have_attributes(build_bundler_leak: true)
     end
 
     it "disables Bundler Leak" do
-      parser.call %w[--no-bundler-leak]
-      expect(application_configuration.build_bundler_leak).to eq(false)
+      expect(parser.call(%w[--no-bundler-leak])).to have_attributes(build_bundler_leak: false)
     end
 
     it "enables CHANGES" do
-      parser.call %w[--changes]
-      expect(application_configuration.build_changes).to eq(true)
+      expect(parser.call(%w[--changes])).to have_attributes(build_changes: true)
     end
 
     it "disables CHANGES" do
-      parser.call %w[--no-changes]
-      expect(application_configuration.build_changes).to eq(false)
+      expect(parser.call(%w[--no-changes])).to have_attributes(build_changes: false)
     end
 
     it "enables Circle CI" do
-      parser.call %w[--circle_ci]
-      expect(application_configuration.build_circle_ci).to eq(true)
+      expect(parser.call(%w[--circle_ci])).to have_attributes(build_circle_ci: true)
     end
 
     it "disables Circle CI" do
-      parser.call %w[--no-circle_ci]
-      expect(application_configuration.build_circle_ci).to eq(false)
+      expect(parser.call(%w[--no-circle_ci])).to have_attributes(build_circle_ci: false)
     end
 
     it "enables CITATION" do
-      parser.call %w[--citation]
-      expect(application_configuration.build_citation).to eq(true)
+      expect(parser.call(%w[--citation])).to have_attributes(build_citation: true)
     end
 
     it "disables CITATION" do
-      parser.call %w[--no-citation]
-      expect(application_configuration.build_citation).to eq(false)
+      expect(parser.call(%w[--no-citation])).to have_attributes(build_citation: false)
     end
 
     it "enables community documentation" do
-      parser.call %w[--community]
-      expect(application_configuration.build_community).to eq(true)
+      expect(parser.call(%w[--community])).to have_attributes(build_community: true)
     end
 
     it "disables community documentation" do
-      parser.call %w[--no-community]
-      expect(application_configuration.build_community).to eq(false)
+      expect(parser.call(%w[--no-community])).to have_attributes(build_community: false)
     end
 
     it "enables CODE_OF_CONDUCT" do
-      parser.call %w[--conduct]
-      expect(application_configuration.build_conduct).to eq(true)
+      expect(parser.call(%w[--conduct])).to have_attributes(build_conduct: true)
     end
 
     it "disables CODE_OF_CONDUCT" do
-      parser.call %w[--no-conduct]
-      expect(application_configuration.build_conduct).to eq(false)
+      expect(parser.call(%w[--no-conduct])).to have_attributes(build_conduct: false)
     end
 
     it "enables console" do
-      parser.call %w[--console]
-      expect(application_configuration.build_console).to eq(true)
+      expect(parser.call(%w[--console])).to have_attributes(build_console: true)
     end
 
     it "disables console" do
-      parser.call %w[--no-console]
-      expect(application_configuration.build_console).to eq(false)
+      expect(parser.call(%w[--no-console])).to have_attributes(build_console: false)
     end
 
     it "enables contributions" do
-      parser.call %w[--contributions]
-      expect(application_configuration.build_contributions).to eq(true)
+      expect(parser.call(%w[--contributions])).to have_attributes(build_contributions: true)
     end
 
     it "disables contributions" do
-      parser.call %w[--no-contributions]
-      expect(application_configuration.build_contributions).to eq(false)
+      expect(parser.call(%w[--no-contributions])).to have_attributes(build_contributions: false)
     end
 
     it "enables DeadEnd" do
-      parser.call %w[--dead_end]
-      expect(application_configuration.build_dead_end).to eq(true)
+      expect(parser.call(%w[--dead_end])).to have_attributes(build_dead_end: true)
     end
 
     it "disables Dead End" do
-      parser.call %w[--no-dead_end]
-      expect(application_configuration.build_dead_end).to eq(false)
+      expect(parser.call(%w[--no-dead_end])).to have_attributes(build_dead_end: false)
     end
 
     it "enables Debug" do
-      parser.call %w[--debug]
-      expect(application_configuration.build_debug).to eq(true)
+      expect(parser.call(%w[--debug])).to have_attributes(build_debug: true)
     end
 
     it "disables Debug" do
-      parser.call %w[--no-debug]
-      expect(application_configuration.build_debug).to eq(false)
+      expect(parser.call(%w[--no-debug])).to have_attributes(build_debug: false)
     end
 
     it "enables Git" do
-      parser.call %w[--git]
-      expect(application_configuration.build_git).to eq(true)
+      expect(parser.call(%w[--git])).to have_attributes(build_git: true)
     end
 
     it "disables Git" do
-      parser.call %w[--no-git]
-      expect(application_configuration.build_git).to eq(false)
+      expect(parser.call(%w[--no-git])).to have_attributes(build_git: false)
     end
 
     it "enables Git Hub" do
-      parser.call %w[--git_hub]
-      expect(application_configuration.build_git_hub).to eq(true)
+      expect(parser.call(%w[--git_hub])).to have_attributes(build_git_hub: true)
     end
 
     it "disables Git Hub" do
-      parser.call %w[--no-git_hub]
-      expect(application_configuration.build_git_hub).to eq(false)
+      expect(parser.call(%w[--no-git_hub])).to have_attributes(build_git_hub: false)
     end
 
     it "enables Git Lint" do
-      parser.call %w[--git-lint]
-      expect(application_configuration.build_git_lint).to eq(true)
+      expect(parser.call(%w[--git-lint])).to have_attributes(build_git_lint: true)
     end
 
     it "disables Git Lint" do
-      parser.call %w[--no-git-lint]
-      expect(application_configuration.build_git_lint).to eq(false)
+      expect(parser.call(%w[--no-git-lint])).to have_attributes(build_git_lint: false)
     end
 
     it "enables Guard" do
-      parser.call %w[--guard]
-      expect(application_configuration.build_guard).to eq(true)
+      expect(parser.call(%w[--guard])).to have_attributes(build_guard: true)
     end
 
     it "disables Guard" do
-      parser.call %w[--no-guard]
-      expect(application_configuration.build_guard).to eq(false)
+      expect(parser.call(%w[--no-guard])).to have_attributes(build_guard: false)
     end
 
     it "enables LICENSE" do
-      parser.call %w[--license]
-      expect(application_configuration.build_license).to eq(true)
+      expect(parser.call(%w[--license])).to have_attributes(build_license: true)
     end
 
     it "disables LICENSE" do
-      parser.call %w[--no-license]
-      expect(application_configuration.build_license).to eq(false)
+      expect(parser.call(%w[--no-license])).to have_attributes(build_license: false)
     end
 
     it "enables maximum option" do
-      parser.call %w[--max]
-      expect(application_configuration.build_maximum).to eq(true)
+      expect(parser.call(%w[--max])).to have_attributes(build_maximum: true)
     end
 
     it "enables maximum and disables all other build options" do
-      parser.call %w[--max]
-      proof = empty_configuration.maximize
-                                 .to_h
-                                 .select { |key, _value| key.start_with? "build_" }
-                                 .merge build_minimum: false
+      proof = application_configuration.maximize
+                                       .to_h
+                                       .select { |key, _value| key.start_with? "build_" }
+                                       .merge build_minimum: false
 
-      expect(application_configuration).to have_attributes(proof)
+      expect(parser.call(%w[--max])).to have_attributes(proof)
     end
 
     it "enables minimum option" do
-      parser.call %w[--min]
-      expect(application_configuration.build_minimum).to eq(true)
+      expect(parser.call(%w[--min])).to have_attributes(build_minimum: true)
     end
 
     it "enables minimum and disables all other build options" do
-      parser.call %w[--min]
-      proof = empty_configuration.minimize
-                                 .to_h
-                                 .select { |key, _value| key.start_with? "build_" }
-                                 .merge build_maximum: false
+      proof = application_configuration.minimize
+                                       .to_h
+                                       .select { |key, _value| key.start_with? "build_" }
+                                       .merge build_maximum: false
 
-      expect(application_configuration).to have_attributes(proof)
+      expect(parser.call(%w[--min])).to have_attributes(proof)
     end
 
     it "enables Rake" do
-      parser.call %w[--rake]
-      expect(application_configuration.build_rake).to eq(true)
+      expect(parser.call(%w[--rake])).to have_attributes(build_rake: true)
     end
 
     it "disables Rake" do
-      parser.call %w[--no-rake]
-      expect(application_configuration.build_rake).to eq(false)
+      expect(parser.call(%w[--no-rake])).to have_attributes(build_rake: false)
     end
 
     it "enables README" do
-      parser.call %w[--readme]
-      expect(application_configuration.build_readme).to eq(true)
+      expect(parser.call(%w[--readme])).to have_attributes(build_readme: true)
     end
 
     it "disables README" do
-      parser.call %w[--no-readme]
-      expect(application_configuration.build_readme).to eq(false)
+      expect(parser.call(%w[--no-readme])).to have_attributes(build_readme: false)
     end
 
     it "enables Reek" do
-      parser.call %w[--reek]
-      expect(application_configuration.build_reek).to eq(true)
+      expect(parser.call(%w[--reek])).to have_attributes(build_reek: true)
     end
 
     it "disables Reek" do
-      parser.call %w[--no-reek]
-      expect(application_configuration.build_reek).to eq(false)
+      expect(parser.call(%w[--no-reek])).to have_attributes(build_reek: false)
     end
 
     it "enables Refinements" do
-      parser.call %w[--refinements]
-      expect(application_configuration.build_refinements).to eq(true)
+      expect(parser.call(%w[--refinements])).to have_attributes(build_refinements: true)
     end
 
     it "disables Refinements" do
-      parser.call %w[--no-refinements]
-      expect(application_configuration.build_refinements).to eq(false)
+      expect(parser.call(%w[--no-refinements])).to have_attributes(build_refinements: false)
     end
 
     it "enables RSpec" do
-      parser.call %w[--rspec]
-      expect(application_configuration.build_rspec).to eq(true)
+      expect(parser.call(%w[--rspec])).to have_attributes(build_rspec: true)
     end
 
     it "disables RSpec" do
-      parser.call %w[--no-rspec]
-      expect(application_configuration.build_rspec).to eq(false)
+      expect(parser.call(%w[--no-rspec])).to have_attributes(build_rspec: false)
     end
 
     it "enables Rubocop" do
-      parser.call %w[--rubocop]
-      expect(application_configuration.build_rubocop).to eq(true)
+      expect(parser.call(%w[--rubocop])).to have_attributes(build_rubocop: true)
     end
 
     it "disables Rubocop" do
-      parser.call %w[--no-rubocop]
-      expect(application_configuration.build_rubocop).to eq(false)
+      expect(parser.call(%w[--no-rubocop])).to have_attributes(build_rubocop: false)
     end
 
     it "enables setup" do
-      parser.call %w[--setup]
-      expect(application_configuration.build_setup).to eq(true)
+      expect(parser.call(%w[--setup])).to have_attributes(build_setup: true)
     end
 
     it "disables setup" do
-      parser.call %w[--no-setup]
-      expect(application_configuration.build_setup).to eq(false)
+      expect(parser.call(%w[--no-setup])).to have_attributes(build_setup: false)
     end
 
     it "enables SimpleCov" do
-      parser.call %w[--simple_cov]
-      expect(application_configuration.build_simple_cov).to eq(true)
+      expect(parser.call(%w[--simple_cov])).to have_attributes(build_simple_cov: true)
     end
 
     it "disables SimpleCov" do
-      parser.call %w[--no-simple_cov]
-      expect(application_configuration.build_simple_cov).to eq(false)
+      expect(parser.call(%w[--no-simple_cov])).to have_attributes(build_simple_cov: false)
     end
 
     it "enables Zeitwerk" do
-      parser.call %w[--zeitwerk]
-      expect(application_configuration.build_zeitwerk).to eq(true)
+      expect(parser.call(%w[--zeitwerk])).to have_attributes(build_zeitwerk: true)
     end
 
     it "disables Zeitwerk" do
-      parser.call %w[--no-zeitwerk]
-      expect(application_configuration.build_zeitwerk).to eq(false)
+      expect(parser.call(%w[--no-zeitwerk])).to have_attributes(build_zeitwerk: false)
     end
 
     it "fails with invalid option" do

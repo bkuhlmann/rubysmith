@@ -20,7 +20,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Formatter do
       expect(client).to have_received(:run).with(
         [
           "--auto-correct",
-          application_configuration.minimize.project_root.to_s
+          application_configuration.project_root.to_s
         ]
       )
     end

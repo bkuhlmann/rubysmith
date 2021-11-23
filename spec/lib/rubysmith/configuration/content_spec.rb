@@ -124,13 +124,11 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
 
     it "disables all build options except minimum" do
-      content.build_maximum = true
       expect(content.maximize).to eq(proof)
     end
 
-    it "mutates itself" do
-      content.maximize
-      expect(content).to have_attributes(build_amazing_print: true)
+    it "doesn't mutate itself" do
+      expect(content.maximize).not_to eq(content)
     end
   end
 
@@ -171,38 +169,32 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
 
     it "disables all build options except minimum" do
-      content.build_minimum = true
       expect(content.minimize).to eq(proof)
     end
 
-    it "mutates itself" do
-      content.minimize
-      expect(content).to have_attributes(build_amazing_print: false)
+    it "doesn't mutate itself" do
+      expect(content.minimize).not_to eq(content)
     end
   end
 
   describe "#author_name" do
     it "answers given and family name" do
-      content.author_given_name = "Test"
-      content.author_family_name = "Example"
-
+      content = described_class[author_given_name: "Test", author_family_name: "Example"]
       expect(content.author_name).to eq("Test Example")
     end
 
     it "answers partial name when there is an empty string" do
-      content.author_given_name = ""
-      content.author_family_name = "Example"
-
+      content = described_class[author_given_name: "", author_family_name: "Example"]
       expect(content.author_name).to eq("Example")
     end
 
     it "answers given name only" do
-      content.author_given_name = "Test"
+      content = described_class[author_given_name: "Test"]
       expect(content.author_name).to eq("Test")
     end
 
     it "answers family name only" do
-      content.author_family_name = "Example"
+      content = described_class[author_family_name: "Example"]
       expect(content.author_name).to eq("Example")
     end
 
@@ -213,26 +205,22 @@ RSpec.describe Rubysmith::Configuration::Content do
 
   describe "#license_label_version" do
     it "answers label and version" do
-      content.license_label = "Hippocratic"
-      content.license_version = "3.0"
-
+      content = described_class[license_label: "Hippocratic", license_version: "3.0"]
       expect(content.license_label_version).to eq("Hippocratic-3.0")
     end
 
     it "answers partial label when there is an empty string" do
-      content.license_label = ""
-      content.license_version = "3.0"
-
+      content = described_class[license_label: "", license_version: "3.0"]
       expect(content.license_label_version).to eq("3.0")
     end
 
     it "answers label only" do
-      content.license_label = "Hippocratic"
+      content = described_class[license_label: "Hippocratic"]
       expect(content.license_label_version).to eq("Hippocratic")
     end
 
     it "answers version only" do
-      content.license_label = "3.0"
+      content = described_class[license_label: "3.0"]
       expect(content.license_label_version).to eq("3.0")
     end
 

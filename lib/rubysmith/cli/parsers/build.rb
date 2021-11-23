@@ -1,33 +1,43 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module CLI
     module Parsers
       # Handles parsing of Command Line Interface (CLI) build options.
       class Build
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
-        def initialize client: Parser::CLIENT, container: Container
+        def initialize configuration = Container[:configuration],
+                       client: Parser::CLIENT,
+                       container: Container
+          @configuration = configuration
           @client = client
           @container = container
         end
 
         def call arguments = []
           client.separator "\nBUILD OPTIONS:\n"
-          private_methods.sort.grep(/add_/).each { |method| __send__ method }
-          arguments.empty? ? arguments : client.parse(arguments)
+          collate
+          client.parse arguments
+          configuration
         end
 
         private
 
-        attr_reader :client, :container
+        attr_reader :configuration, :client, :container
+
+        def collate = private_methods.sort.grep(/add_/).each { |method| __send__ method }
 
         def add_amazing_print
           client.on(
             "--[no-]amazing_print",
             "Add Amazing Print gem. #{default __method__}."
           ) do |value|
-            configuration.build_amazing_print = value
+            configuration.merge! build_amazing_print: value
           end
         end
 
@@ -36,7 +46,7 @@ module Rubysmith
             "--[no-]bundler-leak",
             "Add Bundler Leak gem. #{default __method__}."
           ) do |value|
-            configuration.build_bundler_leak = value
+            configuration.merge! build_bundler_leak: value
           end
         end
 
@@ -45,7 +55,7 @@ module Rubysmith
             "--[no-]changes",
             "Add changes documentation. #{default __method__}."
           ) do |value|
-            configuration.build_changes = value
+            configuration.merge! build_changes: value
           end
         end
 
@@ -54,7 +64,7 @@ module Rubysmith
             "--[no-]console",
             "Add console script. #{default __method__}."
           ) do |value|
-            configuration.build_console = value
+            configuration.merge! build_console: value
           end
         end
 
@@ -63,7 +73,7 @@ module Rubysmith
             "--[no-]contributions",
             "Add contributions documentation. #{default __method__}."
           ) do |value|
-            configuration.build_contributions = value
+            configuration.merge! build_contributions: value
           end
         end
 
@@ -72,7 +82,7 @@ module Rubysmith
             "--[no-]circle_ci",
             "Add Circle CI configuration and badge. #{default __method__}."
           ) do |value|
-            configuration.build_circle_ci = value
+            configuration.merge! build_circle_ci: value
           end
         end
 
@@ -81,7 +91,7 @@ module Rubysmith
             "--[no-]citation",
             "Add citation documentation. #{default __method__}."
           ) do |value|
-            configuration.build_citation = value
+            configuration.merge! build_citation: value
           end
         end
 
@@ -90,7 +100,7 @@ module Rubysmith
             "--[no-]community",
             "Add community documentation. #{default __method__}."
           ) do |value|
-            configuration.build_community = value
+            configuration.merge! build_community: value
           end
         end
 
@@ -99,7 +109,7 @@ module Rubysmith
             "--[no-]conduct",
             "Add code of conduct documentation. #{default __method__}."
           ) do |value|
-            configuration.build_conduct = value
+            configuration.merge! build_conduct: value
           end
         end
 
@@ -108,7 +118,7 @@ module Rubysmith
             "--[no-]dead_end",
             "Add Dead End gem. #{default __method__}."
           ) do |value|
-            configuration.build_dead_end = value
+            configuration.merge! build_dead_end: value
           end
         end
 
@@ -117,7 +127,7 @@ module Rubysmith
             "--[no-]debug",
             "Add Debug gem. #{default __method__}."
           ) do |value|
-            configuration.build_debug = value
+            configuration.merge! build_debug: value
           end
         end
 
@@ -126,7 +136,7 @@ module Rubysmith
             "--[no-]git",
             "Add Git. #{default __method__}."
           ) do |value|
-            configuration.build_git = value
+            configuration.merge! build_git: value
           end
         end
 
@@ -135,7 +145,7 @@ module Rubysmith
             "--[no-]git_hub",
             "Add GitHub templates. #{default __method__}."
           ) do |value|
-            configuration.build_git_hub = value
+            configuration.merge! build_git_hub: value
           end
         end
 
@@ -144,7 +154,7 @@ module Rubysmith
             "--[no-]git-lint",
             "Add Git Lint gem. #{default __method__}."
           ) do |value|
-            configuration.build_git_lint = value
+            configuration.merge! build_git_lint: value
           end
         end
 
@@ -153,7 +163,7 @@ module Rubysmith
             "--[no-]guard",
             "Add Guard gem. #{default __method__}."
           ) do |value|
-            configuration.build_guard = value
+            configuration.merge! build_guard: value
           end
         end
 
@@ -162,7 +172,7 @@ module Rubysmith
             "--[no-]license",
             "Add license documentation. #{default __method__}."
           ) do |value|
-            configuration.build_license = value
+            configuration.merge! build_license: value
           end
         end
 
@@ -170,8 +180,8 @@ module Rubysmith
           client.on(
             "--max",
             "Use maximum/enabled options. #{default __method__}."
-          ) do |value|
-            configuration.maximize.build_maximum = value
+          ) do
+            configuration.merge!(**configuration.maximize.to_h)
           end
         end
 
@@ -179,8 +189,8 @@ module Rubysmith
           client.on(
             "--min",
             "Use minimum/disabled options. #{default __method__}."
-          ) do |value|
-            configuration.minimize.build_minimum = value
+          ) do
+            configuration.merge!(**configuration.minimize.to_h)
           end
         end
 
@@ -189,7 +199,7 @@ module Rubysmith
             "--[no-]rake",
             "Add Rake gem. #{default __method__}."
           ) do |value|
-            configuration.build_rake = value
+            configuration.merge! build_rake: value
           end
         end
 
@@ -198,7 +208,7 @@ module Rubysmith
             "--[no-]readme",
             "Add readme documentation. #{default __method__}."
           ) do |value|
-            configuration.build_readme = value
+            configuration.merge! build_readme: value
           end
         end
 
@@ -207,7 +217,7 @@ module Rubysmith
             "--[no-]reek",
             "Add Reek gem. #{default __method__}."
           ) do |value|
-            configuration.build_reek = value
+            configuration.merge! build_reek: value
           end
         end
 
@@ -216,7 +226,7 @@ module Rubysmith
             "--[no-]refinements",
             "Add Refinements gem. #{default __method__}."
           ) do |value|
-            configuration.build_refinements = value
+            configuration.merge! build_refinements: value
           end
         end
 
@@ -225,7 +235,7 @@ module Rubysmith
             "--[no-]rspec",
             "Add RSpec gem. #{default __method__}."
           ) do |value|
-            configuration.build_rspec = value
+            configuration.merge! build_rspec: value
           end
         end
 
@@ -234,7 +244,7 @@ module Rubysmith
             "--[no-]rubocop",
             "Add Rubocop gems. #{default __method__}."
           ) do |value|
-            configuration.build_rubocop = value
+            configuration.merge! build_rubocop: value
           end
         end
 
@@ -243,7 +253,7 @@ module Rubysmith
             "--[no-]setup",
             "Add setup script. #{default __method__}."
           ) do |value|
-            configuration.build_setup = value
+            configuration.merge! build_setup: value
           end
         end
 
@@ -252,7 +262,7 @@ module Rubysmith
             "--[no-]simple_cov",
             "Add SimpleCov gem. #{default __method__}."
           ) do |value|
-            configuration.build_simple_cov = value
+            configuration.merge! build_simple_cov: value
           end
         end
 
@@ -261,7 +271,7 @@ module Rubysmith
             "--[no-]zeitwerk",
             "Add Zeitwerk gem. #{default __method__}."
           ) do |value|
-            configuration.build_zeitwerk = value
+            configuration.merge! build_zeitwerk: value
           end
         end
 
@@ -272,8 +282,6 @@ module Rubysmith
                 .then { |boolean| boolean ? colorizer.green(boolean) : colorizer.red(boolean) }
                 .then { |colored_boolean| "Default: #{colored_boolean}" }
         end
-
-        def configuration = container[__method__]
 
         def colorizer = container[__method__]
       end

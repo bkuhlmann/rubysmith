@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "pathname"
+require "refinements/arrays"
 require "refinements/strings"
 
 module Rubysmith
@@ -63,17 +64,18 @@ module Rubysmith
       :version,
       keyword_init: true
     ) do
-      using Refinements::Strings
       using Refinements::Arrays
+      using Refinements::Strings
 
       def initialize *arguments
         super
 
         self[:template_root] ||= Pathname(__dir__).join("../templates").expand_path
         self[:target_root] ||= Pathname.pwd
+        freeze
       end
 
-      def with(attributes) = self.class.new(to_h.merge(attributes))
+      def with(attributes) = self.class.new(**to_h, **attributes)
 
       def maximize = update_build_options(true)
 
@@ -103,9 +105,8 @@ module Rubysmith
 
       def update_build_options value
         to_h.select { |key, _value| key.start_with? "build_" }
-            .each { |key, _value| self[key] = value }
-            .tap { self[:build_minimum] = !value }
-            .then { self }
+            .transform_values { value }
+            .then { |attributes| self.class.new(**to_h, **attributes, build_minimum: !value) }
       end
     end
   end
