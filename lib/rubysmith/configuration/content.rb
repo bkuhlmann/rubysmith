@@ -41,6 +41,7 @@ module Rubysmith
       :build_refinements,
       :build_rspec,
       :build_rubocop,
+      :build_security,
       :build_setup,
       :build_simple_cov,
       :build_zeitwerk,
