@@ -12,6 +12,7 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_changes: true,
       build_circle_ci: false,
       build_citation: true,
+      build_cli: false,
       build_community: false,
       build_conduct: true,
       build_console: true,

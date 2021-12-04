@@ -9,6 +9,7 @@
   :changes: true
   :circle_ci: false
   :citation: true
+  :cli: false
   :community: false
   :conduct: true
   :console: true

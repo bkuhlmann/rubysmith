@@ -22,6 +22,7 @@ module Rubysmith
       :build_changes,
       :build_circle_ci,
       :build_citation,
+      :build_cli,
       :build_community,
       :build_conduct,
       :build_console,
