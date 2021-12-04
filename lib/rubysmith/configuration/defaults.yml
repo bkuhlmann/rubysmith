@@ -43,6 +43,16 @@
   :format: "adoc"
   :url:
 :extensions:
+  :milestoner:
+    :documentation:
+      :format: "md"
+    :prefixes:
+      - Fixed
+      - Added
+      - Updated
+      - Removed
+      - Refactored
+    :sign: false
   :pragmater:
     :comments:
       - "# frozen_string_literal: true"

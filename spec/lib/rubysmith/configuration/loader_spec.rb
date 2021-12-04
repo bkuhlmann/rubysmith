@@ -42,6 +42,9 @@ RSpec.describe Rubysmith::Configuration::Loader do
       community_url: nil,
       documentation_format: "adoc",
       documentation_url: nil,
+      extensions_milestoner_documentation_format: "md",
+      extensions_milestoner_prefixes: %w[Fixed Added Updated Removed Refactored],
+      extensions_milestoner_sign: false,
       extensions_pragmater_comments: ["# frozen_string_literal: true"],
       extensions_pragmater_includes: [
         "**/*.rb",
