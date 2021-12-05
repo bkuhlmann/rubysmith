@@ -324,6 +324,48 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
+  describe "#computed_project_url_changes" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_changes: "www.test.com/%project_name%/changes"
+      expect(updated_content.computed_project_url_changes).to eq("www.test.com/test/changes")
+    end
+  end
+
+  describe "#computed_project_url_community" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_community: "www.test.com/%project_name%/commons"
+      expect(updated_content.computed_project_url_community).to eq("www.test.com/test/commons")
+    end
+  end
+
+  describe "#computed_project_url_documentation" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_documentation: "www.test.com/%project_name%/docs"
+      expect(updated_content.computed_project_url_documentation).to eq("www.test.com/test/docs")
+    end
+  end
+
+  describe "#computed_project_url_download" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_download: "www.test.com/%project_name%/latest"
+      expect(updated_content.computed_project_url_download).to eq("www.test.com/test/latest")
+    end
+  end
+
+  describe "#computed_project_url_issues" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_issues: "www.test.com/%project_name%/issues"
+      expect(updated_content.computed_project_url_issues).to eq("www.test.com/test/issues")
+    end
+  end
+
+  describe "#computed_project_url_source" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_source: "www.test.com/%project_name%/source"
+      expect(updated_content.computed_project_url_source).to eq("www.test.com/test/source")
+    end
+  end
+
   describe "#ascii_doc?" do
     it "answers true when ASCII Doc format" do
       updated_content = content.merge documentation_format: "adoc"

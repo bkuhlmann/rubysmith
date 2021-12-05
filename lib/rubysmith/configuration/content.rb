@@ -6,6 +6,7 @@ require "refinements/strings"
 require "refinements/structs"
 
 module Rubysmith
+  # rubocop:disable Metrics/ModuleLength
   module Configuration
     # Defines the common configuration content for use throughout the gem.
     Content = Struct.new(
@@ -106,6 +107,18 @@ module Rubysmith
 
       def project_path = project_name.snakecase
 
+      def computed_project_url_changes = format_url(__method__)
+
+      def computed_project_url_community = format_url(__method__)
+
+      def computed_project_url_documentation = format_url(__method__)
+
+      def computed_project_url_download = format_url(__method__)
+
+      def computed_project_url_issues = format_url(__method__)
+
+      def computed_project_url_source = format_url(__method__)
+
       def ascii_doc? = documentation_format == "adoc"
 
       def markdown? = documentation_format == "md"
@@ -116,6 +129,14 @@ module Rubysmith
 
       private
 
+      def format_url kind
+        kind.to_s
+            .sub("computed_", "")
+            .then { |method| public_send method }
+            .then { |url| String url }
+            .then { |url| url.sub "%project_name%", project_name }
+      end
+
       def update_build_options value
         to_h.select { |key, _value| key.start_with? "build_" }
             .transform_values { value }
@@ -124,4 +145,5 @@ module Rubysmith
       end
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end
