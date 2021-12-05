@@ -60,6 +60,12 @@ RSpec.describe Rubysmith::Configuration::Loader do
       license_name: "hippocratic",
       license_version: 3.0,
       now: nil,
+      project_url_changes: nil,
+      project_url_community: nil,
+      project_url_documentation: nil,
+      project_url_download: nil,
+      project_url_issues: nil,
+      project_url_source: nil,
       project_version: "0.0.0"
     ]
   end

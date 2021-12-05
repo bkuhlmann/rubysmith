@@ -22,6 +22,12 @@ RSpec.shared_context "with application container" do
       git_hub_user: "hubber",
       now: Time.local(2020, 1, 1, 0, 0, 0),
       project_name: "test",
+      project_url_changes: "https://www.example.com/%project_name%/changes",
+      project_url_community: "https://www.example.com/%project_name%/community",
+      project_url_documentation: "https://www.example.com/%project_name%/documentation",
+      project_url_download: "https://www.example.com/%project_name%/download",
+      project_url_issues: "https://www.example.com/%project_name%/issues",
+      project_url_source: "https://www.example.com/%project_name%/source",
       target_root: temp_dir,
       template_root: Bundler.root.join("lib/rubysmith/templates"),
       version: Rubysmith::Identity::VERSION_LABEL
