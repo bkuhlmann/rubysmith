@@ -33,8 +33,8 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
               orcid: https://orcid.org/0000-1111-2222-3333
           keywords:
            - ruby
-          repository-code: https://example.com/projects/test
-          repository-artifact: https://example.com/projects/test
+          repository-code: https://www.example.com/test/source
+          repository-artifact: https://www.example.com/test/download
         CONTENT
       end
     end

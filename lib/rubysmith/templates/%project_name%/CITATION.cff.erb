@@ -12,5 +12,5 @@ authors:
     orcid: https://orcid.org/<%= configuration.citation_orcid %>
 keywords:
  - ruby
-repository-code: <%= "#{configuration.documentation_url}/#{configuration.project_name}" %>
-repository-artifact: <%= "#{configuration.documentation_url}/#{configuration.project_name}" %>
+repository-code: <%= configuration.computed_project_url_source %>
+repository-artifact: <%= configuration.computed_project_url_download %>

@@ -71,8 +71,8 @@ Read [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Community
 
-Feel free to [join the community](https://www.example.com/community) for discussions related to this
-project and much more.
+Feel free to [join the community](https://www.example.com/test/community) for discussions related
+to this project and much more.
 
 ## License
 
