@@ -17,8 +17,6 @@ RSpec.shared_context "with application container" do
       author_url: "https://www.jillsmith.com",
       citation_affiliation: "ACME",
       citation_orcid: "0000-1111-2222-3333",
-      community_url: "https://www.example.com/community",
-      documentation_url: "https://example.com/projects",
       git_hub_user: "hubber",
       now: Time.local(2020, 1, 1, 0, 0, 0),
       project_name: "test",
