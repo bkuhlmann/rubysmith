@@ -71,7 +71,7 @@ module Rubysmith
       :project_version,
       :target_root,
       :template_path,
-      :template_root,
+      :template_roots,
       :version,
       keyword_init: true
     ) do
@@ -82,9 +82,15 @@ module Rubysmith
       def initialize *arguments
         super
 
-        self[:template_root] ||= Pathname(__dir__).join("../templates").expand_path
+        self[:template_roots] ||= [Pathname(__dir__).join("../templates")]
         self[:target_root] ||= Pathname.pwd
         freeze
+      end
+
+      def add_template_roots paths
+        Array(paths).map { |path| Pathname path }
+                    .including(template_roots)
+                    .then { |roots| dup.merge! template_roots: roots }
       end
 
       def with(attributes) = dup.merge!(**attributes).freeze
@@ -123,6 +129,11 @@ module Rubysmith
 
       def pathway
         Pathway[start_root: template_root, start_path: template_path, end_root: target_root]
+      end
+
+      def template_root
+        template_roots.map(&:expand_path)
+                      .find { |path| path.join(String(template_path)).exist? }
       end
 
       private

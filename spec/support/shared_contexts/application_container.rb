@@ -27,7 +27,7 @@ RSpec.shared_context "with application container" do
       project_url_issues: "https://www.example.com/%project_name%/issues",
       project_url_source: "https://www.example.com/%project_name%/source",
       target_root: temp_dir,
-      template_root: Bundler.root.join("lib/rubysmith/templates"),
+      template_roots: [Bundler.root.join("lib/rubysmith/templates")],
       version: Rubysmith::Identity::VERSION_LABEL
     )
   end
