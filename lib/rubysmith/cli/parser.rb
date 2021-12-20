@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "optparse"
+
 module Rubysmith
   module CLI
     # Assembles and parses all Command Line Interface (CLI) options.
