@@ -23,7 +23,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
           message: Please use the following metadata when citing this project in your work.
           title: Test
           abstract:
-          version: 0.1.0
+          version: 0.0.0
           license: Hippocratic-3.0
           date-released: 2020-01-01
           authors:
