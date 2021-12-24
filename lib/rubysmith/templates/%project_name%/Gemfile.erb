@@ -24,11 +24,11 @@ group :code_quality do
   <% end %>
   <% if configuration.build_rubocop %>
     gem "rubocop", "~> 1.24"
-    gem "rubocop-performance", "~> 1.11"
+    gem "rubocop-performance", "~> 1.12"
     gem "rubocop-rake", "~> 0.6"
   <% end %>
   <% if configuration.build_rspec && configuration.build_rubocop %>
-    gem "rubocop-rspec", "~> 2.4"
+    gem "rubocop-rspec", "~> 2.6"
   <% end %>
   <% if configuration.build_simple_cov %>
     gem "simplecov", "~> 0.20"

@@ -280,9 +280,9 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :code_quality do
             gem "rubocop", "~> 1.24"
-            gem "rubocop-performance", "~> 1.11"
+            gem "rubocop-performance", "~> 1.12"
             gem "rubocop-rake", "~> 0.6"
-            gem "rubocop-rspec", "~> 2.4"
+            gem "rubocop-rspec", "~> 2.6"
           end
 
           group :test do
@@ -310,7 +310,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :code_quality do
             gem "rubocop", "~> 1.24"
-            gem "rubocop-performance", "~> 1.11"
+            gem "rubocop-performance", "~> 1.12"
             gem "rubocop-rake", "~> 0.6"
           end
         CONTENT
@@ -409,9 +409,9 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "git-lint", "~> 2.0"
             gem "reek", "~> 6.0"
             gem "rubocop", "~> 1.24"
-            gem "rubocop-performance", "~> 1.11"
+            gem "rubocop-performance", "~> 1.12"
             gem "rubocop-rake", "~> 0.6"
-            gem "rubocop-rspec", "~> 2.4"
+            gem "rubocop-rspec", "~> 2.6"
             gem "simplecov", "~> 0.20"
           end
 
