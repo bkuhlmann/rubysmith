@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
   it_behaves_like "a builder"
 
   describe "#call" do
-    shared_examples_for "a bundle" do
+    shared_examples "a bundle" do
       it "installs gems" do
         builder.call
         expect(client).to have_received(:start).with(%w[install --quiet])

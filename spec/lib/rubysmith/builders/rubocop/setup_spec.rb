@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Rubocop::Setup do
   it_behaves_like "a builder"
 
   describe "#call" do
-    shared_examples_for "a binstub" do
+    shared_examples "a binstub" do
       it "builds binstub" do
         builder.call
 
