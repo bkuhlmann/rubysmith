@@ -279,7 +279,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "rubocop", "~> 1.20"
+            gem "rubocop", "~> 1.24"
             gem "rubocop-performance", "~> 1.11"
             gem "rubocop-rake", "~> 0.6"
             gem "rubocop-rspec", "~> 2.4"
@@ -309,7 +309,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "rubocop", "~> 1.20"
+            gem "rubocop", "~> 1.24"
             gem "rubocop-performance", "~> 1.11"
             gem "rubocop-rake", "~> 0.6"
           end
@@ -408,7 +408,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 2.0"
             gem "reek", "~> 6.0"
-            gem "rubocop", "~> 1.20"
+            gem "rubocop", "~> 1.24"
             gem "rubocop-performance", "~> 1.11"
             gem "rubocop-rake", "~> 0.6"
             gem "rubocop-rspec", "~> 2.4"
