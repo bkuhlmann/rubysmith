@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = "~> 3.1"
   spec.add_dependency "dry-container", "~> 0.9"
-  spec.add_dependency "git_plus", "~> 0.6"
+  spec.add_dependency "git_plus", "~> 1.0"
   spec.add_dependency "milestoner", "~> 13.0"
   spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "pragmater", "~> 9.0"
