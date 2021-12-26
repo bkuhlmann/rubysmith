@@ -73,7 +73,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         project_url_issues: nil,
         project_url_source: nil,
         project_version: nil,
-        target_root: target_root,
+        target_root:,
         template_path: nil,
         template_roots: [template_root],
         version: nil
@@ -160,7 +160,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         build_simple_cov: true,
         build_zeitwerk: true,
         project_name: "test",
-        target_root: target_root,
+        target_root:,
         template_roots: [template_root]
       ]
     end
@@ -211,7 +211,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         build_simple_cov: false,
         build_zeitwerk: false,
         project_name: "test",
-        target_root: target_root,
+        target_root:,
         template_roots: [template_root]
       ]
     end

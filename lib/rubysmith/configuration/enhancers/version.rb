@@ -13,7 +13,7 @@ module Rubysmith
           @version = version
         end
 
-        def call(content) = content.merge(version: version)
+        def call(content) = content.merge(version:)
 
         private
 

@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Bundler do
-  subject(:builder) { described_class.new test_configuration, client: client }
+  subject(:builder) { described_class.new test_configuration, client: }
 
   include_context "with application container"
 

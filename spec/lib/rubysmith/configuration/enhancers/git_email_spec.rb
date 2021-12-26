@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
-  subject(:enhancer) { described_class.new repository: repository }
+  subject(:enhancer) { described_class.new repository: }
 
   let(:repository) { instance_double GitPlus::Repository }
 

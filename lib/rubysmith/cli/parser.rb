@@ -16,7 +16,7 @@ module Rubysmith
       end
 
       def call arguments = []
-        sections.each { |section| section.call configuration, client: client }
+        sections.each { |section| section.call configuration, client: }
         client.parse arguments
         configuration.freeze
       end

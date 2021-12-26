@@ -13,7 +13,7 @@ module Rubysmith
           @now = now
         end
 
-        def call(content) = content.merge(now: now)
+        def call(content) = content.merge(now:)
 
         private
 

@@ -11,7 +11,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::CurrentTime do
     let(:content) { Rubysmith::Configuration::Content.new }
 
     it "answers current time" do
-      expect(enhancer.call(content)).to have_attributes(now: now)
+      expect(enhancer.call(content)).to have_attributes(now:)
     end
   end
 end

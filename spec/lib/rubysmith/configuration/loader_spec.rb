@@ -92,7 +92,7 @@ RSpec.describe Rubysmith::Configuration::Loader do
         Rubysmith::Configuration::Enhancers::CurrentTime.new(now)
       ]
 
-      expect(loader.call).to have_attributes(now: now)
+      expect(loader.call).to have_attributes(now:)
     end
 
     it "answers frozen configuration" do

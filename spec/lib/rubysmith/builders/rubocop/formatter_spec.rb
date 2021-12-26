@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Rubocop::Formatter do
   using Refinements::Pathnames
 
-  subject(:builder) { described_class.new configuration.minimize, client: client }
+  subject(:builder) { described_class.new configuration.minimize, client: }
 
   include_context "with application container"
 
