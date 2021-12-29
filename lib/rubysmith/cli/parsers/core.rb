@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "rubysmith/identity"
 require "refinements/structs"
 
 module Rubysmith
