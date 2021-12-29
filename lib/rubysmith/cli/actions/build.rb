@@ -25,7 +25,7 @@ module Rubysmith
           Builders::Reek,
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
-          Builders::Pragma,
+          Extensions::Pragmater,
           Builders::Rubocop::Setup,
           Builders::Rubocop::Formatter,
           Builders::Git::Commit

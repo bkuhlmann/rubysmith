@@ -54,6 +54,8 @@
     :comments:
       - "# frozen_string_literal: true"
     :includes:
+      - "**/*.gemspec"
+      - "**/*.rake"
       - "**/*.rb"
       - "**/*bin/console"
       - "**/*bin/guard"
