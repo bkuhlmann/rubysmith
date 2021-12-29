@@ -53,6 +53,10 @@ RSpec.describe Rubysmith::Configuration::Loader do
         "**/*Guardfile",
         "**/*Rakefile"
       ],
+      extensions_tocer_includes: [
+        "README.md"
+      ],
+      extensions_tocer_label: "## Table of Contents",
       git_hub_user: nil,
       license_label: "Hippocratic",
       license_name: "hippocratic",

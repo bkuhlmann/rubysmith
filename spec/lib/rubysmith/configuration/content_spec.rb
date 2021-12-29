@@ -60,6 +60,8 @@ RSpec.describe Rubysmith::Configuration::Content do
         extensions_milestoner_sign: nil,
         extensions_pragmater_comments: nil,
         extensions_pragmater_includes: nil,
+        extensions_tocer_label: nil,
+        extensions_tocer_includes: nil,
         git_hub_user: nil,
         license_label: nil,
         license_name: nil,

@@ -61,6 +61,10 @@
       - "**/*Gemfile"
       - "**/*Guardfile"
       - "**/*Rakefile"
+  :tocer:
+    :includes:
+      - "README.md"
+    :label: "## Table of Contents"
 :git_hub:
   :user:
 :license:

@@ -56,6 +56,8 @@ module Rubysmith
       :extensions_milestoner_sign,
       :extensions_pragmater_comments,
       :extensions_pragmater_includes,
+      :extensions_tocer_includes,
+      :extensions_tocer_label,
       :git_hub_user,
       :license_label,
       :license_name,
