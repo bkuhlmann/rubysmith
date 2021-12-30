@@ -25,10 +25,10 @@ module Rubysmith
           Builders::Reek,
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
+          Builders::Rubocop::Setup,
           Extensions::Pragmater,
           Extensions::Tocer,
-          Builders::Rubocop::Setup,
-          Builders::Rubocop::Formatter,
+          Extensions::Rubocop,
           Builders::Git::Commit
         ].freeze
 
