@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
   describe "#call" do
     before { builder.call }
 
-    context "when enabled with ASCII Doc format and minimum options" do
+    context "when enabled with ASCII Doc format and minimum configuration" do
       let :test_configuration do
         configuration.minimize.with build_readme: true, documentation_format: "adoc"
       end
@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       end
     end
 
-    context "when enabled with ASCII Doc format and maximum options" do
+    context "when enabled with ASCII Doc format and maximum configuration" do
       let(:test_configuration) { configuration.maximize.with documentation_format: "adoc" }
 
       it "builds README" do
@@ -36,19 +36,19 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       end
     end
 
-    context "when enabled with Markdown format and minimum options" do
+    context "when enabled with Markdown format and minimum configuration" do
       let :test_configuration do
         configuration.minimize.with build_readme: true, documentation_format: "md"
       end
 
-      it "builds README with minimum options" do
+      it "builds README" do
         expect(temp_dir.join("test/README.md").read).to eq(
           Bundler.root.join("spec/support/fixtures/boms/readme-minimum.md").read
         )
       end
     end
 
-    context "when enabled with Markdown format and maximum options" do
+    context "when enabled with Markdown format and maximum configuration" do
       let(:test_configuration) { configuration.maximize.with documentation_format: "md" }
 
       it "builds README" do
@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     context "when disabled" do
       let(:test_configuration) { configuration.minimize }
 
-      it "doesn't build documentation" do
+      it "doesn't build README" do
         expect(temp_dir.files.empty?).to eq(true)
       end
     end

@@ -4,24 +4,6 @@
 [![Circle CI Status](https://circleci.com/gh/hubber/test.svg?style=svg)](https://circleci.com/gh/hubber/test)
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
-
-## Table of Contents
-
-  - [Features](#features)
-  - [Screencasts](#screencasts)
-  - [Requirements](#requirements)
-  - [Setup](#setup)
-  - [Usage](#usage)
-  - [Development](#development)
-  - [Tests](#tests)
-  - [Versioning](#versioning)
-  - [Code of Conduct](#code-of-conduct)
-  - [Contributions](#contributions)
-  - [Community](#community)
-  - [License](#license)
-  - [Changes](#changes)
-  - [Credits](#credits)
-
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
 
 ## Features
