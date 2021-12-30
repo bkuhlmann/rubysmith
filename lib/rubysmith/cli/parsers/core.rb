@@ -45,6 +45,12 @@ module Rubysmith
           end
         end
 
+        def add_publish
+          client.on "-p", "--publish VERSION", "Publish project." do |version|
+            configuration.merge! action_publish: true, project_version: version
+          end
+        end
+
         def add_version
           client.on "-v", "--version", "Show gem version." do
             configuration.merge! action_version: true

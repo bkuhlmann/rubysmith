@@ -13,6 +13,7 @@ module Rubysmith
       :action_build,
       :action_config,
       :action_help,
+      :action_publish,
       :action_version,
       :author_email,
       :author_family_name,

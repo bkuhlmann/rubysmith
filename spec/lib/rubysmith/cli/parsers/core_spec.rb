@@ -36,25 +36,42 @@ RSpec.describe Rubysmith::CLI::Parsers::Core do
       expect(&expectation).to raise_error(OptionParser::InvalidArgument, /bogus/)
     end
 
-    it "answers build (short)" do
-      expect(parser.call(%w[-b test])).to have_attributes(action_build: true)
+    it "answers build and project name (short)" do
+      expect(parser.call(%w[-b test])).to have_attributes(
+        action_build: true,
+        project_name: "test"
+      )
     end
 
-    it "answers build (long)" do
-      expect(parser.call(%w[--build test])).to have_attributes(action_build: true)
-    end
-
-    it "answers project name (short)" do
-      expect(parser.call(%w[-b test])).to have_attributes(project_name: "test")
-    end
-
-    it "answers project name (long)" do
-      expect(parser.call(%w[--build test])).to have_attributes(project_name: "test")
+    it "answers build and project name (long)" do
+      expect(parser.call(%w[--build test])).to have_attributes(
+        action_build: true,
+        project_name: "test"
+      )
     end
 
     it "fails with missing build name" do
       expectation = proc { parser.call %w[--build] }
       expect(&expectation).to raise_error(OptionParser::MissingArgument, /--build/)
+    end
+
+    it "answers publish (short)" do
+      expect(parser.call(%w[-p 1.2.3])).to have_attributes(
+        action_publish: true,
+        project_version: "1.2.3"
+      )
+    end
+
+    it "answers publish (long)" do
+      expect(parser.call(%w[--publish 1.2.3])).to have_attributes(
+        action_publish: true,
+        project_version: "1.2.3"
+      )
+    end
+
+    it "fails with missing publish version" do
+      expectation = proc { parser.call %w[--publish] }
+      expect(&expectation).to raise_error(OptionParser::MissingArgument, /--publish/)
     end
 
     it "answers version (short)" do

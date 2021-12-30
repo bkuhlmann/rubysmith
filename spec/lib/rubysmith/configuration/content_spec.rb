@@ -17,6 +17,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         action_build: nil,
         action_config: nil,
         action_help: nil,
+        action_publish: nil,
         action_version: nil,
         author_email: nil,
         author_family_name: nil,
