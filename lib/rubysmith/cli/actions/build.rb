@@ -26,6 +26,7 @@ module Rubysmith
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
           Builders::Rubocop,
+          Extensions::Bundler,
           Extensions::Pragmater,
           Extensions::Tocer,
           Extensions::Rubocop,
