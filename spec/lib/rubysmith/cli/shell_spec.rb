@@ -236,6 +236,22 @@ RSpec.describe Rubysmith::CLI::Shell do
       end
     end
 
+    it "publishes project" do
+      pending "Requires CI to have credentials to remote repository." if ENV["CI"] == "true"
+
+      version = "1.2.3"
+
+      temp_dir.change_dir { `git clone git@github.com:bkuhlmann/test.git` }
+
+      temp_dir.join("test").change_dir do
+        shell.call %W[--publish #{version}]
+        expect(`git tag | tail -1`.strip).to eq(version)
+
+        `git tag --delete #{version}`
+        `git push --delete origin #{version}`
+      end
+    end
+
     it "prints version" do
       expectation = proc { shell.call %w[--version] }
       expect(&expectation).to output(/Rubysmith\s\d+\.\d+\.\d+/).to_stdout

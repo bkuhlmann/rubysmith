@@ -4,7 +4,11 @@ module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      ACTIONS = {config: Actions::Config.new, build: Actions::Build.new}.freeze
+      ACTIONS = {
+        config: Actions::Config.new,
+        build: Actions::Build.new,
+        publish: Actions::Publish.new
+      }.freeze
 
       def initialize parser: Parser.new, actions: ACTIONS, container: Container
         @parser = parser
@@ -26,6 +30,7 @@ module Rubysmith
         case configuration
           in action_config: Symbol => action then config action
           in action_build: true then build configuration
+          in action_publish: true then publish configuration
           in action_version: true then logger.info Identity::VERSION_LABEL
           else usage
         end
@@ -34,6 +39,8 @@ module Rubysmith
       def config(action) = actions.fetch(__method__).call(action)
 
       def build(configuration) = actions.fetch(__method__).call(configuration)
+
+      def publish(configuration) = actions.fetch(__method__).call(configuration)
 
       def usage = logger.unknown(parser.to_s)
 
