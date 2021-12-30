@@ -3,23 +3,15 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Bundler do
-  subject(:builder) { described_class.new test_configuration, client: }
+  subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
 
-  let(:client) { class_spy Bundler::CLI }
   let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    shared_examples "a bundle" do
-      it "installs gems" do
-        builder.call
-        expect(client).to have_received(:start).with(%w[install --quiet])
-      end
-    end
-
     context "with minimum options" do
       let(:test_configuration) { configuration.minimize }
 
@@ -33,8 +25,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         CONTENT
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Amazing Print only" do
@@ -56,8 +46,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Bundler Leak only" do
@@ -79,8 +67,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Dead End only" do
@@ -102,8 +88,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Debug only" do
@@ -125,8 +109,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Git and Git Lint only" do
@@ -150,8 +132,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Guard only" do
@@ -173,8 +153,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Rake only" do
@@ -196,8 +174,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Reek only" do
@@ -219,8 +195,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Refinements only" do
@@ -240,8 +214,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with RSpec only" do
@@ -263,8 +235,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with RSpec and Rubocop only" do
@@ -295,8 +265,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Rubocop only" do
@@ -320,8 +288,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with SimpleCov only" do
@@ -343,8 +309,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Zeitwerk only" do
@@ -364,8 +328,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with Markdown only" do
@@ -387,8 +349,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
         expect(gemfile_path.read).to eq(proof)
       end
-
-      it_behaves_like "a bundle"
     end
 
     context "with all options" do
