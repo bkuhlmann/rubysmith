@@ -26,7 +26,7 @@ module Rubysmith
         case configuration
           in action_config: Symbol => action then config action
           in action_build: true then build configuration
-          in action_version: true then logger.info configuration.version
+          in action_version: true then logger.info Identity::VERSION_LABEL
           else usage
         end
       end

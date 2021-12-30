@@ -74,7 +74,6 @@ module Rubysmith
       :target_root,
       :template_path,
       :template_roots,
-      :version,
       keyword_init: true
     ) do
       using Refinements::Arrays
