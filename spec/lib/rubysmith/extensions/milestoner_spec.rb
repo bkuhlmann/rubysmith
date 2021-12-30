@@ -13,14 +13,14 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
 
   describe ".call" do
     it "answers configuration" do
-      expect(described_class.call("0.0.0", configuration, client:)).to be_a(
+      expect(described_class.call(configuration, client:)).to be_a(
         Rubysmith::Configuration::Content
       )
     end
   end
 
   describe "#call" do
-    before { extension.call "0.0.0" }
+    before { extension.call }
 
     context "with default configuration" do
       let(:test_configuration) { configuration.minimize }
@@ -41,7 +41,8 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
       let :test_configuration do
         configuration.with extensions_milestoner_documentation_format: "adoc",
                            extensions_milestoner_prefixes: %w[Added],
-                           extensions_milestoner_sign: true
+                           extensions_milestoner_sign: true,
+                           project_version: "1.2.3"
       end
 
       it "messages client" do
@@ -50,7 +51,7 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
             documentation_format: "adoc",
             prefixes: %w[Added],
             sign: true,
-            version: "0.0.0"
+            version: "1.2.3"
           ]
         )
       end
