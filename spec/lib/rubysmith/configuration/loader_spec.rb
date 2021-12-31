@@ -36,9 +36,7 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_setup: true,
       build_simple_cov: true,
       build_zeitwerk: true,
-      citation_affiliation: nil,
       citation_message: "Please use the following metadata when citing this project in your work.",
-      citation_orcid: nil,
       documentation_format: "adoc",
       extensions_milestoner_documentation_format: "md",
       extensions_milestoner_prefixes: %w[Fixed Added Updated Removed Refactored],
@@ -59,17 +57,9 @@ RSpec.describe Rubysmith::Configuration::Loader do
         "README.md"
       ],
       extensions_tocer_label: "## Table of Contents",
-      git_hub_user: nil,
       license_label: "Hippocratic",
       license_name: "hippocratic",
       license_version: 3.0,
-      now: nil,
-      project_url_changes: nil,
-      project_url_community: nil,
-      project_url_documentation: nil,
-      project_url_download: nil,
-      project_url_issues: nil,
-      project_url_source: nil,
       project_version: "0.0.0"
     ]
   end
