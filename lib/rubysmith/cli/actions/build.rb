@@ -10,7 +10,6 @@ module Rubysmith
           Builders::Core,
           Builders::Documentation::Readme,
           Builders::Documentation::Citation,
-          Builders::Documentation::Conduct,
           Builders::Documentation::Contribution,
           Builders::Documentation::License,
           Builders::Documentation::Version,
