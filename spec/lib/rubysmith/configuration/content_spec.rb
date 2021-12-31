@@ -75,6 +75,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         project_url_contributions: nil,
         project_url_documentation: nil,
         project_url_download: nil,
+        project_url_home: nil,
         project_url_issues: nil,
         project_url_license: nil,
         project_url_security: nil,
@@ -371,6 +372,13 @@ RSpec.describe Rubysmith::Configuration::Content do
     it "answers formatted URL" do
       updated_content = content.merge project_url_download: "test.com/%project_name%/latest"
       expect(updated_content.computed_project_url_download).to eq("test.com/test/latest")
+    end
+  end
+
+  describe "#computed_project_url_home" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_home: "test.com/%project_name%"
+      expect(updated_content.computed_project_url_home).to eq("test.com/test")
     end
   end
 

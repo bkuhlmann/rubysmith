@@ -71,6 +71,7 @@ module Rubysmith
       :project_url_contributions,
       :project_url_documentation,
       :project_url_download,
+      :project_url_home,
       :project_url_issues,
       :project_url_license,
       :project_url_security,
@@ -127,6 +128,8 @@ module Rubysmith
       def computed_project_url_documentation = format_url(__method__)
 
       def computed_project_url_download = format_url(__method__)
+
+      def computed_project_url_home = format_url(__method__)
 
       def computed_project_url_issues = format_url(__method__)
 
