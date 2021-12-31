@@ -67,9 +67,12 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-bundler-leak
           --no-circle_ci
           --no-citation
+          --no-cli
+          --no-community
           --no-conduct
           --no-console
           --no-contributions
+          --no-dead_end
           --no-debug
           --no-git
           --no-git_hub
@@ -82,6 +85,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-refinements
           --no-rspec
           --no-rubocop
+          --no-security
           --no-setup
           --no-simple_cov
           --no-versions
@@ -171,9 +175,12 @@ RSpec.describe Rubysmith::CLI::Shell do
           --bundler-leak
           --circle_ci
           --citation
+          --cli
+          --community
           --conduct
           --console
           --contributions
+          --dead_end
           --debug
           --git
           --git_hub
@@ -186,6 +193,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --refinements
           --rspec
           --rubocop
+          --security
           --setup
           --simple_cov
           --versions
