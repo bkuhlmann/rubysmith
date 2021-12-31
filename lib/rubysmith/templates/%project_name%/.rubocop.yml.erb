@@ -1,6 +1,8 @@
 inherit_from:
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+<% if configuration.build_rake %>
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rake.yml
+<% end %>
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
 <% if configuration.build_rspec %>
   - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml

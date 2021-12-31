@@ -35,8 +35,26 @@ RSpec.describe Rubysmith::Builders::Rubocop do
       end
     end
 
-    context "when enabled with no additional options" do
+    context "when enabled with minimum options" do
       let(:test_configuration) { configuration.minimize.merge build_rubocop: true }
+
+      it_behaves_like "a binstub"
+
+      it "builds configuration" do
+        builder.call
+
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          inherit_from:
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
+        CONTENT
+      end
+    end
+
+    context "when enabled with Rake only" do
+      let :test_configuration do
+        configuration.minimize.merge build_rubocop: true, build_rake: true
+      end
 
       it_behaves_like "a binstub"
 
@@ -52,10 +70,27 @@ RSpec.describe Rubysmith::Builders::Rubocop do
       end
     end
 
-    context "when enabled with RSpec" do
+    context "when enabled with RSpec only" do
       let :test_configuration do
         configuration.minimize.merge build_rubocop: true, build_rspec: true
       end
+
+      it_behaves_like "a binstub"
+
+      it "builds configuration" do
+        builder.call
+
+        expect(configuration_path.read).to eq(<<~CONTENT)
+          inherit_from:
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/ruby.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/performance.yml
+            - https://raw.githubusercontent.com/bkuhlmann/code_quality/main/configurations/rubocop/rspec.yml
+        CONTENT
+      end
+    end
+
+    context "when enabled with maximum options" do
+      let(:test_configuration) { configuration.maximize }
 
       it_behaves_like "a binstub"
 
