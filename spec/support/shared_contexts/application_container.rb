@@ -23,7 +23,6 @@ RSpec.shared_context "with application container" do
       project_url_community: "https://www.example.com/%project_name%/community",
       project_url_conduct: "https://www.example.com/%project_name%/code_of_conduct",
       project_url_contributions: "https://www.example.com/%project_name%/contributions",
-      project_url_documentation: "https://www.example.com/%project_name%/documentation",
       project_url_download: "https://www.example.com/%project_name%/download",
       project_url_home: "https://www.example.com/%project_name%",
       project_url_issues: "https://www.example.com/%project_name%/issues",
