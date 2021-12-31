@@ -23,14 +23,6 @@ To test, run:
 
     bundle exec rake
 
-## Versioning
-
-Read [Semantic Versioning](https://semver.org) for details. Briefly, it means:
-
-- Major (X.y.z) - Incremented for any backwards incompatible public API changes.
-- Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
-- Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
-
 ## Credits
 
 - Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).

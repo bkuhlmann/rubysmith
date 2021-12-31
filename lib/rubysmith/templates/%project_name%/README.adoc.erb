@@ -56,44 +56,28 @@ To test, run:
 bundle exec rake
 ----
 
-== Versioning
+<% if configuration.build_license %>
+== link:<%= configuration.computed_project_url_license %>[License]
+<% end %>
 
-Read link:https://semver.org[Semantic Versioning] for details. Briefly, it means:
-
-* Major (X.y.z) - Incremented for any backwards incompatible public API changes.
-* Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
-* Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
+<% if configuration.build_security %>
+== link:<%= configuration.computed_project_url_security %>[Security]
+<% end %>
 
 <% if configuration.build_conduct %>
-== Code of Conduct
-
-Please note that this project is released with a link:CODE_OF_CONDUCT.adoc[CODE OF CONDUCT]. By
-participating in this project you agree to abide by its terms.
+== link:<%= configuration.computed_project_url_conduct %>[Code of Conduct]
 <% end %>
 
 <% if configuration.build_contributions %>
-== Contributions
-
-Read link:CONTRIBUTING.adoc[CONTRIBUTING] for details.
-<% end %>
-
-<% if configuration.build_community %>
-== Community
-
-Feel free to link:<%= configuration.computed_project_url_community %>[join the commmunity] for discussions
-related to this project and much more.
-<% end %>
-
-<% if configuration.build_license %>
-== License
-
-Read link:LICENSE.adoc[LICENSE] for details.
+== link:<%= configuration.computed_project_url_contributions %>[Contributions]
 <% end %>
 
 <% if configuration.build_changes %>
-== Changes
+== link:<%= configuration.computed_project_url_versions %>[Versions]
+<% end %>
 
-Read link:CHANGES.adoc[CHANGES] for details.
+<% if configuration.build_community %>
+== link:<%= configuration.computed_project_url_community %>[Community]
 <% end %>
 
 == Credits

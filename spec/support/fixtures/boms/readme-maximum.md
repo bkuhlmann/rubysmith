@@ -34,35 +34,17 @@ To test, run:
 
     bundle exec rake
 
-## Versioning
+## [License](https://www.example.com/test/license)
 
-Read [Semantic Versioning](https://semver.org) for details. Briefly, it means:
+## [Security](https://www.example.com/test/security)
 
-- Major (X.y.z) - Incremented for any backwards incompatible public API changes.
-- Minor (x.Y.z) - Incremented for new, backwards compatible, public API enhancements/fixes.
-- Patch (x.y.Z) - Incremented for small, backwards compatible, bug fixes.
+## [Code of Conduct](https://www.example.com/test/code_of_conduct)
 
-## Code of Conduct
+## [Contributions](https://www.example.com/test/contributions)
 
-Please note that this project is released with a [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By
-participating in this project you agree to abide by its terms.
+## [Versions](https://www.example.com/test/versions)
 
-## Contributions
-
-Read [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Community
-
-Feel free to [join the community](https://www.example.com/test/community) for discussions related
-to this project and much more.
-
-## License
-
-Read [LICENSE](LICENSE.md) for details.
-
-## Changes
-
-Read [CHANGES](CHANGES.md) for details.
+## [Community](https://www.example.com/test/community)
 
 ## Credits
 
