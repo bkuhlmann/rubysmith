@@ -35,6 +35,7 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_security: true,
       build_setup: true,
       build_simple_cov: true,
+      build_versions: true,
       build_zeitwerk: true,
       citation_message: "Please use the following metadata when citing this project in your work.",
       documentation_format: "adoc",

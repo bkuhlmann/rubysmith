@@ -230,6 +230,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-simple_cov])).to have_attributes(build_simple_cov: false)
     end
 
+    it "enables versions" do
+      expect(parser.call(%w[--versions])).to have_attributes(build_versions: true)
+    end
+
+    it "disables versions" do
+      expect(parser.call(%w[--no-versions])).to have_attributes(build_versions: false)
+    end
+
     it "enables Zeitwerk" do
       expect(parser.call(%w[--zeitwerk])).to have_attributes(build_zeitwerk: true)
     end

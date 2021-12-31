@@ -266,6 +266,15 @@ module Rubysmith
           end
         end
 
+        def add_versions
+          client.on(
+            "--[no-]versions",
+            "Add version history. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_versions: value
+          end
+        end
+
         def add_zeitwerk
           client.on(
             "--[no-]zeitwerk",

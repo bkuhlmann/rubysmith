@@ -32,6 +32,7 @@
   :security: true
   :setup: true
   :simple_cov: true
+  :versions: true
   :zeitwerk: true
 :citation:
   :affiliation:

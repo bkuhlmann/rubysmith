@@ -85,6 +85,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-rubocop
           --no-setup
           --no-simple_cov
+          --no-versions
           --no-zeitwerk
         ]
       end
@@ -144,6 +145,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/LICENSE.adoc",
           "test/Rakefile",
           "test/README.adoc",
+          "test/VERSIONS.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
           "test/tags"
@@ -189,6 +191,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --rubocop
           --setup
           --simple_cov
+          --versions
           --zeitwerk
         ]
       end
@@ -218,6 +221,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/LICENSE.adoc",
           "test/Rakefile",
           "test/README.adoc",
+          "test/VERSIONS.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
           "test/tags"
