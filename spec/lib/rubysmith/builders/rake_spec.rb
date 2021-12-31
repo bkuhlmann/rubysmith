@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Rake do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -15,7 +17,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     before { builder.call }
 
     context "when enabled with default options" do
-      let(:test_configuration) { configuration.minimize.with build_rake: true }
+      let(:test_configuration) { configuration.minimize.merge build_rake: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -31,7 +33,7 @@ RSpec.describe Rubysmith::Builders::Rake do
 
     context "when enabled with only Bundler Leak" do
       let :test_configuration do
-        configuration.minimize.with build_rake: true, build_bundler_leak: true
+        configuration.minimize.merge build_rake: true, build_bundler_leak: true
       end
 
       it "builds Rakefile" do
@@ -51,7 +53,7 @@ RSpec.describe Rubysmith::Builders::Rake do
 
     context "when enabled with only Git and Git Lint" do
       let :test_configuration do
-        configuration.minimize.with build_rake: true, build_git: true, build_git_lint: true
+        configuration.minimize.merge build_rake: true, build_git: true, build_git_lint: true
       end
 
       it "builds Rakefile" do
@@ -68,7 +70,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only Reek" do
-      let(:test_configuration) { configuration.minimize.with build_rake: true, build_reek: true }
+      let(:test_configuration) { configuration.minimize.merge build_rake: true, build_reek: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -86,7 +88,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only RSpec" do
-      let(:test_configuration) { configuration.minimize.with build_rake: true, build_rspec: true }
+      let(:test_configuration) { configuration.minimize.merge build_rake: true, build_rspec: true }
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -104,7 +106,9 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only Rubocop" do
-      let(:test_configuration) { configuration.minimize.with build_rake: true, build_rubocop: true }
+      let(:test_configuration) do
+        configuration.minimize.merge build_rake: true, build_rubocop: true
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)

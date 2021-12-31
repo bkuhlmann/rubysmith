@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::RSpec::Context do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -16,7 +18,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
 
     context "when enabled with refinements" do
       let :test_configuration do
-        configuration.minimize.with build_rspec: true, build_refinements: true
+        configuration.minimize.merge build_rspec: true, build_refinements: true
       end
 
       let :content do
@@ -41,7 +43,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
     end
 
     context "when enabled without refinements" do
-      let(:test_configuration) { configuration.minimize.with build_rspec: true }
+      let(:test_configuration) { configuration.minimize.merge build_rspec: true }
 
       let :content do
         <<~CONTENT

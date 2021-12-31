@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Tocer do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:extension) { described_class.new test_configuration }
 
@@ -35,7 +36,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
     context "with minimum configuration" do
       let :test_configuration do
-        configuration.minimize.with build_readme: true, documentation_format: "md"
+        configuration.minimize.merge build_readme: true, documentation_format: "md"
       end
 
       it "adds table of contents" do
@@ -45,7 +46,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
     context "with maximum configuration" do
       let :test_configuration do
-        configuration.maximize.with documentation_format: "md"
+        configuration.maximize.merge documentation_format: "md"
       end
 
       it "adds table of contents" do
@@ -55,7 +56,8 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
     context "with custom includes" do
       let :test_configuration do
-        configuration.maximize.with extensions_tocer_includes: %w[*.txt], documentation_format: "md"
+        configuration.maximize.merge extensions_tocer_includes: %w[*.txt],
+                                     documentation_format: "md"
       end
 
       it "adds custom label" do
@@ -65,7 +67,8 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
     context "with custom label" do
       let :test_configuration do
-        configuration.maximize.with extensions_tocer_label: "# TEST TOC", documentation_format: "md"
+        configuration.maximize.merge extensions_tocer_label: "# TEST TOC",
+                                     documentation_format: "md"
       end
 
       it "adds custom label" do

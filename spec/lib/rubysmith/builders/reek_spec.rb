@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Reek do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -15,7 +17,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     before { builder.call }
 
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.with build_reek: true }
+      let(:test_configuration) { configuration.minimize.merge build_reek: true }
 
       it "builds configuration" do
         expect(configuration_path.read).to eq(<<~CONTENT)

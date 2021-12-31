@@ -95,8 +95,6 @@ module Rubysmith
                     .then { |roots| dup.merge! template_roots: roots }
       end
 
-      def with(attributes) = dup.merge!(**attributes).freeze
-
       def maximize = update_build_options(true)
 
       def minimize = update_build_options(false)

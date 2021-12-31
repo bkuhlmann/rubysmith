@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module Builders
     # Builds project skeleton with Rubocop code quality support.
     class Rubocop
+      using Refinements::Structs
+
       def self.call(...) = new(...).call
 
       def initialize configuration, builder: Builder
@@ -14,11 +18,11 @@ module Rubysmith
       def call
         return configuration unless configuration.build_rubocop
 
-        builder.call(configuration.with(template_path: "%project_name%/bin/rubocop.erb"))
+        builder.call(configuration.merge(template_path: "%project_name%/bin/rubocop.erb"))
                .render
                .permit 0o755
 
-        builder.call(configuration.with(template_path: "%project_name%/.rubocop.yml.erb")).render
+        builder.call(configuration.merge(template_path: "%project_name%/.rubocop.yml.erb")).render
         configuration
       end
 

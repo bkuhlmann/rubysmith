@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require "tocer"
+require "refinements/structs"
 
 module Rubysmith
   module Builders
     module Documentation
       # Builds project skeleton README documentation.
       class Readme
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
@@ -17,7 +20,7 @@ module Rubysmith
         def call
           return configuration unless configuration.build_readme
 
-          builder.call(configuration.with(template_path: "%project_name%/README.#{kind}.erb"))
+          builder.call(configuration.merge(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace("\n\n\n", "\n\n")
                  .replace("\n\n\n\n\n", "\n\n")

@@ -109,26 +109,6 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
-  describe "#with" do
-    it "answers combination of old and new struct with single attribute" do
-      proof = described_class[project_name: "test", action_help: true]
-      expect(content.with(action_help: true)).to eq(proof)
-    end
-
-    it "answers combination of old and new struct with multiple attributes" do
-      proof = described_class[project_name: "test", build_console: true, build_git: true]
-      expect(content.with(project_name: "test", build_console: true, build_git: true)).to eq(proof)
-    end
-
-    it "doesn't mutate itself" do
-      expect(content.with(project_version: "1.2.3")).not_to eq(content)
-    end
-
-    it "answers as frozen" do
-      expect(content.with(project_version: "1.2.3")).to be_frozen
-    end
-  end
-
   describe "#maximum" do
     let :proof do
       described_class[

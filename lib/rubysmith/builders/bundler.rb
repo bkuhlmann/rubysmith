@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module Builders
     # Builds Bundler Gemfile configuration for project skeleton.
     class Bundler
+      using Refinements::Structs
+
       def self.call(...) = new(...).call
 
       def initialize configuration, builder: Builder
@@ -12,7 +16,7 @@ module Rubysmith
       end
 
       def call
-        builder.call(configuration.with(template_path: "%project_name%/Gemfile.erb"))
+        builder.call(configuration.merge(template_path: "%project_name%/Gemfile.erb"))
                .render
                .replace(/\n\s+group/, "\n\ngroup")
                .replace(/\n\s+gem/, "\n  gem")

@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Milestoner do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:extension) { described_class.new test_configuration, client: }
 
@@ -39,10 +40,10 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
 
     context "with custom configuration" do
       let :test_configuration do
-        configuration.with extensions_milestoner_documentation_format: "adoc",
-                           extensions_milestoner_prefixes: %w[Added],
-                           extensions_milestoner_sign: true,
-                           project_version: "1.2.3"
+        configuration.merge extensions_milestoner_documentation_format: "adoc",
+                            extensions_milestoner_prefixes: %w[Added],
+                            extensions_milestoner_sign: true,
+                            project_version: "1.2.3"
       end
 
       it "messages client" do

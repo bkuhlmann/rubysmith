@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require "tocer"
+require "refinements/structs"
 
 module Rubysmith
   module Builders
     module Documentation
       # Builds project skeleton CHANGES documentation.
       class Change
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
@@ -17,7 +20,7 @@ module Rubysmith
         def call
           return configuration unless configuration.build_changes
 
-          builder.call(configuration.with(template_path: "%project_name%/CHANGES.#{kind}.erb"))
+          builder.call(configuration.merge(template_path: "%project_name%/CHANGES.#{kind}.erb"))
                  .render
 
           configuration

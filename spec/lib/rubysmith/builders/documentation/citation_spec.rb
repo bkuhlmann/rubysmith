@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Documentation::Citation do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
 
   describe "#call" do
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.with build_citation: true }
+      let(:test_configuration) { configuration.minimize.merge build_citation: true }
 
       it "builds citation" do
         builder.call

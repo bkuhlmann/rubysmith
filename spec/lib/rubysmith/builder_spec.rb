@@ -9,6 +9,7 @@ RSpec.describe Rubysmith::Builder do
 
   using Refinements::Pathnames
   using Refinements::StringIOs
+  using Refinements::Structs
 
   let :configuration do
     Rubysmith::Configuration::Content[
@@ -330,7 +331,7 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "creates empty directory" do
-      described_class.new(configuration.with(template_path: "test/path")).touch
+      described_class.new(configuration.merge(template_path: "test/path")).touch
       expect(temp_dir.join("test", "path").exist?).to eq(true)
     end
 

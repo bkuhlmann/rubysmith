@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::RSpec::Helper do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -15,7 +17,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
     before { builder.call }
 
     context "when enabled with no options" do
-      let(:test_configuration) { configuration.minimize.with build_rspec: true }
+      let(:test_configuration) { configuration.minimize.merge build_rspec: true }
 
       let :proof do
         <<~BODY
@@ -56,7 +58,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
     context "when enabled with dashed project name" do
       let :test_configuration do
-        configuration.minimize.with project_name: "demo-test", build_rspec: true
+        configuration.minimize.merge project_name: "demo-test", build_rspec: true
       end
 
       let :proof do
@@ -98,7 +100,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
     context "when enabled with Refinements only" do
       let :test_configuration do
-        configuration.minimize.with build_rspec: true, build_refinements: true
+        configuration.minimize.merge build_rspec: true, build_refinements: true
       end
 
       let :proof do
@@ -143,7 +145,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
     context "when enabled with SimpleCov only" do
       let :test_configuration do
-        configuration.minimize.with build_rspec: true, build_simple_cov: true
+        configuration.minimize.merge build_rspec: true, build_simple_cov: true
       end
 
       let :proof do

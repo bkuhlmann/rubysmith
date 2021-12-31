@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Console do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
   describe "#call" do
     context "when enabled with non-dashed project name" do
-      let(:test_configuration) { configuration.minimize.with build_console: true }
+      let(:test_configuration) { configuration.minimize.merge build_console: true }
 
       it "builds console script" do
         builder.call
@@ -39,7 +41,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
     context "when enabled with dashed project name" do
       let :test_configuration do
-        configuration.minimize.with project_name: "demo-test", build_console: true
+        configuration.minimize.merge project_name: "demo-test", build_console: true
       end
 
       let(:build_path) { temp_dir.join "demo-test/bin/console" }

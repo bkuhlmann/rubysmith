@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module Builders
     # Builds project skeleton console for object inspection and exploration.
     class Console
+      using Refinements::Structs
+
       def self.call(...) = new(...).call
 
       def initialize configuration, builder: Builder
@@ -14,7 +18,7 @@ module Rubysmith
       def call
         return configuration unless configuration.build_console
 
-        builder.call(configuration.with(template_path: "%project_name%/bin/console.erb"))
+        builder.call(configuration.merge(template_path: "%project_name%/bin/console.erb"))
                .render
                .permit 0o755
 

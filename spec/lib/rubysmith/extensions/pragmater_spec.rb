@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Pragmater do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:extension) { described_class.new test_configuration }
 
@@ -33,7 +34,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
     context "with custom comments" do
       let :test_configuration do
-        configuration.minimize.with extensions_pragmater_comments: ["# encoding: UTF-8"]
+        configuration.minimize.merge extensions_pragmater_comments: ["# encoding: UTF-8"]
       end
 
       it "adds custom pragmas" do
@@ -43,7 +44,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
     context "with custom includes" do
       let :test_configuration do
-        configuration.minimize.with extensions_pragmater_includes: ["**/*.txt"]
+        configuration.minimize.merge extensions_pragmater_includes: ["**/*.txt"]
       end
 
       it "doesn't add pragmas" do

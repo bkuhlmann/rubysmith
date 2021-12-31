@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Git::Commit do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -27,7 +28,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.with build_git: true }
+      let(:test_configuration) { configuration.minimize.merge build_git: true }
 
       it "creates commit" do
         expect(commit).to match(

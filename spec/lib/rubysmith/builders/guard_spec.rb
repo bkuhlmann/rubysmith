@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Guard do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -16,7 +18,7 @@ RSpec.describe Rubysmith::Builders::Guard do
     before { builder.call }
 
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.with build_guard: true }
+      let(:test_configuration) { configuration.minimize.merge build_guard: true }
 
       it "builds binstub" do
         expect(binstub_path.read).to eq(<<~CONTENT)

@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Documentation::License do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -16,9 +17,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with Apache and ASCII Doc format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "adoc",
-                                    license_name: "apache"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "adoc",
+                                     license_name: "apache"
       end
 
       it "builds LICENSE" do
@@ -30,9 +31,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with Apache and Markdown format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "md",
-                                    license_name: "apache"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "md",
+                                     license_name: "apache"
       end
 
       it "builds LICENSE" do
@@ -44,9 +45,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with Hippocratic and ASCII Doc format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "adoc",
-                                    license_name: "hippocratic"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "adoc",
+                                     license_name: "hippocratic"
       end
 
       it "builds LICENSE" do
@@ -56,9 +57,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with Hippocratic and Markdown format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "md",
-                                    license_name: "hippocratic"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "md",
+                                     license_name: "hippocratic"
       end
 
       it "builds LICENSE" do
@@ -68,9 +69,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with MIT and ASCII Doc format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "adoc",
-                                    license_name: "mit"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "adoc",
+                                     license_name: "mit"
       end
 
       it "builds LICENSE" do
@@ -82,9 +83,9 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
     context "when enabled with MIT and Markdown format" do
       let :test_configuration do
-        configuration.minimize.with build_license: true,
-                                    documentation_format: "md",
-                                    license_name: "mit"
+        configuration.minimize.merge build_license: true,
+                                     documentation_format: "md",
+                                     license_name: "mit"
       end
 
       it "builds LICENSE" do

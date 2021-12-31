@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Rubocop do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -36,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Rubocop do
     end
 
     context "when enabled with no additional options" do
-      let(:test_configuration) { configuration.minimize.with build_rubocop: true }
+      let(:test_configuration) { configuration.minimize.merge build_rubocop: true }
 
       it_behaves_like "a binstub"
 
@@ -54,7 +55,7 @@ RSpec.describe Rubysmith::Builders::Rubocop do
 
     context "when enabled with RSpec" do
       let :test_configuration do
-        configuration.minimize.with build_rubocop: true, build_rspec: true
+        configuration.minimize.merge build_rubocop: true, build_rspec: true
       end
 
       it_behaves_like "a binstub"

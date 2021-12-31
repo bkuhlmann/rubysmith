@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require "tocer"
+require "refinements/structs"
 
 module Rubysmith
   module Builders
     module Documentation
       # Builds project skeleton CODE_OF_CONDUCT documentation.
       class Conduct
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
@@ -17,7 +20,7 @@ module Rubysmith
         def call
           return configuration unless configuration.build_conduct
 
-          configuration.with(template_path: "%project_name%/CODE_OF_CONDUCT.#{kind}.erb")
+          configuration.merge(template_path: "%project_name%/CODE_OF_CONDUCT.#{kind}.erb")
                        .then { |updated_configuration| builder.call(updated_configuration).render }
 
           configuration

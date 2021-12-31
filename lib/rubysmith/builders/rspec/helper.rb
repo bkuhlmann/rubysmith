@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require "refinements/structs"
+
 module Rubysmith
   module Builders
     module RSpec
       # Builds RSpec spec helper for project skeleton.
       class Helper
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
@@ -15,7 +19,7 @@ module Rubysmith
         def call
           return configuration unless configuration.build_rspec
 
-          builder.call(configuration.with(template_path: "%project_name%/spec/spec_helper.rb.erb"))
+          builder.call(configuration.merge(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
                  .replace(/\n{3,}/, "\n\n")
                  .replace(/\n\s{2}(?=(require|Simple|using|Pathname|Dir))/, "\n")

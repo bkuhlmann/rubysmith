@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::CircleCI do
+  using Refinements::Structs
+
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application container"
@@ -13,7 +15,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
 
   describe "#call" do
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.with build_circle_ci: true }
+      let(:test_configuration) { configuration.minimize.merge build_circle_ci: true }
 
       it "builds configuration" do
         builder.call

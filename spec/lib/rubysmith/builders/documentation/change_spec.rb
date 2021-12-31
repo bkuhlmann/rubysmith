@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Documentation::Change do
   using Refinements::Pathnames
+  using Refinements::Structs
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -16,7 +17,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Change do
 
     context "when enabled with Markdown format" do
       let :test_configuration do
-        configuration.minimize.with build_changes: true, documentation_format: "md"
+        configuration.minimize.merge build_changes: true, documentation_format: "md"
       end
 
       it "builds CHANGES" do
@@ -32,7 +33,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Change do
 
     context "when enabled with ASCII Doc format" do
       let :test_configuration do
-        configuration.minimize.with build_changes: true, documentation_format: "adoc"
+        configuration.minimize.merge build_changes: true, documentation_format: "adoc"
       end
 
       it "builds CHANGES" do

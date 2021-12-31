@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require "tocer"
+require "refinements/structs"
 
 module Rubysmith
   module Builders
     module Documentation
       # Builds project skeleton LICENSE documentation.
       class License
+        using Refinements::Structs
+
         def self.call(...) = new(...).call
 
         def initialize configuration, builder: Builder
@@ -17,7 +20,7 @@ module Rubysmith
         def call
           return configuration unless configuration.build_license
 
-          configuration.with(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
+          configuration.merge(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
                        .then do |updated_configuration|
                          builder.call(updated_configuration).render.rename "LICENSE.#{kind}"
                        end
