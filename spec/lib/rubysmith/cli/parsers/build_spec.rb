@@ -36,11 +36,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-circle_ci])).to have_attributes(build_circle_ci: false)
     end
 
-    it "enables CITATION" do
+    it "enables citation documentation" do
       expect(parser.call(%w[--citation])).to have_attributes(build_citation: true)
     end
 
-    it "disables CITATION" do
+    it "disables citation documentation" do
       expect(parser.call(%w[--no-citation])).to have_attributes(build_citation: false)
     end
 
@@ -52,11 +52,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-community])).to have_attributes(build_community: false)
     end
 
-    it "enables CODE_OF_CONDUCT" do
+    it "enables code of conduct documentation" do
       expect(parser.call(%w[--conduct])).to have_attributes(build_conduct: true)
     end
 
-    it "disables CODE_OF_CONDUCT" do
+    it "disables code of conduct documentation" do
       expect(parser.call(%w[--no-conduct])).to have_attributes(build_conduct: false)
     end
 
@@ -80,7 +80,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--dead_end])).to have_attributes(build_dead_end: true)
     end
 
-    it "disables Dead End" do
+    it "disables DeadEnd" do
       expect(parser.call(%w[--no-dead_end])).to have_attributes(build_dead_end: false)
     end
 
@@ -100,11 +100,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-git])).to have_attributes(build_git: false)
     end
 
-    it "enables Git Hub" do
+    it "enables GitHub" do
       expect(parser.call(%w[--git_hub])).to have_attributes(build_git_hub: true)
     end
 
-    it "disables Git Hub" do
+    it "disables GitHub" do
       expect(parser.call(%w[--no-git_hub])).to have_attributes(build_git_hub: false)
     end
 
@@ -124,11 +124,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-guard])).to have_attributes(build_guard: false)
     end
 
-    it "enables LICENSE" do
+    it "enables license documentation" do
       expect(parser.call(%w[--license])).to have_attributes(build_license: true)
     end
 
-    it "disables LICENSE" do
+    it "disables license documentation" do
       expect(parser.call(%w[--no-license])).to have_attributes(build_license: false)
     end
 
@@ -136,7 +136,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--max])).to have_attributes(build_maximum: true)
     end
 
-    it "enables maximum and disables all other build options" do
+    it "enables maximum build options" do
       proof = configuration.maximize
                            .to_h
                            .select { |key, _value| key.start_with? "build_" }
@@ -149,7 +149,7 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--min])).to have_attributes(build_minimum: true)
     end
 
-    it "enables minimum and disables all other build options" do
+    it "enables minimum build options" do
       proof = configuration.minimize
                            .to_h
                            .select { |key, _value| key.start_with? "build_" }
@@ -166,11 +166,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-rake])).to have_attributes(build_rake: false)
     end
 
-    it "enables README" do
+    it "enables readme documentation" do
       expect(parser.call(%w[--readme])).to have_attributes(build_readme: true)
     end
 
-    it "disables README" do
+    it "disables readme documentation" do
       expect(parser.call(%w[--no-readme])).to have_attributes(build_readme: false)
     end
 
@@ -206,11 +206,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-rubocop])).to have_attributes(build_rubocop: false)
     end
 
-    it "enables setup" do
+    it "enables setup script" do
       expect(parser.call(%w[--setup])).to have_attributes(build_setup: true)
     end
 
-    it "disables setup" do
+    it "disables setup script" do
       expect(parser.call(%w[--no-setup])).to have_attributes(build_setup: false)
     end
 
@@ -222,11 +222,11 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-simple_cov])).to have_attributes(build_simple_cov: false)
     end
 
-    it "enables versions" do
+    it "enables version history documentation" do
       expect(parser.call(%w[--versions])).to have_attributes(build_versions: true)
     end
 
-    it "disables versions" do
+    it "disables version history documentation" do
       expect(parser.call(%w[--no-versions])).to have_attributes(build_versions: false)
     end
 
