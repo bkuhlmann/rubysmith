@@ -65,7 +65,6 @@ module Rubysmith
       :license_version,
       :now,
       :project_name,
-      :project_url_changes,
       :project_url_community,
       :project_url_conduct,
       :project_url_contributions,
@@ -116,8 +115,6 @@ module Rubysmith
       def project_root = target_root.join(project_name)
 
       def project_path = project_name.snakecase
-
-      def computed_project_url_changes = format_url(__method__)
 
       def computed_project_url_community = format_url(__method__)
 

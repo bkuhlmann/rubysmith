@@ -69,7 +69,6 @@ RSpec.describe Rubysmith::Configuration::Content do
         license_version: nil,
         now: nil,
         project_name: nil,
-        project_url_changes: nil,
         project_url_community: nil,
         project_url_conduct: nil,
         project_url_contributions: nil,
@@ -330,13 +329,6 @@ RSpec.describe Rubysmith::Configuration::Content do
     it "answers nested project path with dashed project name" do
       updated_content = content.merge project_name: "test-dash"
       expect(updated_content.project_path).to eq("test/dash")
-    end
-  end
-
-  describe "#computed_project_url_changes" do
-    it "answers formatted URL" do
-      updated_content = content.merge project_url_changes: "test.com/%project_name%/changes"
-      expect(updated_content.computed_project_url_changes).to eq("test.com/test/changes")
     end
   end
 

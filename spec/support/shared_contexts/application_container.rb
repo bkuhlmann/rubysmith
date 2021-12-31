@@ -20,7 +20,6 @@ RSpec.shared_context "with application container" do
       git_hub_user: "hubber",
       now: Time.local(2020, 1, 1, 0, 0, 0),
       project_name: "test",
-      project_url_changes: "https://www.example.com/%project_name%/changes",
       project_url_community: "https://www.example.com/%project_name%/community",
       project_url_conduct: "https://www.example.com/%project_name%/code_of_conduct",
       project_url_contributions: "https://www.example.com/%project_name%/contributions",
