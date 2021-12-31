@@ -22,7 +22,6 @@ RSpec.describe Rubysmith::Builders::Rubocop do
 
         expect(binstub_path.read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
-          # frozen_string_literal: true
 
           require "bundler/setup"
 
