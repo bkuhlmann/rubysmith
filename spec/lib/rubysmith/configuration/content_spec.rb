@@ -71,10 +71,15 @@ RSpec.describe Rubysmith::Configuration::Content do
         project_name: nil,
         project_url_changes: nil,
         project_url_community: nil,
+        project_url_conduct: nil,
+        project_url_contributions: nil,
         project_url_documentation: nil,
         project_url_download: nil,
         project_url_issues: nil,
+        project_url_license: nil,
+        project_url_security: nil,
         project_url_source: nil,
+        project_url_versions: nil,
         project_version: nil,
         target_root:,
         template_path: nil,
@@ -329,43 +334,78 @@ RSpec.describe Rubysmith::Configuration::Content do
 
   describe "#computed_project_url_changes" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_changes: "www.test.com/%project_name%/changes"
-      expect(updated_content.computed_project_url_changes).to eq("www.test.com/test/changes")
+      updated_content = content.merge project_url_changes: "test.com/%project_name%/changes"
+      expect(updated_content.computed_project_url_changes).to eq("test.com/test/changes")
     end
   end
 
   describe "#computed_project_url_community" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_community: "www.test.com/%project_name%/commons"
-      expect(updated_content.computed_project_url_community).to eq("www.test.com/test/commons")
+      updated_content = content.merge project_url_community: "test.com/%project_name%/commons"
+      expect(updated_content.computed_project_url_community).to eq("test.com/test/commons")
+    end
+  end
+
+  describe "#computed_project_url_conduct" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_conduct: "test.com/%project_name%/conduct"
+      expect(updated_content.computed_project_url_conduct).to eq("test.com/test/conduct")
+    end
+  end
+
+  describe "#computed_project_url_contributions" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_contributions: "test.com/%project_name%/contribs"
+      expect(updated_content.computed_project_url_contributions).to eq("test.com/test/contribs")
     end
   end
 
   describe "#computed_project_url_documentation" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_documentation: "www.test.com/%project_name%/docs"
-      expect(updated_content.computed_project_url_documentation).to eq("www.test.com/test/docs")
+      updated_content = content.merge project_url_documentation: "test.com/%project_name%/docs"
+      expect(updated_content.computed_project_url_documentation).to eq("test.com/test/docs")
     end
   end
 
   describe "#computed_project_url_download" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_download: "www.test.com/%project_name%/latest"
-      expect(updated_content.computed_project_url_download).to eq("www.test.com/test/latest")
+      updated_content = content.merge project_url_download: "test.com/%project_name%/latest"
+      expect(updated_content.computed_project_url_download).to eq("test.com/test/latest")
     end
   end
 
   describe "#computed_project_url_issues" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_issues: "www.test.com/%project_name%/issues"
-      expect(updated_content.computed_project_url_issues).to eq("www.test.com/test/issues")
+      updated_content = content.merge project_url_issues: "test.com/%project_name%/issues"
+      expect(updated_content.computed_project_url_issues).to eq("test.com/test/issues")
+    end
+  end
+
+  describe "#computed_project_url_license" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_license: "test.com/%project_name%/license"
+      expect(updated_content.computed_project_url_license).to eq("test.com/test/license")
+    end
+  end
+
+  describe "#computed_project_url_security" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_security: "test.com/%project_name%/security"
+      expect(updated_content.computed_project_url_security).to eq("test.com/test/security")
     end
   end
 
   describe "#computed_project_url_source" do
     it "answers formatted URL" do
-      updated_content = content.merge project_url_source: "www.test.com/%project_name%/source"
-      expect(updated_content.computed_project_url_source).to eq("www.test.com/test/source")
+      updated_content = content.merge project_url_source: "test.com/%project_name%/source"
+      expect(updated_content.computed_project_url_source).to eq("test.com/test/source")
+    end
+  end
+
+  describe "#computed_project_url_versions" do
+    it "answers formatted URL" do
+      updated_content = content.merge project_url_versions: "test.com/%project_name%/versions"
+      expect(updated_content.computed_project_url_versions).to eq("test.com/test/versions")
     end
   end
 

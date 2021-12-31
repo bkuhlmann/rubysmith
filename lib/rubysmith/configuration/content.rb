@@ -67,10 +67,15 @@ module Rubysmith
       :project_name,
       :project_url_changes,
       :project_url_community,
+      :project_url_conduct,
+      :project_url_contributions,
       :project_url_documentation,
       :project_url_download,
       :project_url_issues,
+      :project_url_license,
+      :project_url_security,
       :project_url_source,
+      :project_url_versions,
       :project_version,
       :target_root,
       :template_path,
@@ -115,13 +120,23 @@ module Rubysmith
 
       def computed_project_url_community = format_url(__method__)
 
+      def computed_project_url_conduct = format_url(__method__)
+
+      def computed_project_url_contributions = format_url(__method__)
+
       def computed_project_url_documentation = format_url(__method__)
 
       def computed_project_url_download = format_url(__method__)
 
       def computed_project_url_issues = format_url(__method__)
 
+      def computed_project_url_license = format_url(__method__)
+
+      def computed_project_url_security = format_url(__method__)
+
       def computed_project_url_source = format_url(__method__)
+
+      def computed_project_url_versions = format_url(__method__)
 
       def ascii_doc? = documentation_format == "adoc"
 

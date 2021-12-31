@@ -22,10 +22,15 @@ RSpec.shared_context "with application container" do
       project_name: "test",
       project_url_changes: "https://www.example.com/%project_name%/changes",
       project_url_community: "https://www.example.com/%project_name%/community",
+      project_url_conduct: "https://www.example.com/%project_name%/code_of_conduct",
+      project_url_contributions: "https://www.example.com/%project_name%/contributions",
       project_url_documentation: "https://www.example.com/%project_name%/documentation",
       project_url_download: "https://www.example.com/%project_name%/download",
       project_url_issues: "https://www.example.com/%project_name%/issues",
+      project_url_license: "https://www.example.com/%project_name%/license",
+      project_url_security: "https://www.example.com/%project_name%/security",
       project_url_source: "https://www.example.com/%project_name%/source",
+      project_url_versions: "https://www.example.com/%project_name%/versions",
       target_root: temp_dir,
       template_roots: [Bundler.root.join("lib/rubysmith/templates")]
     )
