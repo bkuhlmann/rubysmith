@@ -9,7 +9,6 @@ module Rubysmith
         BUILDERS = [
           Builders::Core,
           Builders::Documentation::Readme,
-          Builders::Documentation::Change,
           Builders::Documentation::Citation,
           Builders::Documentation::Conduct,
           Builders::Documentation::Contribution,

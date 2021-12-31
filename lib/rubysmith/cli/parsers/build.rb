@@ -50,15 +50,6 @@ module Rubysmith
           end
         end
 
-        def add_changes
-          client.on(
-            "--[no-]changes",
-            "Add changes documentation. #{default __method__}."
-          ) do |value|
-            configuration.merge! build_changes: value
-          end
-        end
-
         def add_console
           client.on(
             "--[no-]console",

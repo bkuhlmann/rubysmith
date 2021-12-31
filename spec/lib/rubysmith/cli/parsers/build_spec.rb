@@ -28,14 +28,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-bundler-leak])).to have_attributes(build_bundler_leak: false)
     end
 
-    it "enables CHANGES" do
-      expect(parser.call(%w[--changes])).to have_attributes(build_changes: true)
-    end
-
-    it "disables CHANGES" do
-      expect(parser.call(%w[--no-changes])).to have_attributes(build_changes: false)
-    end
-
     it "enables Circle CI" do
       expect(parser.call(%w[--circle_ci])).to have_attributes(build_circle_ci: true)
     end
