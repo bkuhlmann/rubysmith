@@ -105,7 +105,7 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "when enabled with only Rubocop" do
+    context "when enabled with only RuboCop" do
       let(:test_configuration) do
         configuration.minimize.merge build_rake: true, build_rubocop: true
       end

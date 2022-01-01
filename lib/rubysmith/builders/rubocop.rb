@@ -4,7 +4,7 @@ require "refinements/structs"
 
 module Rubysmith
   module Builders
-    # Builds project skeleton with Rubocop code quality support.
+    # Builds project skeleton with RuboCop code quality support.
     class Rubocop
       using Refinements::Structs
 

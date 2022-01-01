@@ -22,7 +22,7 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
   end
 
   describe "#call" do
-    it "runs Rubocop" do
+    it "runs RuboCop" do
       builder.call
 
       expect(client).to have_received(:run).with(

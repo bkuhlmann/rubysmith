@@ -239,7 +239,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with RSpec and Rubocop only" do
+    context "with RSpec and RuboCop only" do
       let :test_configuration do
         configuration.minimize.merge build_rspec: true, build_rubocop: true
       end
@@ -269,7 +269,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with Rubocop only" do
+    context "with RuboCop only" do
       let(:test_configuration) { configuration.minimize.merge build_rubocop: true }
 
       let :proof do

@@ -233,7 +233,7 @@ module Rubysmith
         def add_rubocop
           client.on(
             "--[no-]rubocop",
-            "Add Rubocop gems. #{default __method__}."
+            "Add RuboCop gems. #{default __method__}."
           ) do |value|
             configuration.merge! build_rubocop: value
           end
