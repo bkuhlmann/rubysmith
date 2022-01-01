@@ -1,5 +1,107 @@
 = Versions
 
+== 1.0.0 (2022-01-01)
+
+* Fixed CLI build parser spec descriptions - Brooke Kuhlmann
+* Fixed CLI build parser to use downcased descriptions - Brooke Kuhlmann
+* Fixed CLI config action to not fail with invalid selection - Brooke Kuhlmann
+* Fixed CLI configuration maximization and minimization - Brooke Kuhlmann
+* Fixed CLI parser to require Option Parser - Brooke Kuhlmann
+* Fixed CLI shell specs to include all build options - Brooke Kuhlmann
+* Fixed Hippocratic license structure - Brooke Kuhlmann
+* Fixed README changes - Brooke Kuhlmann
+* Fixed README credits - Brooke Kuhlmann
+* Fixed README template optional sections - Brooke Kuhlmann
+* Fixed RSpec/Dialect issues - Brooke Kuhlmann
+* Fixed Reek builder too many methods issue - Brooke Kuhlmann
+* Fixed RuboCop descriptions - Brooke Kuhlmann
+* Fixed Rubocop builder adding Rake when not enabled - Brooke Kuhlmann
+* Fixed builder defaults - Brooke Kuhlmann
+* Fixed bundler builder to place the Dead End gem in code quality group - Brooke Kuhlmann
+* Fixed configuration loader to freeze configuration - Brooke Kuhlmann
+* Fixed contributing documentation - Brooke Kuhlmann
+* Fixed readme builder new line truncation - Brooke Kuhlmann
+* Fixed shell detection of Milestoner errors - Brooke Kuhlmann
+* Added Bundler extension - Brooke Kuhlmann
+* Added CLI Dead End gem build option - Brooke Kuhlmann
+* Added CLI build option - Brooke Kuhlmann
+* Added CLI publish action - Brooke Kuhlmann
+* Added CLI publish parsing - Brooke Kuhlmann
+* Added CLI versions flag - Brooke Kuhlmann
+* Added Git email configuration enhancer - Brooke Kuhlmann
+* Added Git user configuration enhancer - Brooke Kuhlmann
+* Added Guard and RuboCop file permission specs - Brooke Kuhlmann
+* Added Hippocratic License templates - Brooke Kuhlmann
+* Added Milestoner extension - Brooke Kuhlmann
+* Added Rakefile Bundler gem tasks - Brooke Kuhlmann
+* Added Rubocop builder - Brooke Kuhlmann
+* Added Rubocop extension - Brooke Kuhlmann
+* Added Tocer extension - Brooke Kuhlmann
+* Added citation documentation build option and builder - Brooke Kuhlmann
+* Added community build option - Brooke Kuhlmann
+* Added conduct, contributions, license, security, and versions URLs - Brooke Kuhlmann
+* Added configuration content computed URLs - Brooke Kuhlmann
+* Added documentation URL to default configuration - Brooke Kuhlmann
+* Added project URLs configuration - Brooke Kuhlmann
+* Added project citation information - Brooke Kuhlmann
+* Added project home URL - Brooke Kuhlmann
+* Added project version to default configuration - Brooke Kuhlmann
+* Added security build option - Brooke Kuhlmann
+* Updated GitHub issue template - Brooke Kuhlmann
+* Updated README policy section links - Brooke Kuhlmann
+* Updated README templates to leverage project URLs - Brooke Kuhlmann
+* Updated Rubocop sub-project gem dependencies - Brooke Kuhlmann
+* Updated builders to answer configuration - Brooke Kuhlmann
+* Updated changes as versions documentation - Brooke Kuhlmann
+* Updated citation and readme templates to use project URLs - Brooke Kuhlmann
+* Updated configuration content to support multiple template roots - Brooke Kuhlmann
+* Updated configuration to use extensions instead of builders - Brooke Kuhlmann
+* Updated default configuration to use ASCII Doc and Hippocratic license - Brooke Kuhlmann
+* Updated default configuration to use author given and family name - Brooke Kuhlmann
+* Updated default configuration to use license label, name, and version - Brooke Kuhlmann
+* Updated to Amazing Print 1.4.0 - Brooke Kuhlmann
+* Updated to Debug 1.4.0 - Brooke Kuhlmann
+* Updated to Git Lint 3.0.0 - Brooke Kuhlmann
+* Updated to Git+ 1.0.0 - Brooke Kuhlmann
+* Updated to Hippocratic License 3.0.0 - Brooke Kuhlmann
+* Updated to Pragmater 10.0.0 - Brooke Kuhlmann
+* Updated to Refinements 9.0.0 - Brooke Kuhlmann
+* Updated to Rubocop 1.24.0 - Brooke Kuhlmann
+* Updated to Ruby 3.0.3 - Brooke Kuhlmann
+* Updated to Ruby 3.1.0 - Brooke Kuhlmann
+* Updated to Runcom 8.0.0 - Brooke Kuhlmann
+* Updated to SimpleCov 0.21.2 - Brooke Kuhlmann
+* Updated to Tocer 13.0.0 - Brooke Kuhlmann
+* Updated to default version 0.0.0 - Brooke Kuhlmann
+* Removed Bundler client from Bundler builder - Brooke Kuhlmann
+* Removed CLI core parser identity requirement - Brooke Kuhlmann
+* Removed CLI parser mutation - Brooke Kuhlmann
+* Removed Gemsmith depenendecy - Brooke Kuhlmann
+* Removed Milestoner extension version - Brooke Kuhlmann
+* Removed Rubocop builders - Brooke Kuhlmann
+* Removed Tocer from README documentation builder - Brooke Kuhlmann
+* Removed build changes flag - Brooke Kuhlmann
+* Removed code of conduct and contributing files - Brooke Kuhlmann
+* Removed code of conduct builder - Brooke Kuhlmann
+* Removed configuration content community and documentation URLs - Brooke Kuhlmann
+* Removed configuration content with - Brooke Kuhlmann
+* Removed configuration version - Brooke Kuhlmann
+* Removed frozen sting pragma from Rubocop binary template - Brooke Kuhlmann
+* Removed memoization of configuration within container - Brooke Kuhlmann
+* Removed product changes URL - Brooke Kuhlmann
+* Removed product documentation URL - Brooke Kuhlmann
+* Removed the contribution builder - Brooke Kuhlmann
+* Removed unused configuration loader attributes from spec - Brooke Kuhlmann
+* Refactored CLI assembler as parser - Brooke Kuhlmann
+* Refactored GitHub user configuration enhancer specs - Brooke Kuhlmann
+* Refactored application container name in test environment - Brooke Kuhlmann
+* Refactored configuration content pathway - Brooke Kuhlmann
+* Refactored configuration content to use Struct refinement - Brooke Kuhlmann
+* Refactored configuration to project root - Brooke Kuhlmann
+* Refactored current time configuration enhancer - Brooke Kuhlmann
+* Refactored implementation to use punning - Brooke Kuhlmann
+* Refactored version configuration enhancer - Brooke Kuhlmann
+
 == 0.16.1 (2021-11-20)
 
 * Added README community link - Brooke Kuhlmann
