@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "milestoner"
+
 module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
@@ -18,7 +20,7 @@ module Rubysmith
 
       def call arguments = []
         perform parser.call(arguments)
-      rescue OptionParser::ParseError => error
+      rescue OptionParser::ParseError, Milestoner::Error => error
         logger.error { error.message }
       end
 
