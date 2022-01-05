@@ -288,7 +288,7 @@ defining your project specifications and have a framework for testing your code.
 
 ==== Rubocop
 
-The `--rubocop` option allows you to add the link:https://docs.rubocop.org[[RuboCop] gem and suite
+The `--rubocop` option allows you to add the link:https://docs.rubocop.org[RuboCop] gem and suite
 of gems to your project for good code quality standards. This the Alchemists style guide, provided
 by the link:https://www.alchemists.io/projects/code_quality[Code Quality] project, is what is used
 by default.
