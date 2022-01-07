@@ -266,6 +266,15 @@ module Rubysmith
           end
         end
 
+        def add_yard
+          client.on(
+            "--[no-]yard",
+            "Add Yard gem. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_yard: value
+          end
+        end
+
         def add_zeitwerk
           client.on(
             "--[no-]zeitwerk",

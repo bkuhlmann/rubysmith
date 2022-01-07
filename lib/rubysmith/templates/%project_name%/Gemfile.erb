@@ -42,6 +42,9 @@ group :development do
   <% if configuration.markdown? %>
     gem "tocer", "~> 13.0"
   <% end %>
+  <% if configuration.build_yard %>
+    gem "yard", "~> 0.9"
+  <% end %>
 end
 
 group :test do
