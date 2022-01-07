@@ -15,6 +15,9 @@ require "bundler/setup"
 <% if configuration.build_rubocop %>
   require "rubocop/rake_task"
 <% end %>
+<% if configuration.build_yard %>
+  require "yard"
+<% end %>
 
 <% if configuration.build_bundler_leak %>
   Bundler::Plumber::Task.new
@@ -27,6 +30,12 @@ require "bundler/setup"
 <% end %>
 <% if configuration.build_rubocop %>
   RuboCop::RakeTask.new
+<% end %>
+
+<% if configuration.build_yard %>
+  YARD::Rake::YardocTask.new do |task|
+    task.options = ["--title", "<%= configuration.project_label %>", "--output-dir", "doc/yard"]
+  end
 <% end %>
 
 desc "Run code quality checks"

@@ -230,6 +230,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-versions])).to have_attributes(build_versions: false)
     end
 
+    it "enables Yard" do
+      expect(parser.call(%w[--yard])).to have_attributes(build_yard: true)
+    end
+
+    it "disables Yard" do
+      expect(parser.call(%w[--no-yard])).to have_attributes(build_yard: false)
+    end
+
     it "enables Zeitwerk" do
       expect(parser.call(%w[--zeitwerk])).to have_attributes(build_zeitwerk: true)
     end
