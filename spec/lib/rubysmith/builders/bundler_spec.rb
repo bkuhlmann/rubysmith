@@ -313,7 +313,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with Yard only" do
+    context "with YARD only" do
       let(:test_configuration) { configuration.minimize.merge build_yard: true }
 
       let :proof do
@@ -323,6 +323,31 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :development do
+            gem "asciidoctor", "~> 2.0"
+            gem "yard", "~> 0.9"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+    end
+
+    context "with YARD only using Markdown" do
+      let :test_configuration do
+        configuration.minimize.merge build_yard: true, documentation_format: "md"
+      end
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :development do
+            gem "tocer", "~> 13.0"
             gem "yard", "~> 0.9"
           end
         CONTENT
@@ -374,7 +399,55 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with all options" do
+    context "with all options using ASCII Doc" do
+      let(:test_configuration) { configuration.maximize.merge documentation_format: "adoc" }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          gem "refinements", "~> 9.0"
+          gem "zeitwerk", "~> 2.5"
+
+          group :code_quality do
+            gem "bundler-leak", "~> 0.2"
+            gem "dead_end", "~> 3.0"
+            gem "git-lint", "~> 3.0"
+            gem "reek", "~> 6.0"
+            gem "rubocop", "~> 1.24"
+            gem "rubocop-performance", "~> 1.12"
+            gem "rubocop-rake", "~> 0.6"
+            gem "rubocop-rspec", "~> 2.6"
+            gem "simplecov", "~> 0.21"
+          end
+
+          group :development do
+            gem "asciidoctor", "~> 2.0"
+            gem "rake", "~> 13.0"
+            gem "yard", "~> 0.9"
+          end
+
+          group :test do
+            gem "guard-rspec", "~> 4.7", require: false
+            gem "rspec", "~> 3.10"
+          end
+
+          group :tools do
+            gem "amazing_print", "~> 1.4"
+            gem "debug", "~> 1.4"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+    end
+
+    context "with all options using Markdown" do
       let(:test_configuration) { configuration.maximize.merge documentation_format: "md" }
 
       let :proof do

@@ -36,6 +36,9 @@ group :code_quality do
 end
 
 group :development do
+  <% if configuration.build_yard && configuration.ascii_doc? %>
+    gem "asciidoctor", "~> 2.0"
+  <% end %>
   <% if configuration.build_rake %>
     gem "rake", "~> 13.0"
   <% end %>
