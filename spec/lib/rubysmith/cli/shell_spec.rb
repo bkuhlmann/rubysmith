@@ -130,6 +130,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/.git/MERGE_RR",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
+          "test/.gitignore",
           "test/.reek.yml",
           "test/.rubocop.yml",
           "test/.ruby-version",
@@ -145,10 +146,10 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/LICENSE.adoc",
           "test/Rakefile",
           "test/README.adoc",
-          "test/VERSIONS.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
-          "test/tags"
+          "test/tags",
+          "test/VERSIONS.adoc"
         ]
       end
 
@@ -206,6 +207,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/.git/MERGE_RR",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
+          "test/.gitignore",
           "test/.reek.yml",
           "test/.rubocop.yml",
           "test/.ruby-version",
@@ -221,10 +223,10 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/LICENSE.adoc",
           "test/Rakefile",
           "test/README.adoc",
-          "test/VERSIONS.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
-          "test/tags"
+          "test/tags",
+          "test/VERSIONS.adoc"
         ]
       end
 

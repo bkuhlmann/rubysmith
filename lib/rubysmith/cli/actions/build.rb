@@ -13,6 +13,7 @@ module Rubysmith
           Builders::Documentation::License,
           Builders::Documentation::Version,
           Builders::Git::Setup,
+          Builders::Git::Ignore,
           Builders::Bundler,
           Builders::Rake,
           Builders::Console,
