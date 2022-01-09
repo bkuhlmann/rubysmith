@@ -12,9 +12,12 @@ module Rubysmith
     Content = Struct.new(
       :action_build,
       :action_config,
+      :action_edit,
       :action_help,
+      :action_install,
       :action_publish,
       :action_version,
+      :action_view,
       :author_email,
       :author_family_name,
       :author_given_name,
