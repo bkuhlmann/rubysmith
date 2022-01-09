@@ -113,6 +113,7 @@ BUILD OPTIONS:
       --[no-]setup                         Add setup script. Default: true.
       --[no-]simple_cov                    Add SimpleCov gem. Default: true.
       --[no-]versions                      Add version history. Default: true.
+      --[no-]yard                          Add Yard gem. Default: false.
       --[no-]zeitwerk                      Add Zeitwerk gem. Default: true.
 ....
 
@@ -288,7 +289,7 @@ defining your project specifications and have a framework for testing your code.
 
 ==== Rubocop
 
-The `--rubocop` option allows you to add the link:https://docs.rubocop.org[[RuboCop] gem and suite
+The `--rubocop` option allows you to add the link:https://docs.rubocop.org[RuboCop] gem and suite
 of gems to your project for good code quality standards. This the Alchemists style guide, provided
 by the link:https://www.alchemists.io/projects/code_quality[Code Quality] project, is what is used
 by default.
@@ -308,6 +309,13 @@ analysis of what your quality of code is for the project.
 
 The `--versions` option allows you add a `VERSIONS` file to your project to provide details about
 all published versions of your project.
+
+==== YARD
+
+The `--yard` option allows you add the link:https://yardoc.org/[YARD] gem to your project so you can
+automate the generation of project documentation. Once your project is built, you can use `rake
+yard` to build documentation into the `doc/yard` folder. This folder is ignored by Git by default.
+Additional customization is possible via the YARD Rake task as found in the `Rakefile`.
 
 ==== Zeitwerk
 
@@ -376,6 +384,7 @@ variables. The default configuration is as follows:
   :setup: true
   :simple_cov: true
   :versions: true
+  :yard: false
   :zeitwerk: true
 :citation:
   :affiliation:
@@ -457,10 +466,9 @@ custom values as desired. The URL is the only value that can't be automatically 
 
 ==== Build
 
-All build options can only be  `true` or `false` booleans. Should you want a different configuration
-than what is enabled/disabled by default, you'll want to customize these options as you see fit.
-When changing build options, they will dynamically show up when viewing usage (i.e. `rubysmith
---help`). All of these options are explained in greater detail above.
+All build options accept booleans values only and can be customized as desired. When changing your
+build options, they will dynamically render when display usage (i.e. `rubysmith --help`). All of
+these options are explained in greater detail above.
 
 ==== Citations
 
@@ -490,10 +498,10 @@ Follow the above links to learn more about each extension's gem configuration.
 
 ==== GitHub
 
-Your GitHub user is whatever handle you setup when you creating your GitHub account. This
-information is used for documentation purposes and Circle CI badge association. If you don't define
-this information, Rubysmith will automatically fallback to pulling this information from your Git
-configuration (i.e. `github.user`). If all else fails, then nothing will be used.
+Your GitHub user is the handle you setup when creating your GitHub account. This information is used
+for documentation purposes and Circle CI badge association. If you don't define this information,
+Rubysmith will automatically fallback to pulling this information from your Git configuration (i.e.
+`github.user`). If all else fails, then nothing will be used.
 
 ==== License
 
@@ -506,7 +514,7 @@ license are available:
 
 ==== Project
 
-There are two many categories within this section: URLs and version. The URLs allow you to link to
+There are two categories within this section: URLs and version. The URLs allow you to link to
 specific documentation related to your project. You'll definitely want to customize these as makes
 sense since these URLs are used for documentation, citations, and general project information. You
 can also use `%project_name%` as a placeholder anywhere in your URL and Rubysmith will ensure your

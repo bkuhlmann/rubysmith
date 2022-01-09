@@ -1,5 +1,12 @@
 = Versions
 
+== 1.1.0 (2022-01-09)
+
+* Added ASCII Doctor gem to Gemfile template - Brooke Kuhlmann
+* Added CLI Yard build option - Brooke Kuhlmann
+* Added Git ignore builder - Brooke Kuhlmann
+* Added edit, install, and view configuration attributes - Brooke Kuhlmann
+
 == 1.0.0 (2022-01-01)
 
 * Fixed CLI build parser spec descriptions - Brooke Kuhlmann
