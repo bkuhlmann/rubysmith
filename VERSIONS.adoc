@@ -1,5 +1,14 @@
 = Versions
 
+== 1.1.1 (2022-01-17)
+
+* Fixed ERB renderer to respect content before a namespace block - Brooke Kuhlmann
+* Updated to Refinements 9.1.0 - Brooke Kuhlmann
+* Removed pending shell spec for publishing a project - Brooke Kuhlmann
+* Refactored ERB spec descriptions - Brooke Kuhlmann
+* Refactored Git ignore - Brooke Kuhlmann
+* Refactored extensions to use struct transmute - Brooke Kuhlmann
+
 == 1.1.0 (2022-01-09)
 
 * Added ASCII Doctor gem to Gemfile template - Brooke Kuhlmann
