@@ -243,11 +243,8 @@ RSpec.describe Rubysmith::CLI::Shell do
     end
 
     it "publishes project" do
-      pending "Requires CI to have credentials to remote repository." if ENV["CI"] == "true"
-
       version = "1.2.3"
-
-      temp_dir.change_dir { `git clone git@github.com:bkuhlmann/test.git` }
+      temp_dir.change_dir { `git clone https://github.com/bkuhlmann/test` }
 
       temp_dir.join("test").change_dir do
         shell.call %W[--publish #{version}]
