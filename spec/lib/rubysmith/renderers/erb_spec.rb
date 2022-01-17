@@ -12,7 +12,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
   describe "#call" do
     let(:test_configuration) { configuration.minimize }
 
-    it "answers result" do
+    it "answers evaluated result" do
       expect(renderer.call("Name: <%= configuration.project_name %>.")).to eq("Name: test.")
     end
 
@@ -83,7 +83,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
         CONTENT
       end
 
-      it "renders content plus namespace" do
+      it "renders namespace plus content" do
         expectation = renderer.call content
 
         expect(expectation).to eq(<<~PROOF)
@@ -107,7 +107,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
         CONTENT
       end
 
-      it "renders content plus namespace" do
+      it "renders namespace plus content" do
         expectation = renderer.call content
 
         expect(expectation).to eq(<<~PROOF)
@@ -120,7 +120,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
       end
     end
 
-    context "with single filled namespace" do
+    context "with single lined namespace" do
       let(:test_configuration) { configuration.minimize.merge project_name: "example" }
 
       let :content do
@@ -142,7 +142,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
       end
     end
 
-    context "with single empty namespace" do
+    context "with empty namespace" do
       let(:test_configuration) { configuration.minimize.merge project_name: "example" }
 
       let(:content) { "<% namespace %>" }
@@ -157,7 +157,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
       end
     end
 
-    context "with multiple empty namespaces" do
+    context "with empty namespaces" do
       let :test_configuration do
         configuration.minimize.merge project_name: "example-one-two"
       end
@@ -181,7 +181,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
       end
     end
 
-    context "with multiple filled namespaces" do
+    context "with filled namespaces" do
       let :test_configuration do
         configuration.minimize.merge project_name: "example-one-two"
       end
