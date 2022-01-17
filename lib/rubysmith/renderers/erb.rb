@@ -21,7 +21,15 @@ module Rubysmith
       attr_accessor :buffer
       attr_reader :configuration, :scope, :client
 
-      def namespace = self.buffer = block_given? ? scope.call(yield) : buffer + scope.call
+      def namespace
+        source = buffer.dup
+
+        self.buffer = source + if block_given?
+                                 scope.call(yield.sub(source, ""))
+                               else
+                                 scope.call
+                               end
+      end
     end
   end
 end
