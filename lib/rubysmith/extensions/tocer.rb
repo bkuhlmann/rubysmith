@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
 require "tocer"
+require "refinements/structs"
 
 module Rubysmith
   module Extensions
     # Ensures project skeleton documentation has table of contents.
     class Tocer
+      using Refinements::Structs
+
       def self.call(...) = new(...).call
 
       def initialize configuration,
                      client: ::Tocer::Runner.new,
-                     content: ::Tocer::Configuration::Content
+                     content: ::Tocer::Configuration::Content.new
         @configuration = configuration
         @client = client
         @content = content
@@ -26,11 +29,10 @@ module Rubysmith
       attr_reader :configuration, :client, :content
 
       def settings
-        content[
-          includes: configuration.extensions_tocer_includes,
-          label: configuration.extensions_tocer_label,
-          root_dir: configuration.project_root
-        ]
+        content.merge(root_dir: configuration.project_root)
+               .transmute! configuration,
+                           includes: :extensions_tocer_includes,
+                           label: :extensions_tocer_label
       end
     end
   end
