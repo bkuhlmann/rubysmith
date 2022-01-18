@@ -44,15 +44,17 @@ RSpec.describe Rubysmith::Configuration::Loader do
       extensions_milestoner_sign: false,
       extensions_pragmater_comments: ["# frozen_string_literal: true"],
       extensions_pragmater_includes: [
-        "**/*.gemspec",
         "**/*.rake",
         "**/*.rb",
-        "**/*bin/console",
-        "**/*bin/guard",
-        "**/*bin/rubocop",
-        "**/*Gemfile",
-        "**/*Guardfile",
-        "**/*Rakefile"
+        "*.gemspec",
+        "exe/*",
+        "bin/console",
+        "bin/guard",
+        "bin/rubocop",
+        "config.ru",
+        "Gemfile",
+        "Guardfile",
+        "Rakefile"
       ],
       extensions_tocer_includes: [
         "README.md"

@@ -55,15 +55,17 @@
     :comments:
       - "# frozen_string_literal: true"
     :includes:
-      - "**/*.gemspec"
       - "**/*.rake"
       - "**/*.rb"
-      - "**/*bin/console"
-      - "**/*bin/guard"
-      - "**/*bin/rubocop"
-      - "**/*Gemfile"
-      - "**/*Guardfile"
-      - "**/*Rakefile"
+      - "*.gemspec"
+      - "exe/*"
+      - bin/console
+      - bin/guard
+      - bin/rubocop
+      - config.ru
+      - Gemfile
+      - Guardfile
+      - Rakefile
   :tocer:
     :includes:
       - "README.md"
