@@ -188,7 +188,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "reek", "~> 6.0"
+            gem "reek", "~> 6.1"
           end
         CONTENT
       end
@@ -415,7 +415,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "bundler-leak", "~> 0.2"
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
-            gem "reek", "~> 6.0"
+            gem "reek", "~> 6.1"
             gem "rubocop", "~> 1.25"
             gem "rubocop-performance", "~> 1.12"
             gem "rubocop-rake", "~> 0.6"
@@ -463,7 +463,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "bundler-leak", "~> 0.2"
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
-            gem "reek", "~> 6.0"
+            gem "reek", "~> 6.1"
             gem "rubocop", "~> 1.25"
             gem "rubocop-performance", "~> 1.12"
             gem "rubocop-rake", "~> 0.6"
