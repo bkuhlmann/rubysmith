@@ -25,7 +25,7 @@ module Rubysmith
         source = buffer.dup
 
         self.buffer = source + if block_given?
-                                 scope.call(yield.sub(source, ""))
+                                 scope.call yield.sub(source, "")
                                else
                                  scope.call
                                end

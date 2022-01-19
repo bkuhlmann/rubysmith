@@ -106,7 +106,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only RuboCop" do
-      let(:test_configuration) do
+      let :test_configuration do
         configuration.minimize.merge build_rake: true, build_rubocop: true
       end
 
@@ -126,7 +126,7 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when enabled with only YARD" do
-      let(:test_configuration) do
+      let :test_configuration do
         configuration.minimize.merge build_rake: true, build_yard: true
       end
 

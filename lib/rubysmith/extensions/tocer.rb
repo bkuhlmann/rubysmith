@@ -20,7 +20,7 @@ module Rubysmith
       end
 
       def call
-        client.call(settings) if configuration.build_readme
+        client.call settings if configuration.build_readme
         configuration
       end
 
