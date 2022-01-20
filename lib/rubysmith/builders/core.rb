@@ -19,7 +19,7 @@ module Rubysmith
         builder.call(configuration.merge(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
                .replace("  require", "require")
-               .replace(/    (?=(Zeit|\.tap|\.setup))/, "")
+               .replace(/    (?=(Zeit|loader|end))/, "")
                .replace("\n  \n", "\n\n")
 
         builder.call(configuration.merge(template_path: "%project_name%/.ruby-version.erb")).render
