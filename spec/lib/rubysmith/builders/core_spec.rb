@@ -26,10 +26,6 @@ RSpec.describe Rubysmith::Builders::Core do
           end
         CONTENT
       end
-
-      it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq(RUBY_VERSION)
-      end
     end
 
     context "with dashed project name" do
@@ -43,10 +39,6 @@ RSpec.describe Rubysmith::Builders::Core do
             end
           end
         CONTENT
-      end
-
-      it "builds Ruby version file" do
-        expect(temp_dir.join("demo-test", ".ruby-version").read).to eq(RUBY_VERSION)
       end
     end
 
@@ -63,10 +55,6 @@ RSpec.describe Rubysmith::Builders::Core do
           module Test
           end
         CONTENT
-      end
-
-      it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq(RUBY_VERSION)
       end
     end
 
@@ -90,10 +78,6 @@ RSpec.describe Rubysmith::Builders::Core do
             end
           end
         CONTENT
-      end
-
-      it "builds Ruby version file" do
-        expect(temp_dir.join("demo-test", ".ruby-version").read).to eq(RUBY_VERSION)
       end
     end
   end

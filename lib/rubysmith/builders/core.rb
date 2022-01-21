@@ -23,7 +23,6 @@ module Rubysmith
                .replace("\n  \n", "\n\n")
                .insert_before("module #{module_name}", "#{module_indent}# Main namespace.\n")
 
-        builder.call(configuration.merge(template_path: "%project_name%/.ruby-version.erb")).render
         configuration
       end
 
