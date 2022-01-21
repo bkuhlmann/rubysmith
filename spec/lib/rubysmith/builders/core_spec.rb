@@ -37,8 +37,8 @@ RSpec.describe Rubysmith::Builders::Core do
 
       it "builds project file" do
         expect(temp_dir.join("demo-test", "lib", "demo", "test.rb").read).to eq(<<~CONTENT)
-          # Main namespace.
           module Demo
+            # Main namespace.
             module Test
             end
           end
@@ -84,8 +84,8 @@ RSpec.describe Rubysmith::Builders::Core do
             loader.setup
           end
 
-          # Main namespace.
           module Demo
+            # Main namespace.
             module Test
             end
           end
