@@ -247,7 +247,9 @@ RSpec.describe Rubysmith::CLI::Shell do
       temp_dir.change_dir { `git clone https://github.com/bkuhlmann/test` }
 
       temp_dir.join("test").change_dir do
+        `touch test.txt && git add . && git commit -m "Added test file"`
         shell.call %W[--publish #{version}]
+
         expect(`git tag | tail -1`.strip).to eq(version)
 
         `git tag --delete #{version}`
