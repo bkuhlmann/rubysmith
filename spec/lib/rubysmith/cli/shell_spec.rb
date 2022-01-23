@@ -13,8 +13,9 @@ RSpec.describe Rubysmith::CLI::Shell do
     let :project_files do
       temp_dir.join("test")
               .files("**/*", flag: File::FNM_DOTMATCH)
-              .reject { |path| path.fnmatch? "*.git/[^COMMIT]*" }
+              .reject { |path| path.fnmatch?("*git/*") && !path.fnmatch?("*git/HEAD") }
               .reject { |path| path.fnmatch? "*rubocop-https*" }
+              .reject { |path| path.fnmatch? "*tags" }
               .map { |path| path.relative_path_from(temp_dir).to_s }
     end
 
@@ -41,18 +42,13 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.ruby-version",
           "test/Gemfile",
-          "test/Gemfile.lock",
+          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
           "test/lib/test.rb"
-        ]
+        ].compact
       end
 
       it "builds minimum skeleton" do
-        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
-
-        temp_dir.change_dir do
-          Bundler.definition true
-          Bundler.with_unbundled_env { shell.call options }
-        end
+        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
 
         expect(project_files).to contain_exactly(*files)
       end
@@ -67,7 +63,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-bundler-leak
           --no-circle_ci
           --no-citation
-          --no-cli
           --no-community
           --no-conduct
           --no-console
@@ -85,8 +80,8 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-refinements
           --no-rspec
           --no-rubocop
-          --no-security
           --no-setup
+          --no-security
           --no-simple_cov
           --no-versions
           --no-zeitwerk
@@ -97,18 +92,13 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.ruby-version",
           "test/Gemfile",
-          "test/Gemfile.lock",
+          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
           "test/lib/test.rb"
-        ]
+        ].compact
       end
 
       it "builds minimum skeleton" do
-        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
-
-        temp_dir.change_dir do
-          Bundler.definition true
-          Bundler.with_unbundled_env { shell.call options }
-        end
+        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
 
         expect(project_files).to contain_exactly(*files)
       end
@@ -126,8 +116,7 @@ RSpec.describe Rubysmith::CLI::Shell do
       let :files do
         [
           "test/.circleci/config.yml",
-          "test/.git/COMMIT_EDITMSG",
-          "test/.git/MERGE_RR",
+          "test/.git/HEAD",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.gitignore",
@@ -140,7 +129,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/setup",
           "test/CITATION.cff",
           "test/Gemfile",
-          "test/Gemfile.lock",
+          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
           "test/Guardfile",
           "test/lib/test.rb",
           "test/LICENSE.adoc",
@@ -148,18 +137,12 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/README.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
-          "test/tags",
           "test/VERSIONS.adoc"
-        ]
+        ].compact
       end
 
       it "builds maximum skeleton" do
-        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
-
-        temp_dir.change_dir do
-          Bundler.definition true
-          Bundler.with_unbundled_env { shell.call options }
-        end
+        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
 
         expect(project_files).to contain_exactly(*files)
       end
@@ -174,7 +157,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --bundler-leak
           --circle_ci
           --citation
-          --cli
           --community
           --conduct
           --console
@@ -192,8 +174,8 @@ RSpec.describe Rubysmith::CLI::Shell do
           --refinements
           --rspec
           --rubocop
-          --security
           --setup
+          --security
           --simple_cov
           --versions
           --zeitwerk
@@ -203,8 +185,7 @@ RSpec.describe Rubysmith::CLI::Shell do
       let :files do
         [
           "test/.circleci/config.yml",
-          "test/.git/COMMIT_EDITMSG",
-          "test/.git/MERGE_RR",
+          "test/.git/HEAD",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.gitignore",
@@ -217,7 +198,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/setup",
           "test/CITATION.cff",
           "test/Gemfile",
-          "test/Gemfile.lock",
+          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
           "test/Guardfile",
           "test/lib/test.rb",
           "test/LICENSE.adoc",
@@ -225,20 +206,15 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/README.adoc",
           "test/spec/spec_helper.rb",
           "test/spec/support/shared_contexts/temp_dir.rb",
-          "test/tags",
           "test/VERSIONS.adoc"
-        ]
+        ].compact
       end
 
       it "builds maximum skeleton" do
-        pending "Requires Bundler working properly in CI." if ENV["CI"] == "true"
-
         temp_dir.change_dir do
-          Bundler.definition true
           Bundler.with_unbundled_env { shell.call options }
+          expect(project_files).to contain_exactly(*files)
         end
-
-        expect(project_files).to contain_exactly(*files)
       end
     end
 
