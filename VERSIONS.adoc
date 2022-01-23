@@ -1,5 +1,20 @@
 = Versions
 
+== 1.2.0 (2022-01-23)
+
+* Fixed Pragmater defaults to include executable files - Brooke Kuhlmann
+* Fixed Zeitwerk block for dashed project name - Brooke Kuhlmann
+* Fixed core builder indentation of module description - Brooke Kuhlmann
+* Fixed pending CI shell specs - Brooke Kuhlmann
+* Added Ruby version to Gemfile - Brooke Kuhlmann
+* Added build parser security option - Brooke Kuhlmann
+* Added identity to gem specification - Brooke Kuhlmann
+* Added version builder - Brooke Kuhlmann
+* Updated to Git+ 1.1.0 - Brooke Kuhlmann
+* Updated to Reek 6.1.0 - Brooke Kuhlmann
+* Updated to Rubocop 1.25.0 - Brooke Kuhlmann
+* Removed building of Ruby version from core builder - Brooke Kuhlmann
+
 == 1.1.1 (2022-01-17)
 
 * Fixed ERB renderer to respect content before a namespace block - Brooke Kuhlmann
