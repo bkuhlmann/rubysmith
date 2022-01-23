@@ -239,6 +239,15 @@ module Rubysmith
           end
         end
 
+        def add_security
+          client.on(
+            "--[no-]security",
+            "Add security. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_security: value
+          end
+        end
+
         def add_setup
           client.on(
             "--[no-]setup",

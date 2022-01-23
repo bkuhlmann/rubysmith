@@ -206,6 +206,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-rubocop])).to have_attributes(build_rubocop: false)
     end
 
+    it "enables security" do
+      expect(parser.call(%w[--security])).to have_attributes(build_security: true)
+    end
+
+    it "disables security" do
+      expect(parser.call(%w[--no-security])).to have_attributes(build_security: false)
+    end
+
     it "enables setup script" do
       expect(parser.call(%w[--setup])).to have_attributes(build_setup: true)
     end
