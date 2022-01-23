@@ -14,7 +14,7 @@ module Rubysmith
       using Refinements::Structs
 
       DEFAULTS = YAML.load_file(Pathname(__dir__).join("defaults.yml")).freeze
-      CLIENT = Runcom::Config.new "#{Identity::NAME}/configuration.yml", defaults: DEFAULTS
+      CLIENT = Runcom::Config.new "rubysmith/configuration.yml", defaults: DEFAULTS
 
       ENHANCERS = [
         Enhancers::CurrentTime.new,

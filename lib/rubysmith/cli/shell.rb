@@ -33,7 +33,7 @@ module Rubysmith
           in action_config: Symbol => action then config action
           in action_build: true then build configuration
           in action_publish: true then publish configuration
-          in action_version: true then logger.info Identity::VERSION_LABEL
+          in action_version: true then logger.info { "Rubysmith #{specification.version}" }
           else usage
         end
       end
@@ -45,6 +45,8 @@ module Rubysmith
       def publish(configuration) = actions.fetch(__method__).call(configuration)
 
       def usage = logger.unknown(parser.to_s)
+
+      def specification = container[__method__]
 
       def logger = container[__method__]
     end

@@ -1,21 +1,20 @@
 # frozen_string_literal: true
 
-require_relative "lib/rubysmith/identity"
-
 Gem::Specification.new do |spec|
-  spec.name = Rubysmith::Identity::NAME
-  spec.version = Rubysmith::Identity::VERSION
+  spec.name = "rubysmith"
+  spec.version = "1.1.1"
   spec.platform = Gem::Platform::RUBY
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://github.com/bkuhlmann/rubysmith"
-  spec.summary = Rubysmith::Identity::SUMMARY
+  spec.summary = "A command line interface for smithing Ruby projects."
   spec.license = "Hippocratic-3.0"
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/rubysmith/issues",
     "changelog_uri" => "https://www.alchemists.io/projects/rubysmith/versions",
     "documentation_uri" => "https://www.alchemists.io/projects/rubysmith",
+    "label" => "Rubysmith",
     "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/bkuhlmann/rubysmith"
   }
@@ -38,6 +37,6 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables << "rubysmith"
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
-  spec.files = Dir.glob "lib/**/*", File::FNM_DOTMATCH
+  spec.files = Dir.glob ["*.gemspec", "lib/**/*"], File::FNM_DOTMATCH
   spec.require_paths = ["lib"]
 end

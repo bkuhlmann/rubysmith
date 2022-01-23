@@ -3,5 +3,4 @@
 
 require "rubysmith"
 
-Process.setproctitle Rubysmith::Identity::VERSION_LABEL
 Rubysmith::CLI::Shell.new.call ARGV

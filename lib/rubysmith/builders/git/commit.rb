@@ -31,8 +31,8 @@ module Rubysmith
 
         def body
           <<~CONTENT
-            Generated with [#{Identity::LABEL}]("https://www.alchemists.io/projects/rubysmith")
-            #{Identity::VERSION}.
+            Generated with [Rubysmith](https://www.alchemists.io/projects/rubysmith)
+            1.1.1.
           CONTENT
         end
 
