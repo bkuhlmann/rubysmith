@@ -21,18 +21,16 @@ module Rubysmith
                .replace("  require", "require")
                .replace(/    (?=(Zeit|loader|end))/, "")
                .replace("\n  \n", "\n\n")
-               .insert_before("module #{module_name}", "#{module_indent}# Main namespace.\n")
+               .insert_before("module #{module_name}", "#{indentation}# Main namespace.\n")
 
         configuration
       end
 
       private
 
-      def module_indent = project_class.include?("::") ? "  " : ""
+      def indentation = configuration.project_levels.positive? ? "  " : ""
 
-      def module_name = project_class.split("::").last
-
-      def project_class = configuration.project_class
+      def module_name = configuration.project_class.split("::").last
 
       attr_reader :configuration, :builder
     end

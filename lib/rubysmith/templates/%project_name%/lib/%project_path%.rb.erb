@@ -1,6 +1,6 @@
 <% if configuration.build_zeitwerk %>
   require "zeitwerk"
-  <% if configuration.project_path.include? "/" %>
+  <% if configuration.project_levels.positive? %>
     Zeitwerk::Loader.new.then do |loader|
       loader.push_dir "#{__dir__}/.."
       loader.setup
