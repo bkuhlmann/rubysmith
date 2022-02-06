@@ -8,10 +8,10 @@ module Rubysmith
     class Namespace
       using Refinements::Strings
 
-      def initialize namespace
+      def initialize namespace, delimiter: "::"
         @namespace = namespace
-        @modules = namespace.split "::"
-        @depth = namespace.scan("::").length
+        @modules = namespace.split delimiter
+        @depth = namespace.scan(delimiter).length
       end
 
       def call(content = nil) = "#{prefix}#{body content}#{suffix}"
