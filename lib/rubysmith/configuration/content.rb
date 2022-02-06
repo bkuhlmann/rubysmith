@@ -115,6 +115,8 @@ module Rubysmith
 
       def project_label = project_name.titleize
 
+      def project_levels = project_class.split("::").size - 1
+
       def project_path = project_name.snakecase
 
       def project_root = target_root.join(project_name)

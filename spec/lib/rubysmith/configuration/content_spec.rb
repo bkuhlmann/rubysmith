@@ -305,6 +305,22 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
+  describe "#project_levels" do
+    it "answers zero with single project name" do
+      expect(content.project_levels).to eq(0)
+    end
+
+    it "answers one with single dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_levels).to eq(1)
+    end
+
+    it "answers more than one with multi-dashed project name" do
+      updated_content = content.merge project_name: "test-one-two"
+      expect(updated_content.project_levels).to eq(2)
+    end
+  end
+
   describe "#project_path" do
     it "answers single project path with single project name" do
       expect(content.project_path).to eq("test")
