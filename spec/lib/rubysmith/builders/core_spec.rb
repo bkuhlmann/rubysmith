@@ -58,7 +58,7 @@ RSpec.describe Rubysmith::Builders::Core do
       end
     end
 
-    context "with dashed project name and Zeitwerk enabled" do
+    context "with single dashed project name and Zeitwerk enabled" do
       let :test_configuration do
         configuration.minimize.merge project_name: "demo-test", build_zeitwerk: true
       end
@@ -75,6 +75,31 @@ RSpec.describe Rubysmith::Builders::Core do
           module Demo
             # Main namespace.
             module Test
+            end
+          end
+        CONTENT
+      end
+    end
+
+    context "with multi-dashed project name and Zeitwerk enabled" do
+      let :test_configuration do
+        configuration.minimize.merge project_name: "demo-test-example", build_zeitwerk: true
+      end
+
+      it "builds project file" do
+        expect(temp_dir.join("demo-test-example/lib/demo/test/example.rb").read).to eq(<<~CONTENT)
+          require "zeitwerk"
+
+          Zeitwerk::Loader.new.then do |loader|
+            loader.push_dir "\#{__dir__}/../.."
+            loader.setup
+          end
+
+          module Demo
+            module Test
+              # Main namespace.
+              module Example
+              end
             end
           end
         CONTENT

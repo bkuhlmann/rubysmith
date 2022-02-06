@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require "refinements/strings"
 require "refinements/structs"
 
 module Rubysmith
   module Builders
     # Builds project skeleton core structure and minimum file support.
     class Core
+      using Refinements::Strings
       using Refinements::Structs
 
       def self.call(...) = new(...).call
@@ -22,13 +24,14 @@ module Rubysmith
                .replace(/    (?=(Zeit|loader|end))/, "")
                .replace("\n  \n", "\n\n")
                .insert_before("module #{module_name}", "#{indentation}# Main namespace.\n")
+               .replace("end\n  end", "    end\n  end")
 
         configuration
       end
 
       private
 
-      def indentation = configuration.project_levels.positive? ? "  " : ""
+      def indentation = "".indent configuration.project_levels
 
       def module_name = configuration.project_class.split("::").last
 
