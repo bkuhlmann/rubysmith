@@ -111,13 +111,13 @@ module Rubysmith
 
       def license_label_version = [license_label, license_version].compress.join("-")
 
-      def project_label = project_name.titleize
-
       def project_class = project_name.camelcase
 
-      def project_root = target_root.join(project_name)
+      def project_label = project_name.titleize
 
       def project_path = project_name.snakecase
+
+      def project_root = target_root.join(project_name)
 
       def computed_project_url_community = format_url(__method__)
 

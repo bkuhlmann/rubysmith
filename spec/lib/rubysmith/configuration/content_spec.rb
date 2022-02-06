@@ -273,22 +273,6 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
-  describe "#project_label" do
-    it "answers capitalized project label with single project name" do
-      expect(content.project_label).to eq("Test")
-    end
-
-    it "answers titleized label with underscored project name" do
-      updated_content = content.merge project_name: "test_underscore"
-      expect(updated_content.project_label).to eq("Test Underscore")
-    end
-
-    it "answers titleized project label with dashed project name" do
-      updated_content = content.merge project_name: "test-dash"
-      expect(updated_content.project_label).to eq("Test Dash")
-    end
-  end
-
   describe "#project_class" do
     it "answers capitalized project class with single project name" do
       expect(content.project_class).to eq("Test")
@@ -305,19 +289,19 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
-  describe "#project_root" do
-    it "answers unchanged project root path with single project name" do
-      expect(content.project_root).to eq(Bundler.root.join("test"))
+  describe "#project_label" do
+    it "answers capitalized project label with single project name" do
+      expect(content.project_label).to eq("Test")
     end
 
-    it "answers unchanged project root path with underscored project name" do
+    it "answers titleized label with underscored project name" do
       updated_content = content.merge project_name: "test_underscore"
-      expect(updated_content.project_root).to eq(Bundler.root.join("test_underscore"))
+      expect(updated_content.project_label).to eq("Test Underscore")
     end
 
-    it "answers unchanged project root path with dashed project name" do
+    it "answers titleized project label with dashed project name" do
       updated_content = content.merge project_name: "test-dash"
-      expect(updated_content.project_root).to eq(Bundler.root.join("test-dash"))
+      expect(updated_content.project_label).to eq("Test Dash")
     end
   end
 
@@ -334,6 +318,22 @@ RSpec.describe Rubysmith::Configuration::Content do
     it "answers nested project path with dashed project name" do
       updated_content = content.merge project_name: "test-dash"
       expect(updated_content.project_path).to eq("test/dash")
+    end
+  end
+
+  describe "#project_root" do
+    it "answers unchanged project root path with single project name" do
+      expect(content.project_root).to eq(Bundler.root.join("test"))
+    end
+
+    it "answers unchanged project root path with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_root).to eq(Bundler.root.join("test_underscore"))
+    end
+
+    it "answers unchanged project root path with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_root).to eq(Bundler.root.join("test-dash"))
     end
   end
 
