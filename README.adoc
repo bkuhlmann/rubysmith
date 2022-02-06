@@ -4,13 +4,6 @@
 
 = Rubysmith
 
-[link=http://badge.fury.io/rb/rubysmith]
-image::https://badge.fury.io/rb/rubysmith.svg[Gem Version]
-[link=https://www.alchemists.io/projects/code_quality]
-image::https://img.shields.io/badge/code_style-alchemists-brightgreen.svg[Alchemists Style Guide]
-[link=https://circleci.com/gh/bkuhlmann/rubysmith]
-image::https://circleci.com/gh/bkuhlmann/rubysmith.svg?style=svg[Circle CI Status]
-
 Rubysmith is a command line interface for smithing Ruby projects.
 
 This gem is useful in situations in which you need something more sophisticated than a
