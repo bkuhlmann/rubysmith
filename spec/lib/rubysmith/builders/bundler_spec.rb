@@ -71,6 +71,27 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
+    context "with Caliber only" do
+      let(:test_configuration) { configuration.minimize.merge build_caliber: true }
+
+      let :proof do
+        <<~CONTENT
+          ruby File.read(".ruby-version").strip
+
+          source "https://rubygems.org"
+
+          group :code_quality do
+            gem "caliber", "~> 0.1"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+    end
+
     context "with Dead End only" do
       let(:test_configuration) { configuration.minimize.merge build_dead_end: true }
 
@@ -413,6 +434,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
+            gem "caliber", "~> 0.1"
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
             gem "reek", "~> 6.1"
@@ -461,6 +483,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
+            gem "caliber", "~> 0.1"
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
             gem "reek", "~> 6.1"

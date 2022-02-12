@@ -13,6 +13,9 @@ group :code_quality do
   <% if configuration.build_bundler_leak %>
     gem "bundler-leak", "~> 0.2"
   <% end %>
+  <% if configuration.build_caliber %>
+    gem "caliber", "~> 0.1"
+  <% end %>
   <% if configuration.build_dead_end %>
     gem "dead_end", "~> 3.0"
   <% end %>
