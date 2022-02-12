@@ -23,20 +23,6 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
       end
     end
 
-    context "with Rubocop only" do
-      let(:test_configuration) { configuration.minimize.merge build_git: true, build_rubocop: true }
-
-      it "doesn't build ignore file" do
-        builder.call
-
-        expect(ignore_path.read).to eq(<<~CONTENT)
-          .bundle
-          .rubocop-http*
-          tmp
-        CONTENT
-      end
-    end
-
     context "with YARD only" do
       let(:test_configuration) { configuration.minimize.merge build_git: true, build_yard: true }
 
@@ -60,7 +46,6 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
 
         expect(ignore_path.read).to eq(<<~CONTENT)
           .bundle
-          .rubocop-http*
           .yardoc
           doc/yard
           tmp

@@ -1,8 +1,5 @@
 # <%= configuration.project_label %>
 
-<% if configuration.build_rubocop %>
-[![Alchemists Style Guide](https://img.shields.io/badge/code_style-alchemists-brightgreen.svg)](https://www.alchemists.io/projects/code_quality)
-<% end %>
 <% if configuration.build_circle_ci %>
 [![Circle CI Status](https://circleci.com/gh/<%= configuration.git_hub_user %>/<%= configuration.project_name %>.svg?style=svg)](https://circleci.com/gh/<%= configuration.git_hub_user %>/<%= configuration.project_name %>)
 <% end %>

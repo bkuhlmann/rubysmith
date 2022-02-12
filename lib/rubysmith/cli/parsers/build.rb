@@ -239,15 +239,6 @@ module Rubysmith
           end
         end
 
-        def add_rubocop
-          client.on(
-            "--[no-]rubocop",
-            "Add RuboCop gems. #{default __method__}."
-          ) do |value|
-            configuration.merge! build_rubocop: value
-          end
-        end
-
         def add_security
           client.on(
             "--[no-]security",

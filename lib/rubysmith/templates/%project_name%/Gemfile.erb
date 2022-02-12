@@ -25,14 +25,6 @@ group :code_quality do
   <% if configuration.build_reek %>
     gem "reek", "~> 6.1"
   <% end %>
-  <% if configuration.build_rubocop %>
-    gem "rubocop", "~> 1.25"
-    gem "rubocop-performance", "~> 1.12"
-    gem "rubocop-rake", "~> 0.6"
-  <% end %>
-  <% if configuration.build_rspec && configuration.build_rubocop %>
-    gem "rubocop-rspec", "~> 2.6"
-  <% end %>
   <% if configuration.build_simple_cov %>
     gem "simplecov", "~> 0.21"
   <% end %>

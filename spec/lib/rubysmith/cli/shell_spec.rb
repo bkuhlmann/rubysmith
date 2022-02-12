@@ -14,7 +14,6 @@ RSpec.describe Rubysmith::CLI::Shell do
       temp_dir.join("test")
               .files("**/*", flag: File::FNM_DOTMATCH)
               .reject { |path| path.fnmatch?("*git/*") && !path.fnmatch?("*git/HEAD") }
-              .reject { |path| path.fnmatch? "*rubocop-https*" }
               .reject { |path| path.fnmatch? "*tags" }
               .map { |path| path.relative_path_from(temp_dir).to_s }
     end
@@ -80,7 +79,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-reek
           --no-refinements
           --no-rspec
-          --no-rubocop
           --no-setup
           --no-security
           --no-simple_cov
@@ -175,7 +173,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --reek
           --refinements
           --rspec
-          --rubocop
           --setup
           --security
           --simple_cov

@@ -28,7 +28,6 @@
   :reek: true
   :refinements: true
   :rspec: true
-  :rubocop: true
   :security: true
   :setup: true
   :simple_cov: true

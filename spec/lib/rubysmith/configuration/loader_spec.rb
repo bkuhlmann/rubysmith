@@ -31,7 +31,6 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_reek: true,
       build_refinements: true,
       build_rspec: true,
-      build_rubocop: true,
       build_security: true,
       build_setup: true,
       build_simple_cov: true,

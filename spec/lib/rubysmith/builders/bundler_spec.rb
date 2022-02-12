@@ -260,59 +260,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with RSpec and RuboCop only" do
-      let :test_configuration do
-        configuration.minimize.merge build_rspec: true, build_rubocop: true
-      end
-
-      let :proof do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :code_quality do
-            gem "rubocop", "~> 1.25"
-            gem "rubocop-performance", "~> 1.12"
-            gem "rubocop-rake", "~> 0.6"
-            gem "rubocop-rspec", "~> 2.6"
-          end
-
-          group :test do
-            gem "rspec", "~> 3.10"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-    end
-
-    context "with RuboCop only" do
-      let(:test_configuration) { configuration.minimize.merge build_rubocop: true }
-
-      let :proof do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :code_quality do
-            gem "rubocop", "~> 1.25"
-            gem "rubocop-performance", "~> 1.12"
-            gem "rubocop-rake", "~> 0.6"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-    end
-
     context "with SimpleCov only" do
       let(:test_configuration) { configuration.minimize.merge build_simple_cov: true }
 
@@ -438,10 +385,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
             gem "reek", "~> 6.1"
-            gem "rubocop", "~> 1.25"
-            gem "rubocop-performance", "~> 1.12"
-            gem "rubocop-rake", "~> 0.6"
-            gem "rubocop-rspec", "~> 2.6"
             gem "simplecov", "~> 0.21"
           end
 
@@ -487,10 +430,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "dead_end", "~> 3.0"
             gem "git-lint", "~> 3.0"
             gem "reek", "~> 6.1"
-            gem "rubocop", "~> 1.25"
-            gem "rubocop-performance", "~> 1.12"
-            gem "rubocop-rake", "~> 0.6"
-            gem "rubocop-rspec", "~> 2.6"
             gem "simplecov", "~> 0.21"
           end
 
