@@ -22,8 +22,9 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
 * Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
+* Supports link:https://www.alchemists.io/projects/caliber[Caliber].
 * Supports link:https://circleci.com[Circle CI].
-* Supports link:https://orcid.org[ORCID Citations].
+* Supports link:https://orcid.org[Citations (ORCID)].
 * Supports console script for local development.
 * Supports link:https://rubygems.org/gems/dead_end[DeadEnd].
 * Supports link:https://github.com/ruby/debug[Debug].
@@ -35,11 +36,9 @@ toc::[]
 * Supports link:https://github.com/troessner/reek[Reek].
 * Supports link:https://www.alchemists.io/projects/refinements[Refinements].
 * Supports link:https://rspec.info[RSpec].
-* Supports link:https://github.com/rubocop-hq/rubocop[Rubocop].
-* Supports link:https://docs.rubocop.org/rubocop-performance[Rubocop Performance].
-* Supports link:https://github.com/rubocop-hq/rubocop-rake[Rubocop Rake].
-* Supports link:https://github.com/rubocop-hq/rubocop-rspec[Rubocop RSpec].
+* Supports setup script for project setup.
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
+* Supports link:https://yardoc.org[YARD].
 * Supports link:https://github.com/fxn/zeitwerk[Zeitwerk].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
@@ -65,6 +64,16 @@ To install, run:
 gem install rubysmith
 ----
 
+== Upgrade
+
+If upgrading from 1.0.0 to 2.0.0, you'll need to make the following changes:
+
+* README badges are no longer injected so you can customize as desired.
+* The `:rubocop:` build configuration has been removed. Use `:caliber:` instead.
+* The `--rubocop` build option has been removed. Use `--caliber` instead.
+* You no longer have to Git ignore RuboCop cached configurations since this is handled by the
+  Caliber gem now.
+
 == Usage
 
 === Command Line Interface (CLI)
@@ -82,6 +91,7 @@ USAGE:
 BUILD OPTIONS:
       --[no-]amazing_print                 Add Amazing Print gem. Default: true.
       --[no-]bundler-leak                  Add Bundler Leak gem. Default: true.
+      --[no-]caliber                       Add Caliber gem. Default: true.
       --[no-]circle_ci                     Add Circle CI configuration and badge. Default: false.
       --[no-]citation                      Add citation documentation. Default: true.
       --[no-]community                     Add community documentation. Default: false.
@@ -102,7 +112,7 @@ BUILD OPTIONS:
       --[no-]reek                          Add Reek gem. Default: true.
       --[no-]refinements                   Add Refinements gem. Default: true.
       --[no-]rspec                         Add RSpec gem. Default: true.
-      --[no-]rubocop                       Add RuboCop gems. Default: true.
+      --[no-]security                      Add security. Default: true.
       --[no-]setup                         Add setup script. Default: true.
       --[no-]simple_cov                    Add SimpleCov gem. Default: true.
       --[no-]versions                      Add version history. Default: true.
@@ -174,11 +184,17 @@ The `--bundler-leak` option allows you to build your project with the
 link:https://github.com/rubymem/bundler-leak[Bundler Leak] gem which helps detect memory leaks in
 your gem dependencies.
 
+==== Caliber
+
+The `--caliber` option allows you to build your project with the
+link:https://www.alchemists.io/projects/caliber[Caliber] gem so you have an immediate working -- and
+high quality -- link:https://docs.rubocop.org/rubocop[RuboCop] configuration. Read the Caliber
+documentation for further customization.
+
 ==== Circle CI
 
 The `--circle_ci` option allows you to build your project with link:https://circleci.com[Circle CI]
-configured so you can get your project building as quickly as possible. This includes a README badge
-and configuration YAML.
+configured so you can get your project building as quickly as possible.
 
 ==== Citation
 
@@ -211,8 +227,8 @@ contribute back to your work.
 ==== DeadEnd
 
 The `--dead_end` option allows you build your project with the
-link:https://github.com/zombocom/dead_end[DeadEnd] for debugging purposes since the DeadEnd gem will
-show you where you are missing `end`'s and closing statements.
+link:https://github.com/zombocom/dead_end[Dead End] gem for debugging purposes since Dead End will
+show you where you are missing closing `end` statements.
 
 ==== Debug
 
@@ -252,7 +268,7 @@ to build a new project with all options enabled without having to pick and choos
 ==== Minimum
 
 The `--min` option allows you to build your project with _all_ options _disabled_. This is a quick
-way to build a new project with the bare minimum of support which is a one step above reaching for
+way to build a new project with the bare minimum of support which is a one step above reaching for a
 Bundler Inline script.
 
 ==== Rake
@@ -279,13 +295,6 @@ Ruby core objects without monkey patching your code.
 
 The `--rspec` option allows you add the link:https://rspec.info[RSpec] gem to your project for
 defining your project specifications and have a framework for testing your code.
-
-==== Rubocop
-
-The `--rubocop` option allows you to add the link:https://docs.rubocop.org[RuboCop] gem and suite
-of gems to your project for good code quality standards. This the Alchemists style guide, provided
-by the link:https://www.alchemists.io/projects/code_quality[Code Quality] project, is what is used
-by default.
 
 ==== Setup
 
@@ -352,6 +361,7 @@ variables. The default configuration is as follows:
 :build:
   :amazing_print: true
   :bundler_leak: true
+  :caliber: true
   :circle_ci: false
   :citation: true
   :community: false
@@ -372,7 +382,6 @@ variables. The default configuration is as follows:
   :reek: true
   :refinements: true
   :rspec: true
-  :rubocop: true
   :security: true
   :setup: true
   :simple_cov: true
@@ -467,7 +476,7 @@ these options are explained in greater detail above.
 
 ==== Citations
 
-This section allows you to configure your link:https://orcid.org[ORCiD]
+This section allows you to configure your link:https://orcid.org[ORCID]
 link:https://citation-file-format.github.io[citation] information used by the research community.
 You should definitely fill this in. Your author information, detailed above, will be used as well.
 
@@ -494,9 +503,7 @@ Follow the above links to learn more about each extension's gem configuration.
 ==== GitHub
 
 Your GitHub user is the handle you setup when creating your GitHub account. This information is used
-for documentation purposes and Circle CI badge association. If you don't define this information,
-Rubysmith will automatically fallback to pulling this information from your Git configuration (i.e.
-`github.user`). If all else fails, then nothing will be used.
+for template and/or URL construction purposes.
 
 ==== License
 
@@ -509,7 +516,7 @@ license are available:
 
 ==== Project
 
-There are two categories within this section: URLs and version. The URLs allow you to link to
+There are two sub-categories within this section: URLs and version. The URLs allow you to link to
 specific documentation related to your project. You'll definitely want to customize these as makes
 sense since these URLs are used for documentation, citations, and general project information. You
 can also use `%project_name%` as a placeholder anywhere in your URL and Rubysmith will ensure your
