@@ -61,6 +61,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           test
           --no-amazing_print
           --no-bundler-leak
+          --no-caliber
           --no-circle_ci
           --no-citation
           --no-community
@@ -155,6 +156,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           test
           --amazing_print
           --bundler-leak
+          --caliber
           --circle_ci
           --citation
           --community
