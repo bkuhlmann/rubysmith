@@ -273,18 +273,18 @@ RSpec.describe Rubysmith::Configuration::Content do
   end
 
   describe "#project_class" do
-    it "answers capitalized project class with single project name" do
+    it "answers capitalized class with single project name" do
       expect(content.project_class).to eq("Test")
     end
 
-    it "answers camelcased project class with underscored project name" do
+    it "answers camelcased class with underscored project name" do
       updated_content = content.merge project_name: "test_underscore"
       expect(updated_content.project_class).to eq("TestUnderscore")
     end
 
-    it "answers namespaced project class with dashed project name" do
+    it "answers class with dashed project name" do
       updated_content = content.merge project_name: "test-dash"
-      expect(updated_content.project_class).to eq("Test::Dash")
+      expect(updated_content.project_class).to eq("Dash")
     end
   end
 

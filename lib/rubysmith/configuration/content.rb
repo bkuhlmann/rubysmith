@@ -111,7 +111,7 @@ module Rubysmith
 
       def license_label_version = [license_label, license_version].compress.join("-")
 
-      def project_class = project_name.camelcase
+      def project_class = project_namespaced_class.split("::").last
 
       def project_namespaced_class = project_name.camelcase
 
