@@ -105,9 +105,9 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "when enabled with only RuboCop" do
+    context "when enabled with only Caliber" do
       let :test_configuration do
-        configuration.minimize.merge build_rake: true, build_rubocop: true
+        configuration.minimize.merge build_rake: true, build_caliber: true
       end
 
       it "builds Rakefile" do

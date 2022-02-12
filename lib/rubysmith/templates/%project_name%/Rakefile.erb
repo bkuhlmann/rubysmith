@@ -12,7 +12,7 @@ require "bundler/setup"
 <% if configuration.build_rspec %>
   require "rspec/core/rake_task"
 <% end %>
-<% if configuration.build_rubocop %>
+<% if configuration.build_caliber %>
   require "rubocop/rake_task"
 <% end %>
 <% if configuration.build_yard %>
@@ -28,7 +28,7 @@ require "bundler/setup"
 <% if configuration.build_rspec %>
   RSpec::Core::RakeTask.new :spec
 <% end %>
-<% if configuration.build_rubocop %>
+<% if configuration.build_caliber %>
   RuboCop::RakeTask.new
 <% end %>
 
@@ -39,6 +39,6 @@ require "bundler/setup"
 <% end %>
 
 desc "Run code quality checks"
-task code_quality: %i[<% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_rubocop %>rubocop<% end %>]
+task code_quality: %i[<% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
 
 task default: %i[code_quality <% if configuration.build_rspec %>spec<% end %>]
