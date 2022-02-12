@@ -4,9 +4,6 @@
 
 = Test
 
-[link=https://circleci.com/gh/hubber/test]
-image::https://circleci.com/gh/hubber/test.svg?style=svg[Circle CI Status]
-
 toc::[]
 
 == Features

@@ -1,7 +1,5 @@
 # Test
 
-[![Circle CI Status](https://circleci.com/gh/hubber/test.svg?style=svg)](https://circleci.com/gh/hubber/test)
-
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
 
