@@ -24,6 +24,7 @@ module Rubysmith
       :author_url,
       :build_amazing_print,
       :build_bundler_leak,
+      :build_caliber,
       :build_circle_ci,
       :build_citation,
       :build_cli,

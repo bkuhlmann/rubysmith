@@ -20,6 +20,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-amazing_print])).to have_attributes(build_amazing_print: false)
     end
 
+    it "enables Caliber" do
+      expect(parser.call(%w[--caliber])).to have_attributes(build_caliber: true)
+    end
+
+    it "disables Caliber" do
+      expect(parser.call(%w[--no-caliber])).to have_attributes(build_caliber: false)
+    end
+
     it "enables Bundler Leak" do
       expect(parser.call(%w[--bundler-leak])).to have_attributes(build_bundler_leak: true)
     end

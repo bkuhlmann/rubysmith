@@ -122,6 +122,7 @@ RSpec.describe Rubysmith::Configuration::Content do
       described_class[
         build_amazing_print: true,
         build_bundler_leak: true,
+        build_caliber: true,
         build_circle_ci: true,
         build_citation: true,
         build_cli: true,
@@ -174,6 +175,7 @@ RSpec.describe Rubysmith::Configuration::Content do
       described_class[
         build_amazing_print: false,
         build_bundler_leak: false,
+        build_caliber: false,
         build_circle_ci: false,
         build_citation: false,
         build_cli: false,

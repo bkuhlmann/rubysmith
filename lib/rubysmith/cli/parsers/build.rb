@@ -50,6 +50,15 @@ module Rubysmith
           end
         end
 
+        def add_caliber
+          client.on(
+            "--[no-]caliber",
+            "Add Caliber gem. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_caliber: value
+          end
+        end
+
         def add_console
           client.on(
             "--[no-]console",
