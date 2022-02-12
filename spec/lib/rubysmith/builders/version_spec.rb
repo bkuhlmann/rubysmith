@@ -20,7 +20,7 @@ RSpec.describe Rubysmith::Builders::Version do
       let(:test_configuration) { configuration.minimize }
 
       it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq(RUBY_VERSION)
+        expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Rubysmith::Builders::Version do
       let(:test_configuration) { configuration.maximize }
 
       it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq(RUBY_VERSION)
+        expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
       end
     end
   end

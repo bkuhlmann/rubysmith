@@ -16,7 +16,9 @@ module Rubysmith
       end
 
       def call
-        builder.call(configuration.merge(template_path: "%project_name%/.ruby-version.erb")).render
+        builder.call(configuration.merge(template_path: "%project_name%/.ruby-version.erb"))
+               .render
+               .append("\n")
         configuration
       end
 
