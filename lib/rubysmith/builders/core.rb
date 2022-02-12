@@ -33,7 +33,7 @@ module Rubysmith
 
       def indentation = "".indent configuration.project_levels
 
-      def module_name = configuration.project_class.split("::").last
+      def module_name = configuration.project_class
 
       attr_reader :configuration, :builder
     end

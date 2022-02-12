@@ -7,7 +7,7 @@ module Rubysmith
     # Renders ERB templates as fully functional files.
     class ERB
       def initialize configuration,
-                     scope: Renderers::Namespace.new(configuration.project_class),
+                     scope: Renderers::Namespace.new(configuration.project_namespaced_class),
                      client: ::ERB
         @configuration = configuration
         @scope = scope
