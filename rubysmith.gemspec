@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rubocop", "~> 1.25"
   spec.add_dependency "runcom", "~> 8.2"
   spec.add_dependency "spek", "~> 0.0"
-  spec.add_dependency "tocer", "~> 13.0"
+  spec.add_dependency "tocer", "~> 13.2"
   spec.add_dependency "zeitwerk", "~> 2.5"
 
   spec.bindir = "exe"
