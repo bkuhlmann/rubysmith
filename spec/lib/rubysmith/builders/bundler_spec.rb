@@ -249,7 +249,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :test do
-            gem "rspec", "~> 3.10"
+            gem "rspec", "~> 3.11"
           end
         CONTENT
       end
@@ -396,7 +396,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :test do
             gem "guard-rspec", "~> 4.7", require: false
-            gem "rspec", "~> 3.10"
+            gem "rspec", "~> 3.11"
           end
 
           group :tools do
@@ -441,7 +441,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :test do
             gem "guard-rspec", "~> 4.7", require: false
-            gem "rspec", "~> 3.10"
+            gem "rspec", "~> 3.11"
           end
 
           group :tools do
