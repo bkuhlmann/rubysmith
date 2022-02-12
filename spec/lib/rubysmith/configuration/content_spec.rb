@@ -288,6 +288,22 @@ RSpec.describe Rubysmith::Configuration::Content do
     end
   end
 
+  describe "#project_namespaced_class" do
+    it "answers namespaced class with single project name" do
+      expect(content.project_namespaced_class).to eq("Test")
+    end
+
+    it "answers namespaced class with underscored project name" do
+      updated_content = content.merge project_name: "test_underscore"
+      expect(updated_content.project_namespaced_class).to eq("TestUnderscore")
+    end
+
+    it "answers namespaced class with dashed project name" do
+      updated_content = content.merge project_name: "test-dash"
+      expect(updated_content.project_namespaced_class).to eq("Test::Dash")
+    end
+  end
+
   describe "#project_label" do
     it "answers capitalized project label with single project name" do
       expect(content.project_label).to eq("Test")

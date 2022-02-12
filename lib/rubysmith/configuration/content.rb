@@ -113,9 +113,11 @@ module Rubysmith
 
       def project_class = project_name.camelcase
 
+      def project_namespaced_class = project_name.camelcase
+
       def project_label = project_name.titleize
 
-      def project_levels = project_class.split("::").size - 1
+      def project_levels = project_namespaced_class.split("::").size - 1
 
       def project_path = project_name.snakecase
 
