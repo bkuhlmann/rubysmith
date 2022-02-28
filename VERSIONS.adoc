@@ -1,5 +1,11 @@
 = Versions
 
+== 2.0.1 (2022-02-28)
+
+* Fixed Rubocop RSpec issues with boolean and nil identity checks - Brooke Kuhlmann
+* Updated to Caliber 0.2.0 - Brooke Kuhlmann
+* Updated to Ruby 3.1.1 - Brooke Kuhlmann
+
 == 2.0.0 (2022-02-12)
 
 * Fixed implementation to use project namespaced or single class - Brooke Kuhlmann
