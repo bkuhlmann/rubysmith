@@ -238,7 +238,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't build spec helper" do
-        expect(spec_helper_path.exist?).to eq(false)
+        expect(spec_helper_path.exist?).to be(false)
       end
     end
   end

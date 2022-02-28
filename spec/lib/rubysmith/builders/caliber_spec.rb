@@ -51,12 +51,12 @@ RSpec.describe Rubysmith::Builders::Caliber do
 
       it "doesn't build binstub" do
         builder.call
-        expect(binstub_path.exist?).to eq(false)
+        expect(binstub_path.exist?).to be(false)
       end
 
       it "doesn't build configuration" do
         builder.call
-        expect(configuration_path.exist?).to eq(false)
+        expect(configuration_path.exist?).to be(false)
       end
     end
   end

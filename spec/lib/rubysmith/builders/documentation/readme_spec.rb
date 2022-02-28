@@ -63,7 +63,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't build README" do
-        expect(temp_dir.files.empty?).to eq(true)
+        expect(temp_dir.files.empty?).to be(true)
       end
     end
   end

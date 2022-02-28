@@ -441,24 +441,24 @@ RSpec.describe Rubysmith::Configuration::Content do
   describe "#ascii_doc?" do
     it "answers true when ASCII Doc format" do
       updated_content = content.merge documentation_format: "adoc"
-      expect(updated_content.ascii_doc?).to eq(true)
+      expect(updated_content.ascii_doc?).to be(true)
     end
 
     it "answers false when other format" do
       updated_content = content.merge documentation_format: "test"
-      expect(updated_content.ascii_doc?).to eq(false)
+      expect(updated_content.ascii_doc?).to be(false)
     end
   end
 
   describe "#markdown?" do
     it "answers true when Markdown format" do
       updated_content = content.merge documentation_format: "md"
-      expect(updated_content.markdown?).to eq(true)
+      expect(updated_content.markdown?).to be(true)
     end
 
     it "answers false when other format" do
       updated_content = content.merge documentation_format: "test"
-      expect(updated_content.markdown?).to eq(false)
+      expect(updated_content.markdown?).to be(false)
     end
   end
 
@@ -497,7 +497,7 @@ RSpec.describe Rubysmith::Configuration::Content do
 
     it "answers nil when no paths exists" do
       content = described_class[template_roots: [missing_path, missing_path]]
-      expect(content.template_root).to eq(nil)
+      expect(content.template_root).to be_nil
     end
   end
 end

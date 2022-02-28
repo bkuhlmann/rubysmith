@@ -32,7 +32,7 @@ RSpec.describe Rubysmith::Builders::Reek do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't build configuration" do
-        expect(configuration_path.exist?).to eq(false)
+        expect(configuration_path.exist?).to be(false)
       end
     end
   end

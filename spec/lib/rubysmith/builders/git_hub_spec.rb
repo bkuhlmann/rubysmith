@@ -57,12 +57,12 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
       it "does not build issue template" do
         builder.call
-        expect(issue_path.exist?).to eq(false)
+        expect(issue_path.exist?).to be(false)
       end
 
       it "does not build pull request template" do
         builder.call
-        expect(pull_request_path.exist?).to eq(false)
+        expect(pull_request_path.exist?).to be(false)
       end
     end
   end

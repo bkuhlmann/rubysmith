@@ -62,7 +62,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "deletes existing file" do
       builder.delete
-      expect(build_path.exist?).to eq(false)
+      expect(build_path.exist?).to be(false)
     end
 
     it "answers itself" do
@@ -206,7 +206,7 @@ RSpec.describe Rubysmith::Builder do
       builder.rename "identity.backup"
       build_path = configuration.target_root.join "demo-test/lib/demo/test/identity.backup"
 
-      expect(build_path.exist?).to eq(true)
+      expect(build_path.exist?).to be(true)
     end
 
     it "answers itself" do
@@ -327,12 +327,12 @@ RSpec.describe Rubysmith::Builder do
 
     it "creates empty file" do
       builder.touch
-      expect(build_path.exist?).to eq(true)
+      expect(build_path.exist?).to be(true)
     end
 
     it "creates empty directory" do
       described_class.new(configuration.merge(template_path: "test/path")).touch
-      expect(temp_dir.join("test", "path").exist?).to eq(true)
+      expect(temp_dir.join("test", "path").exist?).to be(true)
     end
 
     it "answers itself" do

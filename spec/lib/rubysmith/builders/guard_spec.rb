@@ -50,11 +50,11 @@ RSpec.describe Rubysmith::Builders::Guard do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't build binstub" do
-        expect(binstub_path.exist?).to eq(false)
+        expect(binstub_path.exist?).to be(false)
       end
 
       it "doesn't build configuration" do
-        expect(configuration_path.exist?).to eq(false)
+        expect(configuration_path.exist?).to be(false)
       end
     end
   end

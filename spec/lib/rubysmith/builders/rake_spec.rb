@@ -185,7 +185,7 @@ RSpec.describe Rubysmith::Builders::Rake do
       let(:test_configuration) { configuration.minimize }
 
       it "builds Rakefile" do
-        expect(rakefile_path.exist?).to eq(false)
+        expect(rakefile_path.exist?).to be(false)
       end
     end
   end

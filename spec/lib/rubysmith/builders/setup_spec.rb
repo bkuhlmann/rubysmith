@@ -43,7 +43,7 @@ RSpec.describe Rubysmith::Builders::Setup do
 
       it "does not build setup script" do
         builder.call
-        expect(build_path.exist?).to eq(false)
+        expect(build_path.exist?).to be(false)
       end
     end
   end

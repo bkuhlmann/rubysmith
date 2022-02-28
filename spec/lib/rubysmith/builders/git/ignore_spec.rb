@@ -19,7 +19,7 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
 
       it "doesn't build ignore file" do
         builder.call
-        expect(ignore_path.exist?).to eq(false)
+        expect(ignore_path.exist?).to be(false)
       end
     end
 

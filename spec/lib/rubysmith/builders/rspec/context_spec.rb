@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't build temporary directory shared context" do
-        expect(context_path.exist?).to eq(false)
+        expect(context_path.exist?).to be(false)
       end
     end
   end

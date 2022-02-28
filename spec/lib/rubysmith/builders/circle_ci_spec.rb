@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
 
       it "does not build configuration" do
         builder.call
-        expect(build_path.exist?).to eq(false)
+        expect(build_path.exist?).to be(false)
       end
     end
   end

@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
       let(:test_configuration) { configuration.minimize.merge build_git: true }
 
       it "initializes repository" do
-        expect(git_dir.exist?).to eq(true)
+        expect(git_dir.exist?).to be(true)
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
       let(:test_configuration) { configuration.minimize }
 
       it "doesn't initialize repository" do
-        expect(git_dir.exist?).to eq(false)
+        expect(git_dir.exist?).to be(false)
       end
     end
   end

@@ -114,11 +114,11 @@ RSpec.describe Rubysmith::Pathway do
 
   describe "#partial?" do
     it "answers true with partial source file" do
-      expect(way.with(start_path: "/source/views/_test.html.erb").partial?).to eq(true)
+      expect(way.with(start_path: "/source/views/_test.html.erb").partial?).to be(true)
     end
 
     it "answers false with template source file" do
-      expect(way.with(start_path: "/source/views/test.html.erb").partial?).to eq(false)
+      expect(way.with(start_path: "/source/views/test.html.erb").partial?).to be(false)
     end
   end
 end
