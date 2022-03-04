@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
           title: Test
           abstract:
           version: 0.0.0
-          license: Hippocratic-3.0
+          license: Hippocratic-2.1
           date-released: 2020-01-01
           authors:
             - family-names: Smith

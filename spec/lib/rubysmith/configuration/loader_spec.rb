@@ -62,7 +62,7 @@ RSpec.describe Rubysmith::Configuration::Loader do
       extensions_tocer_label: "## Table of Contents",
       license_label: "Hippocratic",
       license_name: "hippocratic",
-      license_version: 3.0,
+      license_version: 2.1,
       project_version: "0.0.0"
     ]
   end

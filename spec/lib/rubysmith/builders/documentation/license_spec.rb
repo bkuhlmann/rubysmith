@@ -51,7 +51,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
       end
 
       it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= HIPPOCRATIC LICENSE")
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Hippocratic License")
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
       end
 
       it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.md").read).to include("# HIPPOCRATIC LICENSE")
+        expect(temp_dir.join("test", "LICENSE.md").read).to include("# Hippocratic License")
       end
     end
 
