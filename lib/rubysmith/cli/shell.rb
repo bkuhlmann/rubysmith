@@ -44,7 +44,7 @@ module Rubysmith
 
       def publish(configuration) = actions.fetch(__method__).call(configuration)
 
-      def usage = logger.unknown(parser.to_s)
+      def usage = logger.any { parser.to_s }
 
       def specification = container[__method__]
 

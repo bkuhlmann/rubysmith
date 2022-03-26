@@ -37,14 +37,21 @@ RSpec.shared_context "with application container" do
 
   let(:kernel) { class_spy Kernel }
 
+  let :logger do
+    Cogger::Client.new Logger.new(StringIO.new),
+                       formatter: ->(_severity, _name, _at, message) { "#{message}\n" }
+  end
+
   before do
     container.enable_stubs!
     container.stub :configuration, configuration
     container.stub :kernel, kernel
+    container.stub :logger, logger
   end
 
   after do
     container.unstub :configuration
     container.unstub :kernel
+    container.unstub :logger
   end
 end

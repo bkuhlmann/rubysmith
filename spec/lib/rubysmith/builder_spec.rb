@@ -8,7 +8,6 @@ RSpec.describe Rubysmith::Builder do
   include_context "with application container"
 
   using Refinements::Pathnames
-  using Refinements::StringIOs
   using Refinements::Structs
 
   let :configuration do
@@ -32,8 +31,8 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      build = proc { builder.append "" }
-      expect(&build).to output(%r(Appending: demo-test/lib/demo/test/identity.rb\n)).to_stdout
+      builder.append ""
+      expect(logger.reread).to match(%r(Appending: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "inserts content at end of file" do
@@ -56,8 +55,8 @@ RSpec.describe Rubysmith::Builder do
     before { build_path.deep_touch }
 
     it "logs information" do
-      build = proc { builder.delete }
-      expect(&build).to output(%r(Deleting: demo-test/lib/demo/test/identity.rb\n)).to_stdout
+      builder.delete
+      expect(logger.reread).to match(%r(Deleting: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "deletes existing file" do
@@ -74,11 +73,11 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      build = proc { builder.insert_before "module Identity", "# Test\n" }
+      builder.insert_before "module Identity", "# Test\n"
 
-      expect(&build).to output(
+      expect(logger.reread).to match(
         %r(Inserting content before pattern in: demo-test/lib/demo/test/identity.rb\n)
-      ).to_stdout
+      )
     end
 
     it "inserts content after regular expression" do
@@ -112,11 +111,11 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      build = proc { builder.insert_after(/NAME.+/, "  # Test\n") }
+      builder.insert_after(/NAME.+/, "  # Test\n")
 
-      expect(&build).to output(
+      expect(logger.reread).to match(
         %r(Inserting content after pattern in: demo-test/lib/demo/test/identity.rb\n)
-      ).to_stdout
+      )
     end
 
     it "inserts content after regular expression" do
@@ -150,11 +149,11 @@ RSpec.describe Rubysmith::Builder do
     before { build_path.deep_touch }
 
     it "logs information" do
-      build = proc { builder.permit 0o755 }
+      builder.permit 0o755
 
-      expect(&build).to output(
+      expect(logger.reread).to match(
         %r(Changing permissions for: demo-test/lib/demo/test/identity.rb\n)
-      ).to_stdout
+      )
     end
 
     it "changes file permissions" do
@@ -171,11 +170,11 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      build = proc { builder.prepend "# This is a comment.\n" }
+      builder.prepend "# This is a comment.\n"
 
-      expect(&build).to output(
+      expect(logger.reread).to match(
         %r(Prepending content to: demo-test/lib/demo/test/identity.rb\n)
-      ).to_stdout
+      )
     end
 
     it "inserts content at start of file" do
@@ -198,8 +197,8 @@ RSpec.describe Rubysmith::Builder do
     before { build_path.deep_touch }
 
     it "logs information" do
-      build = proc { builder.rename "identity.backup" }
-      expect(&build).to output(/Renaming: identity.rb to identity.backup/).to_stdout
+      builder.rename "identity.backup"
+      expect(logger.reread).to match(/Renaming: identity.rb to identity.backup/)
     end
 
     it "inserts content at start of file" do
@@ -216,8 +215,8 @@ RSpec.describe Rubysmith::Builder do
 
   describe "#render" do
     it "logs information" do
-      build = proc { builder.render }
-      expect(&build).to output(%r(Rendering: demo-test/lib/demo/test/identity.rb\n)).to_stdout
+      builder.render
+      expect(logger.reread).to match(%r(Rendering: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "renders template using nested project name and path" do
@@ -262,11 +261,11 @@ RSpec.describe Rubysmith::Builder do
     before { builder.render }
 
     it "logs information" do
-      build = proc { builder.replace(/NAME.+/, %(LABEL = "Replaced")) }
+      builder.replace(/NAME.+/, %(LABEL = "Replaced"))
 
-      expect(&build).to output(
+      expect(logger.reread).to match(
         %r(Replacing content for patterns in: demo-test/lib/demo/test/identity.rb\n)
-      ).to_stdout
+      )
     end
 
     it "replaces existing content with new content" do
@@ -287,8 +286,8 @@ RSpec.describe Rubysmith::Builder do
   describe "#run" do
     context "when success" do
       it "logs information" do
-        build = proc { builder.run %(echo "Test.") }
-        expect(&build).to output(/Test./).to_stdout
+        builder.run %(echo "Test.")
+        expect(logger.reread).to match(/Test./)
       end
 
       it "answers self" do
@@ -298,8 +297,8 @@ RSpec.describe Rubysmith::Builder do
 
     context "when minor failure" do
       it "logs information" do
-        build = proc { builder.run "hostname -x" }
-        expect(&build).to output(/.+(illegal|unrecognized) option.+/m).to_stdout
+        builder.run "hostname -x"
+        expect(logger.reread).to match(/.+(illegal|unrecognized) option.+/m)
       end
 
       it "answers self" do
@@ -309,8 +308,8 @@ RSpec.describe Rubysmith::Builder do
 
     context "when major failure" do
       it "logs information" do
-        build = proc { builder.run "bogus" }
-        expect(&build).to output(/No such file or director/).to_stdout
+        builder.run "bogus"
+        expect(logger.reread).to match(/No such file or director/)
       end
 
       it "answers self" do
@@ -321,8 +320,8 @@ RSpec.describe Rubysmith::Builder do
 
   describe "#touch" do
     it "logs information" do
-      build = proc { builder.touch }
-      expect(&build).to output(%r(Touching: demo-test/lib/demo/test/identity.rb\n)).to_stdout
+      builder.touch
+      expect(logger.reread).to match(%r(Touching: demo-test/lib/demo/test/identity.rb\n))
     end
 
     it "creates empty file" do
