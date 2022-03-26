@@ -1,6 +1,9 @@
 inherit_gem:
   caliber: config/all.yml
 
+Lint/Void:
+  Exclude:
+    - "lib/rubysmith/cli/actions/container.rb"
 Metrics/ClassLength:
   Exclude:
     - "lib/rubysmith/cli/parsers/build.rb"
