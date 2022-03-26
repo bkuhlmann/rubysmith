@@ -7,16 +7,18 @@ module Rubysmith
     module Parsers
       # Handles parsing of Command Line Interface (CLI) build options.
       class Build
+        include Import[:colorizer]
+
         using Refinements::Structs
 
         def self.call(...) = new(...).call
 
         def initialize configuration = Container[:configuration],
                        client: Parser::CLIENT,
-                       container: Container
+                       **dependencies
+          super(**dependencies)
           @configuration = configuration
           @client = client
-          @container = container
         end
 
         def call arguments = []
@@ -28,7 +30,7 @@ module Rubysmith
 
         private
 
-        attr_reader :configuration, :client, :container
+        attr_reader :configuration, :client
 
         def collate = private_methods.sort.grep(/add_/).each { |method| __send__ method }
 
@@ -300,8 +302,6 @@ module Rubysmith
                 .then { |boolean| boolean ? colorizer.green(boolean) : colorizer.red(boolean) }
                 .then { |colored_boolean| "Default: #{colored_boolean}" }
         end
-
-        def colorizer = container[__method__]
       end
     end
   end

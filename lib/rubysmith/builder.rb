@@ -7,16 +7,18 @@ require "logger"
 module Rubysmith
   # Provides common functionality necessary for all builders.
   class Builder
+    include Import[:logger]
+
     using Refinements::Pathnames
 
     HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, kernel: Open3}.freeze
 
     def self.call(...) = new(...)
 
-    def initialize configuration, helpers: HELPERS, container: Container
+    def initialize configuration, helpers: HELPERS, **dependencies
+      super(**dependencies)
       @configuration = configuration
       @helpers = helpers
-      @container = container
     end
 
     def append content
@@ -93,7 +95,7 @@ module Rubysmith
 
     private
 
-    attr_reader :configuration, :helpers, :container
+    attr_reader :configuration, :helpers
 
     def execute *command
       kernel.capture2e(*command).then do |result, status|
@@ -106,8 +108,6 @@ module Rubysmith
     def renderer = helpers.fetch(__method__).new(configuration)
 
     def kernel = helpers.fetch(__method__)
-
-    def logger = container[__method__]
 
     def relative_build_path = build_path.relative_path_from(configuration.target_root)
 

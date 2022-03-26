@@ -4,10 +4,15 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Shell do
   using Refinements::Pathnames
+  using AutoInjector::Stub
 
   subject(:shell) { described_class.new }
 
   include_context "with application container"
+
+  before { Rubysmith::CLI::Actions::Import.stub kernel:, logger: }
+
+  after { Rubysmith::CLI::Actions::Import.unstub :kernel, :logger }
 
   describe "#call" do
     let :project_files do
