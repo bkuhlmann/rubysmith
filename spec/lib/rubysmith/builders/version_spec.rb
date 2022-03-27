@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Version do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   using Refinements::Structs
 

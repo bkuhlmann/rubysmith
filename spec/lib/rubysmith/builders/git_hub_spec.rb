@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:issue_path) { temp_dir.join "test/.github/ISSUE_TEMPLATE.md" }
   let(:pull_request_path) { temp_dir.join "test/.github/PULL_REQUEST_TEMPLATE.md" }

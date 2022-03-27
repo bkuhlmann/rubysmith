@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Extensions::Bundler do
 
   subject(:builder) { described_class.new configuration, client: }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:client) { class_spy Bundler::CLI }
 

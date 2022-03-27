@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
   subject(:extension) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:test_path) { temp_dir.join "test", "test.rb" }
 

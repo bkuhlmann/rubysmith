@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Guard do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:binstub_path) { temp_dir.join "test", "bin", "guard" }
   let(:configuration_path) { temp_dir.join "test", "Guardfile" }

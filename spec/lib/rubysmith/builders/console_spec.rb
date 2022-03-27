@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:build_path) { temp_dir.join "test/bin/console" }
 

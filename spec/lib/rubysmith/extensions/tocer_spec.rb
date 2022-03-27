@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
   subject(:extension) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe ".call" do
     it "answers configuration" do

@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
 
   subject(:extension) { described_class.new test_configuration, client: }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:client) { instance_spy Milestoner::Tags::Publisher }
 

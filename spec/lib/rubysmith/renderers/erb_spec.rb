@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
 
   subject(:renderer) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   describe "#call" do
     let(:test_configuration) { configuration.minimize }

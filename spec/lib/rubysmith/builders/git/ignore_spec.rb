@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:ignore_path) { temp_dir.join "test", ".gitignore" }
 

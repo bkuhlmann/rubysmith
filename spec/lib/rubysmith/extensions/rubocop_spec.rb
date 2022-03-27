@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
 
   subject(:builder) { described_class.new configuration.minimize, client: }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:client) { instance_spy RuboCop::CLI }
 

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::CLI::Actions::Publish do
   subject(:action) { described_class.new extension: }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:extension) { class_spy Rubysmith::Extensions::Milestoner }
 

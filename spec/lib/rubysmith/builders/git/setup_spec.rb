@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:git_dir) { temp_dir.join "test", ".git" }
 

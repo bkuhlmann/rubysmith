@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 

@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
 

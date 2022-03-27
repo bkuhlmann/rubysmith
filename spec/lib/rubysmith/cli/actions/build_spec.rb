@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::CLI::Actions::Build do
   subject(:action) { described_class.new builders: [builder] }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:builder) { class_spy Rubysmith::Builders::Core }
 

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builder do
   subject(:builder) { described_class.new configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   using Refinements::Pathnames
   using Refinements::Structs

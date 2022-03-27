@@ -8,7 +8,7 @@ RSpec.describe Rubysmith::Builders::Caliber do
 
   subject(:builder) { described_class.new test_configuration }
 
-  include_context "with application container"
+  include_context "with application dependencies"
 
   let(:binstub_path) { temp_dir.join "test", "bin", "rubocop" }
   let(:configuration_path) { temp_dir.join "test", ".rubocop.yml" }
