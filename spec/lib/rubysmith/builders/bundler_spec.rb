@@ -123,7 +123,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :tools do
-            gem "debug", "~> 1.4"
+            gem "debug", "~> 1.5"
           end
         CONTENT
       end
@@ -401,7 +401,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.4"
-            gem "debug", "~> 1.4"
+            gem "debug", "~> 1.5"
           end
         CONTENT
       end
@@ -446,7 +446,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.4"
-            gem "debug", "~> 1.4"
+            gem "debug", "~> 1.5"
           end
         CONTENT
       end
