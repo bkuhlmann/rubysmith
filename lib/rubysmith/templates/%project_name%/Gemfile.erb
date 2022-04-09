@@ -16,9 +16,6 @@ group :code_quality do
   <% if configuration.build_caliber %>
     gem "caliber", "~> 0.5"
   <% end %>
-  <% if configuration.build_dead_end %>
-    gem "dead_end", "~> 3.1"
-  <% end %>
   <% if configuration.build_git && configuration.build_git_lint %>
     gem "git-lint", "~> 3.2"
   <% end %>

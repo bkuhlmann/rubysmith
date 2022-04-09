@@ -72,7 +72,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-conduct
           --no-console
           --no-contributions
-          --no-dead_end
           --no-debug
           --no-git
           --no-git_hub
@@ -166,7 +165,6 @@ RSpec.describe Rubysmith::CLI::Shell do
           --conduct
           --console
           --contributions
-          --dead_end
           --debug
           --git
           --git_hub

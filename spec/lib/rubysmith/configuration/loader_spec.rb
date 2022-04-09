@@ -17,7 +17,6 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_conduct: true,
       build_console: true,
       build_contributions: true,
-      build_dead_end: true,
       build_debug: true,
       build_git: true,
       build_git_hub: false,

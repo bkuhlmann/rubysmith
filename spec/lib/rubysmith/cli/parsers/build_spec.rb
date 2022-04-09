@@ -84,14 +84,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-contributions])).to have_attributes(build_contributions: false)
     end
 
-    it "enables DeadEnd" do
-      expect(parser.call(%w[--dead_end])).to have_attributes(build_dead_end: true)
-    end
-
-    it "disables DeadEnd" do
-      expect(parser.call(%w[--no-dead_end])).to have_attributes(build_dead_end: false)
-    end
-
     it "enables Debug" do
       expect(parser.call(%w[--debug])).to have_attributes(build_debug: true)
     end
