@@ -57,7 +57,6 @@ module Rubysmith
       :documentation_format,
       :extensions_milestoner_documentation_format,
       :extensions_milestoner_prefixes,
-      :extensions_milestoner_sign,
       :extensions_pragmater_comments,
       :extensions_pragmater_includes,
       :extensions_tocer_includes,

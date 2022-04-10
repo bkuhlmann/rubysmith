@@ -29,9 +29,8 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
       it "messages client" do
         expect(client).to have_received(:call).with(
           Milestoner::Configuration::Content[
-            documentation_format: "md",
+            documentation_format: "adoc",
             prefixes: %w[Fixed Added Updated Removed Refactored],
-            sign: false,
             version: "0.0.0"
           ]
         )
@@ -42,7 +41,6 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
       let :test_configuration do
         configuration.merge extensions_milestoner_documentation_format: "adoc",
                             extensions_milestoner_prefixes: %w[Added],
-                            extensions_milestoner_sign: true,
                             project_version: "1.2.3"
       end
 
@@ -51,7 +49,6 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
           Milestoner::Configuration::Content[
             documentation_format: "adoc",
             prefixes: %w[Added],
-            sign: true,
             version: "1.2.3"
           ]
         )

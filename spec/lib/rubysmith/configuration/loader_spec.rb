@@ -38,9 +38,8 @@ RSpec.describe Rubysmith::Configuration::Loader do
       build_zeitwerk: true,
       citation_message: "Please use the following metadata when citing this project in your work.",
       documentation_format: "adoc",
-      extensions_milestoner_documentation_format: "md",
+      extensions_milestoner_documentation_format: "adoc",
       extensions_milestoner_prefixes: %w[Fixed Added Updated Removed Refactored],
-      extensions_milestoner_sign: false,
       extensions_pragmater_comments: ["# frozen_string_literal: true"],
       extensions_pragmater_includes: [
         "**/*.rake",

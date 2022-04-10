@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cogger", "~> 0.0"
   spec.add_dependency "dry-container", "~> 0.9"
   spec.add_dependency "git_plus", "~> 1.3"
-  spec.add_dependency "milestoner", "~> 13.3"
+  spec.add_dependency "milestoner", "~> 14.0"
   spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "pragmater", "~> 11.0"
   spec.add_dependency "refinements", "~> 9.2"

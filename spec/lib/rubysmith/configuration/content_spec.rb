@@ -60,7 +60,6 @@ RSpec.describe Rubysmith::Configuration::Content do
         documentation_format: nil,
         extensions_milestoner_documentation_format: nil,
         extensions_milestoner_prefixes: nil,
-        extensions_milestoner_sign: nil,
         extensions_pragmater_comments: nil,
         extensions_pragmater_includes: nil,
         extensions_tocer_label: nil,

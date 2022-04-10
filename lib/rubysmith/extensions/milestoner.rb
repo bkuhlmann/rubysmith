@@ -29,7 +29,6 @@ module Rubysmith
         content.transmute configuration,
                           documentation_format: :extensions_milestoner_documentation_format,
                           prefixes: :extensions_milestoner_prefixes,
-                          sign: :extensions_milestoner_sign,
                           version: :project_version
       end
     end
