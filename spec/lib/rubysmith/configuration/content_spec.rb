@@ -493,7 +493,7 @@ RSpec.describe Rubysmith::Configuration::Content do
 
     it "answers nil when no paths exists" do
       content = described_class[template_roots: [missing_path, missing_path]]
-      expect(content.template_root).to be_nil
+      expect(content.template_root).to be(nil)
     end
   end
 end
