@@ -33,7 +33,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             config.disable_monkey_patching!
             config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
             config.filter_run_when_matching :focus
-            config.formatter = ENV["CI"] == "true" ? :progress : :documentation
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
             config.order = :random
             config.shared_context_metadata_behavior = :apply_to_host_groups
             config.warnings = true
@@ -75,7 +75,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             config.disable_monkey_patching!
             config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
             config.filter_run_when_matching :focus
-            config.formatter = ENV["CI"] == "true" ? :progress : :documentation
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
             config.order = :random
             config.shared_context_metadata_behavior = :apply_to_host_groups
             config.warnings = true
@@ -120,7 +120,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             config.disable_monkey_patching!
             config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
             config.filter_run_when_matching :focus
-            config.formatter = ENV["CI"] == "true" ? :progress : :documentation
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
             config.order = :random
             config.shared_context_metadata_behavior = :apply_to_host_groups
             config.warnings = true
@@ -165,7 +165,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             config.disable_monkey_patching!
             config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
             config.filter_run_when_matching :focus
-            config.formatter = ENV["CI"] == "true" ? :progress : :documentation
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
             config.order = :random
             config.shared_context_metadata_behavior = :apply_to_host_groups
             config.warnings = true
@@ -211,7 +211,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             config.disable_monkey_patching!
             config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
             config.filter_run_when_matching :focus
-            config.formatter = ENV["CI"] == "true" ? :progress : :documentation
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
             config.order = :random
             config.shared_context_metadata_behavior = :apply_to_host_groups
             config.warnings = true

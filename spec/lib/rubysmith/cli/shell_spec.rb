@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.ruby-version",
           "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
+          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
           "test/lib/test.rb"
         ].compact
       end
@@ -95,7 +95,7 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.ruby-version",
           "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
+          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
           "test/lib/test.rb"
         ].compact
       end
@@ -132,7 +132,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/setup",
           "test/CITATION.cff",
           "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
+          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
           "test/Guardfile",
           "test/lib/test.rb",
           "test/LICENSE.adoc",
@@ -200,7 +200,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/bin/setup",
           "test/CITATION.cff",
           "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV["CI"] == "true"),
+          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
           "test/Guardfile",
           "test/lib/test.rb",
           "test/LICENSE.adoc",
