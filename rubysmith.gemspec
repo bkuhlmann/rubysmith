@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
     "bug_tracker_uri" => "https://github.com/bkuhlmann/rubysmith/issues",
     "changelog_uri" => "https://www.alchemists.io/projects/rubysmith/versions",
     "documentation_uri" => "https://www.alchemists.io/projects/rubysmith",
+    "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "Rubysmith",
     "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/bkuhlmann/rubysmith"
