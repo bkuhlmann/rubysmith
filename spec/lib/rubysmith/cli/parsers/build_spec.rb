@@ -92,6 +92,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-debug])).to have_attributes(build_debug: false)
     end
 
+    it "enables funding" do
+      expect(parser.call(%w[--funding])).to have_attributes(build_funding: true)
+    end
+
+    it "disables funding" do
+      expect(parser.call(%w[--no-funding])).to have_attributes(build_funding: false)
+    end
+
     it "enables Git" do
       expect(parser.call(%w[--git])).to have_attributes(build_git: true)
     end

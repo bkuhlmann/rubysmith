@@ -124,6 +124,15 @@ module Rubysmith
           end
         end
 
+        def add_funding
+          client.on(
+            "--[no-]funding",
+            "Add GitHub funding configuration. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_funding: value
+          end
+        end
+
         def add_git
           client.on(
             "--[no-]git",

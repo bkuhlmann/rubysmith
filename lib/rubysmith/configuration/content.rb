@@ -33,6 +33,7 @@ module Rubysmith
       :build_console,
       :build_contributions,
       :build_debug,
+      :build_funding,
       :build_git,
       :build_git_hub,
       :build_git_lint,

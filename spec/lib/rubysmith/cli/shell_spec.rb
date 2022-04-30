@@ -73,6 +73,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-console
           --no-contributions
           --no-debug
+          --no-funding
           --no-git
           --no-git_hub
           --no-git-lint
@@ -120,6 +121,7 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.circleci/config.yml",
           "test/.git/HEAD",
+          "test/.github/FUNDING.yml",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.gitignore",
@@ -166,6 +168,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --console
           --contributions
           --debug
+          --funding
           --git
           --git_hub
           --git-lint
@@ -188,6 +191,7 @@ RSpec.describe Rubysmith::CLI::Shell do
         [
           "test/.circleci/config.yml",
           "test/.git/HEAD",
+          "test/.github/FUNDING.yml",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
           "test/.gitignore",

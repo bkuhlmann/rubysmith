@@ -15,6 +15,7 @@
   :console: true
   :contributions: true
   :debug: true
+  :funding: false
   :git: true
   :git_hub: false
   :git_lint: true
