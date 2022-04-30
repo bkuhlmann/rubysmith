@@ -1,3 +1,5 @@
+:gemsmith_link: link:https://www.alchemists.io/projects/gemsmith[Gemsmith]
+
 :toc: macro
 :toclevels: 5
 :figure-caption!:
@@ -8,11 +10,10 @@ Rubysmith is a command line interface for smithing Ruby projects.
 
 This gem is useful in situations in which you need something more sophisticated than a
 link:https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html[Bundler Inline] script but
-less than a link:https://www.alchemists.io/projects/gemsmith[Gemsmith] gem. Rubysmith is the
-foundation of Gemsmith and provides much of the same functionality as Gemsmith but is solely
-tailored for pure Ruby projects. Again, this is a great tool for spiking quick Ruby implementations,
-sharing code snippets with others, or building full blown Ruby projects for collaboration with
-others.
+less than a {gemsmith_link} gem. Rubysmith is the foundation of Gemsmith and provides much of the
+same functionality as Gemsmith but is solely tailored for pure Ruby projects. Again, this is a great
+tool for spiking quick Ruby implementations, sharing code snippets with others, or building full
+blown Ruby projects for collaboration with others.
 
 toc::[]
 
@@ -99,6 +100,7 @@ BUILD OPTIONS:
       --[no-]console                       Add console script. Default: true.
       --[no-]contributions                 Add contributions documentation. Default: true.
       --[no-]debug                         Add Debug gem. Default: true.
+      --[no-]funding                       Add GitHub funding configuration. Default: false.
       --[no-]git                           Add Git. Default: true.
       --[no-]git_hub                       Add GitHub templates. Default: false.
       --[no-]git-lint                      Add Git Lint gem. Default: true.
@@ -228,6 +230,12 @@ contribute back to your work.
 The `--debug` option allows you add the link:https://github.com/ruby/debug[Debug] gem to your
 project for debugging your code by setting breakpoints, remotely connecting to running code, and
 much more.
+
+==== Funding
+
+The `--funding` option allows you add a link:https://github.com[GitHub] funding configuration to
+your project so you can attract link:https://docs.github.com/en/sponsors[sponsors]. This option
+doesn't require use of the `--git_hub` option but is encouraged.
 
 ==== Git
 
@@ -363,6 +371,7 @@ variables. The default configuration is as follows:
   :console: true
   :contributions: true
   :debug: true
+  :funding: false
   :git: true
   :git_hub: false
   :git_lint: true
@@ -428,6 +437,7 @@ variables. The default configuration is as follows:
     :conduct:
     :contributions:
     :download:
+    :funding:
     :home:
     :issues:
     :license:
@@ -463,11 +473,11 @@ custom values as desired. The URL is the only value that can't be automatically 
 ==== Build
 
 All build options accept booleans values only and can be customized as desired. When changing your
-build options, they will dynamically render when display usage (i.e. `rubysmith --help`). All of
-these options are explained in greater detail above.
+build options, they will dynamically render when displaying usage (i.e. `rubysmith --help`). All of
+these options have been explained in greater detail in the _Usage_ section.
 
-ℹ️ There is a `cli` configuration option but is only used to support
-link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+ℹ️ The `cli` option is provided to support the {gemsmith_link} gem but is not, currently, used by
+this project.
 
 ==== Citations
 
@@ -498,7 +508,7 @@ Follow the above links to learn more about each extension's gem configuration.
 ==== GitHub
 
 Your GitHub user is the handle you setup when creating your GitHub account. This information is used
-for template and/or URL construction purposes.
+for template, funding, and/or URL construction purposes.
 
 ==== License
 
@@ -512,8 +522,11 @@ license are available:
 ==== Project
 
 There are two sub-categories within this section: URLs and version. The URLs allow you to link to
-specific documentation related to your project. You'll definitely want to customize these as makes
-sense since these URLs are used for documentation, citations, and general project information. You
+specific documentation related to your project. You'll want to customize these URLs since they are
+used for documentation, citations, and general project information. Some of the URLs are also used
+by the {gemsmith_link} gem.
+
+You
 can also use `%project_name%` as a placeholder anywhere in your URL and Rubysmith will ensure your
 place holder is replaced with your project name when generating a new project. Example:
 
@@ -574,5 +587,5 @@ bundle exec rake
 
 == Credits
 
-* Built with link:https://www.alchemists.io/projects/gemsmith[Gemsmith].
+* Built with {gemsmith_link}.
 * Engineered by link:https://www.alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
