@@ -1,5 +1,17 @@
 = Versions
 
+== 3.2.0 (2022-05-07)
+
+* Fixed Gemfile template to use Tocer 14.1.0 - Brooke Kuhlmann
+* Updated to Auto Injector 0.5.0 - Brooke Kuhlmann
+* Updated to Caliber 0.8.0 - Brooke Kuhlmann
+* Updated to Cogger 0.1.0 - Brooke Kuhlmann
+* Updated to Pragamter 11.1.0 - Brooke Kuhlmann
+* Updated to Refinements 9.4.0 - Brooke Kuhlmann
+* Updated to Runcom 8.4.0 - Brooke Kuhlmann
+* Updated to Spek 0.3.0 - Brooke Kuhlmann
+* Updated to Tocer 14.1.0 - Brooke Kuhlmann
+
 == 3.1.0 (2022-04-30)
 
 * Added CLI funding build option - Brooke Kuhlmann
