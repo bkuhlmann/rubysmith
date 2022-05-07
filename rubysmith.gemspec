@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pragmater", "~> 11.0"
   spec.add_dependency "refinements", "~> 9.4"
   spec.add_dependency "rubocop", "~> 1.27"
-  spec.add_dependency "runcom", "~> 8.2"
+  spec.add_dependency "runcom", "~> 8.4"
   spec.add_dependency "spek", "~> 0.2"
   spec.add_dependency "tocer", "~> 14.0"
   spec.add_dependency "zeitwerk", "~> 2.5"
