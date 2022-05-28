@@ -5,9 +5,13 @@ module Rubysmith
     module Git
       # Builds project skeleton initial Git commit message.
       class Commit
+        include Import[:specification]
+
         def self.call(...) = new(...).call
 
-        def initialize configuration, builder: Builder
+        def initialize configuration, builder: Builder, **dependencies
+          super(**dependencies)
+
           @configuration = configuration
           @builder = builder
         end
@@ -31,8 +35,8 @@ module Rubysmith
 
         def body
           <<~CONTENT
-            Generated with [Rubysmith](https://www.alchemists.io/projects/rubysmith)
-            1.1.1.
+            Generated with [#{specification.label}](#{specification.homepage_url})
+            #{specification.version}.
           CONTENT
         end
 
