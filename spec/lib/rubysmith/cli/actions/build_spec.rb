@@ -10,6 +10,14 @@ RSpec.describe Rubysmith::CLI::Actions::Build do
   let(:builder) { class_spy Rubysmith::Builders::Core }
 
   describe "#call" do
+    it "logs message" do
+      action.call configuration
+      expect(logger.reread).to eq(<<~OUTPUT)
+        Building project skeleton: test...
+        Project skeleton complete!
+      OUTPUT
+    end
+
     it "calls builders" do
       action.call configuration
       expect(builder).to have_received(:call).with(configuration)
