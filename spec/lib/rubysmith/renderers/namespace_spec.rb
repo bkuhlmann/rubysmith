@@ -8,12 +8,16 @@ RSpec.describe Rubysmith::Renderers::Namespace do
   let(:name) { "Example" }
 
   let :content do
-    "  def example_1\n" \
-    "    1\n" \
-    "  end\n\n" \
-    "  def example_2\n" \
-    "    2\n" \
-    "  end\n"
+    # The method body double indentation is necessary due to squiggly heredoc syntax.
+    <<~BODY
+      def example_1
+          1
+      end
+
+      def example_2
+          2
+      end
+    BODY
   end
 
   describe "#call" do
@@ -36,7 +40,8 @@ RSpec.describe Rubysmith::Renderers::Namespace do
           module Example
             def example_1
               1
-            end\n
+            end
+
             def example_2
               2
             end
@@ -78,7 +83,8 @@ RSpec.describe Rubysmith::Renderers::Namespace do
               module Three
                 def example_1
                   1
-                end\n
+                end
+
                 def example_2
                   2
                 end
@@ -94,13 +100,18 @@ RSpec.describe Rubysmith::Renderers::Namespace do
     end
 
     context "with leading carriage return for content" do
+      # The method body double indentation is necessary due to squiggly heredoc syntax.
       let :content do
-        "\n  def example_1\n" \
-        "    1\n" \
-        "  end\n\n" \
-        "  def example_2\n" \
-        "    2\n" \
-        "  end\n"
+        <<~CONTENT
+
+          def example_1
+              1
+          end
+
+          def example_2
+              2
+          end
+        CONTENT
       end
 
       let :expected_content do
