@@ -1,5 +1,21 @@
 = Versions
 
+== 3.4.0 (2022-07-17)
+
+* Fixed RuboCop Layout/LineContinuationLeadingSpace - Brooke Kuhlmann
+* Updated to Auto Injector 0.6.0 - Brooke Kuhlmann
+* Updated to Caliber 0.11.0 - Brooke Kuhlmann
+* Updated to Cogger 0.2.0 - Brooke Kuhlmann
+* Updated to Debug 1.6.0 - Brooke Kuhlmann
+* Updated to Dry Container 0.10.0 - Brooke Kuhlmann
+* Updated to Git+ 1.4.0 - Brooke Kuhlmann
+* Updated to Milestoner 14.2.0 - Brooke Kuhlmann
+* Updated to Pragmater 11.2.0 - Brooke Kuhlmann
+* Updated to Refinements 9.6.0 - Brooke Kuhlmann
+* Updated to Runcom 8.5.0 - Brooke Kuhlmann
+* Updated to Spek 0.4.0 - Brooke Kuhlmann
+* Updated to Tocer 14.2.0 - Brooke Kuhlmann
+
 == 3.3.0 (2022-05-28)
 
 * Fixed Git commit builder version used for initial skeleton commit - Brooke Kuhlmann
