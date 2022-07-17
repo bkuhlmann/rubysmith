@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "git_plus", "~> 1.4"
   spec.add_dependency "milestoner", "~> 14.0"
   spec.add_dependency "pastel", "~> 0.8"
-  spec.add_dependency "pragmater", "~> 11.1"
+  spec.add_dependency "pragmater", "~> 11.2"
   spec.add_dependency "refinements", "~> 9.6"
   spec.add_dependency "rubocop", "~> 1.30"
   spec.add_dependency "runcom", "~> 8.5"
