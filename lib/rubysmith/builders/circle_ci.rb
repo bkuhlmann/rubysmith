@@ -20,6 +20,7 @@ module Rubysmith
 
         builder.call(configuration.merge(template_path: "%project_name%/.circleci/config.yml.erb"))
                .render
+               .replace(/\n\n\Z/, "\n")
 
         configuration
       end
