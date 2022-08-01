@@ -154,7 +154,12 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           Bundler.require :tools
 
           require "simplecov"
-          SimpleCov.start { enable_coverage :branch }
+
+          SimpleCov.start do
+            enable_coverage :branch
+            add_filter %r(^/spec/)
+            minimum_coverage_by_file line: 95, branch: 95
+          end
 
           require "test"
 
@@ -197,7 +202,12 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           Bundler.require :tools
 
           require "simplecov"
-          SimpleCov.start { enable_coverage :branch }
+
+          SimpleCov.start do
+            enable_coverage :branch
+            add_filter %r(^/spec/)
+            minimum_coverage_by_file line: 95, branch: 95
+          end
 
           require "test"
           require "refinements"
