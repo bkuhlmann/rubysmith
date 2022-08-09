@@ -315,7 +315,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "zeitwerk", "~> 2.5"
+          gem "zeitwerk", "~> 2.6"
         CONTENT
       end
 
@@ -356,7 +356,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "refinements", "~> 9.6"
-          gem "zeitwerk", "~> 2.5"
+          gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
@@ -400,7 +400,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "refinements", "~> 9.6"
-          gem "zeitwerk", "~> 2.5"
+          gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
             gem "bundler-leak", "~> 0.2"
