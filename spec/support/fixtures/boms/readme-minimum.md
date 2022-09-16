@@ -17,6 +17,13 @@
 
 ## Development
 
+To contribute, run:
+
+``` bash
+git clone https://www.example.com/test/source
+cd test
+```
+
 ## Tests
 
 To test, run:

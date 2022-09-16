@@ -28,6 +28,18 @@ bin/setup
 == Usage
 
 == Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone <%= configuration.computed_project_url_source %>
+cd <%= configuration.project_name %>
+<% if configuration.build_setup %>
+bin/setup
+<% end %>
+----
+
 <% if configuration.build_console %>
 
 You can also use the IRB console for direct access to all objects:

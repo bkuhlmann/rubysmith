@@ -27,6 +27,15 @@ bin/setup
 
 == Development
 
+To contribute, run:
+
+[source,bash]
+----
+git clone https://www.example.com/test/source
+cd test
+bin/setup
+----
+
 You can also use the IRB console for direct access to all objects:
 
 [source,bash]

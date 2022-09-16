@@ -21,6 +21,14 @@ To set up the project, run:
 
 ## Development
 
+To contribute, run:
+
+``` bash
+git clone https://www.example.com/test/source
+cd test
+bin/setup
+```
+
 You can also use the IRB console for direct access to all objects:
 
     bin/console
