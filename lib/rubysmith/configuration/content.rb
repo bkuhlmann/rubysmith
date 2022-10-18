@@ -35,6 +35,7 @@ module Rubysmith
       :build_funding,
       :build_git,
       :build_git_hub,
+      :build_git_hub_ci,
       :build_git_lint,
       :build_guard,
       :build_license,

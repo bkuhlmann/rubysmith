@@ -108,6 +108,14 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-git_hub])).to have_attributes(build_git_hub: false)
     end
 
+    it "enables GitHub CI" do
+      expect(parser.call(%w[--git_hub_ci])).to have_attributes(build_git_hub_ci: true)
+    end
+
+    it "disables GitHub CI" do
+      expect(parser.call(%w[--no-git_hub_ci])).to have_attributes(build_git_hub_ci: false)
+    end
+
     it "enables Git Lint" do
       expect(parser.call(%w[--git-lint])).to have_attributes(build_git_lint: true)
     end

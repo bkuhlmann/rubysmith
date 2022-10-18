@@ -75,6 +75,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --no-funding
           --no-git
           --no-git_hub
+          --no-git_hub_ci
           --no-git-lint
           --no-guard
           --no-license
@@ -123,6 +124,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/.github/FUNDING.yml",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
+          "test/.github/workflows/ci.yml",
           "test/.gitignore",
           "test/.reek.yml",
           "test/.rubocop.yml",
@@ -169,6 +171,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           --funding
           --git
           --git_hub
+          --git_hub_ci
           --git-lint
           --guard
           --license
@@ -192,6 +195,7 @@ RSpec.describe Rubysmith::CLI::Shell do
           "test/.github/FUNDING.yml",
           "test/.github/ISSUE_TEMPLATE.md",
           "test/.github/PULL_REQUEST_TEMPLATE.md",
+          "test/.github/workflows/ci.yml",
           "test/.gitignore",
           "test/.reek.yml",
           "test/.rubocop.yml",

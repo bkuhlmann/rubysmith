@@ -142,6 +142,15 @@ module Rubysmith
           end
         end
 
+        def add_git_hub_ci
+          client.on(
+            "--[no-]git_hub_ci",
+            "Add GitHub templates. #{default __method__}."
+          ) do |value|
+            configuration.merge! build_git_hub_ci: value
+          end
+        end
+
         def add_git_lint
           client.on(
             "--[no-]git-lint",
