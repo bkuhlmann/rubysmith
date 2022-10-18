@@ -2,27 +2,29 @@ require "bundler/setup"
 Bundler.require :tools
 
 <% if configuration.build_simple_cov %>
-  require "simplecov"
+require "simplecov"
 
+unless ENV["NO_COVERAGE"]
   SimpleCov.start do
     enable_coverage :branch
     add_filter %r(^/spec/)
     minimum_coverage_by_file line: 95, branch: 95
   end
+end
 <% end %>
 
 require "<%= configuration.project_path %>"
 <% if configuration.build_refinements %>
-  require "refinements"
+require "refinements"
 <% end %>
 
 <% if configuration.build_refinements %>
-  using Refinements::Pathnames
+using Refinements::Pathnames
 
-  Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
+Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
 <% else %>
 
-  Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
+Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
 <% end %>
 
 RSpec.configure do |config|

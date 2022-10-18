@@ -21,10 +21,7 @@ module Rubysmith
 
           builder.call(configuration.merge(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
-                 .replace(/\n{3,}/, "\n\n")
-                 .replace(/\n\s{2}(?=(require|Simple|using|Pathname|Dir))/, "\n")
-                 .replace(/\n\s{4}(?=(enable|add|min))/, "\n  ")
-                 .replace("5\n  end", "5\nend")
+                 .replace("\n\n\n", "\n\n")
 
           configuration
         end
