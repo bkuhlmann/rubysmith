@@ -23,7 +23,7 @@ group :code_quality do
     gem "reek", "~> 6.1"
   <% end %>
   <% if configuration.build_simple_cov %>
-    gem "simplecov", "~> 0.21"
+    gem "simplecov", "~> 0.21", require: false
   <% end %>
 end
 

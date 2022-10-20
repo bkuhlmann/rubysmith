@@ -249,7 +249,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :code_quality do
-            gem "simplecov", "~> 0.21"
+            gem "simplecov", "~> 0.21", require: false
           end
         CONTENT
       end
@@ -363,7 +363,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "caliber", "~> 0.11"
             gem "git-lint", "~> 4.0"
             gem "reek", "~> 6.1"
-            gem "simplecov", "~> 0.21"
+            gem "simplecov", "~> 0.21", require: false
           end
 
           group :development do
@@ -407,7 +407,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
             gem "caliber", "~> 0.11"
             gem "git-lint", "~> 4.0"
             gem "reek", "~> 6.1"
-            gem "simplecov", "~> 0.21"
+            gem "simplecov", "~> 0.21", require: false
           end
 
           group :development do
