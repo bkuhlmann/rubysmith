@@ -26,7 +26,7 @@ require "bundler/setup"
   Reek::Rake::Task.new
 <% end %>
 <% if configuration.build_rspec %>
-  RSpec::Core::RakeTask.new :spec
+  RSpec::Core::RakeTask.new
 <% end %>
 <% if configuration.build_caliber %>
   RuboCop::RakeTask.new
