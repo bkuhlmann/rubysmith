@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "rubysmith"
-  spec.version = "3.7.0"
+  spec.version = "3.8.0"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://github.com/bkuhlmann/rubysmith"
