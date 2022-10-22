@@ -14,7 +14,7 @@ group :code_quality do
     gem "bundler-leak", "~> 0.2"
   <% end %>
   <% if configuration.build_caliber %>
-    gem "caliber", "~> 0.11"
+    gem "caliber", "~> 0.16"
   <% end %>
   <% if configuration.build_git && configuration.build_git_lint %>
     gem "git-lint", "~> 4.0"
