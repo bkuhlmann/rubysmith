@@ -31,26 +31,6 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "when enabled with only Bundler Leak" do
-      let :test_configuration do
-        configuration.minimize.merge build_rake: true, build_bundler_leak: true
-      end
-
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "bundler/plumber/task"
-
-          Bundler::Plumber::Task.new
-
-          desc "Run code quality checks"
-          task code_quality: %i[bundle:leak]
-
-          task default: %i[code_quality]
-        CONTENT
-      end
-    end
-
     context "when enabled with only Git and Git Lint" do
       let :test_configuration do
         configuration.minimize.merge build_rake: true, build_git: true, build_git_lint: true
@@ -153,14 +133,12 @@ RSpec.describe Rubysmith::Builders::Rake do
       let :proof do
         <<~CONTENT
           require "bundler/setup"
-          require "bundler/plumber/task"
           require "git/lint/rake/setup"
           require "reek/rake/task"
           require "rspec/core/rake_task"
           require "rubocop/rake_task"
           require "yard"
 
-          Bundler::Plumber::Task.new
           Reek::Rake::Task.new
           RSpec::Core::RakeTask.new
           RuboCop::RakeTask.new
@@ -170,7 +148,7 @@ RSpec.describe Rubysmith::Builders::Rake do
           end
 
           desc "Run code quality checks"
-          task code_quality: %i[bundle:leak git_lint reek rubocop]
+          task code_quality: %i[git_lint reek rubocop]
 
           task default: %i[code_quality spec]
         CONTENT

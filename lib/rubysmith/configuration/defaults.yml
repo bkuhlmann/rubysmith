@@ -5,7 +5,6 @@
   :url:
 :build:
   :amazing_print: true
-  :bundler_leak: true
   :caliber: true
   :circle_ci: false
   :citation: true

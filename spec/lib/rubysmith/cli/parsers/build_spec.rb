@@ -28,14 +28,6 @@ RSpec.describe Rubysmith::CLI::Parsers::Build do
       expect(parser.call(%w[--no-caliber])).to have_attributes(build_caliber: false)
     end
 
-    it "enables Bundler Leak" do
-      expect(parser.call(%w[--bundler-leak])).to have_attributes(build_bundler_leak: true)
-    end
-
-    it "disables Bundler Leak" do
-      expect(parser.call(%w[--no-bundler-leak])).to have_attributes(build_bundler_leak: false)
-    end
-
     it "enables Circle CI" do
       expect(parser.call(%w[--circle_ci])).to have_attributes(build_circle_ci: true)
     end

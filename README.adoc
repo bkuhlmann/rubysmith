@@ -23,7 +23,6 @@ toc::[]
 * Uses link:https://www.alchemists.io/projects/runcom[Runcom] for resource configuration management.
 * Uses link:https://www.alchemists.io/projects/pragmater[Pragmater] for Ruby source pragma directives.
 * Supports link:https://github.com/amazing-print/amazing_print[Amazing Print].
-* Supports link:https://github.com/rubymem/bundler-leak[Bundler Leak].
 * Supports link:https://www.alchemists.io/projects/caliber[Caliber].
 * Supports link:https://circleci.com[Circle CI].
 * Supports link:https://orcid.org[Citations (ORCID)].
@@ -81,7 +80,6 @@ USAGE:
 
 BUILD OPTIONS:
       --[no-]amazing_print                 Add Amazing Print gem. Default: true.
-      --[no-]bundler-leak                  Add Bundler Leak gem. Default: true.
       --[no-]caliber                       Add Caliber gem. Default: true.
       --[no-]circle_ci                     Add Circle CI configuration and badge. Default: false.
       --[no-]citation                      Add citation documentation. Default: true.
@@ -168,12 +166,6 @@ The `--amazing_print` option allows you to build your project with the
 link:https://github.com/amazing-print/amazing_print[Amazing Print] gem for debugging purposes and is
 a handy debugging tool when inspecting your Ruby objects and printing details in a quick to read
 format.
-
-===== Bundler Leak
-
-The `--bundler-leak` option allows you to build your project with the
-link:https://github.com/rubymem/bundler-leak[Bundler Leak] gem which helps detect memory leaks in
-your gem dependencies.
 
 ===== Caliber
 
@@ -351,7 +343,6 @@ variables. The default configuration is as follows:
   :url:
 :build:
   :amazing_print: true
-  :bundler_leak: true
   :caliber: true
   :circle_ci: false
   :citation: true

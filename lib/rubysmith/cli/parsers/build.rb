@@ -43,15 +43,6 @@ module Rubysmith
           end
         end
 
-        def add_bundler_leak
-          client.on(
-            "--[no-]bundler-leak",
-            "Add Bundler Leak gem. #{default __method__}."
-          ) do |value|
-            configuration.merge! build_bundler_leak: value
-          end
-        end
-
         def add_caliber
           client.on(
             "--[no-]caliber",

@@ -8,7 +8,6 @@ RSpec.describe Rubysmith::Configuration::Loader do
   let :content do
     Rubysmith::Configuration::Content[
       build_amazing_print: true,
-      build_bundler_leak: true,
       build_caliber: true,
       build_circle_ci: false,
       build_citation: true,

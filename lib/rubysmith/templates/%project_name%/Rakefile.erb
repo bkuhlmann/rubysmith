@@ -1,8 +1,5 @@
 require "bundler/setup"
 
-<% if configuration.build_bundler_leak %>
-  require "bundler/plumber/task"
-<% end %>
 <% if configuration.build_git && configuration.build_git_lint %>
   require "git/lint/rake/setup"
 <% end %>
@@ -19,9 +16,6 @@ require "bundler/setup"
   require "yard"
 <% end %>
 
-<% if configuration.build_bundler_leak %>
-  Bundler::Plumber::Task.new
-<% end %>
 <% if configuration.build_reek %>
   Reek::Rake::Task.new
 <% end %>
@@ -39,6 +33,6 @@ require "bundler/setup"
 <% end %>
 
 desc "Run code quality checks"
-task code_quality: %i[<% if configuration.build_bundler_leak %>bundle:leak<% end %> <% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
+task code_quality: %i[<% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
 
 task default: %i[code_quality <% if configuration.build_rspec %>spec<% end %>]

@@ -50,27 +50,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with Bundler Leak only" do
-      let(:test_configuration) { configuration.minimize.merge build_bundler_leak: true }
-
-      let :proof do
-        <<~CONTENT
-          ruby File.read(".ruby-version").strip
-
-          source "https://rubygems.org"
-
-          group :code_quality do
-            gem "bundler-leak", "~> 0.2"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-    end
-
     context "with Caliber only" do
       let(:test_configuration) { configuration.minimize.merge build_caliber: true }
 
@@ -359,7 +338,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
-            gem "bundler-leak", "~> 0.2"
             gem "caliber", "~> 0.16"
             gem "git-lint", "~> 4.0"
             gem "reek", "~> 6.1"
@@ -403,7 +381,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
-            gem "bundler-leak", "~> 0.2"
             gem "caliber", "~> 0.16"
             gem "git-lint", "~> 4.0"
             gem "reek", "~> 6.1"
