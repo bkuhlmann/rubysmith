@@ -24,7 +24,7 @@ using Refinements::Pathnames
 Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
 <% else %>
 
-Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].sort.each { |path| require path }
+Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
 <% end %>
 
 RSpec.configure do |config|
