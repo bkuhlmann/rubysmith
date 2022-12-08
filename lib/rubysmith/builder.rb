@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
-require "open3"
 require "logger"
+require "open3"
+require "refinements/pathnames"
 
 module Rubysmith
   # Provides common functionality necessary for all builders.

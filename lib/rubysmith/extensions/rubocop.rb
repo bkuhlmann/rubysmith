@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "rubocop"
 require "refinements/ios"
+require "rubocop"
 
 module Rubysmith
   module Extensions

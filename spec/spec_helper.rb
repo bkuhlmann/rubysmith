@@ -13,8 +13,8 @@ unless ENV["NO_COVERAGE"]
   end
 end
 
-require "rubysmith"
 require "refinements"
+require "rubysmith"
 
 using Refinements::Pathnames
 
