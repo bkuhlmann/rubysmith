@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
       builder.call
 
       expect(client).to have_received(:run).with(
-        ["--autocorrect", configuration.project_root.to_s]
+        ["--autocorrect-all", configuration.project_root.to_s]
       )
     end
   end

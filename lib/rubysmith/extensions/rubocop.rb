@@ -17,7 +17,7 @@ module Rubysmith
       end
 
       def call
-        STDOUT.squelch { client.run ["--autocorrect", configuration.project_root.to_s] }
+        STDOUT.squelch { client.run ["--autocorrect-all", configuration.project_root.to_s] }
         configuration
       end
 
