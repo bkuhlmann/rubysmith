@@ -26,6 +26,7 @@ module Rubysmith
           Builders::GitHubCI,
           Builders::Guard,
           Builders::Reek,
+          Builders::RSpec::Binstub,
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
           Builders::Caliber,
