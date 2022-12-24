@@ -3,14 +3,14 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
-  subject(:enhancer) { described_class.new repository: }
+  subject(:enhancer) { described_class.new git: }
 
-  let(:repository) { instance_double GitPlus::Repository }
+  let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
     let(:content) { Rubysmith::Configuration::Content[author_email: "test@example.com"] }
 
-    before { allow(repository).to receive(:config_get).with("user.email").and_return(email) }
+    before { allow(git).to receive(:get).with("user.email").and_return(email) }
 
     context "with missing defaults and no Git email" do
       let(:content) { Rubysmith::Configuration::Content.new }

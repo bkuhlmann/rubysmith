@@ -3,16 +3,16 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
-  subject(:enhancer) { described_class.new repository: }
+  subject(:enhancer) { described_class.new git: }
 
-  let(:repository) { instance_double GitPlus::Repository }
+  let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
     let :content do
       Rubysmith::Configuration::Content[author_given_name: "Test", author_family_name: "Example"]
     end
 
-    before { allow(repository).to receive(:config_get).with("user.name").and_return(user) }
+    before { allow(git).to receive(:get).with("user.name").and_return(user) }
 
     context "with missing defaults and no Git user" do
       let(:content) { Rubysmith::Configuration::Content.new }

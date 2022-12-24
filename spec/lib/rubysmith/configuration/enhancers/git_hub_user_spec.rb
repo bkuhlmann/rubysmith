@@ -3,14 +3,14 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
-  subject(:enhancer) { described_class.new repository: }
+  subject(:enhancer) { described_class.new git: }
 
-  let(:repository) { instance_double GitPlus::Repository }
+  let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
     let(:content) { Rubysmith::Configuration::Content[git_hub_user: "default"] }
 
-    before { allow(repository).to receive(:config_get).with("github.user").and_return(user) }
+    before { allow(git).to receive(:get).with("github.user").and_return(user) }
 
     context "with missing defaults and GitHub user" do
       let(:user) { nil }
