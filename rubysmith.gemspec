@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "git_plus", "~> 1.7"
   spec.add_dependency "gitt", "~> 1.0"
   spec.add_dependency "infusible", "~> 0.2"
-  spec.add_dependency "milestoner", "~> 14.5"
+  spec.add_dependency "milestoner", "~> 15.0"
   spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "pragmater", "~> 11.5"
   spec.add_dependency "refinements", "~> 9.7"
