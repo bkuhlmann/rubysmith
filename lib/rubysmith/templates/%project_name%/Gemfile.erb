@@ -11,7 +11,7 @@ source "https://rubygems.org"
 
 group :code_quality do
   <% if configuration.build_caliber %>
-    gem "caliber", "~> 0.16"
+    gem "caliber", "~> 0.21"
   <% end %>
   <% if configuration.build_git && configuration.build_git_lint %>
     gem "git-lint", "~> 5.0"
