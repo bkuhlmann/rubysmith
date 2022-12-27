@@ -12,7 +12,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       Rubysmith::Configuration::Content[author_given_name: "Test", author_family_name: "Example"]
     end
 
-    before { allow(git).to receive(:get).with("user.name").and_return(user) }
+    before { allow(git).to receive(:get).with("user.name", "TODO").and_return(user) }
 
     context "with missing defaults and no Git user" do
       let(:content) { Rubysmith::Configuration::Content.new }

@@ -10,7 +10,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
   describe "#call" do
     let(:content) { Rubysmith::Configuration::Content[author_email: "test@example.com"] }
 
-    before { allow(git).to receive(:get).with("user.email").and_return(email) }
+    before { allow(git).to receive(:get).with("user.email", "TODO").and_return(email) }
 
     context "with missing defaults and no Git email" do
       let(:content) { Rubysmith::Configuration::Content.new }

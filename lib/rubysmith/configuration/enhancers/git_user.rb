@@ -23,7 +23,7 @@ module Rubysmith
         attr_reader :git
 
         def user
-          git.get("user.name")
+          git.get("user.name", "TODO")
              .then { |name| String(name).split }
              .then { |first, last| {author_given_name: first, author_family_name: last} }
         end
