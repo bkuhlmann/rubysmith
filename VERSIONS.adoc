@@ -4,6 +4,7 @@
 
 * Fixed RuboCop Lint/RedundantDirGlobSort spec helper template issue - Brooke Kuhlmann
 * Fixed RuboCop Style/RequireOrder issues - Brooke Kuhlmann
+* Fixed Rubysmith gem specification version - Brooke Kuhlmann
 * Added GitHub CI build option - Brooke Kuhlmann
 * Added Gitt gem - Brooke Kuhlmann
 * Added RSpec binstub - Brooke Kuhlmann
