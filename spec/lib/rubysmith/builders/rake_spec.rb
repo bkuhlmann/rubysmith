@@ -39,7 +39,9 @@ RSpec.describe Rubysmith::Builders::Rake do
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
           require "bundler/setup"
-          require "git/lint/rake/setup"
+          require "git/lint/rake/register"
+
+          Git::Lint::Rake::Register.call
 
           desc "Run code quality checks"
           task code_quality: %i[git_lint]
@@ -133,12 +135,13 @@ RSpec.describe Rubysmith::Builders::Rake do
       let :proof do
         <<~CONTENT
           require "bundler/setup"
-          require "git/lint/rake/setup"
+          require "git/lint/rake/register"
           require "reek/rake/task"
           require "rspec/core/rake_task"
           require "rubocop/rake_task"
           require "yard"
 
+          Git::Lint::Rake::Register.call
           Reek::Rake::Task.new
           RSpec::Core::RakeTask.new
           RuboCop::RakeTask.new
