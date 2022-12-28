@@ -24,7 +24,7 @@ module Rubysmith
 
         attr_reader :git
 
-        def email = git.get "user.email", "TODO"
+        def email = git.get("user.email").value_or("")
       end
     end
   end

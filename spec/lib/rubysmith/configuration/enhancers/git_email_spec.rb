@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
+  include Dry::Monads[:result]
+
   subject(:enhancer) { described_class.new git: }
 
   let(:git) { instance_double Gitt::Repository }
@@ -10,11 +12,11 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
   describe "#call" do
     let(:content) { Rubysmith::Configuration::Content[author_email: "test@example.com"] }
 
-    before { allow(git).to receive(:get).with("user.email", "TODO").and_return(email) }
+    before { allow(git).to receive(:get).with("user.email").and_return(email) }
 
     context "with missing defaults and no Git email" do
       let(:content) { Rubysmith::Configuration::Content.new }
-      let(:email) { nil }
+      let(:email) { Success nil }
 
       it "answers nil" do
         expect(enhancer.call(content)).to have_attributes(author_email: nil)
@@ -23,7 +25,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
 
     context "with missing defaults and existing Git email" do
       let(:content) { Rubysmith::Configuration::Content.new }
-      let(:email) { "git@example.com" }
+      let(:email) { Success "git@example.com" }
 
       it "answers Git email" do
         expect(enhancer.call(content)).to have_attributes(author_email: "git@example.com")
@@ -31,7 +33,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
     end
 
     context "with defaults and no Git email" do
-      let(:email) { nil }
+      let(:email) { Success nil }
 
       it "answers default email" do
         expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
@@ -39,7 +41,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
     end
 
     context "with defaults and blank Git email" do
-      let(:email) { "" }
+      let(:email) { Success "" }
 
       it "answers default email" do
         expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
@@ -47,7 +49,15 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
     end
 
     context "with defaults and Git email" do
-      let(:email) { "git@example.com" }
+      let(:email) { Success "git@example.com" }
+
+      it "answers default email" do
+        expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
+      end
+    end
+
+    context "with defaults and email failure" do
+      let(:email) { Failure "Danger!" }
 
       it "answers default email" do
         expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
