@@ -91,6 +91,7 @@ BUILD OPTIONS:
       --[no-]funding                       Add GitHub funding configuration. Default: false.
       --[no-]git                           Add Git. Default: true.
       --[no-]git_hub                       Add GitHub templates. Default: false.
+      --[no-]git_hub_ci                    Add GitHub templates. Default: false.
       --[no-]git-lint                      Add Git Lint gem. Default: true.
       --[no-]guard                         Add Guard gem. Default: true.
       --[no-]license                       Add license documentation. Default: true.
@@ -227,6 +228,10 @@ The `--git` option allows you add link:https://git-scm.com[Git] repository suppo
 
 The `--git_hub` option allows you add link:https://github.com[GitHub] templates to your project for
 issues and pull requests.
+
+==== GitHub CI
+
+The `--git_hub_ci` option allows you to build your project with link:https://docs.github.com/en/actions[GitHub Actions] configured so you can get your project building as quickly as possible.
 
 ===== Git Lint
 

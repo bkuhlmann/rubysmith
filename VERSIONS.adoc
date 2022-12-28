@@ -1,5 +1,12 @@
 = Versions
 
+== 4.0.1 (2022-12-27)
+
+* Added Git user and email fallbacks - Brooke Kuhlmann
+* Added version release notes - Brooke Kuhlmann
+* Updated to Caliber 0.21.0 - Brooke Kuhlmann
+* Updated to Git Lint 5.0.0 - Brooke Kuhlmann
+
 == 4.0.0 (2022-12-27)
 
 * Fixed RuboCop Lint/RedundantDirGlobSort spec helper template issue - Brooke Kuhlmann
