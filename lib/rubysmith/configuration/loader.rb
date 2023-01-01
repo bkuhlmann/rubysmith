@@ -20,7 +20,8 @@ module Rubysmith
         Enhancers::CurrentTime.new,
         Enhancers::GitEmail.new,
         Enhancers::GitHubUser.new,
-        Enhancers::GitUser.new
+        Enhancers::GitUser.new,
+        Enhancers::TemplateRoot.new
       ].freeze
 
       def self.call(...) = new(...).call

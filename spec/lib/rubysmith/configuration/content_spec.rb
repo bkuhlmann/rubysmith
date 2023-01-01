@@ -84,7 +84,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         project_version: nil,
         target_root:,
         template_path: nil,
-        template_roots: [template_root]
+        template_roots: []
       }
     end
 
@@ -98,20 +98,20 @@ RSpec.describe Rubysmith::Configuration::Content do
       test_root = Pathname "a/path"
       update = content.add_template_roots test_root
 
-      expect(update.template_roots).to eq([test_root, template_root])
+      expect(update.template_roots).to eq([test_root])
     end
 
     it "prepends array of mixed paths" do
       root_a = Pathname "a/path"
       root_b = "some/other/path"
-      update = content.add_template_roots [root_a, root_b]
+      update = content.add_template_roots(template_root).add_template_roots [root_a, root_b]
 
       expect(update.template_roots).to eq([root_a, Pathname("some/other/path"), template_root])
     end
 
     it "doesn't mutate itself" do
       content.add_template_roots "a/path"
-      expect(content.template_roots).to eq([template_root])
+      expect(content.template_roots).to eq([])
     end
   end
 
@@ -150,7 +150,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         build_zeitwerk: true,
         project_name: "test",
         target_root:,
-        template_roots: [template_root]
+        template_roots: []
       ]
     end
 
@@ -202,7 +202,7 @@ RSpec.describe Rubysmith::Configuration::Content do
         build_zeitwerk: false,
         project_name: "test",
         target_root:,
-        template_roots: [template_root]
+        template_roots: []
       ]
     end
 
@@ -470,9 +470,7 @@ RSpec.describe Rubysmith::Configuration::Content do
 
   describe "#pathway" do
     it "answers pathway" do
-      expect(content.pathway).to eq(
-        Rubysmith::Pathway[start_root: template_root, end_root: target_root]
-      )
+      expect(content.pathway).to eq(Rubysmith::Pathway[start_root: nil, end_root: target_root])
     end
   end
 
@@ -482,8 +480,8 @@ RSpec.describe Rubysmith::Configuration::Content do
     let(:existing_path) { temp_dir.join("a/path").make_path }
     let(:missing_path) { temp_dir.join "a/missing/path" }
 
-    it "answers original, existing, path" do
-      expect(content.template_root).to eq(template_root)
+    it "answers nil by default" do
+      expect(content.template_root).to be(nil)
     end
 
     it "answers first existing root path" do

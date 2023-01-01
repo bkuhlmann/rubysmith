@@ -82,18 +82,14 @@ module Rubysmith
       :project_version,
       :target_root,
       :template_path,
-      :template_roots,
-      keyword_init: true
+      :template_roots
     ) do
       using Refinements::Arrays
       using Refinements::Strings
       using Refinements::Structs
 
-      def initialize *arguments
+      def initialize target_root: Pathname.pwd, template_roots: [], **arguments
         super
-
-        self[:template_roots] ||= [Pathname(__dir__).join("../templates")]
-        self[:target_root] ||= Pathname.pwd
         freeze
       end
 
