@@ -16,32 +16,27 @@ module Rubysmith
       DEFAULTS = YAML.load_file(Pathname(__dir__).join("defaults.yml")).freeze
       CLIENT = Runcom::Config.new "rubysmith/configuration.yml", defaults: DEFAULTS
 
-      ENHANCERS = [
-        Enhancers::CurrentTime.new,
-        Enhancers::GitEmail.new,
-        Enhancers::GitHubUser.new,
-        Enhancers::GitUser.new,
-        Enhancers::TemplateRoot.new
-      ].freeze
-
       def self.call(...) = new(...).call
 
-      def self.with_defaults = new(client: DEFAULTS, enhancers: [])
+      def self.with_defaults = new(client: DEFAULTS, enhancers: {})
 
-      def initialize content: Content.new, client: CLIENT, enhancers: ENHANCERS
+      def initialize content: Content.new, client: CLIENT, enhancers: Enhancers::Container
         @content = content
         @client = client
         @enhancers = enhancers
       end
 
       def call
-        enhancers.reduce(preload_content) { |preload, enhancer| enhancer.call preload }
+        enhancers.each
+                 .reduce(preload_content) { |preload, (_key, enhancer)| enhancer.call preload }
                  .freeze
       end
 
-      private
+      protected
 
       attr_reader :content, :client, :enhancers
+
+      private
 
       def preload_content = content.merge(**client.to_h.flatten_keys)
     end

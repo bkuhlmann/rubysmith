@@ -84,13 +84,13 @@ RSpec.describe Rubysmith::Configuration::Loader do
     end
 
     it "answers enhanced configuration" do
-      now = Time.now
+      loader = described_class.new enhancers: {
+        template_root: Rubysmith::Configuration::Enhancers::TemplateRoot
+      }
 
-      loader = described_class.new enhancers: [
-        Rubysmith::Configuration::Enhancers::CurrentTime.new(now)
-      ]
-
-      expect(loader.call).to have_attributes(now:)
+      expect(loader.call).to have_attributes(
+        template_root: Bundler.root.join("lib/rubysmith/templates")
+      )
     end
 
     it "answers frozen configuration" do
