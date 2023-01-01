@@ -9,10 +9,10 @@ module Rubysmith
       module Container
         extend Dry::Container::Mixin
 
-        register(:current_time) { Enhancers::CurrentTime.new }
-        register(:git_hub_user) { Enhancers::GitHubUser.new }
-        register(:git_email) { Enhancers::GitEmail.new }
-        register(:git_user) { Enhancers::GitUser.new }
+        register(:current_time) { Enhancers::CurrentTime }
+        register(:git_hub_user) { Enhancers::GitHubUser }
+        register(:git_email) { Enhancers::GitEmail }
+        register(:git_user) { Enhancers::GitUser }
         register(:template_root) { Enhancers::TemplateRoot }
       end
     end

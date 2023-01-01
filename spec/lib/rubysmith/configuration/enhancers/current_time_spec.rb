@@ -3,15 +3,14 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Enhancers::CurrentTime do
-  subject(:enhancer) { described_class.new now }
-
-  let(:now) { Time.now }
+  subject(:enhancer) { described_class }
 
   describe "#call" do
     let(:content) { Rubysmith::Configuration::Content.new }
+    let(:at) { Time.now }
 
     it "answers current time" do
-      expect(enhancer.call(content)).to have_attributes(now:)
+      expect(enhancer.call(content, at:)).to have_attributes(now: at)
     end
   end
 end

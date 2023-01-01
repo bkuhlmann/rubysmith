@@ -6,28 +6,19 @@ require "refinements/structs"
 
 module Rubysmith
   module Configuration
+    # Dynamically adds Git user if defined.
     module Enhancers
-      # Dynamically adds Git user if defined.
-      class GitUser
-        using Refinements::Strings
-        using Refinements::Structs
+      using Refinements::Strings
+      using Refinements::Structs
 
-        def initialize git: Gitt::Repository.new
-          @git = git
-        end
+      GitUser = lambda do |content, git: Gitt::Repository.new|
+        return content unless String(content.author_name).blank?
 
-        def call(content) = String(content.author_name).blank? ? content.merge(**user) : content
-
-        private
-
-        attr_reader :git
-
-        def user
-          git.get("user.name")
-             .value_or("")
-             .then { |name| String(name).split }
-             .then { |first, last| {author_given_name: first, author_family_name: last} }
-        end
+        git.get("user.name")
+           .value_or("")
+           .then { |name| String(name).split }
+           .then { |first, last| {author_given_name: first, author_family_name: last} }
+           .then { |user| content.merge(**user) }
       end
     end
   end

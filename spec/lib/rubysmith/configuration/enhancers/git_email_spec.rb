@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
   include Dry::Monads[:result]
 
-  subject(:enhancer) { described_class.new git: }
+  subject(:enhancer) { described_class }
 
   let(:git) { instance_double Gitt::Repository }
 
@@ -19,7 +19,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Success nil }
 
       it "answers nil" do
-        expect(enhancer.call(content)).to have_attributes(author_email: nil)
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: nil)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Success "git@example.com" }
 
       it "answers Git email" do
-        expect(enhancer.call(content)).to have_attributes(author_email: "git@example.com")
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: "git@example.com")
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Success nil }
 
       it "answers default email" do
-        expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: "test@example.com")
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Success "" }
 
       it "answers default email" do
-        expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: "test@example.com")
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Success "git@example.com" }
 
       it "answers default email" do
-        expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: "test@example.com")
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
       let(:email) { Failure "Danger!" }
 
       it "answers default email" do
-        expect(enhancer.call(content)).to have_attributes(author_email: "test@example.com")
+        expect(enhancer.call(content, git:)).to have_attributes(author_email: "test@example.com")
       end
     end
   end

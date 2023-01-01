@@ -4,21 +4,11 @@ require "refinements/structs"
 
 module Rubysmith
   module Configuration
+    # Adds current time to content.
     module Enhancers
-      # Adds current time to content.
-      class CurrentTime
-        using Refinements::Structs
+      using Refinements::Structs
 
-        def initialize now = Time.now
-          @now = now
-        end
-
-        def call(content) = content.merge(now:)
-
-        private
-
-        attr_reader :now
-      end
+      CurrentTime = -> content, at: Time.now { content.merge(now: at) }
     end
   end
 end

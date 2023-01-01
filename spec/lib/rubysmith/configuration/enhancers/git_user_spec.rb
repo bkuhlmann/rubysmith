@@ -5,11 +5,11 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
   include Dry::Monads[:result]
 
-  subject(:enhancer) { described_class.new git: }
-
-  let(:git) { instance_double Gitt::Repository }
+  subject(:enhancer) { described_class }
 
   describe "#call" do
+    let(:git) { instance_double Gitt::Repository }
+
     let :content do
       Rubysmith::Configuration::Content[author_given_name: "Test", author_family_name: "Example"]
     end
@@ -21,7 +21,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Success nil }
 
       it "answers blank author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "")
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Success "Git Test" }
 
       it "answers Git author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "Git Test")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Git Test")
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Success nil }
 
       it "answers default author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "Test Example")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Success "" }
 
       it "answers default author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "Test Example")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Success "Git Test" }
 
       it "answers default author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "Test Example")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
       end
     end
 
@@ -62,7 +62,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
       let(:user) { Failure() }
 
       it "answers default author" do
-        expect(enhancer.call(content)).to have_attributes(author_name: "Test Example")
+        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
       end
     end
   end

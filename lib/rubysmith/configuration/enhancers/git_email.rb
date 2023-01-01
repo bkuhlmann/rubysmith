@@ -6,25 +6,15 @@ require "refinements/structs"
 
 module Rubysmith
   module Configuration
+    # Dynamically adds Git email if defined.
     module Enhancers
-      # Dynamically adds Git email if defined.
-      class GitEmail
-        using Refinements::Strings
-        using Refinements::Structs
+      using Refinements::Strings
+      using Refinements::Structs
 
-        def initialize git: Gitt::Repository.new
-          @git = git
-        end
+      GitEmail = lambda do |content, git: Gitt::Repository.new|
+        return content unless String(content.author_email).blank?
 
-        def call content
-          String(content.author_email).blank? ? content.merge(author_email: email) : content
-        end
-
-        private
-
-        attr_reader :git
-
-        def email = git.get("user.email").value_or("")
+        content.merge author_email: git.get("user.email").value_or("")
       end
     end
   end
