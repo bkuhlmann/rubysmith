@@ -104,7 +104,7 @@ RSpec.describe Rubysmith::Configuration::Content do
     it "prepends array of mixed paths" do
       root_a = Pathname "a/path"
       root_b = "some/other/path"
-      update = content.add_template_roots(template_root).add_template_roots [root_a, root_b]
+      update = content.add_template_roots(template_root).add_template_roots root_a, root_b
 
       expect(update.template_roots).to eq([root_a, Pathname("some/other/path"), template_root])
     end

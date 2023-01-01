@@ -93,10 +93,10 @@ module Rubysmith
         freeze
       end
 
-      def add_template_roots paths
-        Array(paths).map { |path| Pathname path }
-                    .including(template_roots)
-                    .then { |roots| dup.merge! template_roots: roots }
+      def add_template_roots *paths
+        paths.map { |path| Pathname path }
+             .including(template_roots)
+             .then { |roots| dup.merge! template_roots: roots }
       end
 
       def maximize = update_build_options(true)
