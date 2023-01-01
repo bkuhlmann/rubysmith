@@ -41,8 +41,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
         expect(commit).to eq(<<~BODY)
           Added project skeleton
 
-          Generated with [Test](https://example.com)
-          0.0.0.
+          Generated with [Test](https://example.com) 0.0.0.
         BODY
       end
     end

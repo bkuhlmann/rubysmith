@@ -34,10 +34,8 @@ module Rubysmith
         attr_reader :configuration, :builder
 
         def body
-          <<~CONTENT
-            Generated with [#{specification.label}](#{specification.homepage_url})
-            #{specification.version}.
-          CONTENT
+          "Generated with [#{specification.label}](#{specification.homepage_url}) " \
+          "#{specification.version}."
         end
 
         def project_name = configuration.project_name
