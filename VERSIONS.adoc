@@ -1,5 +1,16 @@
 = Versions
 
+== 4.2.0 (2023-01-01)
+
+* Added configuration enhancer container - Brooke Kuhlmann
+* Added template root configuration enhancer - Brooke Kuhlmann
+* Updated configuration content to accept any number of paths - Brooke Kuhlmann
+* Updated configuration loader to supply template root for content - Brooke Kuhlmann
+* Updated loader enhancers injection to use container - Brooke Kuhlmann
+* Updated to Milestoner 15.1.0 - Brooke Kuhlmann
+* Removed Git commit word wrap when generating project skeleton - Brooke Kuhlmann
+* Refactored configuration enhancers as lambdas - Brooke Kuhlmann
+
 == 4.1.0 (2022-12-28)
 
 * Fixed Git user and email enhancers to account for failure - Brooke Kuhlmann
