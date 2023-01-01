@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-container", "~> 0.11"
   spec.add_dependency "gitt", "~> 1.0"
   spec.add_dependency "infusible", "~> 1.0"
-  spec.add_dependency "milestoner", "~> 15.0"
+  spec.add_dependency "milestoner", "~> 15.1"
   spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "pragmater", "~> 12.0"
   spec.add_dependency "refinements", "~> 10.0"
