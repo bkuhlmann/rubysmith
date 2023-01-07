@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "core"
 require "refinements/structs"
 
 module Rubysmith
@@ -21,7 +22,7 @@ module Rubysmith
           @client = client
         end
 
-        def call arguments = []
+        def call arguments = ::Core::EMPTY_ARRAY
           client.separator "\nBUILD OPTIONS:\n"
           collate
           client.parse arguments

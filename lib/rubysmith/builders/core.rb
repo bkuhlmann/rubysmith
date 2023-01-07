@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "core"
 require "refinements/strings"
 require "refinements/structs"
 
@@ -31,7 +32,7 @@ module Rubysmith
 
       private
 
-      def indentation = "".indent configuration.project_levels
+      def indentation = ::Core::EMPTY_STRING.indent configuration.project_levels
 
       def module_name = configuration.project_class
 

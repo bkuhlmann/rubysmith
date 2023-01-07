@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "core"
 require "milestoner"
 
 module Rubysmith
@@ -13,7 +14,7 @@ module Rubysmith
         @parser = parser
       end
 
-      def call arguments = []
+      def call arguments = Core::EMPTY_ARRAY
         perform parser.call(arguments)
       rescue OptionParser::ParseError, Milestoner::Error => error
         logger.error { error.message }
