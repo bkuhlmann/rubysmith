@@ -1,5 +1,14 @@
 = Versions
 
+== 4.3.0 (2023-01-08)
+
+* Added Core gem - Brooke Kuhlmann
+* Updated to Gitt 1.1.0 - Brooke Kuhlmann
+* Updated to Milestoner 15.2.0 - Brooke Kuhlmann
+* Updated to Pragmater 12.1.0 - Brooke Kuhlmann
+* Updated to Tocer 15.1.0 - Brooke Kuhlmann
+* Refactored implementation to use empty arrays and strings - Brooke Kuhlmann
+
 == 4.2.0 (2023-01-01)
 
 * Added configuration enhancer container - Brooke Kuhlmann
