@@ -22,7 +22,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-minimum.adoc").read
+          SPEC_ROOT.join("support/fixtures/boms/readme-minimum.adoc").read
         )
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
       it "builds README" do
         expect(temp_dir.join("test", "README.adoc").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-maximum.adoc").read
+          SPEC_ROOT.join("support/fixtures/boms/readme-maximum.adoc").read
         )
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
       it "builds README" do
         expect(temp_dir.join("test/README.md").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-minimum.md").read
+          SPEC_ROOT.join("support/fixtures/boms/readme-minimum.md").read
         )
       end
     end
@@ -54,7 +54,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
       it "builds README" do
         expect(temp_dir.join("test/README.md").read).to eq(
-          Bundler.root.join("spec/support/fixtures/boms/readme-maximum.md").read
+          SPEC_ROOT.join("support/fixtures/boms/readme-maximum.md").read
         )
       end
     end

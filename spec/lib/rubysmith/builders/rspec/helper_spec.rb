@@ -26,7 +26,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
 
-          Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
+          Dir[File.join(SPEC_ROOT, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
 
           RSpec.configure do |config|
             config.color = true
@@ -68,7 +70,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "demo/test"
 
-          Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
+          Dir[File.join(SPEC_ROOT, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
 
           RSpec.configure do |config|
             config.color = true
@@ -111,9 +115,11 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           require "test"
           require "refinements"
 
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
           using Refinements::Pathnames
 
-          Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
+          Pathname.require_tree SPEC_ROOT, "support/shared_contexts/**/*.rb"
 
           RSpec.configure do |config|
             config.color = true
@@ -166,7 +172,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           require "test"
 
-          Dir[File.join(__dir__, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
+          Dir[File.join(SPEC_ROOT, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
 
           RSpec.configure do |config|
             config.color = true
@@ -218,9 +226,11 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           require "test"
           require "refinements"
 
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
           using Refinements::Pathnames
 
-          Pathname.require_tree __dir__, "support/shared_contexts/**/*.rb"
+          Pathname.require_tree SPEC_ROOT, "support/shared_contexts/**/*.rb"
 
           RSpec.configure do |config|
             config.color = true
