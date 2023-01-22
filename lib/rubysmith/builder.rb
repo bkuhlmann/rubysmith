@@ -45,6 +45,12 @@ module Rubysmith
       self
     end
 
+    def make_path
+      log_debug "Creating path: #{relative_build_path}"
+      build_path.make_path
+      self
+    end
+
     def permit mode
       log_debug "Changing permissions for: #{relative_build_path}"
       build_path.chmod mode

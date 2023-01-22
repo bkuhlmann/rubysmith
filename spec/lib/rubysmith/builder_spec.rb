@@ -148,6 +148,32 @@ RSpec.describe Rubysmith::Builder do
     end
   end
 
+  describe "#make_path" do
+    let :configuration do
+      Rubysmith::Configuration::Content[
+        template_path: "%project_name%/lib/%project_path%/one/two",
+        target_root: temp_dir,
+        project_name: "demo-test"
+      ]
+    end
+
+    let(:build_path) { temp_dir.join "demo-test/lib/demo/test/one/two" }
+
+    it "logs information" do
+      builder.make_path
+      expect(logger.reread).to match(%r(Creating path: demo-test/lib/demo/test/one/two\n))
+    end
+
+    it "creates empty directory" do
+      builder.make_path
+      expect(build_path.exist?).to be(true)
+    end
+
+    it "answers itself" do
+      expect(builder.make_path).to be_a(described_class)
+    end
+  end
+
   describe "#permit" do
     before { build_path.deep_touch }
 
