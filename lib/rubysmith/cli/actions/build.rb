@@ -17,6 +17,7 @@ module Rubysmith
           Builders::Documentation::Version,
           Builders::Git::Setup,
           Builders::Git::Ignore,
+          Builders::Git::Safe,
           Builders::Bundler,
           Builders::Rake,
           Builders::Console,
