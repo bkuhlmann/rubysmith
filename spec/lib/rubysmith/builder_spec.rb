@@ -32,7 +32,10 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.append ""
-      expect(logger.reread).to match(%r(Appending: demo-test/lib/demo/test/identity.rb\n))
+
+      expect(logger.reread).to match(
+        %r(Appending content to: demo-test/lib/demo/test/identity.rb\n)
+      )
     end
 
     it "inserts content at end of file" do
@@ -66,44 +69,6 @@ RSpec.describe Rubysmith::Builder do
 
     it "answers itself" do
       expect(builder.delete).to be_a(described_class)
-    end
-  end
-
-  describe "#insert_before" do
-    before { builder.render }
-
-    it "logs information" do
-      builder.insert_before "module Identity", "# Test\n"
-
-      expect(logger.reread).to match(
-        %r(Inserting content before pattern in: demo-test/lib/demo/test/identity.rb\n)
-      )
-    end
-
-    it "inserts content after regular expression" do
-      builder.insert_before(/NAME.+/, "  # Test\n")
-
-      expect(build_path.read).to eq(<<~CONTENT)
-        module Identity
-          # Test
-          NAME = "demo-test"
-        end
-      CONTENT
-    end
-
-    it "inserts content after string pattern" do
-      builder.insert_before %(NAME = "demo-test"), "  # Test\n"
-
-      expect(build_path.read).to eq(<<~CONTENT)
-        module Identity
-          # Test
-          NAME = "demo-test"
-        end
-      CONTENT
-    end
-
-    it "answers itself" do
-      expect(builder.insert_before("module Identity", "# Test\n")).to be_a(described_class)
     end
   end
 
@@ -142,6 +107,44 @@ RSpec.describe Rubysmith::Builder do
 
     it "answers itself" do
       expect(builder.insert_after(/.+test/, "# Test\n")).to be_a(described_class)
+    end
+  end
+
+  describe "#insert_before" do
+    before { builder.render }
+
+    it "logs information" do
+      builder.insert_before "module Identity", "# Test\n"
+
+      expect(logger.reread).to match(
+        %r(Inserting content before pattern in: demo-test/lib/demo/test/identity.rb\n)
+      )
+    end
+
+    it "inserts content after regular expression" do
+      builder.insert_before(/NAME.+/, "  # Test\n")
+
+      expect(build_path.read).to eq(<<~CONTENT)
+        module Identity
+          # Test
+          NAME = "demo-test"
+        end
+      CONTENT
+    end
+
+    it "inserts content after string pattern" do
+      builder.insert_before %(NAME = "demo-test"), "  # Test\n"
+
+      expect(build_path.read).to eq(<<~CONTENT)
+        module Identity
+          # Test
+          NAME = "demo-test"
+        end
+      CONTENT
+    end
+
+    it "answers itself" do
+      expect(builder.insert_before("module Identity", "# Test\n")).to be_a(described_class)
     end
   end
 

@@ -22,7 +22,7 @@ module Rubysmith
     end
 
     def append content
-      log_debug "Appending: #{relative_build_path}"
+      log_debug "Appending content to: #{relative_build_path}"
       build_path.rewrite { |body| body + content }
       self
     end
@@ -33,15 +33,15 @@ module Rubysmith
       self
     end
 
-    def insert_before pattern, content
-      log_debug "Inserting content before pattern in: #{relative_build_path}"
-      build_path.write inserter.new(build_path.readlines, :before).call(content, pattern).join
-      self
-    end
-
     def insert_after pattern, content
       log_debug "Inserting content after pattern in: #{relative_build_path}"
       build_path.write inserter.new(build_path.readlines, :after).call(content, pattern).join
+      self
+    end
+
+    def insert_before pattern, content
+      log_debug "Inserting content before pattern in: #{relative_build_path}"
+      build_path.write inserter.new(build_path.readlines, :before).call(content, pattern).join
       self
     end
 
