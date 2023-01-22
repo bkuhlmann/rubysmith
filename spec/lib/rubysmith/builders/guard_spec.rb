@@ -32,7 +32,7 @@ RSpec.describe Rubysmith::Builders::Guard do
 
       it "builds configuration" do
         expect(configuration_path.read).to eq(<<~CONTENT)
-          guard :rspec, cmd: "NO_COVERAGE=true bundle exec rspec --format documentation" do
+          guard :rspec, cmd: "NO_COVERAGE=true bin/rspec --format documentation" do
             watch %r(^spec/.+_spec\\.rb$)
             watch(%r(^lib/(.+)\\.rb$)) { |m| "spec/lib/\#{m[1]}_spec.rb" }
             watch("spec/spec_helper.rb") { "spec" }
