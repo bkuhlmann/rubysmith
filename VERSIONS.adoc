@@ -1,5 +1,15 @@
 = Versions
 
+== 4.4.0 (2023-01-22)
+
+* Fixed Guardfile to use RSpec binstub - Brooke Kuhlmann
+* Fixed builder alphabetic sorting of methods - Brooke Kuhlmann
+* Added Git safe builder - Brooke Kuhlmann
+* Added Rake binstub - Brooke Kuhlmann
+* Added builder make path functionality - Brooke Kuhlmann
+* Updated RSpec helper to use spec root constant - Brooke Kuhlmann
+* Refactored shell spec to use a one line min and max let statement - Brooke Kuhlmann
+
 == 4.3.0 (2023-01-08)
 
 * Added Core gem - Brooke Kuhlmann

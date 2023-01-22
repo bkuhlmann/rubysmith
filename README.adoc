@@ -222,14 +222,14 @@ doesn't require use of the `--git_hub` option but is encouraged.
 
 ===== Git
 
-The `--git` option allows you add link:https://git-scm.com[Git] repository support.
+The `--git` option allows you add link:https://git-scm.com[Git] repository support. Includes link:https://www.alchemists.io/screencasts/git_safe[Git Safe] functionality so you don't have to prefix commands with the `bin/` path prefix. Instead, you can call the command directly (assuming you have configured your link:https://www.alchemists.io/projects/dotfiles[Dotfiles] accordingly).
 
 ===== GitHub
 
 The `--git_hub` option allows you add link:https://github.com[GitHub] templates to your project for
 issues and pull requests.
 
-==== GitHub CI
+===== GitHub CI
 
 The `--git_hub_ci` option allows you to build your project with link:https://docs.github.com/en/actions[GitHub Actions] configured so you can get your project building as quickly as possible.
 
