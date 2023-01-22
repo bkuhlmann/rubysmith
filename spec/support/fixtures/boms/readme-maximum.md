@@ -37,7 +37,7 @@ You can also use the IRB console for direct access to all objects:
 
 To test, run:
 
-    bundle exec rake
+    bin/rake
 
 ## [License](https://www.example.com/test/license)
 

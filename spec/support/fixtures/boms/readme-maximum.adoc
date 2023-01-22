@@ -49,7 +49,7 @@ To test, run:
 
 [source,bash]
 ----
-bundle exec rake
+bin/rake
 ----
 
 == link:https://www.example.com/test/license[License]

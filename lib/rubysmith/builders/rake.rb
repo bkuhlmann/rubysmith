@@ -18,6 +18,22 @@ module Rubysmith
       def call
         return configuration unless configuration.build_rake
 
+        add_binstub
+        add_configuration
+        configuration
+      end
+
+      private
+
+      attr_reader :configuration, :builder
+
+      def add_binstub
+        builder.call(configuration.merge(template_path: "%project_name%/bin/rake.erb"))
+               .render
+               .permit 0o755
+      end
+
+      def add_configuration
         builder.call(configuration.merge(template_path: "%project_name%/Rakefile.erb"))
                .render
                .replace(/\[\s+/, "[")
@@ -26,13 +42,7 @@ module Rubysmith
                .replace("task.", "  task.")
                .replace(/\n+(?=require)/, "\n")
                .replace(/\n{2,}/, "\n\n")
-
-        configuration
       end
-
-      private
-
-      attr_reader :configuration, :builder
     end
   end
 end

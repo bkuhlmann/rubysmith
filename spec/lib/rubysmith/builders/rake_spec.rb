@@ -29,6 +29,16 @@ RSpec.describe Rubysmith::Builders::Rake do
           task default: %i[code_quality]
         CONTENT
       end
+
+      it "builds binstub" do
+        expect(temp_dir.join("test/bin/rake").read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
+
+          require "bundler/setup"
+
+          load Gem.bin_path "rake", "rake"
+        CONTENT
+      end
     end
 
     context "when enabled with only Git and Git Lint" do
@@ -165,7 +175,11 @@ RSpec.describe Rubysmith::Builders::Rake do
     context "when disabled" do
       let(:test_configuration) { configuration.minimize }
 
-      it "builds Rakefile" do
+      it "doesn't build binstub" do
+        expect(temp_dir.join("test/bin/rake").exist?).to be(false)
+      end
+
+      it "doesn't build Rakefile" do
         expect(rakefile_path.exist?).to be(false)
       end
     end

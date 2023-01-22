@@ -28,7 +28,7 @@ cd test
 
 To test, run:
 
-    bundle exec rake
+    bin/rake
 
 ## Credits
 
