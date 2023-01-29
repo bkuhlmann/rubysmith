@@ -18,7 +18,7 @@ module Rubysmith
       def call
         return configuration unless configuration.build_git_hub_ci
 
-        builder.call(configuration_with_template).render
+        builder.call(configuration_with_template).render.replace(/\n\n\Z/, "\n")
         configuration
       end
 

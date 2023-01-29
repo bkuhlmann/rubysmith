@@ -18,3 +18,11 @@ jobs:
 
       - name: Rake
         run: bundle exec rake
+
+<% if configuration.build_simple_cov %>
+      - name: Archive SimpleCov Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+<% end %>
