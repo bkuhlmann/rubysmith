@@ -12,8 +12,8 @@ module Rubysmith
       CLIENT = OptionParser.new nil, 40, "  "
       SECTIONS = [Parsers::Core, Parsers::Build].freeze # Order is important.
 
-      def initialize sections: SECTIONS, client: CLIENT, **dependencies
-        super(**dependencies)
+      def initialize(sections: SECTIONS, client: CLIENT, **)
+        super(**)
         @sections = sections
         @client = client
         @configuration_duplicate = configuration.dup

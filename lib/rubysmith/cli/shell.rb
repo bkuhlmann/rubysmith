@@ -9,8 +9,8 @@ module Rubysmith
     class Shell
       include Actions::Import[:config, :build, :publish, :specification, :logger]
 
-      def initialize parser: Parser.new, **dependencies
-        super(**dependencies)
+      def initialize(parser: Parser.new, **)
+        super(**)
         @parser = parser
       end
 

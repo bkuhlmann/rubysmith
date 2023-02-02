@@ -15,8 +15,8 @@ module Rubysmith
 
     def self.call(...) = new(...)
 
-    def initialize configuration, helpers: HELPERS, **dependencies
-      super(**dependencies)
+    def initialize(configuration, helpers: HELPERS, **)
+      super(**)
       @configuration = configuration
       @helpers = helpers
     end

@@ -9,9 +9,8 @@ module Rubysmith
 
         def self.call(...) = new(...).call
 
-        def initialize configuration, builder: Builder, **dependencies
-          super(**dependencies)
-
+        def initialize(configuration, builder: Builder, **)
+          super(**)
           @configuration = configuration
           @builder = builder
         end
