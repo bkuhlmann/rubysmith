@@ -1,5 +1,13 @@
 = Versions
 
+== 4.5.0 (2023-02-05)
+
+* Fixed shell script to account for Rake binstub - Brooke Kuhlmann
+* Added GitHub CI SimpleCov configuration - Brooke Kuhlmann
+* Updated to Caliber 0.25.0 - Brooke Kuhlmann
+* Refactored CLI shell act on configuration when pattern matching - Brooke Kuhlmann
+* Refactored implementation to forward splatted arguments - Brooke Kuhlmann
+
 == 4.4.0 (2023-01-22)
 
 * Fixed Guardfile to use RSpec binstub - Brooke Kuhlmann
