@@ -17,7 +17,7 @@ group :code_quality do
     gem "git-lint", "~> 5.0"
   <% end %>
   <% if configuration.build_reek %>
-    gem "reek", "~> 6.1"
+    gem "reek", "~> 6.1", require: false
   <% end %>
   <% if configuration.build_simple_cov %>
     gem "simplecov", "~> 0.22", require: false
