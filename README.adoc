@@ -1,4 +1,5 @@
 :gemsmith_link: link:https://www.alchemists.io/projects/gemsmith[Gemsmith]
+:bundler_inline_link: link:https://www.alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
 
 :toc: macro
 :toclevels: 5
@@ -9,11 +10,7 @@
 Rubysmith is a command line interface for smithing Ruby projects.
 
 This gem is useful in situations in which you need something more sophisticated than a
-link:https://bundler.io/guides/bundler_in_a_single_file_ruby_script.html[Bundler Inline] script but
-less than a {gemsmith_link} gem. Rubysmith is the foundation of Gemsmith and provides much of the
-same functionality as Gemsmith but is solely tailored for pure Ruby projects. Again, this is a great
-tool for spiking quick Ruby implementations, sharing code snippets with others, or building full
-blown Ruby projects for collaboration with others.
+{bundler_inline_link} script but less than a {gemsmith_link} gem. Rubysmith is the foundation of Gemsmith and provides much of the same functionality as Gemsmith but is solely tailored for pure Ruby projects. Again, this is a great tool for spiking quick Ruby implementations, sharing code snippets with others, or building full blown Ruby projects for collaboration with others.
 
 toc::[]
 
@@ -138,9 +135,7 @@ project with bare minimum of options. Example:
 rubysmith --build demo --min
 ----
 
-The above is essentially the same as building with _all_ options disabled. This is handy in
-situations where you need to quickly script something up for sharing with others yet still want to
-avoid using a Bundler Inline script so gem dependencies are not installed each time the code is run.
+The above is essentially the same as building with _all_ options disabled. This is handy in situations where you need to quickly script something up for sharing with others yet still want to avoid using a {bundler_inline_link} script so gem dependencies are not installed each time the code is run.
 
 As shown earlier, you can combine options but be aware that order matters. Take the following, for
 example, where both minimum and maximum options are used in conjunction with other options:
@@ -255,9 +250,7 @@ to build a new project with all options enabled without having to pick and choos
 
 ===== Minimum
 
-The `--min` option allows you to build your project with _all_ options _disabled_. This is a quick
-way to build a new project with the bare minimum of support which is a one step above reaching for a
-Bundler Inline script.
+The `--min` option allows you to build your project with _all_ options _disabled_. This is a quick way to build a new project with the bare minimum of support which is a one step above reaching for a {bundler_inline_link} script.
 
 ===== Rake
 
