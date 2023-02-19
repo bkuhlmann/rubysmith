@@ -32,5 +32,5 @@ To test, run:
 
 ## Credits
 
-- Built with [Rubysmith](https://www.alchemists.io/projects/rubysmith).
+- Built with [Rubysmith](https://alchemists.io/projects/rubysmith).
 - Engineered by [Jill Smith](https://www.jillsmith.com).

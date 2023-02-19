@@ -39,5 +39,5 @@ bin/rake
 
 == Credits
 
-* Built with link:https://www.alchemists.io/projects/rubysmith[Rubysmith].
+* Built with link:https://alchemists.io/projects/rubysmith[Rubysmith].
 * Engineered by link:https://www.jillsmith.com[Jill Smith].

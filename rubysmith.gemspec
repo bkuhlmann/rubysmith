@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/rubysmith/issues",
-    "changelog_uri" => "https://www.alchemists.io/projects/rubysmith/versions",
-    "documentation_uri" => "https://www.alchemists.io/projects/rubysmith",
+    "changelog_uri" => "https://alchemists.io/projects/rubysmith/versions",
+    "documentation_uri" => "https://alchemists.io/projects/rubysmith",
     "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "Rubysmith",
     "rubygems_mfa_required" => "true",
