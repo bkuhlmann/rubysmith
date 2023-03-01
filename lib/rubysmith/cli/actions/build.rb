@@ -8,6 +8,7 @@ module Rubysmith
         include Rubysmith::Import[:logger]
 
         # Order is important.
+        # rubocop:todo Metrics/CollectionLiteralLength
         BUILDERS = [
           Builders::Core,
           Builders::Version,
@@ -37,6 +38,7 @@ module Rubysmith
           Extensions::Rubocop,
           Builders::Git::Commit
         ].freeze
+        # rubocop:enable Metrics/CollectionLiteralLength
 
         def initialize(builders: BUILDERS, **)
           super(**)

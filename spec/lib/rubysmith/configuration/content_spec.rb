@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "yaml"
 
 RSpec.describe Rubysmith::Configuration::Content do
   using Refinements::Pathnames
@@ -13,79 +14,7 @@ RSpec.describe Rubysmith::Configuration::Content do
 
   describe "#initialize" do
     let :proof do
-      {
-        action_build: nil,
-        action_config: nil,
-        action_edit: nil,
-        action_help: nil,
-        action_install: nil,
-        action_publish: nil,
-        action_version: nil,
-        action_view: nil,
-        author_email: nil,
-        author_family_name: nil,
-        author_given_name: nil,
-        author_url: nil,
-        build_amazing_print: nil,
-        build_circle_ci: nil,
-        build_citation: nil,
-        build_cli: nil,
-        build_community: nil,
-        build_conduct: nil,
-        build_console: nil,
-        build_contributions: nil,
-        build_debug: nil,
-        build_funding: nil,
-        build_git: nil,
-        build_git_hub: nil,
-        build_git_lint: nil,
-        build_guard: nil,
-        build_license: nil,
-        build_maximum: nil,
-        build_minimum: nil,
-        build_rake: nil,
-        build_readme: nil,
-        build_reek: nil,
-        build_refinements: nil,
-        build_rspec: nil,
-        build_security: nil,
-        build_setup: nil,
-        build_simple_cov: nil,
-        build_versions: nil,
-        build_yard: nil,
-        build_zeitwerk: nil,
-        citation_affiliation: nil,
-        citation_message: nil,
-        citation_orcid: nil,
-        documentation_format: nil,
-        extensions_milestoner_documentation_format: nil,
-        extensions_milestoner_prefixes: nil,
-        extensions_pragmater_comments: nil,
-        extensions_pragmater_includes: nil,
-        extensions_tocer_label: nil,
-        extensions_tocer_includes: nil,
-        git_hub_user: nil,
-        license_label: nil,
-        license_name: nil,
-        license_version: nil,
-        now: nil,
-        project_name: nil,
-        project_url_community: nil,
-        project_url_conduct: nil,
-        project_url_contributions: nil,
-        project_url_download: nil,
-        project_url_funding: nil,
-        project_url_home: nil,
-        project_url_issues: nil,
-        project_url_license: nil,
-        project_url_security: nil,
-        project_url_source: nil,
-        project_url_versions: nil,
-        project_version: nil,
-        target_root:,
-        template_path: nil,
-        template_roots: []
-      }
+      YAML.load_file(SPEC_ROOT.join("support/fixtures/attributes/all.yml")).merge target_root:
     end
 
     it "answers default hash" do
@@ -118,39 +47,8 @@ RSpec.describe Rubysmith::Configuration::Content do
   describe "#maximum" do
     let :proof do
       described_class[
-        build_amazing_print: true,
-        build_caliber: true,
-        build_circle_ci: true,
-        build_citation: true,
-        build_cli: true,
-        build_community: true,
-        build_conduct: true,
-        build_console: true,
-        build_contributions: true,
-        build_debug: true,
-        build_funding: true,
-        build_git: true,
-        build_git_hub: true,
-        build_git_hub_ci: true,
-        build_git_lint: true,
-        build_guard: true,
-        build_license: true,
-        build_maximum: true,
-        build_minimum: false,
-        build_rake: true,
-        build_readme: true,
-        build_reek: true,
-        build_refinements: true,
-        build_rspec: true,
-        build_security: true,
-        build_setup: true,
-        build_simple_cov: true,
-        build_versions: true,
-        build_yard: true,
-        build_zeitwerk: true,
-        project_name: "test",
-        target_root:,
-        template_roots: []
+        **YAML.load_file(SPEC_ROOT.join("support/fixtures/attributes/maximum.yml"))
+              .merge(target_root:)
       ]
     end
 
@@ -170,39 +68,8 @@ RSpec.describe Rubysmith::Configuration::Content do
   describe "#minimize" do
     let :proof do
       described_class[
-        build_amazing_print: false,
-        build_caliber: false,
-        build_circle_ci: false,
-        build_citation: false,
-        build_cli: false,
-        build_community: false,
-        build_conduct: false,
-        build_console: false,
-        build_contributions: false,
-        build_debug: false,
-        build_funding: false,
-        build_git: false,
-        build_git_hub: false,
-        build_git_hub_ci: false,
-        build_git_lint: false,
-        build_guard: false,
-        build_license: false,
-        build_maximum: false,
-        build_minimum: true,
-        build_rake: false,
-        build_readme: false,
-        build_reek: false,
-        build_refinements: false,
-        build_rspec: false,
-        build_security: false,
-        build_setup: false,
-        build_simple_cov: false,
-        build_versions: false,
-        build_yard: false,
-        build_zeitwerk: false,
-        project_name: "test",
-        target_root:,
-        template_roots: []
+        **YAML.load_file(SPEC_ROOT.join("support/fixtures/attributes/minimum.yml"))
+              .merge(target_root:)
       ]
     end
 
