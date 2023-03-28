@@ -8,7 +8,7 @@ module Rubysmith
     module Parsers
       # Handles parsing of Command Line Interface (CLI) build options.
       class Build
-        include Import[:colorizer]
+        include Import[:color]
 
         using Refinements::Structs
 
@@ -298,7 +298,7 @@ module Rubysmith
           option.to_s
                 .sub("add_", "build_")
                 .then { |attribute| configuration.public_send attribute }
-                .then { |boolean| boolean ? colorizer.green(boolean) : colorizer.red(boolean) }
+                .then { |bool| bool ? color[bool, :green] : color[bool, :red] }
                 .then { |colored_boolean| "Default: #{colored_boolean}" }
         end
       end

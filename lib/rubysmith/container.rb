@@ -2,15 +2,15 @@
 
 require "cogger"
 require "dry-container"
-require "pastel"
 require "spek"
+require "tone"
 
 module Rubysmith
   # Provides a global gem container for injection into other objects.
   module Container
     extend Dry::Container::Mixin
 
-    register(:colorizer) { Pastel.new enabled: $stdout.tty? }
+    register(:color) { Tone.new }
     register(:configuration) { Configuration::Loader.call }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../rubysmith.gemspec" }
     register(:kernel) { Kernel }
