@@ -24,6 +24,10 @@ RSpec.describe Rubysmith::Builders::Reek do
           exclude_paths:
             - tmp
             - vendor
+
+          detectors:
+            LongParameterList:
+              enabled: false
         CONTENT
       end
     end
