@@ -13,9 +13,23 @@
 
 ## Setup
 
-To set up the project, run:
+To install _with_ security, run:
 
-    bin/setup
+    # 💡 Skip this line if you already have the public certificate installed.
+    gem cert --add <(curl --compressed --location https://www.example.com/test/gems.pem)
+    gem install test --trust-policy HighSecurity
+
+To install _without_ security, run:
+
+    gem install test
+
+You can also add the gem directly to your project:
+
+    bundle add test
+
+Once the gem is installed, you only need to require it:
+
+    require "test"
 
 ## Usage
 
@@ -23,11 +37,9 @@ To set up the project, run:
 
 To contribute, run:
 
-``` bash
-git clone https://www.example.com/test/source
-cd test
-bin/setup
-```
+    git clone https://www.example.com/test/source
+    cd test
+    bin/setup
 
 You can also use the IRB console for direct access to all objects:
 

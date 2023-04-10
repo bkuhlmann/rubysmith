@@ -16,11 +16,34 @@ toc::[]
 
 == Setup
 
-To set up the project, run:
+To install _with_ security, run:
 
 [source,bash]
 ----
-bin/setup
+# 💡 Skip this line if you already have the public certificate installed.
+gem cert --add <(curl --compressed --location https://www.example.com/test/gems.pem)
+gem install test --trust-policy HighSecurity
+----
+
+To install _without_ security, run:
+
+[source,bash]
+----
+gem install test
+----
+
+You can also add the gem directly to your project:
+
+[source,bash]
+----
+bundle add test
+----
+
+Once the gem is installed, you only need to require it:
+
+[source,ruby]
+----
+require "test"
 ----
 
 == Usage

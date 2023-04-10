@@ -13,16 +13,26 @@
 
 ## Setup
 
+To install, run:
+
+    gem install test
+
+You can also add the gem directly to your project:
+
+    bundle add test
+
+Once the gem is installed, you only need to require it:
+
+    require "test"
+
 ## Usage
 
 ## Development
 
 To contribute, run:
 
-``` bash
-git clone https://www.example.com/test/source
-cd test
-```
+    git clone https://www.example.com/test/source
+    cd test
 
 ## Tests
 

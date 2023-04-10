@@ -23,6 +23,7 @@ module Rubysmith
           builder.call(configuration.merge(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace(/\n{2,}/, "\n\n")
+                 .replace("\n    \n", "\n")
 
           configuration
         end
