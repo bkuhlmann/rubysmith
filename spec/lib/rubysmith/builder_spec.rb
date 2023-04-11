@@ -34,7 +34,7 @@ RSpec.describe Rubysmith::Builder do
       builder.append ""
 
       expect(logger.reread).to match(
-        %r(Appending content to: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Appending content to: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.delete
-      expect(logger.reread).to match(%r(Deleting: demo-test/lib/demo/test/identity.rb\n))
+      expect(logger.reread).to match(%r(🔎.+Deleting: demo-test/lib/demo/test/identity.rb))
     end
 
     it "deletes existing file" do
@@ -79,7 +79,7 @@ RSpec.describe Rubysmith::Builder do
       builder.insert_after(/NAME.+/, "  # Test\n")
 
       expect(logger.reread).to match(
-        %r(Inserting content after pattern in: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Inserting content after pattern in: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -117,7 +117,7 @@ RSpec.describe Rubysmith::Builder do
       builder.insert_before "module Identity", "# Test\n"
 
       expect(logger.reread).to match(
-        %r(Inserting content before pattern in: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Inserting content before pattern in: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -161,7 +161,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.make_path
-      expect(logger.reread).to match(%r(Creating path: demo-test/lib/demo/test/one/two\n))
+      expect(logger.reread).to match(%r(🔎.+Creating path: demo-test/lib/demo/test/one/two))
     end
 
     it "creates empty directory" do
@@ -181,7 +181,7 @@ RSpec.describe Rubysmith::Builder do
       builder.permit 0o755
 
       expect(logger.reread).to match(
-        %r(Changing permissions for: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Changing permissions for: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -202,7 +202,7 @@ RSpec.describe Rubysmith::Builder do
       builder.prepend "# This is a comment.\n"
 
       expect(logger.reread).to match(
-        %r(Prepending content to: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Prepending content to: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -227,7 +227,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.rename "identity.backup"
-      expect(logger.reread).to match(/Renaming: identity.rb to identity.backup/)
+      expect(logger.reread).to match(/🔎.+Renaming: identity.rb to identity.backup/)
     end
 
     it "inserts content at start of file" do
@@ -245,7 +245,7 @@ RSpec.describe Rubysmith::Builder do
   describe "#render" do
     it "logs information" do
       builder.render
-      expect(logger.reread).to match(%r(Rendering: demo-test/lib/demo/test/identity.rb\n))
+      expect(logger.reread).to match(%r(🔎.+Rendering: demo-test/lib/demo/test/identity.rb))
     end
 
     it "renders template using nested project name and path" do
@@ -293,7 +293,7 @@ RSpec.describe Rubysmith::Builder do
       builder.replace(/NAME.+/, %(LABEL = "Replaced"))
 
       expect(logger.reread).to match(
-        %r(Replacing content for patterns in: demo-test/lib/demo/test/identity.rb\n)
+        %r(🔎.+Replacing content for patterns in: demo-test/lib/demo/test/identity.rb)
       )
     end
 
@@ -350,7 +350,7 @@ RSpec.describe Rubysmith::Builder do
   describe "#touch" do
     it "logs information" do
       builder.touch
-      expect(logger.reread).to match(%r(Touching: demo-test/lib/demo/test/identity.rb\n))
+      expect(logger.reread).to match(%r(🔎.+Touching: demo-test/lib/demo/test/identity.rb))
     end
 
     it "creates empty file" do

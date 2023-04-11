@@ -120,22 +120,22 @@ RSpec.describe Rubysmith::CLI::Shell do
 
     it "prints version" do
       shell.call %w[--version]
-      expect(logger.reread).to match(/Rubysmith\s\d+\.\d+\.\d+/)
+      expect(kernel).to have_received(:puts).with(/Rubysmith\s\d+\.\d+\.\d+/)
     end
 
     it "prints help (usage)" do
       shell.call %w[--help]
-      expect(logger.reread).to match(/Rubysmith.+USAGE.+BUILD OPTIONS/m)
+      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+BUILD OPTIONS/m)
     end
 
     it "prints usage when no options are given" do
       shell.call
-      expect(logger.reread).to match(/Rubysmith.+USAGE.+BUILD OPTIONS.+/m)
+      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+BUILD OPTIONS/m)
     end
 
     it "prints error with invalid option" do
       shell.call %w[--bogus]
-      expect(logger.reread).to match(/invalid option.+bogus/)
+      expect(logger.reread).to match(/🛑.+invalid option.+bogus/)
     end
   end
 end

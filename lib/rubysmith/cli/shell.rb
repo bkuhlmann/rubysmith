@@ -7,7 +7,7 @@ module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      include Actions::Import[:config, :build, :publish, :specification, :logger]
+      include Actions::Import[:config, :build, :kernel, :logger, :publish, :specification]
 
       def initialize(parser: Parser.new, **)
         super(**)
@@ -29,8 +29,8 @@ module Rubysmith
           in action_config: Symbol => action then config.call action
           in action_build: true then build.call configuration
           in action_publish: true then publish.call configuration
-          in action_version: true then logger.info { specification.labeled_version }
-          else logger.any { parser.to_s }
+          in action_version: true then kernel.puts specification.labeled_version
+          else kernel.puts parser.to_s
         end
       end
     end

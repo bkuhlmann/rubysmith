@@ -36,12 +36,7 @@ RSpec.shared_context "with application dependencies" do
   end
 
   let(:kernel) { class_spy Kernel }
-
-  let :logger do
-    Cogger::Client.new Logger.new(StringIO.new),
-                       level: Logger::DEBUG,
-                       formatter: -> _severity, _name, _at, message { "#{message}\n" }
-  end
+  let(:logger) { Cogger.new io: StringIO.new, level: :debug, formatter: :emoji }
 
   before { Rubysmith::Import.stub configuration:, kernel:, logger: }
 
