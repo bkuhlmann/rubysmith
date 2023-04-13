@@ -1,5 +1,13 @@
 = Versions
 
+== 4.8.0 (2023-04-12)
+
+* Updated to Caliber 0.30.0 - Brooke Kuhlmann
+* Updated to Cogger 0.8.0 - Brooke Kuhlmann
+* Updated to Milestoner 15.3.0 - Brooke Kuhlmann
+* Updated to Pragmater 12.2.0 - Brooke Kuhlmann
+* Updated to Tocer 15.2.0 - Brooke Kuhlmann
+
 == 4.7.0 (2023-04-10)
 
 * Added Tone gem - Brooke Kuhlmann
