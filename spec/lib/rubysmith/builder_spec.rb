@@ -11,7 +11,7 @@ RSpec.describe Rubysmith::Builder do
   using Refinements::Structs
 
   let :configuration do
-    Rubysmith::Configuration::Content[
+    Rubysmith::Configuration::Model[
       template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
       template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
       target_root: temp_dir,
@@ -150,7 +150,7 @@ RSpec.describe Rubysmith::Builder do
 
   describe "#make_path" do
     let :configuration do
-      Rubysmith::Configuration::Content[
+      Rubysmith::Configuration::Model[
         template_path: "%project_name%/lib/%project_path%/one/two",
         target_root: temp_dir,
         project_name: "demo-test"
@@ -260,7 +260,7 @@ RSpec.describe Rubysmith::Builder do
 
     context "with duplicated project name in path" do
       let :configuration do
-        Rubysmith::Configuration::Content[
+        Rubysmith::Configuration::Model[
           template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
           template_path: "%project_name%/bin/%project_name%.erb",
           target_root: temp_dir,

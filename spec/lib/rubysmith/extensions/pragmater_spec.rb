@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
   describe ".call" do
     it "answers configuration" do
-      expect(described_class.call(configuration)).to be_a(Rubysmith::Configuration::Content)
+      expect(described_class.call(configuration)).to be_a(Rubysmith::Configuration::Model)
     end
   end
 

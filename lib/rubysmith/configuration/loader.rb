@@ -20,8 +20,8 @@ module Rubysmith
 
       def self.with_defaults = new(client: DEFAULTS, enhancers: {})
 
-      def initialize content: Content.new, client: CLIENT, enhancers: Enhancers::Container
-        @content = content
+      def initialize model: Model.new, client: CLIENT, enhancers: Enhancers::Container
+        @model = model
         @client = client
         @enhancers = enhancers
       end
@@ -34,11 +34,11 @@ module Rubysmith
 
       protected
 
-      attr_reader :content, :client, :enhancers
+      attr_reader :model, :client, :enhancers
 
       private
 
-      def preload_content = content.merge(**client.to_h.flatten_keys)
+      def preload_content = model.merge(**client.to_h.flatten_keys)
     end
   end
 end

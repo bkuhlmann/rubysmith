@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::Extensions::Bundler do
   describe ".call" do
     it "answers configuration" do
       expect(described_class.call(configuration, client:)).to be_a(
-        Rubysmith::Configuration::Content
+        Rubysmith::Configuration::Model
       )
     end
   end

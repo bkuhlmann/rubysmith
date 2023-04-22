@@ -3,7 +3,7 @@
 require "spec_helper"
 require "yaml"
 
-RSpec.describe Rubysmith::Configuration::Content do
+RSpec.describe Rubysmith::Configuration::Model do
   using Refinements::Pathnames
   using Refinements::Structs
 

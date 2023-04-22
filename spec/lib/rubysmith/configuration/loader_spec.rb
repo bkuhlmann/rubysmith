@@ -6,14 +6,14 @@ RSpec.describe Rubysmith::Configuration::Loader do
   subject(:loader) { described_class.with_defaults }
 
   let :content do
-    Rubysmith::Configuration::Content[
+    Rubysmith::Configuration::Model[
       **YAML.load_file(SPEC_ROOT.join("support/fixtures/attributes/default.yml"))
     ]
   end
 
   describe ".call" do
     it "answers default configuration" do
-      expect(described_class.call).to be_a(Rubysmith::Configuration::Content)
+      expect(described_class.call).to be_a(Rubysmith::Configuration::Model)
     end
   end
 

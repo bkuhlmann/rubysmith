@@ -8,14 +8,14 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
   subject(:enhancer) { described_class }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Content[git_hub_user: "default"] }
+    let(:content) { Rubysmith::Configuration::Model[git_hub_user: "default"] }
     let(:git) { instance_double Gitt::Repository }
 
     before { allow(git).to receive(:get).with("github.user").and_return(user) }
 
     context "with missing defaults and GitHub user" do
       let(:user) { Success nil }
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
 
       it "answers nil user" do
         expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: nil)
@@ -24,7 +24,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
 
     context "with missing defaults and existing GitHub user" do
       let(:user) { Success "git_hub" }
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
 
       it "answers GitHub user" do
         expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: "git_hub")

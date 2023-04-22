@@ -9,7 +9,7 @@ module Rubysmith
   # rubocop:disable Metrics/ModuleLength
   module Configuration
     # Defines the common configuration content for use throughout the gem.
-    Content = Struct.new(
+    Model = Struct.new(
       :action_build,
       :action_config,
       :action_edit,

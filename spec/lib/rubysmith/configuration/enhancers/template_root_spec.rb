@@ -6,7 +6,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::TemplateRoot do
   subject(:enhancer) { described_class }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Content.new template_roots: [Pathname.pwd] }
+    let(:content) { Rubysmith::Configuration::Model.new template_roots: [Pathname.pwd] }
 
     it "answers path array with overrides prepended" do
       template_roots = enhancer.call(content).template_roots

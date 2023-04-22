@@ -10,12 +10,12 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
   let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Content[author_email: "test@example.com"] }
+    let(:content) { Rubysmith::Configuration::Model[author_email: "test@example.com"] }
 
     before { allow(git).to receive(:get).with("user.email").and_return(email) }
 
     context "with missing defaults and no Git email" do
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
       let(:email) { Success nil }
 
       it "answers nil" do
@@ -24,7 +24,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitEmail do
     end
 
     context "with missing defaults and existing Git email" do
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
       let(:email) { Success "git@example.com" }
 
       it "answers Git email" do

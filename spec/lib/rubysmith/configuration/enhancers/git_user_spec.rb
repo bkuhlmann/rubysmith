@@ -11,13 +11,13 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
     let(:git) { instance_double Gitt::Repository }
 
     let :content do
-      Rubysmith::Configuration::Content[author_given_name: "Test", author_family_name: "Example"]
+      Rubysmith::Configuration::Model[author_given_name: "Test", author_family_name: "Example"]
     end
 
     before { allow(git).to receive(:get).with("user.name").and_return(user) }
 
     context "with missing defaults and no Git user" do
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
       let(:user) { Success nil }
 
       it "answers blank author" do
@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Configuration::Enhancers::GitUser do
     end
 
     context "with missing defaults and existing Git user" do
-      let(:content) { Rubysmith::Configuration::Content.new }
+      let(:content) { Rubysmith::Configuration::Model.new }
       let(:user) { Success "Git Test" }
 
       it "answers Git author" do
