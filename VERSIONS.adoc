@@ -1,5 +1,10 @@
 = Versions
 
+== 4.9.0 (2023-05-20)
+
+* Updated to Debug 1.8.0 - Brooke Kuhlmann
+* Updated to Spek 1.1.0 - Brooke Kuhlmann
+
 == 4.8.0 (2023-04-12)
 
 * Updated to Caliber 0.30.0 - Brooke Kuhlmann
