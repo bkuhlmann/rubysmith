@@ -8,7 +8,7 @@ module Rubysmith
     module Enhancers
       using Refinements::Structs
 
-      CurrentTime = -> content, at: Time.now { content.merge(now: at) }
+      CurrentTime = -> content, at: Time.now { content.merge now: at }
     end
   end
 end

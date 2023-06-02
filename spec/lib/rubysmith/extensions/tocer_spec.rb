@@ -17,7 +17,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
   end
 
   describe "#call" do
-    let(:readme_path) { temp_dir.join("test/README.md") }
+    let(:readme_path) { temp_dir.join "test/README.md" }
 
     let :snippet do
       <<~BODY
