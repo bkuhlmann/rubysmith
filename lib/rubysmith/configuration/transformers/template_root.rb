@@ -2,7 +2,7 @@
 
 module Rubysmith
   module Configuration
-    module Enhancers
+    module Transformers
       # Prepends template roots to existing content.
       TemplateRoot = lambda do |content, overrides: Pathname(__dir__).join("../../templates")|
         content.add_template_roots(*Array(overrides))

@@ -7,7 +7,7 @@ require "refinements/structs"
 module Rubysmith
   module Configuration
     # Dynamically adds Git user if defined.
-    module Enhancers
+    module Transformers
       using Refinements::Strings
       using Refinements::Structs
 

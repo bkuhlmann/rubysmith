@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Configuration::Enhancers::CurrentTime do
+RSpec.describe Rubysmith::Configuration::Transformers::CurrentTime do
   subject(:enhancer) { described_class }
 
   describe "#call" do

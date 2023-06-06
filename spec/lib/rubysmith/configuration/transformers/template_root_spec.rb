@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Configuration::Enhancers::TemplateRoot do
+RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
   subject(:enhancer) { described_class }
 
   describe "#call" do

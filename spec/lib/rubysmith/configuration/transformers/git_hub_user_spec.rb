@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Configuration::Enhancers::GitHubUser do
+RSpec.describe Rubysmith::Configuration::Transformers::GitHubUser do
   include Dry::Monads[:result]
 
   subject(:enhancer) { described_class }
