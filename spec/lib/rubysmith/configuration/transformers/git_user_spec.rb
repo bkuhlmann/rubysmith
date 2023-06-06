@@ -5,64 +5,58 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Transformers::GitUser do
   include Dry::Monads[:result]
 
-  subject(:enhancer) { described_class }
+  subject(:transformer) { described_class }
 
   describe "#call" do
-    let(:git) { instance_double Gitt::Repository }
-
     let :content do
-      Rubysmith::Configuration::Model[author_given_name: "Test", author_family_name: "Example"]
+      {author_given_name: "Test", author_family_name: "Example"}
     end
+
+    let(:user) { Failure "Danger!" }
+    let(:git) { instance_double Gitt::Repository }
 
     before { allow(git).to receive(:get).with("user.name").and_return(user) }
 
-    context "with missing defaults and no Git user" do
-      let(:content) { Rubysmith::Configuration::Model.new }
-      let(:user) { Success nil }
+    it "answers default given and family name when present" do
+      expect(transformer.call(content, git:)).to eq(
+        Success(author_given_name: "Test", author_family_name: "Example")
+      )
+    end
 
-      it "answers blank author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "")
+    context "without default given or family name and with GitHub user" do
+      let(:content) { {} }
+      let(:user) { Success "Git Example" }
+
+      it "answers Git user given and family name" do
+        expect(transformer.call(content, git:)).to eq(
+          Success(
+            author_given_name: "Git", author_family_name: "Example"
+          )
+        )
       end
     end
 
-    context "with missing defaults and existing Git user" do
-      let(:content) { Rubysmith::Configuration::Model.new }
-      let(:user) { Success "Git Test" }
+    context "with default given name only" do
+      let(:content) { {author_given_name: "Test"} }
 
-      it "answers Git author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Git Test")
+      it "answers given name" do
+        expect(transformer.call(content, git:)).to eq(Success(author_given_name: "Test"))
       end
     end
 
-    context "with defaults and no Git user" do
-      let(:user) { Success nil }
+    context "with default family name only" do
+      let(:content) { {author_family_name: "Example"} }
 
-      it "answers default author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
+      it "answers family name" do
+        expect(transformer.call(content, git:)).to eq(Success(author_family_name: "Example"))
       end
     end
 
-    context "with defaults and blank Git user" do
-      let(:user) { Success "" }
+    context "without default given or family name and Git user" do
+      let(:content) { {} }
 
-      it "answers default author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
-      end
-    end
-
-    context "with defaults and Git user" do
-      let(:user) { Success "Git Test" }
-
-      it "answers default author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
-      end
-    end
-
-    context "with user failure" do
-      let(:user) { Failure() }
-
-      it "answers default author" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "Test Example")
+      it "answers failure" do
+        expect(transformer.call(content, git:)).to eq(Failure("Danger!"))
       end
     end
   end

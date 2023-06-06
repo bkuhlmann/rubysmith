@@ -3,14 +3,23 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Transformers::CurrentTime do
-  subject(:enhancer) { described_class }
+  include Dry::Monads[:result]
+
+  subject(:transformer) { described_class }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Model.new }
     let(:at) { Time.now }
 
-    it "answers current time" do
-      expect(enhancer.call(content, at:)).to have_attributes(now: at)
+    it "answers original time when key is present" do
+      expect(transformer.call({now: at})).to eq(Success(now: at))
+    end
+
+    it "answers custom time with missing key but custom time" do
+      expect(transformer.call({}, at:)).to eq(Success(now: at))
+    end
+
+    it "answers current time with missing key only" do
+      expect(transformer.call({}).success).to match(now: kind_of(Time))
     end
   end
 end

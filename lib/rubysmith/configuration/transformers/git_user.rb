@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
+require "dry/monads"
 require "gitt"
-require "refinements/strings"
-require "refinements/structs"
 
 module Rubysmith
   module Configuration
     # Dynamically adds Git user if defined.
     module Transformers
-      using Refinements::Strings
-      using Refinements::Structs
+      include Dry::Monads[:result]
 
       GitUser = lambda do |content, git: Gitt::Repository.new|
-        return content unless String(content.author_name).blank?
-
-        git.get("user.name")
-           .value_or("")
-           .then { |name| String(name).split }
-           .then { |first, last| {author_given_name: first, author_family_name: last} }
-           .then { |user| content.merge(**user) }
+        if content[:author_given_name] || content[:author_family_name]
+          Dry::Monads::Success content
+        else
+          git.get("user.name").fmap do |name|
+            first, last = String(name).split
+            content.merge author_given_name: first, author_family_name: last
+          end
+        end
       end
     end
   end

@@ -3,19 +3,31 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
-  subject(:enhancer) { described_class }
+  include Dry::Monads[:result]
+
+  subject(:transformer) { described_class }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Model.new template_roots: [Pathname.pwd] }
+    let(:content) { {template_roots: [Pathname.pwd]} }
 
     it "answers path array with overrides prepended" do
-      template_roots = enhancer.call(content).template_roots
-      expect(template_roots).to eq([Bundler.root.join("lib/rubysmith/templates"), Pathname.pwd])
+      expect(transformer.call(content)).to eq(
+        Success(template_roots: [Bundler.root.join("lib/rubysmith/templates"), Pathname.pwd])
+      )
     end
 
-    it "answers empty arrary with no overrides" do
-      template_roots = described_class.call(content, overrides: nil).template_roots
-      expect(template_roots).to contain_exactly(Pathname.pwd)
+    it "answers default array with no overrides" do
+      expect(transformer.call(content, overrides: nil)).to eq(
+        Success(template_roots: [Pathname.pwd])
+      )
+    end
+
+    context "without defaults or overrides" do
+      let(:content) { {} }
+
+      it "answers empty array" do
+        expect(transformer.call(content, overrides: nil)).to eq(Success({template_roots: []}))
+      end
     end
   end
 end

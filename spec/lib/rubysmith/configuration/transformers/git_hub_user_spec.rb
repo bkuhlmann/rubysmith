@@ -5,61 +5,33 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Transformers::GitHubUser do
   include Dry::Monads[:result]
 
-  subject(:enhancer) { described_class }
+  subject(:transformer) { described_class }
 
   describe "#call" do
-    let(:content) { Rubysmith::Configuration::Model[git_hub_user: "default"] }
+    let(:content) { {git_hub_user: "default"} }
+    let(:user) { Failure "Danger!" }
     let(:git) { instance_double Gitt::Repository }
 
     before { allow(git).to receive(:get).with("github.user").and_return(user) }
 
-    context "with missing defaults and GitHub user" do
-      let(:user) { Success nil }
-      let(:content) { Rubysmith::Configuration::Model.new }
-
-      it "answers nil user" do
-        expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: nil)
-      end
+    it "answers default user when present" do
+      expect(transformer.call(content, git:)).to eq(Success(git_hub_user: "default"))
     end
 
-    context "with missing defaults and existing GitHub user" do
+    context "without default user and with GitHub user" do
+      let(:content) { {} }
       let(:user) { Success "git_hub" }
-      let(:content) { Rubysmith::Configuration::Model.new }
 
       it "answers GitHub user" do
-        expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: "git_hub")
+        expect(transformer.call(content, git:)).to eq(Success(git_hub_user: "git_hub"))
       end
     end
 
-    context "with defaults and nil GitHub user" do
-      let(:user) { Success nil }
+    context "without default user and GitHub user" do
+      let(:content) { {} }
 
-      it "answers default user" do
-        expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: "default")
-      end
-    end
-
-    context "with defaults and blank GitHub user" do
-      let(:user) { Success "" }
-
-      it "answers default user" do
-        expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: "default")
-      end
-    end
-
-    context "with defaults and GitHub user" do
-      let(:user) { Success "dynamic" }
-
-      it "answers default user" do
-        expect(enhancer.call(content, git:)).to have_attributes(git_hub_user: "default")
-      end
-    end
-
-    context "with user failure" do
-      let(:user) { Failure() }
-
-      it "answers blank user" do
-        expect(enhancer.call(content, git:)).to have_attributes(author_name: "")
+      it "answers failure" do
+        expect(transformer.call(content, git:)).to eq(Failure("Danger!"))
       end
     end
   end
