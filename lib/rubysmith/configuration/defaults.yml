@@ -1,59 +1,52 @@
-:author:
-  :email:
-  :family_name:
-  :given_name:
-  :url:
-:build:
-  :amazing_print: true
-  :caliber: true
-  :circle_ci: false
-  :citation: true
-  :cli: false
-  :community: false
-  :conduct: true
-  :console: true
-  :contributions: true
-  :debug: true
-  :funding: false
-  :git: true
-  :git_hub: false
-  :git_hub_ci: false
-  :git_lint: true
-  :guard: true
-  :license: true
-  :maximum: false
-  :minimum: false
-  :rake: true
-  :readme: true
-  :reek: true
-  :refinements: true
-  :rspec: true
-  :security: true
-  :setup: true
-  :simple_cov: true
-  :versions: true
-  :yard: false
-  :zeitwerk: true
-:citation:
-  :affiliation:
-  :message: Please use the following metadata when citing this project in your work.
-  :orcid:
-:documentation:
-  :format: "adoc"
-:extensions:
-  :milestoner:
-    :documentation:
-      :format: "adoc"
-    :prefixes:
+build:
+  amazing_print: true
+  caliber: true
+  circle_ci: false
+  citation: true
+  cli: false
+  community: false
+  conduct: true
+  console: true
+  contributions: true
+  debug: true
+  funding: false
+  git: true
+  git_hub: false
+  git_hub_ci: false
+  git_lint: true
+  guard: true
+  license: true
+  maximum: false
+  minimum: false
+  rake: true
+  readme: true
+  reek: true
+  refinements: true
+  rspec: true
+  security: true
+  setup: true
+  simple_cov: true
+  versions: true
+  yard: false
+  zeitwerk: true
+citation:
+  message: Please use the following metadata when citing this project in your work.
+documentation:
+  format: "adoc"
+extensions:
+  milestoner:
+    documentation:
+      format: "adoc"
+    prefixes:
       - Fixed
       - Added
       - Updated
       - Removed
       - Refactored
-  :pragmater:
-    :comments:
+  pragmater:
+    comments:
       - "# frozen_string_literal: true"
-    :includes:
+    patterns:
       - "**/*.rake"
       - "**/*.rb"
       - "*.gemspec"
@@ -65,27 +58,13 @@
       - Gemfile
       - Guardfile
       - Rakefile
-  :tocer:
-    :includes:
+  tocer:
+    label: "## Table of Contents"
+    patterns:
       - "README.md"
-    :label: "## Table of Contents"
-:git_hub:
-  :user:
-:license:
-  :label: Hippocratic
-  :name: hippocratic
-  :version: 2.1
-:project:
-  :url:
-    :community:
-    :conduct:
-    :contributions:
-    :download:
-    :funding:
-    :home:
-    :issues:
-    :license:
-    :security:
-    :source:
-    :versions:
-  :version: 0.0.0
+license:
+  label: Hippocratic
+  name: hippocratic
+  version: "2.1"
+project:
+  version: 0.0.0
