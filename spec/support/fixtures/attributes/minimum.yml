@@ -28,5 +28,3 @@
 :build_versions: false
 :build_yard: false
 :build_zeitwerk: false
-:project_name: "test"
-:template_roots: []
