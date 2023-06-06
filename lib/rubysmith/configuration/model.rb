@@ -10,14 +10,6 @@ module Rubysmith
   module Configuration
     # Defines the common configuration content for use throughout the gem.
     Model = Struct.new(
-      :action_build,
-      :action_config,
-      :action_edit,
-      :action_help,
-      :action_install,
-      :action_publish,
-      :action_version,
-      :action_view,
       :author_email,
       :author_family_name,
       :author_given_name,
@@ -59,8 +51,8 @@ module Rubysmith
       :extensions_milestoner_documentation_format,
       :extensions_milestoner_prefixes,
       :extensions_pragmater_comments,
-      :extensions_pragmater_includes,
-      :extensions_tocer_includes,
+      :extensions_pragmater_patterns,
+      :extensions_tocer_patterns,
       :extensions_tocer_label,
       :git_hub_user,
       :license_label,
@@ -91,12 +83,6 @@ module Rubysmith
       def initialize target_root: Pathname.pwd, template_roots: [], **arguments
         super
         freeze
-      end
-
-      def add_template_roots *paths
-        paths.map { |path| Pathname path }
-             .including(template_roots)
-             .then { |roots| dup.merge! template_roots: roots }
       end
 
       def maximize = update_build_options(true)

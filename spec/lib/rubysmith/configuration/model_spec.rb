@@ -22,28 +22,6 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
   end
 
-  describe "#add_template_roots" do
-    it "prepends single path" do
-      test_root = Pathname "a/path"
-      update = content.add_template_roots test_root
-
-      expect(update.template_roots).to eq([test_root])
-    end
-
-    it "prepends array of mixed paths" do
-      root_a = Pathname "a/path"
-      root_b = "some/other/path"
-      update = content.add_template_roots(template_root).add_template_roots root_a, root_b
-
-      expect(update.template_roots).to eq([root_a, Pathname("some/other/path"), template_root])
-    end
-
-    it "doesn't mutate itself" do
-      content.add_template_roots "a/path"
-      expect(content.template_roots).to eq([])
-    end
-  end
-
   describe "#maximum" do
     let :proof do
       described_class[
