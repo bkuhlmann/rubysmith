@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores console flag.
       class Console < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_console }
 
-        def call(value = default) = inputs.merge!(build_console: value)
+        def call(value = default) = input.merge!(build_console: value)
       end
     end
   end

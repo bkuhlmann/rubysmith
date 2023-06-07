@@ -8,4 +8,6 @@ detectors:
   TooManyMethods:
     exclude:
       - "Rubysmith::Builder"
-      - "Rubysmith::CLI::Parsers::Build"
+  TooManyStatements:
+    exclude:
+      - "Rubysmith::CLI::Shell#cli"

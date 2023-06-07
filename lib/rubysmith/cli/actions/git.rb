@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Git flag.
       class Git < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_git }
 
-        def call(value = default) = inputs.merge!(build_git: value)
+        def call(value = default) = input.merge!(build_git: value)
       end
     end
   end

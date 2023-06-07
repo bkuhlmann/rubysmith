@@ -56,7 +56,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
     context "with custom includes" do
       let :test_configuration do
-        configuration.maximize.merge extensions_tocer_includes: %w[*.txt],
+        configuration.maximize.merge extensions_tocer_patterns: %w[*.txt],
                                      documentation_format: "md"
       end
 

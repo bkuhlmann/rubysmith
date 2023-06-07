@@ -14,7 +14,8 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
   describe ".call" do
     it "answers configuration" do
-      expect(described_class.call(configuration)).to be_a(Rubysmith::Configuration::Model)
+      record = described_class.call configuration
+      expect(record).to be_a(Rubysmith::Configuration::Model)
     end
   end
 
@@ -25,7 +26,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
     end
 
     context "with defaults" do
-      let(:test_configuration) { configuration.minimize }
+      let(:test_configuration) { configuration.minimize.merge }
 
       it "adds pragmas" do
         expect(test_path.read).to eq("# frozen_string_literal: true\n")
@@ -44,7 +45,7 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
     context "with custom includes" do
       let :test_configuration do
-        configuration.minimize.merge extensions_pragmater_includes: ["**/*.txt"]
+        configuration.minimize.merge extensions_pragmater_patterns: ["**/*.txt"]
       end
 
       it "doesn't add pragmas" do

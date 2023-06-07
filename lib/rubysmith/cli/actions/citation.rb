@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores citation flag.
       class Citation < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_citation }
 
-        def call(value = default) = inputs.merge!(build_citation: value)
+        def call(value = default) = input.merge!(build_citation: value)
       end
     end
   end

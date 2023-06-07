@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores conduct flag.
       class Conduct < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_conduct }
 
-        def call(value = default) = inputs.merge!(build_conduct: value)
+        def call(value = default) = input.merge!(build_conduct: value)
       end
     end
   end

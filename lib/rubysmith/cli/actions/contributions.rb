@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores contributions flag.
       class Contributions < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_contributions }
 
-        def call(value = default) = inputs.merge!(build_contributions: value)
+        def call(value = default) = input.merge!(build_contributions: value)
       end
     end
   end

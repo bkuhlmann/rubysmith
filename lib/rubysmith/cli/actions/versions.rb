@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores versions flag.
       class Versions < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_versions }
 
-        def call(value = default) = inputs.merge!(build_versions: value)
+        def call(value = default) = input.merge!(build_versions: value)
       end
     end
   end

@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Forces minimum configuration.
       class Minimum < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_minimum }
 
-        def call(*) = inputs.merge!(inputs.minimize)
+        def call(*) = input.merge!(input.minimize)
       end
     end
   end

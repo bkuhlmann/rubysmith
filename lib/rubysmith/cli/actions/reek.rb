@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Reek flag.
       class Reek < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_reek }
 
-        def call(value = default) = inputs.merge!(build_reek: value)
+        def call(value = default) = input.merge!(build_reek: value)
       end
     end
   end

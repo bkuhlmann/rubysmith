@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Guard flag.
       class Guard < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_guard }
 
-        def call(value = default) = inputs.merge!(build_guard: value)
+        def call(value = default) = input.merge!(build_guard: value)
       end
     end
   end

@@ -12,24 +12,24 @@ module Rubysmith
       def self.call(...) = new(...).call
 
       def initialize configuration,
-                     client: ::Pragmater::Runner.new,
-                     content: ::Pragmater::Configuration::Content.new
+                     client: ::Pragmater::Inserter.new,
+                     record: ::Pragmater::Configuration::Model.new
         @configuration = configuration
         @client = client
-        @content = content
+        @record = record
       end
 
       def call = client.call(settings) && configuration
 
       private
 
-      attr_reader :configuration, :client, :content
+      attr_reader :configuration, :client, :record
 
       def settings
-        content.merge(action_insert: true, root_dir: configuration.project_root)
-               .transmute! configuration,
-                           comments: :extensions_pragmater_comments,
-                           includes: :extensions_pragmater_includes
+        record.merge(root_dir: configuration.project_root)
+              .transmute! configuration,
+                          comments: :extensions_pragmater_comments,
+                          patterns: :extensions_pragmater_patterns
       end
     end
   end

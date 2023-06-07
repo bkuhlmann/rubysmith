@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Actions::Publish do
+  using Refinements::Structs
+
   subject(:action) { described_class.new extension: }
 
   include_context "with application dependencies"
@@ -11,8 +13,8 @@ RSpec.describe Rubysmith::CLI::Actions::Publish do
 
   describe "#call" do
     it "messages extension" do
-      action.call configuration
-      expect(extension).to have_received(:call).with(configuration)
+      action.call "0.0.0"
+      expect(extension).to have_received(:call).with(configuration.merge(project_version: "0.0.0"))
     end
   end
 end

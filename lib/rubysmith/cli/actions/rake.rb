@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Rake flag.
       class Rake < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_rake }
 
-        def call(value = default) = inputs.merge!(build_rake: value)
+        def call(value = default) = input.merge!(build_rake: value)
       end
     end
   end

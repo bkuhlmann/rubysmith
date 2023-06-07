@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Refinements flag.
       class Refinements < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_refinements }
 
-        def call(value = default) = inputs.merge!(build_refinements: value)
+        def call(value = default) = input.merge!(build_refinements: value)
       end
     end
   end

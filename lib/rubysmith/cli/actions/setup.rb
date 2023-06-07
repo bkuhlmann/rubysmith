@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores setup flag.
       class Setup < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_setup }
 
-        def call(value = default) = inputs.merge!(build_setup: value)
+        def call(value = default) = input.merge!(build_setup: value)
       end
     end
   end

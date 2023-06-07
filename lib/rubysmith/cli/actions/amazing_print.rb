@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Amazing Print flag.
       class AmazingPrint < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_amazing_print }
 
-        def call(value = default) = inputs.merge!(build_amazing_print: value)
+        def call(value = default) = input.merge!(build_amazing_print: value)
       end
     end
   end

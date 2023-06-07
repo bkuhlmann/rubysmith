@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Caliber flag.
       class Caliber < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_caliber }
 
-        def call(value = default) = inputs.merge!(build_caliber: value)
+        def call(value = default) = input.merge!(build_caliber: value)
       end
     end
   end

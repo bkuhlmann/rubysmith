@@ -1,37 +1,39 @@
 # frozen_string_literal: true
 
-require "core"
-require "milestoner"
+require "sod"
 
 module Rubysmith
   module CLI
     # The main Command Line Interface (CLI) object.
     class Shell
-      include Actions::Import[:config, :build, :kernel, :logger, :publish, :specification]
+      include Import[:defaults_path, :xdg_config, :specification]
 
-      def initialize(parser: Parser.new, **)
+      def initialize(context: Sod::Context, dsl: Sod, **)
         super(**)
-        @parser = parser
+        @context = context
+        @dsl = dsl
       end
 
-      def call arguments = Core::EMPTY_ARRAY
-        act_on parser.call(arguments)
-      rescue OptionParser::ParseError, Milestoner::Error => error
-        logger.error { error.message }
-      end
+      def call(...) = cli.call(...)
 
       private
 
-      attr_reader :parser
+      attr_reader :context, :dsl
 
-      def act_on configuration
-        case configuration
-          in action_config: Symbol => action then config.call action
-          in action_build: true then build.call configuration
-          in action_publish: true then publish.call configuration
-          in action_version: true then kernel.puts specification.labeled_version
-          else kernel.puts parser.to_s
+      def cli
+        context = build_context
+
+        dsl.new :rubysmith, banner: specification.banner do
+          on(Sod::Prefabs::Commands::Config, context:)
+          on Commands::Build
+          on Actions::Publish
+          on(Sod::Prefabs::Actions::Version, context:)
+          on Sod::Prefabs::Actions::Help, self
         end
+      end
+
+      def build_context
+        context[defaults_path:, xdg_config:, version_label: specification.labeled_version]
       end
     end
   end

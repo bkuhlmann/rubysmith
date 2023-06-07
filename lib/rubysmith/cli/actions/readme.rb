@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores readme flag.
       class Readme < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_readme }
 
-        def call(value = default) = inputs.merge!(build_readme: value)
+        def call(value = default) = input.merge!(build_readme: value)
       end
     end
   end

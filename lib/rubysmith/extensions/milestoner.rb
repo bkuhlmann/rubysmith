@@ -13,7 +13,7 @@ module Rubysmith
 
       def initialize configuration,
                      client: ::Milestoner::Tags::Publisher.new,
-                     content: ::Milestoner::Configuration::Content.new
+                     content: ::Milestoner::Configuration::Model.new
         @configuration = configuration
         @client = client
         @content = content

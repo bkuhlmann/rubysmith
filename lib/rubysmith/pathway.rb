@@ -7,6 +7,7 @@ module Rubysmith
   Pathway = Struct.new :start_root, :start_path, :end_root, keyword_init: true do
     using Refinements::Pathnames
 
+    # :reek:TooManyStatements
     def initialize *arguments
       super
       each_pair { |key, value| self[key] = Pathname value }

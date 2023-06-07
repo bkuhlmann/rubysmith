@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores funding flag.
       class Funding < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_funding }
 
-        def call(value = default) = inputs.merge!(build_funding: value)
+        def call(value = default) = input.merge!(build_funding: value)
       end
     end
   end

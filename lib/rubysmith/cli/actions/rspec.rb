@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores RSpec flag.
       class RSpec < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_rspec }
 
-        def call(value = default) = inputs.merge!(build_rspec: value)
+        def call(value = default) = input.merge!(build_rspec: value)
       end
     end
   end

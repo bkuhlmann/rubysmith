@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "core"
 require "refinements/strings"
 require "refinements/structs"
 

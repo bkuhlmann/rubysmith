@@ -4,15 +4,16 @@ require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Shell do
   using Refinements::Pathnames
+  using Refinements::Structs
   using Infusible::Stub
 
   subject(:shell) { described_class.new }
 
   include_context "with application dependencies"
 
-  before { Rubysmith::CLI::Actions::Import.stub kernel:, logger: }
+  before { Sod::Import.stub kernel:, logger: }
 
-  after { Rubysmith::CLI::Actions::Import.unstub :kernel, :logger }
+  after { Sod::Import.unstub :kernel, :logger }
 
   describe "#call" do
     let :bom_maximum do
@@ -30,18 +31,13 @@ RSpec.describe Rubysmith::CLI::Shell do
               .map { |path| path.relative_path_from(temp_dir).to_s }
     end
 
-    it "edits configuration" do
-      shell.call %w[--config edit]
-      expect(kernel).to have_received(:system).with(include("EDITOR"))
-    end
-
-    it "views configuration" do
-      shell.call %w[--config view]
-      expect(kernel).to have_received(:system).with(include("cat"))
+    it "prints configuration usage" do
+      shell.call %w[config]
+      expect(kernel).to have_received(:puts).with(/Manage configuration.+/m)
     end
 
     context "with minimum forced build" do
-      let(:options) { %w[--build test --min] }
+      let(:options) { %w[build --name test --min] }
 
       let :files do
         [
@@ -81,7 +77,7 @@ RSpec.describe Rubysmith::CLI::Shell do
     end
 
     context "with maximum forced build" do
-      let(:options) { %w[--build test --max] }
+      let(:options) { %w[build --name test --max] }
 
       it "builds maximum skeleton" do
         temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
@@ -104,10 +100,12 @@ RSpec.describe Rubysmith::CLI::Shell do
     end
 
     it "publishes project" do
-      version = "1.2.3"
-      temp_dir.change_dir { `git clone https://github.com/bkuhlmann/test` }
+      skip "Requires CI push authorization." if ENV.fetch("CI", false) == "true"
 
-      temp_dir.join("test").change_dir do
+      version = "1.2.3"
+
+      temp_dir.join("test").make_path.change_dir do
+        `git init && git config --add remote.origin.url https://github.com/bkuhlmann/test`
         `touch test.txt && git add . && git commit -m "Added test file"`
         shell.call %W[--publish #{version}]
 
@@ -123,19 +121,9 @@ RSpec.describe Rubysmith::CLI::Shell do
       expect(kernel).to have_received(:puts).with(/Rubysmith\s\d+\.\d+\.\d+/)
     end
 
-    it "prints help (usage)" do
+    it "prints help" do
       shell.call %w[--help]
-      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+BUILD OPTIONS/m)
-    end
-
-    it "prints usage when no options are given" do
-      shell.call
-      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+BUILD OPTIONS/m)
-    end
-
-    it "prints error with invalid option" do
-      shell.call %w[--bogus]
-      expect(logger.reread).to match(/🛑.+invalid option.+bogus/)
+      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+/m)
     end
   end
 end

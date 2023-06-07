@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "versionaire"
 
 RSpec.describe Rubysmith::Extensions::Milestoner do
   using Refinements::Pathnames
   using Refinements::Structs
+  using Versionaire::Cast
 
   subject(:extension) { described_class.new test_configuration, client: }
 
@@ -28,7 +30,7 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
 
       it "messages client" do
         expect(client).to have_received(:call).with(
-          Milestoner::Configuration::Content[
+          Milestoner::Configuration::Model[
             documentation_format: "adoc",
             prefixes: %w[Fixed Added Updated Removed Refactored],
             version: "0.0.0"
@@ -46,7 +48,7 @@ RSpec.describe Rubysmith::Extensions::Milestoner do
 
       it "messages client" do
         expect(client).to have_received(:call).with(
-          Milestoner::Configuration::Content[
+          Milestoner::Configuration::Model[
             documentation_format: "adoc",
             prefixes: %w[Added],
             version: "1.2.3"

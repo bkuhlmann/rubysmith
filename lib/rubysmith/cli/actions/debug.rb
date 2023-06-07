@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Debug flag.
       class Debug < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_debug }
 
-        def call(value = default) = inputs.merge!(build_debug: value)
+        def call(value = default) = input.merge!(build_debug: value)
       end
     end
   end

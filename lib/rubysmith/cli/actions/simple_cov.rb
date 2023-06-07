@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores SimpleCov flag.
       class SimpleCov < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_simple_cov }
 
-        def call(value = default) = inputs.merge!(build_simple_cov: value)
+        def call(value = default) = input.merge!(build_simple_cov: value)
       end
     end
   end

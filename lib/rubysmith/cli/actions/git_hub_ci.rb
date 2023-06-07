@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores GitHub CI flag.
       class GitHubCI < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_git_hub_ci }
 
-        def call(value = default) = inputs.merge!(build_git_hub_ci: value)
+        def call(value = default) = input.merge!(build_git_hub_ci: value)
       end
     end
   end

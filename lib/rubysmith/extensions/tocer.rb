@@ -5,7 +5,7 @@ require "tocer"
 
 module Rubysmith
   module Extensions
-    # Ensures project skeleton documentation has table of contents.
+    # Ensures project skeleton documentation has table of content.
     class Tocer
       using Refinements::Structs
 
@@ -13,10 +13,10 @@ module Rubysmith
 
       def initialize configuration,
                      client: ::Tocer::Runner.new,
-                     content: ::Tocer::Configuration::Content.new
+                     record: ::Tocer::Configuration::Model.new
         @configuration = configuration
         @client = client
-        @content = content
+        @record = record
       end
 
       def call
@@ -26,13 +26,13 @@ module Rubysmith
 
       private
 
-      attr_reader :configuration, :client, :content
+      attr_reader :configuration, :client, :record
 
       def settings
-        content.merge(root_dir: configuration.project_root)
-               .transmute! configuration,
-                           includes: :extensions_tocer_includes,
-                           label: :extensions_tocer_label
+        record.merge(root_dir: configuration.project_root)
+              .transmute! configuration,
+                          label: :extensions_tocer_label,
+                          patterns: :extensions_tocer_patterns
       end
     end
   end

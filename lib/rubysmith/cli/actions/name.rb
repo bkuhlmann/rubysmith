@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores project (build) name.
       class Name < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -16,7 +16,7 @@ module Rubysmith
 
         on %w[-n --name], argument: "NAME"
 
-        def call(name) = inputs.merge!(project_name: name)
+        def call(name) = input.merge!(project_name: name)
       end
     end
   end

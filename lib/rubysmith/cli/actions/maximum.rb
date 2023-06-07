@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Forces maximum configuration.
       class Maximum < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_maximum }
 
-        def call(*) = inputs.merge!(inputs.maximize)
+        def call(*) = input.merge!(input.maximize)
       end
     end
   end

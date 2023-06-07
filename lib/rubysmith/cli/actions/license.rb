@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores license flag.
       class License < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_license }
 
-        def call(value = default) = inputs.merge!(build_license: value)
+        def call(value = default) = input.merge!(build_license: value)
       end
     end
   end

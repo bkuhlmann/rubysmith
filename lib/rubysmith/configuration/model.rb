@@ -80,14 +80,14 @@ module Rubysmith
       using Refinements::Strings
       using Refinements::Structs
 
-      def initialize target_root: Pathname.pwd, template_roots: [], **arguments
+      def initialize(**)
         super
         freeze
       end
 
-      def maximize = update_build_options(true)
+      def maximize = update_build_options true
 
-      def minimize = update_build_options(false)
+      def minimize = update_build_options false
 
       def author_name = [author_given_name, author_family_name].compress.join(" ")
 
@@ -136,8 +136,8 @@ module Rubysmith
       end
 
       def template_root
-        template_roots.map(&:expand_path)
-                      .find { |path| path.join(String(template_path)).exist? }
+        Array(template_roots).map(&:expand_path)
+                             .find { |path| path.join(String(template_path)).exist? }
       end
 
       private

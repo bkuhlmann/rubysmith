@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Yard flag.
       class Yard < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_yard }
 
-        def call(value = default) = inputs.merge!(build_yard: value)
+        def call(value = default) = input.merge!(build_yard: value)
       end
     end
   end

@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Stores Zeitwerk flag.
       class Zeitwerk < Sod::Action
-        include Import[:inputs]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_zeitwerk }
 
-        def call(value = default) = inputs.merge!(build_zeitwerk: value)
+        def call(value = default) = input.merge!(build_zeitwerk: value)
       end
     end
   end
