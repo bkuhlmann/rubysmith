@@ -187,7 +187,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 10.0"
+          gem "refinements", "~> 11.0"
         CONTENT
       end
 
@@ -334,7 +334,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 10.0"
+          gem "refinements", "~> 11.0"
           gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
@@ -377,7 +377,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 10.0"
+          gem "refinements", "~> 11.0"
           gem "zeitwerk", "~> 2.6"
 
           group :code_quality do
