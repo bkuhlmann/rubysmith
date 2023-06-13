@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sod", "~> 0.0"
   spec.add_dependency "spek", "~> 1.1"
   spec.add_dependency "tocer", "~> 15.2"
-  spec.add_dependency "tone", "~> 0.1"
+  spec.add_dependency "tone", "~> 0.3"
   spec.add_dependency "zeitwerk", "~> 2.6"
 
   spec.bindir = "exe"
