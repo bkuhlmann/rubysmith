@@ -77,43 +77,19 @@ gem install rubysmith
 From the command line, type: `rubysmith --help`
 
 ....
-USAGE:
-  -b, --build NAME [options]               Build new project.
-  -c, --config ACTION                      Manage gem configuration: edit or view.
-  -h, --help                               Show this message.
-  -p, --publish VERSION                    Publish project.
-  -v, --version                            Show gem version.
+USAGE
+  rubysmith [OPTIONS]
+  rubysmith COMMAND [OPTIONS]
 
-BUILD OPTIONS:
-      --[no-]amazing_print                 Add Amazing Print gem. Default: true.
-      --[no-]caliber                       Add Caliber gem. Default: true.
-      --[no-]circle_ci                     Add Circle CI configuration and badge. Default: false.
-      --[no-]citation                      Add citation documentation. Default: true.
-      --[no-]community                     Add community documentation. Default: false.
-      --[no-]conduct                       Add code of conduct documentation. Default: true.
-      --[no-]console                       Add console script. Default: true.
-      --[no-]contributions                 Add contributions documentation. Default: true.
-      --[no-]debug                         Add Debug gem. Default: true.
-      --[no-]funding                       Add GitHub funding configuration. Default: false.
-      --[no-]git                           Add Git. Default: true.
-      --[no-]git_hub                       Add GitHub templates. Default: false.
-      --[no-]git_hub_ci                    Add GitHub templates. Default: false.
-      --[no-]git-lint                      Add Git Lint gem. Default: true.
-      --[no-]guard                         Add Guard gem. Default: true.
-      --[no-]license                       Add license documentation. Default: true.
-      --max                                Use maximum/enabled options. Default: false.
-      --min                                Use minimum/disabled options. Default: false.
-      --[no-]rake                          Add Rake gem. Default: true.
-      --[no-]readme                        Add readme documentation. Default: true.
-      --[no-]reek                          Add Reek gem. Default: true.
-      --[no-]refinements                   Add Refinements gem. Default: true.
-      --[no-]rspec                         Add RSpec gem. Default: true.
-      --[no-]security                      Add security. Default: true.
-      --[no-]setup                         Add setup script. Default: true.
-      --[no-]simple_cov                    Add SimpleCov gem. Default: true.
-      --[no-]versions                      Add version history. Default: true.
-      --[no-]yard                          Add Yard gem. Default: false.
-      --[no-]zeitwerk                      Add Zeitwerk gem. Default: true.
+OPTIONS
+  -p, --publish VERSION     Publish project.
+  -v, --version             Show version.
+  -h, --help [COMMAND]      Show this message.
+
+COMMANDS
+  config                    Manage configuration.
+                            Path is dynamic per current directory.
+  build                     Build new project.
 ....
 
 ==== Build
@@ -124,7 +100,7 @@ Most build options are enabled by default. Example:
 
 [source,bash]
 ----
-rubysmith --build demo
+rubysmith build --name demo
 ----
 
 Running the above will generate a new `demo` Ruby project. Should you wish to disable specific
@@ -132,7 +108,7 @@ options, you can use `--no-*` prefixes. Example:
 
 [source,bash]
 ----
-rubysmith --build demo --no-debug --no-guard
+rubysmith build --name demo --no-debug --no-guard
 ----
 
 With the above example, both Debug and Guard support would have been disabled when building the
@@ -141,7 +117,7 @@ project with bare minimum of options. Example:
 
 [source,bash]
 ----
-rubysmith --build demo --min
+rubysmith build --name demo --min
 ----
 
 The above is essentially the same as building with _all_ options disabled. This is handy in situations where you need to quickly script something up for sharing with others yet still want to avoid using a {bundler_inline_link} script so gem dependencies are not installed each time the code is run.
@@ -151,8 +127,8 @@ example, where both minimum and maximum options are used in conjunction with oth
 
 [source,bash]
 ----
-rubysmith --build demo --min --zeitwerk
-rubysmith --build demo --max --no-debug
+rubysmith build --name demo --min --zeitwerk
+rubysmith build --name demo --max --no-debug
 ----
 
 With the above examples, the first line will _disable_ all options except Zeitwerk while the second
@@ -344,60 +320,61 @@ variables. The default configuration is as follows:
 [source,yaml]
 ----
 :author:
-  :email:
-  :family_name:
-  :given_name:
-  :url:
-:build:
-  :amazing_print: true
-  :caliber: true
-  :circle_ci: false
-  :citation: true
-  :cli: false
-  :community: false
-  :conduct: true
-  :console: true
-  :contributions: true
-  :debug: true
-  :funding: false
-  :git: true
-  :git_hub: false
-  :git_lint: true
-  :guard: true
-  :license: true
-  :maximum: false
-  :minimum: false
-  :rake: true
-  :readme: true
-  :reek: true
-  :refinements: true
-  :rspec: true
-  :security: true
-  :setup: true
-  :simple_cov: true
-  :versions: true
-  :yard: false
-  :zeitwerk: true
-:citation:
-  :affiliation:
-  :message: Please use the following metadata when citing this project in your work.
-  :orcid:
-:documentation:
-  :format: "adoc"
-:extensions:
-  :milestoner:
-    :documentation:
-      :format: "adoc"
-    :prefixes:
+  email:
+  family_name:
+  given_name:
+  url:
+build:
+  amazing_print: true
+  caliber: true
+  circle_ci: false
+  citation: true
+  cli: false
+  community: false
+  conduct: true
+  console: true
+  contributions: true
+  debug: true
+  funding: false
+  git: true
+  git_hub: false
+  git_hub_ci: false
+  git_lint: true
+  guard: true
+  license: true
+  maximum: false
+  minimum: false
+  rake: true
+  readme: true
+  reek: true
+  refinements: true
+  rspec: true
+  security: true
+  setup: true
+  simple_cov: true
+  versions: true
+  yard: false
+  zeitwerk: true
+citation:
+  affiliation:
+  message: Please use the following metadata when citing this project in your work.
+  orcid:
+documentation:
+  format: "adoc"
+extensions:
+  milestoner:
+    documentation:
+      format: "adoc"
+    prefixes:
       - Fixed
       - Added
       - Updated
       - Removed
       - Refactored
-  :pragmater:
-    :comments:
+  pragmater:
+    comments:
       - "# frozen_string_literal: true"
-    :includes:
+    patterns:
       - "**/*.rake"
       - "**/*.rb"
       - "*.gemspec"
@@ -409,34 +386,31 @@ variables. The default configuration is as follows:
       - Gemfile
       - Guardfile
       - Rakefile
-  :tocer:
-    :includes:
+  tocer:
+    label: "## Table of Contents"
+    patterns:
       - "README.md"
-    :label: "## Table of Contents"
-:git_hub:
-  :user:
-:license:
-  :label: Hippocratic
-  :name: hippocratic
-  :version: 2.1
-:project:
-  :url:
-    :community:
-    :conduct:
-    :contributions:
-    :download:
-    :funding:
-    :home:
-    :issues:
-    :license:
-    :security:
-    :source:
-    :versions:
-  :version: 0.0.0
+git_hub:
+  user:
+license:
+  label: Hippocratic
+  name: hippocratic
+  version: "2.1"
+project:
+  url:
+    community:
+    conduct:
+    contributions:
+    download:
+    funding:
+    home:
+    issues:
+    license:
+    security:
+    source:
+    versions:
+  version: 0.0.0
 ----
-
-Feel free to take this default configuration, modify, and save as your own custom
-`configuration.yml`.
 
 By customizing your configuration, you can change Rubysmith's default behavior when building
 projects. This is a great way to define your own specialized settings other than what is provide for
@@ -523,7 +497,7 @@ place holder is replaced with your project name when generating a new project. E
 https://www.example.com/%project_name%
 
 # Command
-rubysmith --build demo
+rubysmith build --name demo
 
 # Actual (computed result)
 https://www.example.com/demo
