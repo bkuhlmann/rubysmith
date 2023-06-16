@@ -1,5 +1,9 @@
 = Versions
 
+== 5.0.1 (2023-06-16)
+
+* Fixed RubyGems issue with Version 5.0.0 - Brooke Kuhlmann
+
 == 5.0.0 (2023-06-16)
 
 * Fixed RuboCop Style/MethodCallWithArgsParentheses issues - Brooke Kuhlmann
