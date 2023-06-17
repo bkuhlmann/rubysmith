@@ -21,10 +21,10 @@ module Rubysmith
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(Etcher::Loaders::YAML.new(self[:defaults_path]))
                       .add_transformer(Configuration::Transformers::CurrentTime)
-                      .add_transformer(Configuration::Transformers::GitHubUser)
-                      .add_transformer(Configuration::Transformers::GitEmail)
-                      .add_transformer(Configuration::Transformers::GitUser)
-                      .add_transformer(Configuration::Transformers::TemplateRoot)
+                      .add_transformer(Configuration::Transformers::GitHubUser.new)
+                      .add_transformer(Configuration::Transformers::GitEmail.new)
+                      .add_transformer(Configuration::Transformers::GitUser.new)
+                      .add_transformer(Configuration::Transformers::TemplateRoot.new)
                       .add_transformer(Configuration::Transformers::TargetRoot)
     end
 
