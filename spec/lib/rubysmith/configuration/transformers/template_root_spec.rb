@@ -5,29 +5,25 @@ require "spec_helper"
 RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
   include Dry::Monads[:result]
 
-  subject(:transformer) { described_class }
+  subject(:transformer) { described_class.new }
 
   describe "#call" do
     let(:content) { {template_roots: [Pathname.pwd]} }
 
-    it "answers path array with overrides prepended" do
+    it "answers array with custom content appended to defaults" do
       expect(transformer.call(content)).to eq(
         Success(template_roots: [Bundler.root.join("lib/rubysmith/templates"), Pathname.pwd])
       )
     end
 
-    it "answers default array with no overrides" do
-      expect(transformer.call(content, overrides: nil)).to eq(
-        Success(template_roots: [Pathname.pwd])
-      )
+    it "answers array without defaults" do
+      transformer = described_class.new nil
+      expect(transformer.call(content)).to eq(Success(template_roots: [Pathname.pwd]))
     end
 
-    context "without defaults or overrides" do
-      let(:content) { {} }
-
-      it "answers empty array" do
-        expect(transformer.call(content, overrides: nil)).to eq(Success({template_roots: []}))
-      end
+    it "answers empty array without defaults or custom content" do
+      transformer = described_class.new nil
+      expect(transformer.call({})).to eq(Success({template_roots: []}))
     end
   end
 end
