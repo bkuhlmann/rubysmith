@@ -1,5 +1,16 @@
 = Versions
 
+== 5.1.0 (2023-06-17)
+
+* Fixed current time spec descriptions - Brooke Kuhlmann
+* Fixed target root transformer spec descriptions - Brooke Kuhlmann
+* Added Git to container registry - Brooke Kuhlmann
+* Updated Git email transformer to inject dependencies - Brooke Kuhlmann
+* Updated Git user transformer to inject dependencies - Brooke Kuhlmann
+* Updated GitHub user transformer to inject dependencies - Brooke Kuhlmann
+* Updated container to initialize select transformers - Brooke Kuhlmann
+* Updated template root transformer to inject dependencies - Brooke Kuhlmann
+
 == 5.0.1 (2023-06-16)
 
 * Fixed RubyGems issue with Version 5.0.0 - Brooke Kuhlmann
