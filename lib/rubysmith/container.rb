@@ -3,6 +3,7 @@
 require "cogger"
 require "dry-container"
 require "etcher"
+require "gitt"
 require "runcom"
 require "spek"
 
@@ -31,6 +32,7 @@ module Rubysmith
     register(:defaults_path) { Pathname(__dir__).join("configuration/defaults.yml") }
     register(:xdg_config) { Runcom::Config.new "rubysmith/configuration.yml" }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../rubysmith.gemspec" }
+    register(:git) { Gitt::Repository.new }
     register(:kernel) { Kernel }
     register(:logger) { Cogger.new formatter: :emoji }
   end
