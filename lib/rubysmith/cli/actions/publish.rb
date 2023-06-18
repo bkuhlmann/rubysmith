@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Publishes project.
       class Publish < Sod::Action
-        include Import[:configuration]
+        include Import[:input]
 
         using ::Refinements::Structs
 
@@ -21,7 +21,7 @@ module Rubysmith
           @extension = extension
         end
 
-        def call(version) = extension.call configuration.merge(project_version: version)
+        def call(version) = extension.call input.merge(project_version: version)
 
         private
 
