@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
 require "sod"
 
 module Rubysmith
@@ -10,15 +9,13 @@ module Rubysmith
       class Yard < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
-
         description "Add Yard gem."
 
         on "--[no-]yard"
 
         default { Container[:configuration].build_yard }
 
-        def call(value = default) = input.merge!(build_yard: value)
+        def call(value = default) = input.build_yard = value
       end
     end
   end

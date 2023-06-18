@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
 require "sod"
 
 module Rubysmith
@@ -10,15 +9,13 @@ module Rubysmith
       class Console < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
-
         description "Add console script."
 
         on "--[no-]console"
 
         default { Container[:configuration].build_console }
 
-        def call(value = default) = input.merge!(build_console: value)
+        def call(value = default) = input.build_console = value
       end
     end
   end

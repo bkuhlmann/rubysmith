@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
 require "sod"
 
 module Rubysmith
@@ -10,15 +9,13 @@ module Rubysmith
       class Security < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
-
         description "Add security."
 
         on "--[no-]security"
 
         default { Container[:configuration].build_security }
 
-        def call(value = default) = input.merge!(build_security: value)
+        def call(value = default) = input.build_security = value
       end
     end
   end

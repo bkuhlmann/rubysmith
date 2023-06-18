@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
 require "sod"
 
 module Rubysmith
@@ -10,15 +9,13 @@ module Rubysmith
       class Debug < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
-
         description "Add Debug gem."
 
         on "--[no-]debug"
 
         default { Container[:configuration].build_debug }
 
-        def call(value = default) = input.merge!(build_debug: value)
+        def call(value = default) = input.build_debug = value
       end
     end
   end

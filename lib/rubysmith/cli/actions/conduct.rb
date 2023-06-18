@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
 require "sod"
 
 module Rubysmith
@@ -10,15 +9,13 @@ module Rubysmith
       class Conduct < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
-
         description "Add code of conduct documentation."
 
         on "--[no-]conduct"
 
         default { Container[:configuration].build_conduct }
 
-        def call(value = default) = input.merge!(build_conduct: value)
+        def call(value = default) = input.build_conduct = value
       end
     end
   end
