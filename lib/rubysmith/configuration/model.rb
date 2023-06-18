@@ -6,7 +6,6 @@ require "refinements/strings"
 require "refinements/structs"
 
 module Rubysmith
-  # rubocop:disable Metrics/ModuleLength
   module Configuration
     # Defines the common configuration content for use throughout the gem.
     Model = Struct.new(
@@ -158,5 +157,4 @@ module Rubysmith
       end
     end
   end
-  # rubocop:enable Metrics/ModuleLength
 end

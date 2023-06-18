@@ -11,7 +11,6 @@ module Rubysmith
         include Import[:input, :kernel, :logger]
 
         # Order is important.
-        # rubocop:todo Metrics/CollectionLiteralLength
         BUILDERS = [
           Builders::Core,
           Builders::Version,
@@ -41,7 +40,6 @@ module Rubysmith
           Extensions::Rubocop,
           Builders::Git::Commit
         ].freeze
-        # rubocop:enable Metrics/CollectionLiteralLength
 
         handle "build"
 
