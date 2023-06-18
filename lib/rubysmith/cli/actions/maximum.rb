@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_maximum }
 
-        def call(*) = input.merge!(input.maximize)
+        def call(*) = input.merge! input.maximize
       end
     end
   end

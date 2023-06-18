@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:configuration].build_minimum }
 
-        def call(*) = input.merge!(input.minimize)
+        def call(*) = input.merge! input.minimize
       end
     end
   end
