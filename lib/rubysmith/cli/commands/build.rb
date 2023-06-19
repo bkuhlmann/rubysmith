@@ -12,6 +12,7 @@ module Rubysmith
 
         # Order is important.
         BUILDERS = [
+          Builders::Init,
           Builders::Core,
           Builders::Version,
           Builders::Documentation::Readme,
