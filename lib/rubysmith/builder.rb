@@ -7,7 +7,7 @@ require "refinements/pathnames"
 module Rubysmith
   # Provides common functionality necessary for all builders.
   class Builder
-    include Import[:logger]
+    include Import[:kernel, :logger]
 
     using Refinements::Pathnames
 
@@ -25,6 +25,17 @@ module Rubysmith
       log_debug "Appending content to: #{relative_build_path}"
       build_path.rewrite { |body| body + content }
       self
+    end
+
+    def check
+      path = build_path
+
+      if path.exist?
+        log_error "Path exists: #{path}."
+        kernel.abort
+      else
+        log_debug "Checked: #{path}."
+      end
     end
 
     def delete

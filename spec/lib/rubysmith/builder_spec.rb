@@ -54,6 +54,35 @@ RSpec.describe Rubysmith::Builder do
     end
   end
 
+  describe "#check" do
+    let :configuration do
+      Rubysmith::Configuration::Model[
+        template_path: "%project_name%",
+        target_root: temp_dir,
+        project_name: "demo-test"
+      ]
+    end
+
+    it "logs debug info when project doesn't exist" do
+      builder.check
+      expect(logger.reread).to match(/🔎.+Checked: #{temp_dir.join "demo-test"}./)
+    end
+
+    it "aborts when project exists" do
+      builder.make_path
+      builder.check
+
+      expect(kernel).to have_received(:abort)
+    end
+
+    it "logs error when project exists" do
+      builder.make_path
+      builder.check
+
+      expect(logger.reread).to match(/🛑.+Path exists: #{temp_dir.join "demo-test"}./)
+    end
+  end
+
   describe "#delete" do
     before { build_path.deep_touch }
 

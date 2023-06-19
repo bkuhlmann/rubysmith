@@ -1,6 +1,9 @@
 inherit_gem:
   caliber: config/all.yml
 
+Metrics/ClassLength:
+  Exclude:
+    - "lib/rubysmith/builder.rb"
 Metrics/CollectionLiteralLength:
   Exclude:
     - "lib/rubysmith/cli/commands/build.rb"
