@@ -11,7 +11,7 @@ module Rubysmith
 
     using Refinements::Pathnames
 
-    HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, kernel: Open3}.freeze
+    HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, executor: Open3}.freeze
 
     def self.call(...) = new(...)
 
@@ -104,7 +104,7 @@ module Rubysmith
     attr_reader :configuration, :helpers
 
     def execute *command
-      kernel.capture2e(*command).then do |result, status|
+      executor.capture2e(*command).then do |result, status|
         log_error result unless status.success?
       end
     end
@@ -113,7 +113,7 @@ module Rubysmith
 
     def renderer = helpers.fetch(__method__).new(configuration)
 
-    def kernel = helpers.fetch(__method__)
+    def executor = helpers.fetch(__method__)
 
     def relative_build_path = build_path.relative_path_from(configuration.target_root)
 
