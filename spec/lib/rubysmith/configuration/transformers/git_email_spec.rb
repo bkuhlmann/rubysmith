@@ -10,26 +10,25 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitEmail do
   let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
-    let(:email) { Failure "Danger!" }
-
-    before { allow(git).to receive(:get).with("user.email").and_return(email) }
-
-    it "answers default email when present" do
+    it "answers custom email when present" do
       expect(transformer.call({author_email: "test@example.com"})).to eq(
         Success(author_email: "test@example.com")
       )
     end
 
-    context "without default email and with Git email" do
-      let(:email) { Success "git@example.com" }
-
-      it "answers Git email" do
-        expect(transformer.call({})).to eq(Success(author_email: "git@example.com"))
-      end
+    it "answers Git email when custom email is missing and Git email exists" do
+      allow(git).to receive(:get).with("user.email", nil).and_return(Success("git@example.com"))
+      expect(transformer.call({})).to eq(Success(author_email: "git@example.com"))
     end
 
-    it "answers failure without default email and Git email" do
-      expect(transformer.call({})).to eq(Failure("Danger!"))
+    it "answers original content when custom and Git emails are missing" do
+      allow(git).to receive(:get).with("user.email", nil).and_return(Success(nil))
+      expect(transformer.call({})).to eq(Success({}))
+    end
+
+    it "answers original content when custom user is missing and Git email is a failure" do
+      allow(git).to receive(:get).with("user.email", nil).and_return(Failure("Danger!"))
+      expect(transformer.call({})).to eq(Success({}))
     end
   end
 end

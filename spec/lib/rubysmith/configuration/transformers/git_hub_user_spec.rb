@@ -10,24 +10,23 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitHubUser do
   let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
-    let(:user) { Failure "Danger!" }
-
-    before { allow(git).to receive(:get).with("github.user").and_return(user) }
-
-    it "answers default user when present" do
-      expect(transformer.call({git_hub_user: "default"})).to eq(Success(git_hub_user: "default"))
+    it "answers custom user when present" do
+      expect(transformer.call({git_hub_user: "test"})).to eq(Success(git_hub_user: "test"))
     end
 
-    context "without default user and with GitHub user" do
-      let(:user) { Success "git_hub" }
-
-      it "answers GitHub user" do
-        expect(transformer.call({})).to eq(Success(git_hub_user: "git_hub"))
-      end
+    it "answers GitHub user when custom user is missing and GitHub user exists" do
+      allow(git).to receive(:get).with("github.user", nil).and_return(Success("test"))
+      expect(transformer.call({})).to eq(Success(git_hub_user: "test"))
     end
 
-    it "answers failure without default user and GitHub user" do
-      expect(transformer.call({})).to eq(Failure("Danger!"))
+    it "answers original content when custom and GitHub users are missing" do
+      allow(git).to receive(:get).with("github.user", nil).and_return(Success(nil))
+      expect(transformer.call({})).to eq(Success({}))
+    end
+
+    it "answers original content when custom user is missing and GitHub user is a failure" do
+      allow(git).to receive(:get).with("github.user", nil).and_return(Failure("Danger!"))
+      expect(transformer.call({})).to eq(Success({}))
     end
   end
 end

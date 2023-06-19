@@ -10,43 +10,40 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitUser do
   let(:git) { instance_double Gitt::Repository }
 
   describe "#call" do
-    let(:content) { {author_given_name: "Test", author_family_name: "Example"} }
-    let(:user) { Failure "Danger!" }
-
-    before { allow(git).to receive(:get).with("user.name").and_return(user) }
-
-    it "answers default given and family name when present" do
-      expect(transformer.call(content)).to eq(
+    it "answers full custom name when present" do
+      expect(transformer.call({author_given_name: "Test", author_family_name: "Example"})).to eq(
         Success(author_given_name: "Test", author_family_name: "Example")
       )
     end
 
-    context "without default given or family name and with GitHub user" do
-      let(:user) { Success "Git Example" }
-
-      it "answers Git user given and family name" do
-        expect(transformer.call({})).to eq(
-          Success(
-            author_given_name: "Git", author_family_name: "Example"
-          )
-        )
-      end
-    end
-
-    it "answers given name with default given name only" do
+    it "answers given name with custom given name only" do
       expect(transformer.call({author_given_name: "Test"})).to eq(
         Success(author_given_name: "Test")
       )
     end
 
-    it "answers family name with default family name only" do
+    it "answers family name with custom family name only" do
       expect(transformer.call({author_family_name: "Example"})).to eq(
         Success(author_family_name: "Example")
       )
     end
 
-    it "answers failure without default given or family name and Git user" do
-      expect(transformer.call({})).to eq(Failure("Danger!"))
+    it "answers full Git name when custom user is missing and Git user exists" do
+      allow(git).to receive(:get).with("user.name", nil).and_return(Success("Git Example"))
+
+      expect(transformer.call({})).to eq(
+        Success(author_given_name: "Git", author_family_name: "Example")
+      )
+    end
+
+    it "answers original content when custom and Git users are missing" do
+      allow(git).to receive(:get).with("user.name", nil).and_return(Success(nil))
+      expect(transformer.call({})).to eq(Success({}))
+    end
+
+    it "answers original content when custom user is missing and Git user is a failure" do
+      allow(git).to receive(:get).with("user.name", nil).and_return(Failure("Danger!"))
+      expect(transformer.call({})).to eq(Success({}))
     end
   end
 end
