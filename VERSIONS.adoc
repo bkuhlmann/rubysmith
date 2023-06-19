@@ -1,5 +1,16 @@
 = Versions
 
+== 5.2.0 (2023-06-19)
+
+* Fixed Git-based transformers to be lenient with missing values - Brooke Kuhlmann
+* Fixed publish action to import input instead of configuration - Brooke Kuhlmann
+* Added builder check - Brooke Kuhlmann
+* Added init builder - Brooke Kuhlmann
+* Updated RuboCop confguration for build command and configuration model - Brooke Kuhlmann
+* Removed unnecessary maximum and minimum parenthesis - Brooke Kuhlmann
+* Removed unnecessary refinement of CLI action structs - Brooke Kuhlmann
+* Refactored builder kernel as exectuor - Brooke Kuhlmann
+
 == 5.1.0 (2023-06-17)
 
 * Fixed current time spec descriptions - Brooke Kuhlmann
