@@ -21,7 +21,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
       let :proof do
         <<~BODY
-          require "bundler/setup"
           Bundler.require :tools
 
           require "test"
@@ -65,7 +64,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
       let :proof do
         <<~BODY
-          require "bundler/setup"
           Bundler.require :tools
 
           require "demo/test"
@@ -109,7 +107,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
       let :proof do
         <<~BODY
-          require "bundler/setup"
           Bundler.require :tools
 
           require "test"
@@ -156,9 +153,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
       let :proof do
         <<~BODY
-          require "bundler/setup"
-          Bundler.require :tools
-
           require "simplecov"
 
           unless ENV["NO_COVERAGE"]
@@ -169,6 +163,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               minimum_coverage_by_file line: 95, branch: 95
             end
           end
+
+          Bundler.require :tools
 
           require "test"
 
@@ -209,9 +205,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
       let :proof do
         <<~BODY
-          require "bundler/setup"
-          Bundler.require :tools
-
           require "simplecov"
 
           unless ENV["NO_COVERAGE"]
@@ -222,6 +215,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               minimum_coverage_by_file line: 95, branch: 95
             end
           end
+
+          Bundler.require :tools
 
           require "test"
           require "refinements"

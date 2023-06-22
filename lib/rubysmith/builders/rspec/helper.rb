@@ -21,6 +21,7 @@ module Rubysmith
 
           builder.call(configuration.merge(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
+                 .replace(/\A\n/, "")
                  .replace("\n\n\n", "\n\n")
 
           configuration
