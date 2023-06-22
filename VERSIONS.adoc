@@ -1,5 +1,13 @@
 = Versions
 
+== 5.3.0 (2023-06-22)
+
+* Fixed CLI actions to use nil instead of default values - Brooke Kuhlmann
+* Fixed RuboCop Packaging/BundlerSetupInTests issues - Brooke Kuhlmann
+* Fixed RuboCop Packaging/RequireRelativeHardcodingLib issue - Brooke Kuhlmann
+* Updated Rake RSpec task configuration to not be verbose - Brooke Kuhlmann
+* Removed shell spec use of Bundler environment wrapper - Brooke Kuhlmann
+
 == 5.2.0 (2023-06-19)
 
 * Fixed Git-based transformers to be lenient with missing values - Brooke Kuhlmann
