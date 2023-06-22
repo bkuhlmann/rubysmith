@@ -10,14 +10,14 @@ RSpec.describe Rubysmith::CLI::Actions::Guard do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "answers true by default" do
+    it "answers nil without arguments" do
       action.call
-      expect(input.build_guard).to be(true)
+      expect(input.build_guard).to be(nil)
     end
 
-    it "answers false when given false" do
-      action.call false
-      expect(input.build_guard).to be(false)
+    it "answers value when given agrument" do
+      action.call true
+      expect(input.build_guard).to be(true)
     end
   end
 end

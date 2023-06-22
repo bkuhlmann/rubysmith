@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_contributions }
 
-        def call(value = default) = input.build_contributions = value
+        def call(value = nil) = input.build_contributions = value
       end
     end
   end

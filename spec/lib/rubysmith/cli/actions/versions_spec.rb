@@ -10,14 +10,14 @@ RSpec.describe Rubysmith::CLI::Actions::Versions do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "answers true by default" do
+    it "answers nil without arguments" do
       action.call
-      expect(input.build_versions).to be(true)
+      expect(input.build_versions).to be(nil)
     end
 
-    it "answers false when given false" do
-      action.call false
-      expect(input.build_versions).to be(false)
+    it "answers value when given agrument" do
+      action.call true
+      expect(input.build_versions).to be(true)
     end
   end
 end

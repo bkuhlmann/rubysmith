@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_community }
 
-        def call(value = default) = input.build_community = value
+        def call(value = nil) = input.build_community = value
       end
     end
   end

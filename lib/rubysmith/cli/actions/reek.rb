@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_reek }
 
-        def call(value = default) = input.build_reek = value
+        def call(value = nil) = input.build_reek = value
       end
     end
   end

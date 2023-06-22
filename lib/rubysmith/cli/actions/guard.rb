@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_guard }
 
-        def call(value = default) = input.build_guard = value
+        def call(value = nil) = input.build_guard = value
       end
     end
   end

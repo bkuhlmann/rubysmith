@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_yard }
 
-        def call(value = default) = input.build_yard = value
+        def call(value = nil) = input.build_yard = value
       end
     end
   end

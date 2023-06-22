@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_conduct }
 
-        def call(value = default) = input.build_conduct = value
+        def call(value = nil) = input.build_conduct = value
       end
     end
   end

@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_versions }
 
-        def call(value = default) = input.build_versions = value
+        def call(value = nil) = input.build_versions = value
       end
     end
   end

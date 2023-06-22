@@ -10,12 +10,12 @@ RSpec.describe Rubysmith::CLI::Actions::Community do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "answers false by default" do
+    it "answers nil without arguments" do
       action.call
-      expect(input.build_community).to be(false)
+      expect(input.build_community).to be(nil)
     end
 
-    it "answers true when given true" do
+    it "answers value when given agrument" do
       action.call true
       expect(input.build_community).to be(true)
     end

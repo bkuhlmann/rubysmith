@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_zeitwerk }
 
-        def call(value = default) = input.build_zeitwerk = value
+        def call(value = nil) = input.build_zeitwerk = value
       end
     end
   end

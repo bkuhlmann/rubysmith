@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_git_hub_ci }
 
-        def call(value = default) = input.build_git_hub_ci = value
+        def call(value = nil) = input.build_git_hub_ci = value
       end
     end
   end

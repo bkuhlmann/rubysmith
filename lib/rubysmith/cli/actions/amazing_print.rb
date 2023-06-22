@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_amazing_print }
 
-        def call(value = default) = input.build_amazing_print = value
+        def call(value = nil) = input.build_amazing_print = value
       end
     end
   end

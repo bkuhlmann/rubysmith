@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:configuration].build_funding }
 
-        def call(value = default) = input.build_funding = value
+        def call(value = nil) = input.build_funding = value
       end
     end
   end
