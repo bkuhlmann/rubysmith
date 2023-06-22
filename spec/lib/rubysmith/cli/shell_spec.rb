@@ -17,10 +17,7 @@ RSpec.describe Rubysmith::CLI::Shell do
 
   describe "#call" do
     let :bom_maximum do
-      SPEC_ROOT.join("support/fixtures/boms/maximum.txt")
-               .readlines(chomp: true)
-               .push(("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"))
-               .compact
+      SPEC_ROOT.join("support/fixtures/boms/maximum.txt").each_line(chomp: true).compact
     end
 
     let :project_files do
@@ -28,6 +25,7 @@ RSpec.describe Rubysmith::CLI::Shell do
               .files("**/*", flag: File::FNM_DOTMATCH)
               .reject { |path| path.fnmatch?("*git/*") && !path.fnmatch?("*git/HEAD") }
               .reject { |path| path.fnmatch? "*tags" }
+              .reject { |path| path.fnmatch? "*lock" }
               .map { |path| path.relative_path_from(temp_dir).to_s }
     end
 
@@ -38,18 +36,10 @@ RSpec.describe Rubysmith::CLI::Shell do
 
     context "with minimum forced build" do
       let(:options) { %w[build --name test --min] }
-
-      let :files do
-        [
-          "test/.ruby-version",
-          "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
-          "test/lib/test.rb"
-        ].compact
-      end
+      let(:files) { ["test/.ruby-version", "test/Gemfile", "test/lib/test.rb"].compact }
 
       it "builds minimum skeleton" do
-        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
+        temp_dir.change_dir { shell.call options }
 
         expect(project_files).to match_array(files)
       end
@@ -60,17 +50,10 @@ RSpec.describe Rubysmith::CLI::Shell do
         SPEC_ROOT.join("support/fixtures/arguments/minimum.txt").readlines chomp: true
       end
 
-      let :files do
-        [
-          "test/.ruby-version",
-          "test/Gemfile",
-          ("test/Gemfile.lock" unless ENV.fetch("CI", false) == "true"),
-          "test/lib/test.rb"
-        ].compact
-      end
+      let(:files) { ["test/.ruby-version", "test/Gemfile", "test/lib/test.rb"].compact }
 
       it "builds minimum skeleton" do
-        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
+        temp_dir.change_dir { shell.call options }
 
         expect(project_files).to match_array(files)
       end
@@ -80,7 +63,7 @@ RSpec.describe Rubysmith::CLI::Shell do
       let(:options) { %w[build --name test --max] }
 
       it "builds maximum skeleton" do
-        temp_dir.change_dir { Bundler.with_unbundled_env { shell.call options } }
+        temp_dir.change_dir { shell.call options }
 
         expect(project_files).to match_array(bom_maximum)
       end
@@ -93,7 +76,7 @@ RSpec.describe Rubysmith::CLI::Shell do
 
       it "builds maximum skeleton" do
         temp_dir.change_dir do
-          Bundler.with_unbundled_env { shell.call options }
+          shell.call options
           expect(project_files).to match_array(bom_maximum)
         end
       end
