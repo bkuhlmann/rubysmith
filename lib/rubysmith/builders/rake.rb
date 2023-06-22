@@ -39,7 +39,7 @@ module Rubysmith
                .replace(/\[\s+/, "[")
                .replace(/\s+\]/, "]")
                .replace("  ", "")
-               .replace("task.", "  task.")
+               .replace("task.options", "  task.options")
                .replace(/\n+(?=require)/, "\n")
                .replace(/\n{2,}/, "\n\n")
       end
