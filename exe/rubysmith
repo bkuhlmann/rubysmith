@@ -3,4 +3,4 @@
 
 require "rubysmith"
 
-Rubysmith::CLI::Shell.new.call ARGV
+Rubysmith::CLI::Shell.new.call
