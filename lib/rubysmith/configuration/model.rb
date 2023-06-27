@@ -79,11 +79,6 @@ module Rubysmith
       using Refinements::Strings
       using Refinements::Structs
 
-      def initialize(**)
-        super
-        freeze
-      end
-
       def maximize = update_build_options true
 
       def minimize = update_build_options false
