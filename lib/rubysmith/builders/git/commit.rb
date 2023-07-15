@@ -33,7 +33,7 @@ module Rubysmith
         attr_reader :configuration, :builder
 
         def body
-          "Generated with [#{specification.label}](#{specification.homepage_url}) " \
+          "Generated with link:#{specification.homepage_url}[#{specification.label}] " \
           "#{specification.version}."
         end
 
