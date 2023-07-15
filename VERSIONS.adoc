@@ -1,5 +1,11 @@
 = Versions
 
+== 5.4.0 (2023-07-15)
+
+* Updated Git commit builder to use ASCII Doc format - Brooke Kuhlmann
+* Removed ARGV argument from CLI executable - Brooke Kuhlmann
+* Removed configuration model freezing - Brooke Kuhlmann
+
 == 5.3.0 (2023-06-22)
 
 * Fixed CLI actions to use nil instead of default values - Brooke Kuhlmann
