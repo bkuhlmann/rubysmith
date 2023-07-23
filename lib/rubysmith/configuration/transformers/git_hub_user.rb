@@ -10,13 +10,20 @@ module Rubysmith
         include Import[:git]
         include Dry::Monads[:result]
 
-        def call(content) = content[:git_hub_user] ? Success(content) : user_or(content)
+        def initialize(key = :git_hub_user, **)
+          @key = key
+          super(**)
+        end
+
+        def call(content) = content[key] ? Success(content) : user_or(content)
 
         private
 
+        attr_reader :key
+
         def user_or content
           git.get("github.user", nil)
-             .fmap { |user| user ? content.merge!(git_hub_user: user) : content }
+             .fmap { |value| value ? content.merge!(key => value) : content }
              .or { Success content }
         end
       end

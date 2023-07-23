@@ -8,9 +8,9 @@ module Rubysmith
     module Transformers
       include Dry::Monads[:result]
 
-      CurrentTime = lambda do |content, at: Time.now|
-        content.fetch(:now) { at }
-               .then { |now| content.merge! now: }
+      CurrentTime = lambda do |content, key = :now, at: Time.now|
+        content.fetch(key) { at }
+               .then { |value| content.merge! key => value }
                .then { |updated_content| Dry::Monads::Success updated_content }
       end
     end

@@ -10,13 +10,20 @@ module Rubysmith
         include Import[:git]
         include Dry::Monads[:result]
 
-        def call(content) = content[:author_email] ? Success(content) : email_or(content)
+        def initialize(key = :author_email, **)
+          @key = key
+          super(**)
+        end
+
+        def call(content) = content[key] ? Success(content) : email_or(content)
 
         private
 
+        attr_reader :key
+
         def email_or content
           git.get("user.email", nil)
-             .fmap { |email| email ? content.merge!(author_email: email) : content }
+             .fmap { |value| value ? content.merge!(key => value) : content }
              .or { Success content }
         end
       end

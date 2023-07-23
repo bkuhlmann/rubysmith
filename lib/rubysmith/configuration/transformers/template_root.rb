@@ -12,20 +12,21 @@ module Rubysmith
 
         using Refinements::Arrays
 
-        def initialize default = Pathname(__dir__).join("../../templates")
+        def initialize key = :template_roots, default: Pathname(__dir__).join("../../templates")
+          @key = key
           @default = default
         end
 
         def call content
           Array(default).map { |path| Pathname path }
-                        .including(content[:template_roots])
+                        .including(content[key])
                         .compact
-                        .then { |paths| Success content.merge!(template_roots: paths) }
+                        .then { |value| Success content.merge!(key => value) }
         end
 
         private
 
-        attr_reader :default
+        attr_reader :key, :default
       end
     end
   end

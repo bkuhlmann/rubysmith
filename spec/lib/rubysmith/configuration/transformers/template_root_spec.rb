@@ -17,12 +17,12 @@ RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
     end
 
     it "answers array without defaults" do
-      transformer = described_class.new nil
+      transformer = described_class.new default: nil
       expect(transformer.call(content)).to eq(Success(template_roots: [Pathname.pwd]))
     end
 
     it "answers empty array without defaults or custom content" do
-      transformer = described_class.new nil
+      transformer = described_class.new default: nil
       expect(transformer.call({})).to eq(Success({template_roots: []}))
     end
   end
