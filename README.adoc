@@ -76,21 +76,7 @@ gem install rubysmith
 
 From the command line, type: `rubysmith --help`
 
-....
-USAGE
-  rubysmith [OPTIONS]
-  rubysmith COMMAND [OPTIONS]
-
-OPTIONS
-  -p, --publish VERSION     Publish project.
-  -v, --version             Show version.
-  -h, --help [COMMAND]      Show this message.
-
-COMMANDS
-  config                    Manage configuration.
-                            Path is dynamic per current directory.
-  build                     Build new project.
-....
+image:https://alchemists.io/images/projects/rubysmith/screenshots/usage.png[Usage,width=588,height=345,role=focal_point]
 
 ==== Build
 
