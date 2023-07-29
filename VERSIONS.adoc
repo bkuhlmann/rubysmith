@@ -1,5 +1,13 @@
 = Versions
 
+== 5.5.0 (2023-07-29)
+
+* Added additional configuration template root transformer specs - Brooke Kuhlmann
+* Added container memoization - Brooke Kuhlmann
+* Added usage screenshot - Brooke Kuhlmann
+* Updated configuration transformers to inject keys - Brooke Kuhlmann
+* Updated to RuboCop 1.55.0 - Brooke Kuhlmann
+
 == 5.4.0 (2023-07-15)
 
 * Updated Git commit builder to use ASCII Doc format - Brooke Kuhlmann
