@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version = "5.5.0"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
-  spec.homepage = "https://github.com/bkuhlmann/rubysmith"
+  spec.homepage = "https://alchemists.io/projects/rubysmith"
   spec.summary = "A command line interface for smithing Ruby projects."
   spec.license = "Hippocratic-2.1"
 
