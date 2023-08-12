@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "refinements/structs"
-require "tocer"
 
 module Rubysmith
   module Builders
