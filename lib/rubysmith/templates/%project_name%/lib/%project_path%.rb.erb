@@ -2,11 +2,16 @@
   require "zeitwerk"
   <% if configuration.project_levels.positive? %>
     Zeitwerk::Loader.new.then do |loader|
+      loader.tag = "<%= configuration.project_name %>"
       loader.push_dir "#{__dir__}<%= Array.new(configuration.project_levels, "/..").join %>"
       loader.setup
     end
   <% else %>
-    Zeitwerk::Loader.for_gem.setup
+    Zeitwerk::Loader.new.then do |loader|
+      loader.tag = File.basename __FILE__, ".rb"
+      loader.push_dir __dir__
+      loader.setup
+    end
   <% end %>
 <% end %>
 <% namespace %>

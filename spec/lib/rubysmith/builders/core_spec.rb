@@ -49,7 +49,11 @@ RSpec.describe Rubysmith::Builders::Core do
         expect(temp_dir.join("test", "lib", "test.rb").read).to eq(<<~CONTENT)
           require "zeitwerk"
 
-          Zeitwerk::Loader.for_gem.setup
+          Zeitwerk::Loader.new.then do |loader|
+            loader.tag = File.basename __FILE__, ".rb"
+            loader.push_dir __dir__
+            loader.setup
+          end
 
           # Main namespace.
           module Test
@@ -68,6 +72,7 @@ RSpec.describe Rubysmith::Builders::Core do
           require "zeitwerk"
 
           Zeitwerk::Loader.new.then do |loader|
+            loader.tag = "demo-test"
             loader.push_dir "\#{__dir__}/.."
             loader.setup
           end
@@ -91,6 +96,7 @@ RSpec.describe Rubysmith::Builders::Core do
           require "zeitwerk"
 
           Zeitwerk::Loader.new.then do |loader|
+            loader.tag = "demo-test-example"
             loader.push_dir "\#{__dir__}/../.."
             loader.setup
           end
