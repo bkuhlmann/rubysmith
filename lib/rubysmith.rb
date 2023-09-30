@@ -15,4 +15,5 @@ end
 
 # Main namespace.
 module Rubysmith
+  def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
 end

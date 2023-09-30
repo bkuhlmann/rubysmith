@@ -57,6 +57,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
           # Main namespace.
           module Test
+            def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
           end
         CONTENT
       end
@@ -80,6 +81,7 @@ RSpec.describe Rubysmith::Builders::Core do
           module Demo
             # Main namespace.
             module Test
+              def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
             end
           end
         CONTENT
@@ -105,6 +107,7 @@ RSpec.describe Rubysmith::Builders::Core do
             module Test
               # Main namespace.
               module Example
+                def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
               end
             end
           end

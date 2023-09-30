@@ -14,4 +14,10 @@
     end
   <% end %>
 <% end %>
+<% if configuration.build_zeitwerk %>
+<% namespace do %>
+  def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
+<% end %>
+<% else %>
 <% namespace %>
+<% end %>
