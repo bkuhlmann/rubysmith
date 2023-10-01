@@ -3,7 +3,7 @@
 require "bundler/setup"
 Bundler.require :tools
 
-require "<%= configuration.project_path %>"
+require Bundler.root.join("lib/<%= configuration.project_path %>").to_s
 require "irb"
 
 IRB.start __FILE__

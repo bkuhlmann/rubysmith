@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Builders::Console do
           require "bundler/setup"
           Bundler.require :tools
 
-          require "test"
+          require Bundler.root.join("lib/test").to_s
           require "irb"
 
           IRB.start __FILE__
@@ -55,7 +55,7 @@ RSpec.describe Rubysmith::Builders::Console do
           require "bundler/setup"
           Bundler.require :tools
 
-          require "demo/test"
+          require Bundler.root.join("lib/demo/test").to_s
           require "irb"
 
           IRB.start __FILE__
