@@ -273,9 +273,9 @@ Additional customization is possible via the YARD Rake task as found in the `Rak
 
 ===== Zeitwerk
 
-The `--zeitwerk` option allows you add the link:https://github.com/fxn/zeitwerk[Zeitwerk] gem to
-your project so you can reduce the maintence burden of managing requirements when adding new objects
-to your project.
+The `--zeitwerk` option allows you add the link:https://github.com/fxn/zeitwerk[Zeitwerk] gem to your project so you can reduce the maintenance burden of managing requirements when adding new objects to your project.
+
+This includes having access to your project's Zeitwerk loader for inspection and debugging purposes. This means if you built a `Demo` project, you'd immediately have access to your project's loader via `Demo.loader` when using the project console (i.e. `bin/console`, assuming you built your project with the `--console` flag enabled which is default behavior).
 
 ==== Publish
 
