@@ -21,7 +21,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         builder.call
 
         expect(gemfile_path.read).to eq(<<~CONTENT)
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -34,7 +34,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -55,7 +55,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -76,7 +76,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -99,7 +99,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -120,7 +120,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -141,7 +141,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -162,7 +162,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -183,7 +183,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -202,7 +202,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -223,7 +223,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -244,7 +244,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -268,7 +268,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -290,7 +290,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -309,7 +309,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -330,7 +330,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
@@ -373,7 +373,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
       let :proof do
         <<~CONTENT
-          ruby File.read(".ruby-version").strip
+          ruby file: ".ruby-version"
 
           source "https://rubygems.org"
 
