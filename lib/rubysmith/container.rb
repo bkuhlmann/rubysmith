@@ -36,7 +36,7 @@ module Rubysmith
     register(:defaults_path, memoize: true) { Pathname(__dir__).join("configuration/defaults.yml") }
     register(:xdg_config, memoize: true) { Runcom::Config.new "rubysmith/configuration.yml" }
     register(:git, memoize: true) { Gitt::Repository.new }
-    register(:logger, memoize: true) { Cogger.new formatter: :emoji }
+    register(:logger, memoize: true) { Cogger.new id: :rubysmith }
     register :kernel, Kernel
   end
 end
