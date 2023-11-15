@@ -16,7 +16,15 @@
 <% end %>
 <% if configuration.build_zeitwerk %>
 <% namespace do %>
-  def self.loader(registry = Zeitwerk::Registry) = registry.loader_for __FILE__
+  <% if configuration.project_levels.positive? %>
+    def self.loader registry = Zeitwerk::Registry
+      @loader ||= registry.loaders.find { |loader| loader.tag == "<%= configuration.project_name %>" }
+    end
+  <% else %>
+    def self.loader registry = Zeitwerk::Registry
+      @loader ||= registry.loaders.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
+    end
+  <% end %>
 <% end %>
 <% else %>
 <% namespace %>

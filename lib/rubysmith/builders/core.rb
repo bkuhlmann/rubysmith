@@ -24,8 +24,6 @@ module Rubysmith
                .replace(/    (?=(Zeit|loader|end))/, "")
                .replace("\n  \n", "\n\n")
                .insert_before("module #{module_name}", "#{indentation}# Main namespace.\n")
-               .replace("end\n  end", "    end\n  end")
-
         configuration
       end
 
