@@ -24,9 +24,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           require "bundler/setup"
 
           desc "Run code quality checks"
-          task code_quality: %i[]
+          task quality: %i[]
 
-          task default: %i[code_quality]
+          task default: %i[quality]
         CONTENT
       end
 
@@ -54,9 +54,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           Git::Lint::Rake::Register.call
 
           desc "Run code quality checks"
-          task code_quality: %i[git_lint]
+          task quality: %i[git_lint]
 
-          task default: %i[code_quality]
+          task default: %i[quality]
         CONTENT
       end
     end
@@ -72,9 +72,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           Reek::Rake::Task.new
 
           desc "Run code quality checks"
-          task code_quality: %i[reek]
+          task quality: %i[reek]
 
-          task default: %i[code_quality]
+          task default: %i[quality]
         CONTENT
       end
     end
@@ -90,9 +90,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           RSpec::Core::RakeTask.new { |task| task.verbose = false }
 
           desc "Run code quality checks"
-          task code_quality: %i[]
+          task quality: %i[]
 
-          task default: %i[code_quality spec]
+          task default: %i[quality spec]
         CONTENT
       end
     end
@@ -110,9 +110,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           RuboCop::RakeTask.new
 
           desc "Run code quality checks"
-          task code_quality: %i[rubocop]
+          task quality: %i[rubocop]
 
-          task default: %i[code_quality]
+          task default: %i[quality]
         CONTENT
       end
     end
@@ -132,9 +132,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           end
 
           desc "Run code quality checks"
-          task code_quality: %i[]
+          task quality: %i[]
 
-          task default: %i[code_quality]
+          task default: %i[quality]
         CONTENT
       end
     end
@@ -161,9 +161,9 @@ RSpec.describe Rubysmith::Builders::Rake do
           end
 
           desc "Run code quality checks"
-          task code_quality: %i[git_lint reek rubocop]
+          task quality: %i[git_lint reek rubocop]
 
-          task default: %i[code_quality spec]
+          task default: %i[quality spec]
         CONTENT
       end
 

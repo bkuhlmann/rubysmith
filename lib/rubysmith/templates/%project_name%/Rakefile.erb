@@ -36,6 +36,6 @@ require "bundler/setup"
 <% end %>
 
 desc "Run code quality checks"
-task code_quality: %i[<% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
+task quality: %i[<% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
 
-task default: %i[code_quality <% if configuration.build_rspec %>spec<% end %>]
+task default: %i[quality <% if configuration.build_rspec %>spec<% end %>]
