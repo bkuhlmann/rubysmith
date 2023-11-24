@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :code_quality do
+          group :quality do
             gem "caliber", "~> 0.42"
           end
         CONTENT
@@ -103,7 +103,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :code_quality do
+          group :quality do
             gem "git-lint", "~> 6.0"
           end
         CONTENT
@@ -166,7 +166,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :code_quality do
+          group :quality do
             gem "reek", "~> 6.1", require: false
           end
         CONTENT
@@ -227,7 +227,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          group :code_quality do
+          group :quality do
             gem "simplecov", "~> 0.22", require: false
           end
         CONTENT
@@ -337,7 +337,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "refinements", "~> 11.0"
           gem "zeitwerk", "~> 2.6"
 
-          group :code_quality do
+          group :quality do
             gem "caliber", "~> 0.42"
             gem "git-lint", "~> 6.0"
             gem "reek", "~> 6.1", require: false
@@ -380,7 +380,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "refinements", "~> 11.0"
           gem "zeitwerk", "~> 2.6"
 
-          group :code_quality do
+          group :quality do
             gem "caliber", "~> 0.42"
             gem "git-lint", "~> 6.0"
             gem "reek", "~> 6.1", require: false
