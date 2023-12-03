@@ -8,20 +8,20 @@ jobs:
       - checkout
 
       - restore_cache:
-          name: Bundler Restore
+          name: Gems Restore
           keys:
             - gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
             - gem-cache-
 
       - run:
-          name: Bundler Install
+          name: Gems Install
           command: |
             gem update --system
             bundle config set path "vendor/bundle"
             bundle install
 
       - save_cache:
-          name: Bundler Store
+          name: Gems Store
           key: gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
           paths:
             - vendor/bundle
@@ -32,7 +32,7 @@ jobs:
 
 <% if configuration.build_simple_cov %>
       - store_artifacts:
-          name: SimpleCov Artifacts Upload
+          name: SimpleCov Report
           path: ~/project/coverage
           destination: coverage
 <% end %>
