@@ -33,12 +33,12 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
                 - name: Checkout
                   uses: actions/checkout@v3
 
-                - name: Setup Ruby
+                - name: Ruby Setup
                   uses: ruby/setup-ruby@v1
                   with:
                     bundler-cache: true
 
-                - name: Rake
+                - name: Build
                   run: bundle exec rake
         CONTENT
       end
@@ -65,15 +65,15 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
                 - name: Checkout
                   uses: actions/checkout@v3
 
-                - name: Setup Ruby
+                - name: Ruby Setup
                   uses: ruby/setup-ruby@v1
                   with:
                     bundler-cache: true
 
-                - name: Rake
+                - name: Build
                   run: bundle exec rake
 
-                - name: Archive SimpleCov Report
+                - name: SimpleCov Report
                   uses: actions/upload-artifact@v3
                   with:
                     name: coverage
