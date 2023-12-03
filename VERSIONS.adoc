@@ -1,5 +1,12 @@
 = Versions
 
+== 5.9.0 (2023-12-03)
+
+* Fixed Circle CI step names - Brooke Kuhlmann
+* Fixed GitHub CI step names - Brooke Kuhlmann
+* Added Bundler extension Linux (x86) platform lock - Brooke Kuhlmann
+* Added core builder Zeitwerk spec template - Brooke Kuhlmann
+
 == 5.8.1 (2023-11-16)
 
 * Fixed gem loader to find by tag and cache instance - Brooke Kuhlmann
