@@ -26,5 +26,10 @@ RSpec.describe Rubysmith::Extensions::Bundler do
       builder.call
       expect(client).to have_received(:start).with(%w[install --quiet])
     end
+
+    it "adds Linux (x86) platform" do
+      builder.call
+      expect(client).to have_received(:start).with(%w[lock --add-platform x86_64-linux --update])
+    end
   end
 end

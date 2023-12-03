@@ -2,12 +2,14 @@
 
 require "bundler"
 require "bundler/cli"
+require "refinements/ios"
 require "refinements/pathnames"
 
 module Rubysmith
   module Extensions
     # Ensures gem dependencies are installed.
     class Bundler
+      using Refinements::IOs
       using Refinements::Pathnames
 
       def self.call(...) = new(...).call
@@ -18,7 +20,11 @@ module Rubysmith
       end
 
       def call
-        configuration.project_root.change_dir { client.start %w[install --quiet] }
+        configuration.project_root.change_dir do
+          client.start %w[install --quiet]
+          STDOUT.squelch { client.start %w[lock --add-platform x86_64-linux --update] }
+        end
+
         configuration
       end
 
