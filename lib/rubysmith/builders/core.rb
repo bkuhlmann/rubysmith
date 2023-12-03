@@ -18,16 +18,28 @@ module Rubysmith
       end
 
       def call
+        render_implementation
+        render_specification
+        configuration
+      end
+
+      private
+
+      def render_implementation
         builder.call(configuration.merge(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
                .replace("  require", "require")
                .replace(/    (?=(Zeit|loader|end))/, "")
                .replace("\n  \n", "\n\n")
                .insert_before("module #{module_name}", "#{indentation}# Main namespace.\n")
-        configuration
       end
 
-      private
+      def render_specification
+        return unless configuration.build_zeitwerk
+
+        path = "%project_name%/spec/lib/%project_path%_spec.rb.erb"
+        builder.call(configuration.merge(template_path: path)).render
+      end
 
       def indentation = ::Core::EMPTY_STRING.indent configuration.project_levels
 

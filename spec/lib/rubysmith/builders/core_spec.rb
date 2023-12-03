@@ -26,6 +26,10 @@ RSpec.describe Rubysmith::Builders::Core do
           end
         CONTENT
       end
+
+      it "doesn't build specification" do
+        expect(temp_dir.join("test/spec/lib/test_spec.rb").exist?).to be(false)
+      end
     end
 
     context "with dashed project name" do
@@ -39,6 +43,10 @@ RSpec.describe Rubysmith::Builders::Core do
             end
           end
         CONTENT
+      end
+
+      it "doesn't build specification" do
+        expect(temp_dir.join("test/spec/lib/test_spec.rb").exist?).to be(false)
       end
     end
 
@@ -61,6 +69,25 @@ RSpec.describe Rubysmith::Builders::Core do
                 @loader ||= registry.loaders.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
           end
 
+          end
+        CONTENT
+      end
+
+      it "builds specification" do
+        expect(temp_dir.join("test/spec/lib/test_spec.rb").read).to eq(<<~CONTENT)
+          require "spec_helper"
+
+          RSpec.describe Test do
+            describe ".loader" do
+              it "eager loads" do
+                expectation = proc { described_class.loader.eager_load force: true }
+                expect(&expectation).not_to raise_error
+              end
+
+              it "answers unique tag" do
+                expect(described_class.loader.tag).to eq("test")
+              end
+            end
           end
         CONTENT
       end
@@ -92,6 +119,25 @@ RSpec.describe Rubysmith::Builders::Core do
           end
         CONTENT
       end
+
+      it "builds specification" do
+        expect(temp_dir.join("demo-test/spec/lib/demo/test_spec.rb").read).to eq(<<~CONTENT)
+          require "spec_helper"
+
+          RSpec.describe Demo::Test do
+            describe ".loader" do
+              it "eager loads" do
+                expectation = proc { described_class.loader.eager_load force: true }
+                expect(&expectation).not_to raise_error
+              end
+
+              it "answers unique tag" do
+                expect(described_class.loader.tag).to eq("demo-test")
+              end
+            end
+          end
+        CONTENT
+      end
     end
 
     context "with multi-dashed project name and Zeitwerk enabled" do
@@ -118,6 +164,27 @@ RSpec.describe Rubysmith::Builders::Core do
               end
 
           end
+            end
+          end
+        CONTENT
+      end
+
+      it "builds specification" do
+        contents = temp_dir.join("demo-test-example/spec/lib/demo/test/example_spec.rb").read
+
+        expect(contents).to eq(<<~CONTENT)
+          require "spec_helper"
+
+          RSpec.describe Demo::Test::Example do
+            describe ".loader" do
+              it "eager loads" do
+                expectation = proc { described_class.loader.eager_load force: true }
+                expect(&expectation).not_to raise_error
+              end
+
+              it "answers unique tag" do
+                expect(described_class.loader.tag).to eq("demo-test-example")
+              end
             end
           end
         CONTENT

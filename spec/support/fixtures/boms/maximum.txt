@@ -22,5 +22,6 @@ test/LICENSE.adoc
 test/Rakefile
 test/README.adoc
 test/spec/spec_helper.rb
+test/spec/lib/test_spec.rb
 test/spec/support/shared_contexts/temp_dir.rb
 test/VERSIONS.adoc

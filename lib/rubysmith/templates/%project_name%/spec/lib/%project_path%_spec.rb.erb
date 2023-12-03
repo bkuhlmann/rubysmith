@@ -1,0 +1,14 @@
+require "spec_helper"
+
+RSpec.describe <%= configuration.project_namespaced_class %> do
+  describe ".loader" do
+    it "eager loads" do
+      expectation = proc { described_class.loader.eager_load force: true }
+      expect(&expectation).not_to raise_error
+    end
+
+    it "answers unique tag" do
+      expect(described_class.loader.tag).to eq("<%= configuration.project_name %>")
+    end
+  end
+end
