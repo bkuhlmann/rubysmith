@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Pathway do
 
   shared_examples "a frozen member" do |method|
     it "fails when attempting to be set" do
-      expectation = proc { way.public_send "#{method}=", "invalid" }
+      expectation = proc { way.public_send :"#{method}=", "invalid" }
       expect(&expectation).to raise_error(FrozenError, /can't modify/)
     end
   end
