@@ -50,7 +50,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
                       - vendor/bundle
 
                 - run:
-                    name: Build
+                    name: Rake
                     command: bundle exec rake
         CONTENT
       end
@@ -94,7 +94,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
                       - vendor/bundle
 
                 - run:
-                    name: Build
+                    name: Rake
                     command: bundle exec rake
 
                 - store_artifacts:
