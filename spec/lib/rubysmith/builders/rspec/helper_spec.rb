@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::RSpec::Helper do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -114,7 +114,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           SPEC_ROOT = Pathname(__dir__).realpath.freeze
 
-          using Refinements::Pathnames
+          using Refinements::Pathname
 
           Pathname.require_tree SPEC_ROOT.join("support/shared_contexts")
 
@@ -223,7 +223,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
           SPEC_ROOT = Pathname(__dir__).realpath.freeze
 
-          using Refinements::Pathnames
+          using Refinements::Pathname
 
           Pathname.require_tree SPEC_ROOT.join("support/shared_contexts")
 

@@ -2,14 +2,14 @@
 
 require "logger"
 require "open3"
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module Rubysmith
   # Provides common functionality necessary for all builders.
   class Builder
     include Import[:kernel, :logger]
 
-    using Refinements::Pathnames
+    using Refinements::Pathname
 
     HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, executor: Open3}.freeze
 

@@ -3,13 +3,13 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Version do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:builder) { described_class.new test_configuration }
 
   include_context "with application dependencies"
 
-  using Refinements::Structs
+  using Refinements::Struct
 
   it_behaves_like "a builder"
 

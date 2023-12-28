@@ -3,8 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Git::Commit do
-  using Refinements::Pathnames
-  using Refinements::Structs
+  using Refinements::Pathname
+  using Refinements::Struct
 
   subject(:builder) { described_class.new test_configuration, specification: }
 

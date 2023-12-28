@@ -3,8 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Tocer do
-  using Refinements::Pathnames
-  using Refinements::Structs
+  using Refinements::Pathname
+  using Refinements::Struct
 
   subject(:extension) { described_class.new test_configuration }
 

@@ -4,8 +4,8 @@ require "spec_helper"
 require "versionaire"
 
 RSpec.describe Rubysmith::Extensions::Milestoner do
-  using Refinements::Pathnames
-  using Refinements::Structs
+  using Refinements::Pathname
+  using Refinements::Struct
   using Versionaire::Cast
 
   subject(:extension) { described_class.new test_configuration, client: }

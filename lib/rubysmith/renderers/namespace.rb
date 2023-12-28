@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "refinements/strings"
+require "refinements/string"
 
 module Rubysmith
   module Renderers
     # Renders single or multiple modules with correct, two-space indentation for templates.
     class Namespace
-      using Refinements::Strings
+      using Refinements::String
 
       def initialize namespace, delimiter: "::"
         @namespace = namespace

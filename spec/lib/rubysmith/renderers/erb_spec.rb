@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Renderers::ERB do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:renderer) { described_class.new test_configuration }
 

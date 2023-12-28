@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Bundler do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -39,7 +39,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :tools do
-            gem "amazing_print", "~> 1.4"
+            gem "amazing_print", "~> 1.5"
           end
         CONTENT
       end
@@ -60,7 +60,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :quality do
-            gem "caliber", "~> 0.42"
+            gem "caliber", "~> 0.47"
           end
         CONTENT
       end
@@ -104,7 +104,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :quality do
-            gem "git-lint", "~> 6.0"
+            gem "git-lint", "~> 7.0"
           end
         CONTENT
       end
@@ -146,7 +146,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :development do
-            gem "rake", "~> 13.0"
+            gem "rake", "~> 13.1"
           end
         CONTENT
       end
@@ -167,7 +167,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :quality do
-            gem "reek", "~> 6.1", require: false
+            gem "reek", "~> 6.2", require: false
           end
         CONTENT
       end
@@ -187,7 +187,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 11.0"
+          gem "refinements", "~> 12.0"
         CONTENT
       end
 
@@ -273,7 +273,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :development do
-            gem "tocer", "~> 16.0"
+            gem "tocer", "~> 17.0"
             gem "yard", "~> 0.9"
           end
         CONTENT
@@ -314,7 +314,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :development do
-            gem "tocer", "~> 16.0"
+            gem "tocer", "~> 17.0"
           end
         CONTENT
       end
@@ -334,19 +334,19 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 11.0"
+          gem "refinements", "~> 12.0"
           gem "zeitwerk", "~> 2.6"
 
           group :quality do
-            gem "caliber", "~> 0.42"
-            gem "git-lint", "~> 6.0"
-            gem "reek", "~> 6.1", require: false
+            gem "caliber", "~> 0.47"
+            gem "git-lint", "~> 7.0"
+            gem "reek", "~> 6.2", require: false
             gem "simplecov", "~> 0.22", require: false
           end
 
           group :development do
             gem "asciidoctor", "~> 2.0"
-            gem "rake", "~> 13.0"
+            gem "rake", "~> 13.1"
             gem "yard", "~> 0.9"
           end
 
@@ -356,7 +356,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :tools do
-            gem "amazing_print", "~> 1.4"
+            gem "amazing_print", "~> 1.5"
             gem "debug", "~> 1.8"
           end
         CONTENT
@@ -377,19 +377,19 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 11.0"
+          gem "refinements", "~> 12.0"
           gem "zeitwerk", "~> 2.6"
 
           group :quality do
-            gem "caliber", "~> 0.42"
-            gem "git-lint", "~> 6.0"
-            gem "reek", "~> 6.1", require: false
+            gem "caliber", "~> 0.47"
+            gem "git-lint", "~> 7.0"
+            gem "reek", "~> 6.2", require: false
             gem "simplecov", "~> 0.22", require: false
           end
 
           group :development do
-            gem "rake", "~> 13.0"
-            gem "tocer", "~> 16.0"
+            gem "rake", "~> 13.1"
+            gem "tocer", "~> 17.0"
             gem "yard", "~> 0.9"
           end
 
@@ -399,7 +399,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :tools do
-            gem "amazing_print", "~> 1.4"
+            gem "amazing_print", "~> 1.5"
             gem "debug", "~> 1.8"
           end
         CONTENT

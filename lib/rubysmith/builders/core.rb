@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require "refinements/strings"
-require "refinements/structs"
+require "refinements/string"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     # Builds project skeleton core structure and minimum file support.
     class Core
-      using Refinements::Strings
-      using Refinements::Structs
+      using Refinements::String
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

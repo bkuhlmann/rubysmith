@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Bundler do
-  using Refinements::Pathnames
+  using Refinements::Pathname
 
   subject(:builder) { described_class.new configuration, client: }
 

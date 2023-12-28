@@ -1,5 +1,5 @@
 RSpec.shared_context "with temporary directory" do
-  <% if configuration.build_refinements %>using Refinements::Pathnames<% end %>
+  <% if configuration.build_refinements %>using Refinements::Pathname<% end %>
 
   let(:temp_dir) { Bundler.root.join "tmp/rspec" }
 

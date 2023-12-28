@@ -3,7 +3,7 @@ ruby file: ".ruby-version"
 source "https://rubygems.org"
 
 <% if configuration.build_refinements %>
-  gem "refinements", "~> 11.0"
+  gem "refinements", "~> 12.0"
 <% end %>
 <% if configuration.build_zeitwerk %>
   gem "zeitwerk", "~> 2.6"
@@ -11,13 +11,13 @@ source "https://rubygems.org"
 
 group :quality do
   <% if configuration.build_caliber %>
-    gem "caliber", "~> 0.42"
+    gem "caliber", "~> 0.47"
   <% end %>
   <% if configuration.build_git && configuration.build_git_lint %>
-    gem "git-lint", "~> 6.0"
+    gem "git-lint", "~> 7.0"
   <% end %>
   <% if configuration.build_reek %>
-    gem "reek", "~> 6.1", require: false
+    gem "reek", "~> 6.2", require: false
   <% end %>
   <% if configuration.build_simple_cov %>
     gem "simplecov", "~> 0.22", require: false
@@ -29,10 +29,10 @@ group :development do
     gem "asciidoctor", "~> 2.0"
   <% end %>
   <% if configuration.build_rake %>
-    gem "rake", "~> 13.0"
+    gem "rake", "~> 13.1"
   <% end %>
   <% if configuration.markdown? %>
-    gem "tocer", "~> 16.0"
+    gem "tocer", "~> 17.0"
   <% end %>
   <% if configuration.build_yard %>
     gem "yard", "~> 0.9"
@@ -50,7 +50,7 @@ end
 
 group :tools do
   <% if configuration.build_amazing_print %>
-    gem "amazing_print", "~> 1.4"
+    gem "amazing_print", "~> 1.5"
   <% end %>
   <% if configuration.build_debug %>
     gem "debug", "~> 1.8"

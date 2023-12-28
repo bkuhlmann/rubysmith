@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "dry/monads"
-require "refinements/arrays"
+require "refinements/array"
 
 module Rubysmith
   module Configuration
@@ -10,7 +10,7 @@ module Rubysmith
       class TemplateRoot
         include Dry::Monads[:result]
 
-        using Refinements::Arrays
+        using Refinements::Array
 
         def initialize key = :template_roots, default: Pathname(__dir__).join("../../templates")
           @key = key

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     # Builds project skeleton console for object inspection and exploration.
     class Console
-      using Refinements::Structs
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

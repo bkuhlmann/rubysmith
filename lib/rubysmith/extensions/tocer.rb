@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 require "tocer"
 
 module Rubysmith
   module Extensions
     # Ensures project skeleton documentation has table of content.
     class Tocer
-      using Refinements::Structs
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

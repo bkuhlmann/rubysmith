@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 require "sod"
 
 module Rubysmith

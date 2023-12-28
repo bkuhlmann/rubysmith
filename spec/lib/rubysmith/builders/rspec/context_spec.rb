@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::RSpec::Context do
-  using Refinements::Structs
+  using Refinements::Struct
 
   subject(:builder) { described_class.new test_configuration }
 
@@ -24,7 +24,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
       let :content do
         <<~CONTENT
           RSpec.shared_context "with temporary directory" do
-            using Refinements::Pathnames
+            using Refinements::Pathname
 
             let(:temp_dir) { Bundler.root.join "tmp/rspec" }
 

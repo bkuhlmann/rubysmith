@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "refinements/pathnames"
+require "refinements/pathname"
 
 module Rubysmith
   # Represents a pathway which has source start and destination end.
   Pathway = Struct.new :start_root, :start_path, :end_root, keyword_init: true do
-    using Refinements::Pathnames
+    using Refinements::Pathname
 
     # :reek:TooManyStatements
     def initialize *arguments

@@ -2,15 +2,15 @@
 
 require "bundler"
 require "bundler/cli"
-require "refinements/ios"
-require "refinements/pathnames"
+require "refinements/io"
+require "refinements/pathname"
 
 module Rubysmith
   module Extensions
     # Ensures gem dependencies are installed.
     class Bundler
-      using Refinements::IOs
-      using Refinements::Pathnames
+      using Refinements::IO
+      using Refinements::Pathname
 
       def self.call(...) = new(...).call
 

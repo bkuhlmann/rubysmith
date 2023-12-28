@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Rubocop do
-  using Refinements::Pathnames
+  using Refinements::Pathname
 
   subject(:builder) { described_class.new configuration.minimize, client: }
 

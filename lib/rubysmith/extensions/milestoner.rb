@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require "milestoner"
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Extensions
     # Ensures project can be published (tagged) in a reliable and consistent fashion.
     class Milestoner
-      using Refinements::Structs
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

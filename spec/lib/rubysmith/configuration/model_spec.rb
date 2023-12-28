@@ -4,8 +4,8 @@ require "spec_helper"
 require "yaml"
 
 RSpec.describe Rubysmith::Configuration::Model do
-  using Refinements::Pathnames
-  using Refinements::Structs
+  using Refinements::Pathname
+  using Refinements::Struct
 
   subject(:record) { described_class.new project_name: "test" }
 

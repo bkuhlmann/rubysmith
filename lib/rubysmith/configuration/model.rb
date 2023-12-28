@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "pathname"
-require "refinements/arrays"
-require "refinements/strings"
-require "refinements/structs"
+require "refinements/array"
+require "refinements/string"
+require "refinements/struct"
 
 module Rubysmith
   module Configuration
@@ -75,9 +75,9 @@ module Rubysmith
       :template_path,
       :template_roots
     ) do
-      using Refinements::Arrays
-      using Refinements::Strings
-      using Refinements::Structs
+      using Refinements::Array
+      using Refinements::String
+      using Refinements::Struct
 
       def maximize = update_build_options true
 

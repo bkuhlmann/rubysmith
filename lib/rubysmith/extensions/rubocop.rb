@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "refinements/ios"
+require "refinements/io"
 require "rubocop"
 
 module Rubysmith
   module Extensions
     # Ensures project skeleton adheres to style guide.
     class Rubocop
-      using Refinements::IOs
+      using Refinements::IO
 
       def self.call(...) = new(...).call
 

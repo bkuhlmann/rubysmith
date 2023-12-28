@@ -7,8 +7,8 @@ RSpec.describe Rubysmith::Builder do
 
   include_context "with application dependencies"
 
-  using Refinements::Pathnames
-  using Refinements::Structs
+  using Refinements::Pathname
+  using Refinements::Struct
 
   let :configuration do
     Rubysmith::Configuration::Model[

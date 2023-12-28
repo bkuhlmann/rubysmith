@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require "pathname"
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     # Initializes building of project by checking for existence first.
     class Init
-      using Refinements::Structs
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

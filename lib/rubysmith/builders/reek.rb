@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     # Builds project skeleton Reek code quality support.
     class Reek
-      using Refinements::Structs
+      using Refinements::Struct
 
       def self.call(...) = new(...).call
 

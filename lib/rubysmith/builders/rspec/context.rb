@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     module RSpec
       # Builds RSpec shared context for temporary directories.
       class Context
-        using Refinements::Structs
+        using Refinements::Struct
 
         def self.call(...) = new(...).call
 

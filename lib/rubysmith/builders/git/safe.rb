@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 
 module Rubysmith
   module Builders
     module Git
       # Initializes project skeleton with Git Safe support.
       class Safe
-        using Refinements::Structs
+        using Refinements::Struct
 
         def self.call(...) = new(...).call
 

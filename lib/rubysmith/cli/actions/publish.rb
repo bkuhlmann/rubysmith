@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "refinements/structs"
+require "refinements/struct"
 require "sod"
 
 module Rubysmith
@@ -10,7 +10,7 @@ module Rubysmith
       class Publish < Sod::Action
         include Import[:input]
 
-        using ::Refinements::Structs
+        using ::Refinements::Struct
 
         description "Publish project."
 

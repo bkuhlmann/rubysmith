@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Pathway do
-  using Refinements::Pathnames
+  using Refinements::Pathname
 
   subject :way do
     described_class.new start_root: "/source",
