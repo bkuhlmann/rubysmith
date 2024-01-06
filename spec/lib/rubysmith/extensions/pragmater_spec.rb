@@ -3,54 +3,27 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Pragmater do
-  using Refinements::Pathname
-  using Refinements::Struct
-
-  subject(:extension) { described_class.new test_configuration }
+  subject(:extension) { described_class.new configuration, client: }
 
   include_context "with application dependencies"
 
-  let(:test_path) { temp_dir.join "test", "test.rb" }
+  let(:client) { instance_spy Pragmater::Inserter }
 
   describe ".call" do
     it "answers configuration" do
-      record = described_class.call configuration
-      expect(record).to be_a(Rubysmith::Configuration::Model)
+      expect(described_class.call(configuration, client:)).to be_a(Rubysmith::Configuration::Model)
     end
   end
 
   describe "#call" do
-    before do
-      test_path.deep_touch
-      extension.call
+    before { extension.call }
+
+    it "delegates to client" do
+      expect(client).to have_received(:call)
     end
 
-    context "with defaults" do
-      let(:test_configuration) { configuration.minimize.merge }
-
-      it "adds pragmas" do
-        expect(test_path.read).to eq("# frozen_string_literal: true\n")
-      end
-    end
-
-    context "with custom comments" do
-      let :test_configuration do
-        configuration.minimize.merge extensions_pragmater_comments: ["# encoding: UTF-8"]
-      end
-
-      it "adds custom pragmas" do
-        expect(test_path.read).to eq("# encoding: UTF-8\n")
-      end
-    end
-
-    context "with custom includes" do
-      let :test_configuration do
-        configuration.minimize.merge extensions_pragmater_patterns: ["**/*.txt"]
-      end
-
-      it "doesn't add pragmas" do
-        expect(test_path.read).to eq("")
-      end
+    it "answers configuration" do
+      expect(extension.call).to eq(configuration)
     end
   end
 end

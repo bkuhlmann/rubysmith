@@ -33,35 +33,6 @@ citation:
   message: Please use the following metadata when citing this project in your work.
 documentation:
   format: "adoc"
-extensions:
-  milestoner:
-    documentation:
-      format: "adoc"
-    prefixes:
-      - Fixed
-      - Added
-      - Updated
-      - Removed
-      - Refactored
-  pragmater:
-    comments:
-      - "# frozen_string_literal: true"
-    patterns:
-      - "**/*.rake"
-      - "**/*.rb"
-      - "*.gemspec"
-      - "exe/*"
-      - bin/console
-      - bin/guard
-      - bin/rubocop
-      - config.ru
-      - Gemfile
-      - Guardfile
-      - Rakefile
-  tocer:
-    label: "## Table of Contents"
-    patterns:
-      - "README.md"
 license:
   label: Hippocratic
   name: hippocratic

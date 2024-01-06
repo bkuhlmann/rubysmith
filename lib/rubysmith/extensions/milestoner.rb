@@ -1,36 +1,23 @@
 # frozen_string_literal: true
 
 require "milestoner"
-require "refinements/struct"
 
 module Rubysmith
   module Extensions
     # Ensures project can be published (tagged) in a reliable and consistent fashion.
     class Milestoner
-      using Refinements::Struct
-
       def self.call(...) = new(...).call
 
-      def initialize configuration,
-                     client: ::Milestoner::Tags::Publisher.new,
-                     content: ::Milestoner::Configuration::Model.new
+      def initialize configuration, client: ::Milestoner::Tags::Publisher.new
         @configuration = configuration
         @client = client
-        @content = content
       end
 
-      def call = client.call(settings) && configuration
+      def call = client.call(configuration.project_version) && configuration
 
       private
 
-      attr_reader :configuration, :client, :content
-
-      def settings
-        content.transmute configuration,
-                          documentation_format: :extensions_milestoner_documentation_format,
-                          prefixes: :extensions_milestoner_prefixes,
-                          version: :project_version
-      end
+      attr_reader :configuration, :client
     end
   end
 end

@@ -46,12 +46,6 @@ module Rubysmith
       optional(:citation_message).filled :string
       optional(:citation_orcid).filled :string
       required(:documentation_format).filled :string
-      required(:extensions_milestoner_documentation_format).filled :string
-      required(:extensions_milestoner_prefixes).array :string
-      required(:extensions_pragmater_comments).array :string
-      required(:extensions_pragmater_patterns).array :string
-      required(:extensions_tocer_label).filled :string
-      required(:extensions_tocer_patterns).array :string
       optional(:git_hub_user).filled :string
       required(:license_label).filled :string
       required(:license_name).filled :string
