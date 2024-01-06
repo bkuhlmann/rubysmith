@@ -23,21 +23,6 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
       end
     end
 
-    context "with YARD only" do
-      let(:test_configuration) { configuration.minimize.merge build_git: true, build_yard: true }
-
-      it "doesn't build ignore file" do
-        builder.call
-
-        expect(ignore_path.read).to eq(<<~CONTENT)
-          .bundle
-          .yardoc
-          doc/yard
-          tmp
-        CONTENT
-      end
-    end
-
     context "with maximum options" do
       let(:test_configuration) { configuration.maximize }
 
@@ -46,8 +31,6 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
 
         expect(ignore_path.read).to eq(<<~CONTENT)
           .bundle
-          .yardoc
-          doc/yard
           tmp
         CONTENT
       end

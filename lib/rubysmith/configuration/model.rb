@@ -41,7 +41,6 @@ module Rubysmith
       :build_setup,
       :build_simple_cov,
       :build_versions,
-      :build_yard,
       :build_zeitwerk,
       :citation_affiliation,
       :citation_message,

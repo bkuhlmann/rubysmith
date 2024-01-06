@@ -27,7 +27,6 @@ build:
   setup: true
   simple_cov: true
   versions: true
-  yard: false
   zeitwerk: true
 citation:
   message: Please use the following metadata when citing this project in your work.

@@ -40,7 +40,6 @@ module Rubysmith
       required(:build_setup).filled :bool
       required(:build_simple_cov).filled :bool
       required(:build_versions).filled :bool
-      required(:build_yard).filled :bool
       required(:build_zeitwerk).filled :bool
       optional(:citation_affiliation).filled :string
       optional(:citation_message).filled :string

@@ -26,5 +26,4 @@
 :build_setup: true
 :build_simple_cov: true
 :build_versions: true
-:build_yard: true
 :build_zeitwerk: true

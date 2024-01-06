@@ -74,7 +74,6 @@ module Rubysmith
         on Actions::Setup
         on Actions::SimpleCov
         on Actions::Versions
-        on Actions::Yard
         on Actions::Zeitwerk
 
         def initialize(builders: BUILDERS, **)

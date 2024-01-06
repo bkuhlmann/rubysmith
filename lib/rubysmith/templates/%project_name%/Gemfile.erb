@@ -25,17 +25,11 @@ group :quality do
 end
 
 group :development do
-  <% if configuration.build_yard && configuration.ascii_doc? %>
-    gem "asciidoctor", "~> 2.0"
-  <% end %>
   <% if configuration.build_rake %>
     gem "rake", "~> 13.1"
   <% end %>
   <% if configuration.markdown? %>
     gem "tocer", "~> 17.0"
-  <% end %>
-  <% if configuration.build_yard %>
-    gem "yard", "~> 0.9"
   <% end %>
 end
 

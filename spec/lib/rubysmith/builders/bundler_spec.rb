@@ -239,52 +239,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
-    context "with YARD only" do
-      let(:test_configuration) { configuration.minimize.merge build_yard: true }
-
-      let :proof do
-        <<~CONTENT
-          ruby file: ".ruby-version"
-
-          source "https://rubygems.org"
-
-          group :development do
-            gem "asciidoctor", "~> 2.0"
-            gem "yard", "~> 0.9"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-    end
-
-    context "with YARD only using Markdown" do
-      let :test_configuration do
-        configuration.minimize.merge build_yard: true, documentation_format: "md"
-      end
-
-      let :proof do
-        <<~CONTENT
-          ruby file: ".ruby-version"
-
-          source "https://rubygems.org"
-
-          group :development do
-            gem "tocer", "~> 17.0"
-            gem "yard", "~> 0.9"
-          end
-        CONTENT
-      end
-
-      it "builds Gemfile" do
-        builder.call
-        expect(gemfile_path.read).to eq(proof)
-      end
-    end
-
     context "with Zeitwerk only" do
       let(:test_configuration) { configuration.minimize.merge build_zeitwerk: true }
 
@@ -345,9 +299,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :development do
-            gem "asciidoctor", "~> 2.0"
             gem "rake", "~> 13.1"
-            gem "yard", "~> 0.9"
           end
 
           group :test do
@@ -390,7 +342,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :development do
             gem "rake", "~> 13.1"
             gem "tocer", "~> 17.0"
-            gem "yard", "~> 0.9"
           end
 
           group :test do
