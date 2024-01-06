@@ -35,7 +35,6 @@ toc::[]
 * Supports link:https://rspec.info[RSpec].
 * Supports setup script for project setup.
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
-* Supports link:https://yardoc.org[YARD].
 * Supports link:https://github.com/fxn/zeitwerk[Zeitwerk].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
@@ -76,7 +75,7 @@ gem install rubysmith
 
 From the command line, type: `rubysmith --help`
 
-image:https://alchemists.io/images/projects/rubysmith/screenshots/usage.png[Usage,width=588,height=345,role=focal_point]
+image:https://alchemists.io/images/projects/rubysmith/screenshots/usage.png[Usage,width=604,height=345,role=focal_point]
 
 ==== Build
 
@@ -264,13 +263,6 @@ analysis of what your quality of code is for the project.
 The `--versions` option allows you add a `VERSIONS` file to your project to provide details about
 all published versions of your project.
 
-===== YARD
-
-The `--yard` option allows you add the link:https://yardoc.org/[YARD] gem to your project so you can
-automate the generation of project documentation. Once your project is built, you can use `rake
-yard` to build documentation into the `doc/yard` folder. This folder is ignored by Git by default.
-Additional customization is possible via the YARD Rake task as found in the `Rakefile`.
-
 ===== Zeitwerk
 
 The `--zeitwerk` option allows you add the link:https://github.com/fxn/zeitwerk[Zeitwerk] gem to your project so you can reduce the maintenance burden of managing requirements when adding new objects to your project.
@@ -339,7 +331,6 @@ build:
   setup: true
   simple_cov: true
   versions: true
-  yard: false
   zeitwerk: true
 citation:
   affiliation:
@@ -347,35 +338,6 @@ citation:
   orcid:
 documentation:
   format: "adoc"
-extensions:
-  milestoner:
-    documentation:
-      format: "adoc"
-    prefixes:
-      - Fixed
-      - Added
-      - Updated
-      - Removed
-      - Refactored
-  pragmater:
-    comments:
-      - "# frozen_string_literal: true"
-    patterns:
-      - "**/*.rake"
-      - "**/*.rb"
-      - "*.gemspec"
-      - "exe/*"
-      - bin/console
-      - bin/guard
-      - bin/rubocop
-      - config.ru
-      - Gemfile
-      - Guardfile
-      - Rakefile
-  tocer:
-    label: "## Table of Contents"
-    patterns:
-      - "README.md"
 git_hub:
   user:
 license:

@@ -1,5 +1,18 @@
 = Versions
 
+== 6.0.0 (2024-01-06)
+
+✅ Fixed RuboCop Performance/StringIdentifierArgument issue - Brooke Kuhlmann
+🟢 Added version release notes - Brooke Kuhlmann
+🔼 Updated Circle CI Rake step name - Brooke Kuhlmann
+🔼 Updated gem dependencies - Brooke Kuhlmann
+🔼 Updated publish action to leverage Milestoner automatic versioning - Brooke Kuhlmann
+🔼 Updated to Ruby 3.3.0 - Brooke Kuhlmann
+⛔️ Removed Gemfile code prefix from quality group - Brooke Kuhlmann
+⛔️ Removed Rakefile code prefix from quality task - Brooke Kuhlmann
+⛔️ Removed YARD build option - Brooke Kuhlmann
+⛔️ Removed extension configurations - Brooke Kuhlmann
+
 == 5.9.0 (2023-12-03)
 
 * Fixed Circle CI step names - Brooke Kuhlmann
