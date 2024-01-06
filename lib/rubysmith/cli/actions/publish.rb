@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "milestoner"
 require "refinements/struct"
 require "sod"
 
@@ -12,16 +13,18 @@ module Rubysmith
 
         using ::Refinements::Struct
 
-        description "Publish project."
+        description "Publish milestone."
 
-        on %w[-p --publish], argument: "VERSION"
+        on %w[-p --publish], argument: "[VERSION]"
+
+        default { Milestoner::Commits::Versioner.new.call }
 
         def initialize(extension: Extensions::Milestoner, **)
           super(**)
           @extension = extension
         end
 
-        def call(version) = extension.call input.merge(project_version: version)
+        def call(version = nil) = extension.call input.merge(project_version: version || default)
 
         private
 
