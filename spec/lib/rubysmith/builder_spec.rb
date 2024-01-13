@@ -70,16 +70,10 @@ RSpec.describe Rubysmith::Builder do
 
     it "aborts when project exists" do
       builder.make_path
-      builder.check
+      logger = instance_spy Cogger::Hub
+      described_class.new(configuration, logger:).check
 
-      expect(kernel).to have_received(:abort)
-    end
-
-    it "logs error when project exists" do
-      builder.make_path
-      builder.check
-
-      expect(logger.reread).to match(/🛑.+Path exists: #{temp_dir.join "demo-test"}./)
+      expect(logger).to have_received(:abort).with(%(Path exists: #{temp_dir.join "demo-test"}.))
     end
   end
 

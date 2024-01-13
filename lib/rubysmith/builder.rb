@@ -28,13 +28,8 @@ module Rubysmith
     end
 
     def check
-      path = build_path
-
-      if path.exist?
-        log_error "Path exists: #{path}."
-        kernel.abort
-      else
-        log_debug "Checked: #{path}."
+      build_path.then do |path|
+        path.exist? ? logger.abort("Path exists: #{path}.") : log_debug("Checked: #{path}.")
       end
     end
 
