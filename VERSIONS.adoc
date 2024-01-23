@@ -1,5 +1,11 @@
 = Versions
 
+== 6.1.0 (2024-01-22)
+
+* ✅ Fixed version bullets - Brooke Kuhlmann
+* 🟢 Added repl_type_completor gem - Brooke Kuhlmann
+* 🔼 Updated to Cogger 0.16.0 - Brooke Kuhlmann
+
 == 6.0.0 (2024-01-06)
 
 * ✅ Fixed RuboCop Performance/StringIdentifierArgument issue - Brooke Kuhlmann
