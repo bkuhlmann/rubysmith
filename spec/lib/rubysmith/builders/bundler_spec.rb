@@ -25,6 +25,9 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
     end
@@ -40,6 +43,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "amazing_print", "~> 1.5"
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -62,6 +66,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :quality do
             gem "caliber", "~> 0.47"
           end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -82,6 +90,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :tools do
             gem "debug", "~> 1.8"
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -106,6 +115,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :quality do
             gem "git-lint", "~> 7.0"
           end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -126,6 +139,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :test do
             gem "guard-rspec", "~> 4.7", require: false
+          end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -148,6 +165,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :development do
             gem "rake", "~> 13.1"
           end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -169,6 +190,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :quality do
             gem "reek", "~> 6.2", require: false
           end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -188,6 +213,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "refinements", "~> 12.0"
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -208,6 +237,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :test do
             gem "rspec", "~> 3.12"
+          end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -230,6 +263,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :quality do
             gem "simplecov", "~> 0.22", require: false
           end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -249,6 +286,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "zeitwerk", "~> 2.6"
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
+          end
         CONTENT
       end
 
@@ -269,6 +310,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :development do
             gem "tocer", "~> 17.0"
+          end
+
+          group :tools do
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -310,6 +355,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.5"
             gem "debug", "~> 1.8"
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
@@ -352,6 +398,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.5"
             gem "debug", "~> 1.8"
+            gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
       end
