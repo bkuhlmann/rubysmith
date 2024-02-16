@@ -1,5 +1,11 @@
 = Versions
 
+== 6.2.1 (2024-02-15)
+
+* ✅ Fixed Pragmater extension configuration - Brooke Kuhlmann
+* ✅ Fixed RuboCop and Tocer extensions to use project root - Brooke Kuhlmann
+* 🔁 Refactored Bundler spec to use consistent subject - Brooke Kuhlmann
+
 == 6.2.0 (2024-01-28)
 
 * 🔼 Updated RSpec helper to disable SimpleCov eval setting - Brooke Kuhlmann
