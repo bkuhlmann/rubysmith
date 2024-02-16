@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Extensions::Bundler do
   using Refinements::Pathname
 
-  subject(:builder) { described_class.new configuration, client: }
+  subject(:extension) { described_class.new configuration, client: }
 
   include_context "with application dependencies"
 
@@ -23,12 +23,12 @@ RSpec.describe Rubysmith::Extensions::Bundler do
 
   describe "#call" do
     it "installs gems" do
-      builder.call
+      extension.call
       expect(client).to have_received(:start).with(%w[install --quiet])
     end
 
     it "adds Linux (x86) platform" do
-      builder.call
+      extension.call
       expect(client).to have_received(:start).with(%w[lock --add-platform x86_64-linux --update])
     end
   end
