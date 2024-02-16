@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "refinements/io"
+require "refinements/pathname"
 require "rubocop"
 
 module Rubysmith
@@ -8,6 +9,7 @@ module Rubysmith
     # Ensures project skeleton adheres to style guide.
     class Rubocop
       using Refinements::IO
+      using Refinements::Pathname
 
       def self.call(...) = new(...).call
 
@@ -17,7 +19,12 @@ module Rubysmith
       end
 
       def call
-        STDOUT.squelch { client.run ["--autocorrect-all", configuration.project_root.to_s] }
+        project_root = configuration.project_root
+
+        project_root.change_dir do
+          STDOUT.squelch { client.run ["--autocorrect-all", project_root.to_s] }
+        end
+
         configuration
       end
 

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Extensions::Rubocop do
   using Refinements::Pathname
 
-  subject(:builder) { described_class.new configuration.minimize, client: }
+  subject(:extension) { described_class.new configuration.minimize, client: }
 
   include_context "with application dependencies"
 
@@ -23,11 +23,15 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
 
   describe "#call" do
     it "runs RuboCop" do
-      builder.call
+      extension.call
 
       expect(client).to have_received(:run).with(
         ["--autocorrect-all", configuration.project_root.to_s]
       )
+    end
+
+    it "answers configuration" do
+      expect(extension.call).to eq(configuration.minimize)
     end
   end
 end

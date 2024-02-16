@@ -12,6 +12,8 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
   let(:client) { instance_spy Tocer::Runner }
 
+  before { temp_dir.join("test/README.md").make_ancestors.write("## Test") }
+
   describe ".call" do
     it "answers configuration" do
       expect(described_class.call(configuration, client:)).to be_a(Rubysmith::Configuration::Model)
@@ -25,6 +27,22 @@ RSpec.describe Rubysmith::Extensions::Tocer do
       it "delegates to client" do
         extension.call
         expect(client).to have_received(:call)
+      end
+
+      it "adds table of contents" do
+        described_class.new(configuration).call
+
+        expect(temp_dir.join("test/README.md").read).to eq(<<~CONTENT.strip)
+          <!-- Tocer[start]: Auto-generated, don't remove. -->
+
+          ## Table of Contents
+
+            - [Test](#test)
+
+          <!-- Tocer[finish]: Auto-generated, don't remove. -->
+
+          ## Test
+        CONTENT
       end
 
       it "answers configuration" do
