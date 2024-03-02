@@ -10,8 +10,8 @@ RSpec.describe Rubysmith::Builders::Caliber do
 
   include_context "with application dependencies"
 
-  let(:binstub_path) { temp_dir.join "test", "bin", "rubocop" }
-  let(:configuration_path) { temp_dir.join "test", ".rubocop.yml" }
+  let(:binstub_path) { temp_dir.join "test/bin/rubocop" }
+  let(:configuration_path) { temp_dir.join "test/.config/rubocop/config.yml" }
 
   it_behaves_like "a builder"
 

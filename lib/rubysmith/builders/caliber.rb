@@ -22,7 +22,8 @@ module Rubysmith
                .render
                .permit 0o755
 
-        builder.call(configuration.merge(template_path: "%project_name%/.rubocop.yml.erb")).render
+        path = "%project_name%/.config/rubocop/config.yml.erb"
+        builder.call(configuration.merge(template_path: path)).render
         configuration
       end
 

@@ -1,4 +1,5 @@
 test/.circleci/config.yml
+test/.config/rubocop/config.yml
 test/.git/HEAD
 test/.github/FUNDING.yml
 test/.github/ISSUE_TEMPLATE.md
@@ -6,7 +7,6 @@ test/.github/PULL_REQUEST_TEMPLATE.md
 test/.github/workflows/ci.yml
 test/.gitignore
 test/.reek.yml
-test/.rubocop.yml
 test/.ruby-version
 test/bin/console
 test/bin/guard
@@ -21,7 +21,7 @@ test/lib/test.rb
 test/LICENSE.adoc
 test/Rakefile
 test/README.adoc
-test/spec/spec_helper.rb
 test/spec/lib/test_spec.rb
+test/spec/spec_helper.rb
 test/spec/support/shared_contexts/temp_dir.rb
 test/VERSIONS.adoc
