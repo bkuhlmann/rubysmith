@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-monads", "~> 1.6"
   spec.add_dependency "dry-schema", "~> 1.13"
   spec.add_dependency "etcher", "~> 1.0"
-  spec.add_dependency "gitt", "~> 3.0"
+  spec.add_dependency "gitt", "~> 3.2"
   spec.add_dependency "infusible", "~> 3.0"
   spec.add_dependency "milestoner", "~> 17.0"
   spec.add_dependency "pragmater", "~> 14.1"
