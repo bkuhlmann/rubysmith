@@ -113,7 +113,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           group :quality do
-            gem "git-lint", "~> 7.0"
+            gem "git-lint", "~> 7.1"
           end
 
           group :tools do
@@ -338,7 +338,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :quality do
             gem "caliber", "~> 0.51"
-            gem "git-lint", "~> 7.0"
+            gem "git-lint", "~> 7.1"
             gem "reek", "~> 6.3", require: false
             gem "simplecov", "~> 0.22", require: false
           end
@@ -380,7 +380,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :quality do
             gem "caliber", "~> 0.51"
-            gem "git-lint", "~> 7.0"
+            gem "git-lint", "~> 7.1"
             gem "reek", "~> 6.3", require: false
             gem "simplecov", "~> 0.22", require: false
           end
