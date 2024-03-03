@@ -212,7 +212,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 12.0"
+          gem "refinements", "~> 12.1"
 
           group :tools do
             gem "repl_type_completor", "~> 0.1"
@@ -333,7 +333,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 12.0"
+          gem "refinements", "~> 12.1"
           gem "zeitwerk", "~> 2.6"
 
           group :quality do
@@ -375,7 +375,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "refinements", "~> 12.0"
+          gem "refinements", "~> 12.1"
           gem "zeitwerk", "~> 2.6"
 
           group :quality do
