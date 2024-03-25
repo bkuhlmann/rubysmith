@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
 
               steps:
                 - name: Checkout
-                  uses: actions/checkout@v3
+                  uses: actions/checkout@v4
 
                 - name: Ruby Setup
                   uses: ruby/setup-ruby@v1
@@ -63,7 +63,7 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
 
               steps:
                 - name: Checkout
-                  uses: actions/checkout@v3
+                  uses: actions/checkout@v4
 
                 - name: Ruby Setup
                   uses: ruby/setup-ruby@v1
@@ -74,7 +74,7 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
                   run: bundle exec rake
 
                 - name: SimpleCov Report
-                  uses: actions/upload-artifact@v3
+                  uses: actions/upload-artifact@v4
                   with:
                     name: coverage
                     path: coverage
