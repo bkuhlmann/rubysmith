@@ -3,5 +3,5 @@
 require "infusible"
 
 module Rubysmith
-  Import = Infusible.with Container
+  Import = Infusible[Container]
 end
