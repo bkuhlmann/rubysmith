@@ -25,7 +25,7 @@ module Rubysmith
             next content unless name
 
             first, last = String(name).split
-            content.merge! author_given_name: first, author_family_name: last
+            content.merge!(author_given_name: first, author_family_name: last).compress
           end
         end
       end

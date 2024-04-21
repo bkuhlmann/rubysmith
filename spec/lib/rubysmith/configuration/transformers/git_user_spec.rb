@@ -45,5 +45,11 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitUser do
       allow(git).to receive(:get).with("user.name", nil).and_return(Failure("Danger!"))
       expect(transformer.call({})).to eq(Success({}))
     end
+
+    it "answers Git name when custom user is missing and Git user exists with no family name" do
+      allow(git).to receive(:get).with("user.name", nil).and_return(Success("Git"))
+
+      expect(transformer.call({})).to eq(Success(author_given_name: "Git"))
+    end
   end
 end
