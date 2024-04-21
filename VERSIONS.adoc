@@ -1,5 +1,12 @@
 = Versions
 
+== 6.6.0 (2024-04-21)
+
+* 🔼 Updated to Git Lint 7.3.0 - Brooke Kuhlmann
+* 🔼 Updated to Milestoner 17.6.0 - Brooke Kuhlmann
+* 🔼 Updated to Rake 13.2.0 - Brooke Kuhlmann
+* 🔼 Updated to RuboCop 1.63.0 - Brooke Kuhlmann
+
 == 6.5.0 (2024-04-03)
 
 * 🟢 Added Containable gem - Brooke Kuhlmann

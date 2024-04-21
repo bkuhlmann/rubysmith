@@ -1,9 +1,9 @@
-:gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
-:bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
-
 :toc: macro
 :toclevels: 5
 :figure-caption!:
+
+:gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
+:bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
 
 = Rubysmith
 
@@ -298,7 +298,7 @@ variables. The default configuration is as follows:
 
 [source,yaml]
 ----
-:author:
+author:
   email:
   family_name:
   given_name:
@@ -361,21 +361,18 @@ project:
   version: 0.0.0
 ----
 
-By customizing your configuration, you can change Rubysmith's default behavior when building
-projects. This is a great way to define your own specialized settings other than what is provide for
-you by default. This is also a handy way to provide additional information needed for some of the
-build options. I'll walk you through each section of the configuration so you can learn more.
+By customizing your configuration, you can change Rubysmith's default behavior when building projects. This is a great way to define your own specialized settings other than what is provide for you by default. This is also a handy way to provide additional information needed for some of the build options. The next sections will walk you through each configuration so you can learn more.
 
 ==== Author
 
 Author information is used when generating project documentation and is recommended you fill this
 information in before building a project. Example:
 
-    :author:
-      :email: jsmith@example.com
-      :family_name: Smith
-      :given_name: Jill
-      :url: https://www.exmaple.com/team/jsmith
+    author:
+      email: jsmith@example.com
+      family_name: Smith
+      given_name: Jill
+      url: https://www.exmaple.com/team/jsmith
 
 If your global link:https://git-scm.com[Git] configuration is properly configured, your given name;
 family name; and email will be used by default. Should you not want to defer to Git, you can supply
@@ -383,9 +380,7 @@ custom values as desired. The URL is the only value that can't be automatically 
 
 ==== Build
 
-All build options accept booleans values only and can be customized as desired. When changing your
-build options, they will dynamically render when displaying usage (i.e. `rubysmith --help`). All of
-these options have been explained in greater detail in the _Usage_ section.
+All build options only accept booleans values and can be customized as desired. When changing your build options, they will dynamically render when displaying usage (i.e. `rubysmith --help`). All of these options have been explained in greater detail in the _Usage_ section.
 
 ℹ️ The `cli` option is provided to support the {gemsmith_link} gem but is not, currently, used by
 this project.
@@ -402,33 +397,21 @@ Use this section to define the kind of documentation you want generated for your
 following options are available:
 
 * `adoc` - Uses link:https://asciidoctor.org[ASCII Doc] format.
-* `md` - Use link:https://asciidoctor.org[Markdown] format.
-
-==== Extensions
-
-Extensions are additional tooling which can be configured specifically for Rubysmith. The following
-extensions are currently supported and will override each extensions global configuration should you
-be using them individually for other purposes:
-
-* link:https://alchemists.io/projects/milestoner[Milestoner]
-* link:https://alchemists.io/projects/pragmater[Pragmater]
-* link:https://alchemists.io/projects/tocer[Tocer]
-
-Follow the above links to learn more about each extension's gem configuration.
+* `md` - Uses link:https://asciidoctor.org[Markdown] format.
 
 ==== GitHub
 
-Your GitHub user is the handle you setup when creating your GitHub account. This information is used
-for template, funding, and/or URL construction purposes.
+Your GitHub user is the handle you setup when creating your GitHub account (i.e. `+https://github.com/<your_handle>+`). This information is used for template, funding, and/or URL construction purposes.
 
 ==== License
 
-Use this section to define the license you want to use for your project. The following kinds of
-license are available:
+Use this section to define the license you want to use for your project. The following are available:
 
-* *Apache*: Use `apache` as the name and then supply the appropriate label and version.
-* *Hippocratic*: Use `hippocratic` as the name and then supply the appropriate label and version.
-* *MIT*: Use `mit` as the name and then supply the appropriate label and version.
+* `apache`: Uses the link:https://www.apache.org/licenses/LICENSE-2.0[Apache] license.
+* `hippocratic`: Uses the link:https://firstdonoharm.dev[Hippocratic] license.
+* `mit`: Uses the link:https://mit-license.org[MIT] license.
+
+When picking a license, you can also supply the appropriate label and version in addition to the name.
 
 ==== Project
 
@@ -437,9 +420,7 @@ specific documentation related to your project. You'll want to customize these U
 used for documentation, citations, and general project information. Some of the URLs are also used
 by the {gemsmith_link} gem.
 
-You
-can also use `%project_name%` as a placeholder anywhere in your URL and Rubysmith will ensure your
-place holder is replaced with your project name when generating a new project. Example:
+One powerful feature of this configuration is that you can use `%project_name%` as a placeholder _anywhere_ in your URLs and Rubysmith will ensure your place holder is replaced with your project name when generating a new project. Example:
 
 ....
 # Configuration
@@ -452,10 +433,7 @@ rubysmith build --name demo
 https://www.example.com/demo
 ....
 
-As for the `version` key, this defines the default version of newly created projects. `0.0.0` is the
-default but you can use a higher version number like `0.1.0` or even `1.0.0` if you are super
-confident in your work. That said, the lower the number is better when building your initial
-project.
+As for the `version` key, this defines the default version of newly created projects. `0.0.0` is the default but you can use a higher version number like `0.1.0` or even `1.0.0` if you are super confident in your work. That said, a lower the number is recommended when building your initial project which is why `0.0.0` is the default.
 
 == Development
 
