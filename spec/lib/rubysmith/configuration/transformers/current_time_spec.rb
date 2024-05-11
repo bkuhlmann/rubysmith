@@ -14,11 +14,11 @@ RSpec.describe Rubysmith::Configuration::Transformers::CurrentTime do
       expect(transformer.call({now: at})).to eq(Success(now: at))
     end
 
-    it "answers custom time when content is empty" do
+    it "answers custom time when attributes are empty" do
       expect(transformer.call({}, at:)).to eq(Success(now: at))
     end
 
-    it "answers default time without content or custom time" do
+    it "answers default time without attributes or custom time" do
       expect(transformer.call({}).success).to match(now: kind_of(Time))
     end
   end

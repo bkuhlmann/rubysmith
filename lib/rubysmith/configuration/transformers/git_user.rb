@@ -10,22 +10,24 @@ module Rubysmith
         include Import[:git]
         include Dry::Monads[:result]
 
-        def call content
-          return Success content if content[:author_given_name] || content[:author_family_name]
-
-          name_or content
+        def call attributes
+          if attributes[:author_given_name] || attributes[:author_family_name]
+            Success attributes
+          else
+            name_or attributes
+          end
         end
 
         private
 
-        def name_or(content) = split(content).or { Success content }
+        def name_or(attributes) = split(attributes).or { Success attributes }
 
-        def split content
+        def split attributes
           git.get("user.name", nil).fmap do |name|
-            next content unless name
+            next attributes unless name
 
             first, last = String(name).split
-            content.merge! author_given_name: first, author_family_name: last
+            attributes.merge! author_given_name: first, author_family_name: last
           end
         end
       end

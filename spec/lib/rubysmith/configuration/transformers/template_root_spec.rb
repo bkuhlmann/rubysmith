@@ -8,18 +8,18 @@ RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
   subject(:transformer) { described_class.new }
 
   describe "#call" do
-    let(:content) { {template_roots: Pathname.pwd} }
+    let(:attributes) { {template_roots: Pathname.pwd} }
 
-    it "answers array with content path appended to default path" do
-      expect(transformer.call(content)).to eq(
+    it "answers array with attributes path appended to default path" do
+      expect(transformer.call(attributes)).to eq(
         Success(template_roots: [Bundler.root.join("lib/rubysmith/templates"), Pathname.pwd])
       )
     end
 
-    it "answers array with content paths appended to default paths" do
-      content = {template_roots: [Pathname("/one"), Pathname("/two")]}
+    it "answers array with paths appended to default paths" do
+      attributes[:template_roots] = [Pathname("/one"), Pathname("/two")]
 
-      expect(transformer.call(content)).to eq(
+      expect(transformer.call(attributes)).to eq(
         Success(
           template_roots: [
             Bundler.root.join("lib/rubysmith/templates"),
@@ -32,17 +32,17 @@ RSpec.describe Rubysmith::Configuration::Transformers::TemplateRoot do
 
     it "answers array without defaults" do
       transformer = described_class.new default: nil
-      expect(transformer.call(content)).to eq(Success(template_roots: [Pathname.pwd]))
+      expect(transformer.call(attributes)).to eq(Success(template_roots: [Pathname.pwd]))
     end
 
-    it "answers empty array without defaults or custom content" do
+    it "answers empty array without defaults or custom attributes" do
       transformer = described_class.new default: nil
       expect(transformer.call({})).to eq(Success({template_roots: []}))
     end
 
     it "prepends new default to existing default path" do
-      result = described_class.new.call({}).bind do |content|
-        described_class.new(default: Pathname("/test")).call content
+      result = described_class.new.call({}).bind do |attributes|
+        described_class.new(default: Pathname("/test")).call attributes
       end
 
       expect(result).to eq(

@@ -21,12 +21,12 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitEmail do
       expect(transformer.call({})).to eq(Success(author_email: "git@example.com"))
     end
 
-    it "answers original content when custom and Git emails are missing" do
+    it "answers original attributes when custom and Git emails are missing" do
       allow(git).to receive(:get).with("user.email", nil).and_return(Success(nil))
       expect(transformer.call({})).to eq(Success({}))
     end
 
-    it "answers original content when custom user is missing and Git email is a failure" do
+    it "answers original attributes when custom user is missing and Git email is a failure" do
       allow(git).to receive(:get).with("user.email", nil).and_return(Failure("Danger!"))
       expect(transformer.call({})).to eq(Success({}))
     end

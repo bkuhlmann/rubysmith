@@ -6,7 +6,7 @@ require "refinements/array"
 module Rubysmith
   module Configuration
     module Transformers
-      # Appends custom content to default template roots.
+      # Appends custom path to default template roots.
       class TemplateRoot
         include Dry::Monads[:result]
 
@@ -17,11 +17,11 @@ module Rubysmith
           @default = default
         end
 
-        def call content
+        def call attributes
           Array(default).map { |path| Pathname path }
-                        .including(content[key])
+                        .including(attributes[key])
                         .compact
-                        .then { |value| Success content.merge!(key => value) }
+                        .then { |value| Success attributes.merge!(key => value) }
         end
 
         private

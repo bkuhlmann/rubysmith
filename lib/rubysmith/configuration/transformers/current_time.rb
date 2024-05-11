@@ -4,14 +4,14 @@ require "dry/monads"
 
 module Rubysmith
   module Configuration
-    # Adds current time to content.
+    # Adds current time.
     module Transformers
       include Dry::Monads[:result]
 
-      CurrentTime = lambda do |content, key = :now, at: Time.now|
-        content.fetch(key) { at }
-               .then { |value| content.merge! key => value }
-               .then { |updated_content| Dry::Monads::Success updated_content }
+      CurrentTime = lambda do |attributes, key = :now, at: Time.now|
+        attributes.fetch(key) { at }
+                  .then { |value| attributes.merge! key => value }
+                  .then { |updated_attributes| Dry::Monads::Success updated_attributes }
       end
     end
   end

@@ -8,10 +8,10 @@ module Rubysmith
     module Transformers
       include Dry::Monads[:result]
 
-      TargetRoot = lambda do |content, key = :target_root, path: Pathname.pwd|
-        content.fetch(:target_root) { path }
-               .then { |value| content.merge! key => value }
-               .then { |updated_content| Dry::Monads::Success updated_content }
+      TargetRoot = lambda do |attributes, key = :target_root, path: Pathname.pwd|
+        attributes.fetch(:target_root) { path }
+                  .then { |value| attributes.merge! key => value }
+                  .then { |updated_attributes| Dry::Monads::Success updated_attributes }
       end
     end
   end

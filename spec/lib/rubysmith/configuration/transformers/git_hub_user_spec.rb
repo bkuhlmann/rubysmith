@@ -19,12 +19,12 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitHubUser do
       expect(transformer.call({})).to eq(Success(git_hub_user: "test"))
     end
 
-    it "answers original content when custom and GitHub users are missing" do
+    it "answers original attributes when custom and GitHub users are missing" do
       allow(git).to receive(:get).with("github.user", nil).and_return(Success(nil))
       expect(transformer.call({})).to eq(Success({}))
     end
 
-    it "answers original content when custom user is missing and GitHub user is a failure" do
+    it "answers original attributes when custom user is missing and GitHub user is a failure" do
       allow(git).to receive(:get).with("github.user", nil).and_return(Failure("Danger!"))
       expect(transformer.call({})).to eq(Success({}))
     end

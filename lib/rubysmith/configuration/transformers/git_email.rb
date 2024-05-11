@@ -15,16 +15,16 @@ module Rubysmith
           super(**)
         end
 
-        def call(content) = content[key] ? Success(content) : email_or(content)
+        def call(attributes) = attributes[key] ? Success(attributes) : email_or(attributes)
 
         private
 
         attr_reader :key
 
-        def email_or content
+        def email_or attributes
           git.get("user.email", nil)
-             .fmap { |value| value ? content.merge!(key => value) : content }
-             .or { Success content }
+             .fmap { |value| value ? attributes.merge!(key => value) : attributes }
+             .or { Success attributes }
         end
       end
     end

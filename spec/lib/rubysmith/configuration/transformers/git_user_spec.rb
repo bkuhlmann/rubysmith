@@ -36,12 +36,12 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitUser do
       )
     end
 
-    it "answers original content when custom and Git users are missing" do
+    it "answers original attributes when custom and Git users are missing" do
       allow(git).to receive(:get).with("user.name", nil).and_return(Success(nil))
       expect(transformer.call({})).to eq(Success({}))
     end
 
-    it "answers original content when custom user is missing and Git user is a failure" do
+    it "answers original attributes when custom user is missing and Git user is a failure" do
       allow(git).to receive(:get).with("user.name", nil).and_return(Failure("Danger!"))
       expect(transformer.call({})).to eq(Success({}))
     end
