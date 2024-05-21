@@ -71,6 +71,7 @@ module Rubysmith
         on Actions::Reek
         on Actions::Refinements
         on Actions::RSpec
+        on Actions::RTC
         on Actions::Security
         on Actions::Setup
         on Actions::SimpleCov

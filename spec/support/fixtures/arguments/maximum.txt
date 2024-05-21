@@ -23,6 +23,7 @@ test
 --reek
 --refinements
 --rspec
+--rtc
 --setup
 --security
 --simple_cov

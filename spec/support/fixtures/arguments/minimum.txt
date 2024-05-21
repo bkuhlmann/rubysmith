@@ -23,6 +23,7 @@ test
 --no-reek
 --no-refinements
 --no-rspec
+--no-rtc
 --no-setup
 --no-security
 --no-simple_cov

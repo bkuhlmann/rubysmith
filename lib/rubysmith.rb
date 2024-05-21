@@ -8,7 +8,8 @@ Zeitwerk::Loader.new.then do |loader|
                            "erb" => "ERB",
                            "git_hub_ci" => "GitHubCI",
                            "irb_kit" => "IRBKit",
-                           "rspec" => "RSpec"
+                           "rspec" => "RSpec",
+                           "rtc" => "RTC"
   loader.tag = File.basename __FILE__, ".rb"
   loader.push_dir __dir__
   loader.setup
