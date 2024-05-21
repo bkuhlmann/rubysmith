@@ -1,5 +1,26 @@
 = Versions
 
+== 6.8.0 (2024-05-25)
+
+* ✅ Fixed readme builder gem certificate to use organization URL - Brooke Kuhlmann
+* ✅ Fixed readme builder setup information to be project specific - Brooke Kuhlmann
+* 🟢 Added IRB Kit CLI action - Brooke Kuhlmann
+* 🟢 Added IRB Kit configuration - Brooke Kuhlmann
+* 🟢 Added IRB Kit gem - Brooke Kuhlmann
+* 🟢 Added Repl Type Completor action - Brooke Kuhlmann
+* 🟢 Added Repl Type Completor default configuration - Brooke Kuhlmann
+* 🟢 Added abstract builder - Brooke Kuhlmann
+* 🟢 Added configuration for organization URL - Brooke Kuhlmann
+* 🟢 Added configuration loaded at date/time - Brooke Kuhlmann
+* 🔼 Updated Bundler builder to include IRB Kit gem requirement - Brooke Kuhlmann
+* 🔼 Updated Bundler builder to include Repl Type Completor gem requirement - Brooke Kuhlmann
+* 🔼 Updated templates to use configuration loaded at date/time - Brooke Kuhlmann
+* 🔼 Updated to Etcher 1.5.0 - Brooke Kuhlmann
+* 🔼 Updated to Milestoner 17.8.0 - Brooke Kuhlmann
+* ⛔️ Removed now configuration and associated current time transformer - Brooke Kuhlmann
+* 🔁 Refactored RSpec application dependency URLs - Brooke Kuhlmann
+* 🔁 Refactored builders to inherit from abstract builder - Brooke Kuhlmann
+
 == 6.7.0 (2024-05-16)
 
 * ✅ Fixed readme builder to respect dashed project names - Brooke Kuhlmann

@@ -29,13 +29,14 @@ toc::[]
 * Supports link:https://github.com[GitHub].
 * Supports link:https://alchemists.io/projects/git-lint[Git Lint].
 * Supports link:https://github.com/guard/guard[Guard].
+* Supports link:https://alchemists.io/projects/irb-kit[IRB Kit].
 * Supports link:https://github.com/ruby/rake[Rake].
 * Supports link:https://github.com/troessner/reek[Reek].
 * Supports link:https://alchemists.io/projects/refinements[Refinements].
 * Supports link:https://rspec.info[RSpec].
+* Supports link:https://github.com/ruby/repl_type_completor[ReplTypeCompletor].
 * Supports setup script for project setup.
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
-* Supports link:https://github.com/ruby/repl_type_completor[ReplTypeCompletor].
 * Supports link:https://github.com/fxn/zeitwerk[Zeitwerk].
 * Supports common settings and a structured layout for building projects.
 * Provides common documentation:
@@ -210,6 +211,10 @@ manner.
 The `--guard` option allows you add the link:https://github.com/guard/guard[Guard] gem to your
 project for rapid red, green, refactor development cycles.
 
+===== IRB Kit
+
+The `--irb-kit` option allows you add the link:https://alchemists.io/projects/irb-kit[IRB Kit] gem to your project for additional extensions you can use within IRB to improve your workflow.
+
 ===== License
 
 The `--license` option ensures you build your project with a license.
@@ -247,6 +252,10 @@ Ruby core objects without monkey patching your code.
 
 The `--rspec` option allows you add the link:https://rspec.info[RSpec] gem to your project for
 defining your project specifications and have a framework for testing your code.
+
+===== Repl Type Completor (RTC)
+
+The `--rtc` option allows you add the link:https://github.com/ruby/repl_type_completor[Repl Type Completor] gem to your project for improved type completion when using link:https://github.com/ruby/irb[IRB].
 
 ===== Setup
 
@@ -320,6 +329,7 @@ build:
   git_hub_ci: false
   git_lint: true
   guard: true
+  irb_kit: false
   license: true
   maximum: false
   minimum: false
@@ -328,6 +338,7 @@ build:
   reek: true
   refinements: true
   rspec: true
+  rtc: true
   security: true
   setup: true
   simple_cov: true
@@ -345,6 +356,8 @@ license:
   label: Hippocratic
   name: hippocratic
   version: "2.1"
+organization:
+  url:
 project:
   url:
     community:
@@ -412,6 +425,10 @@ Use this section to define the license you want to use for your project. The fol
 * `mit`: Uses the link:https://mit-license.org[MIT] license.
 
 When picking a license, you can also supply the appropriate label and version in addition to the name.
+
+==== Organization
+
+Use this section to define URL information that points to your organization. This is useful for information that isn't project specific but related to all projects within your organization. You'll want to customize this URL especially for documentation purposes.
 
 ==== Project
 
