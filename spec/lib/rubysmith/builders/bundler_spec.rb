@@ -153,6 +153,28 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
     end
 
+    context "with IRB Kit only" do
+      let(:test_configuration) { configuration.minimize.merge build_irb_kit: true }
+
+      let :proof do
+        <<~CONTENT
+          ruby file: ".ruby-version"
+
+          source "https://rubygems.org"
+
+          group :tools do
+            gem "irb-kit", "~> 0.0"
+            gem "repl_type_completor", "~> 0.1"
+          end
+        CONTENT
+      end
+
+      it "builds Gemfile" do
+        builder.call
+        expect(gemfile_path.read).to eq(proof)
+      end
+    end
+
     context "with Rake only" do
       let(:test_configuration) { configuration.minimize.merge build_rake: true }
 
@@ -355,6 +377,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.6"
             gem "debug", "~> 1.9"
+            gem "irb-kit", "~> 0.0"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
@@ -398,6 +421,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.6"
             gem "debug", "~> 1.9"
+            gem "irb-kit", "~> 0.0"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT

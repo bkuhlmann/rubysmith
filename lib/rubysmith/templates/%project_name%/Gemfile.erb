@@ -49,5 +49,8 @@ group :tools do
   <% if configuration.build_debug %>
     gem "debug", "~> 1.9"
   <% end %>
+  <% if configuration.build_irb_kit %>
+    gem "irb-kit", "~> 0.0"
+  <% end %>
   gem "repl_type_completor", "~> 0.1"
 end
