@@ -6,15 +6,8 @@ module Rubysmith
   module Builders
     module RSpec
       # Builds RSpec spec helper for project skeleton.
-      class Helper
+      class Helper < Abstract
         using Refinements::Struct
-
-        def self.call(...) = new(...).call
-
-        def initialize configuration, builder: Builder
-          @configuration = configuration
-          @builder = builder
-        end
 
         def call
           return configuration unless configuration.build_rspec
@@ -26,10 +19,6 @@ module Rubysmith
 
           configuration
         end
-
-        private
-
-        attr_reader :configuration, :builder
       end
     end
   end

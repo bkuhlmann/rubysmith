@@ -6,16 +6,9 @@ require "refinements/struct"
 module Rubysmith
   module Builders
     # Builds project skeleton core structure and minimum file support.
-    class Core
+    class Core < Abstract
       using Refinements::String
       using Refinements::Struct
-
-      def self.call(...) = new(...).call
-
-      def initialize configuration, builder: Builder
-        @configuration = configuration
-        @builder = builder
-      end
 
       def call
         render_implementation
@@ -44,8 +37,6 @@ module Rubysmith
       def indentation = ::Core::EMPTY_STRING.indent configuration.project_levels
 
       def module_name = configuration.project_class
-
-      attr_reader :configuration, :builder
     end
   end
 end

@@ -5,15 +5,8 @@ require "refinements/struct"
 module Rubysmith
   module Builders
     # Builds project skeleton Guard support for a red, green, refactor loop.
-    class Guard
+    class Guard < Abstract
       using Refinements::Struct
-
-      def self.call(...) = new(...).call
-
-      def initialize configuration, builder: Builder
-        @configuration = configuration
-        @builder = builder
-      end
 
       def call
         return configuration unless configuration.build_guard
@@ -25,10 +18,6 @@ module Rubysmith
         builder.call(configuration.merge(template_path: "%project_name%/Guardfile.erb")).render
         configuration
       end
-
-      private
-
-      attr_reader :configuration, :builder
     end
   end
 end

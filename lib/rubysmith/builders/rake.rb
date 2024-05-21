@@ -5,15 +5,8 @@ require "refinements/struct"
 module Rubysmith
   module Builders
     # Builds project skeleton Rake support.
-    class Rake
+    class Rake < Abstract
       using Refinements::Struct
-
-      def self.call(...) = new(...).call
-
-      def initialize configuration, builder: Builder
-        @configuration = configuration
-        @builder = builder
-      end
 
       def call
         return configuration unless configuration.build_rake
@@ -24,8 +17,6 @@ module Rubysmith
       end
 
       private
-
-      attr_reader :configuration, :builder
 
       def add_binstub
         builder.call(configuration.merge(template_path: "%project_name%/bin/rake.erb"))

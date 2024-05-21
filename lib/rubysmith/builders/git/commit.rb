@@ -4,15 +4,11 @@ module Rubysmith
   module Builders
     module Git
       # Builds project skeleton initial Git commit message.
-      class Commit
+      class Commit < Abstract
         include Import[:specification]
 
-        def self.call(...) = new(...).call
-
         def initialize(configuration, builder: Builder, **)
-          super(**)
-          @configuration = configuration
-          @builder = builder
+          super
         end
 
         def call
@@ -29,8 +25,6 @@ module Rubysmith
         end
 
         private
-
-        attr_reader :configuration, :builder
 
         def body
           "Generated with link:#{specification.homepage_url}[#{specification.label}] " \

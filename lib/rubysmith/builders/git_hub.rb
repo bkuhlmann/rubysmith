@@ -5,15 +5,8 @@ require "refinements/struct"
 module Rubysmith
   module Builders
     # Builds project skeleton GitHub templates.
-    class GitHub
+    class GitHub < Abstract
       using Refinements::Struct
-
-      def self.call(...) = new(...).call
-
-      def initialize configuration, builder: Builder
-        @configuration = configuration
-        @builder = builder
-      end
 
       def call
         render_funding
@@ -26,8 +19,6 @@ module Rubysmith
       end
 
       private
-
-      attr_reader :configuration, :builder
 
       def render_funding
         return unless configuration.build_funding
