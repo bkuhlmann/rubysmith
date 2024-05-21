@@ -16,6 +16,7 @@ test
 --git_hub_ci
 --git-lint
 --guard
+--irb-kit
 --license
 --rake
 --readme

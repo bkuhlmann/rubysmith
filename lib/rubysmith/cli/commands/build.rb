@@ -62,6 +62,7 @@ module Rubysmith
         on Actions::GitHubCI
         on Actions::GitLint
         on Actions::Guard
+        on Actions::IRBKit
         on Actions::License
         on Actions::Maximum
         on Actions::Minimum
