@@ -52,5 +52,7 @@ group :tools do
   <% if configuration.build_irb_kit %>
     gem "irb-kit", "~> 0.0"
   <% end %>
-  gem "repl_type_completor", "~> 0.1"
+  <% if configuration.build_rtc %>
+    gem "repl_type_completor", "~> 0.1"
+  <% end %>
 end
