@@ -23,6 +23,7 @@
 :build_reek: false
 :build_refinements: false
 :build_rspec: false
+:build_rtc: false
 :build_security: false
 :build_setup: false
 :build_simple_cov: false

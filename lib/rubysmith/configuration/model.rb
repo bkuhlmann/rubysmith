@@ -38,6 +38,7 @@ module Rubysmith
       :build_reek,
       :build_refinements,
       :build_rspec,
+      :build_rtc,
       :build_security,
       :build_setup,
       :build_simple_cov,

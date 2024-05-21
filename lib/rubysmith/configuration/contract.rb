@@ -37,6 +37,7 @@ module Rubysmith
       required(:build_reek).filled :bool
       required(:build_refinements).filled :bool
       required(:build_rspec).filled :bool
+      required(:build_rtc).filled :bool
       required(:build_security).filled :bool
       required(:build_setup).filled :bool
       required(:build_simple_cov).filled :bool

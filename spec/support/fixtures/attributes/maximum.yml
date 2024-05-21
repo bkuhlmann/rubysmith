@@ -23,6 +23,7 @@
 :build_reek: true
 :build_refinements: true
 :build_rspec: true
+:build_rtc: true
 :build_security: true
 :build_setup: true
 :build_simple_cov: true
