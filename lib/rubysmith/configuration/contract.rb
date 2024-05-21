@@ -28,6 +28,7 @@ module Rubysmith
       required(:build_git_hub_ci).filled :bool
       required(:build_git_lint).filled :bool
       required(:build_guard).filled :bool
+      required(:build_irb_kit).filled :bool
       required(:build_license).filled :bool
       required(:build_maximum).filled :bool
       required(:build_minimum).filled :bool

@@ -14,6 +14,7 @@
 :build_git_hub_ci: true
 :build_git_lint: true
 :build_guard: true
+:build_irb_kit: true
 :build_license: true
 :build_maximum: true
 :build_minimum: false
