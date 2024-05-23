@@ -22,7 +22,7 @@ To install _with_ security, run:
 [source,bash]
 ----
 # 💡 Skip this line if you already have the public certificate installed.
-gem cert --add <(curl --compressed --location <%= configuration.computed_project_url_home %>/gems.pem)
+gem cert --add <(curl --compressed --location <%= configuration.organization_url %>/gems.pem)
 gem install <%= configuration.project_name %> --trust-policy HighSecurity
 ----
 

@@ -16,7 +16,7 @@
 To install _with_ security, run:
 
     # 💡 Skip this line if you already have the public certificate installed.
-    gem cert --add <(curl --compressed --location https://www.example.com/test/gems.pem)
+    gem cert --add <(curl --compressed --location https://www.example.com/gems.pem)
     gem install test --trust-policy HighSecurity
 
 To install _without_ security, run:
