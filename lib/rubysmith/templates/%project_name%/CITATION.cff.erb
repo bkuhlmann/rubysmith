@@ -4,7 +4,7 @@ title: <%= configuration.project_label %>
 abstract:
 version: <%= configuration.project_version %>
 license: <%= configuration.license_label_version %>
-date-released: <%= configuration.now.strftime "%Y-%m-%d" %>
+date-released: <%= configuration.loaded_at.strftime "%Y-%m-%d" %>
 authors:
   - family-names: <%= configuration.author_family_name %>
     given-names: <%= configuration.author_given_name %>
