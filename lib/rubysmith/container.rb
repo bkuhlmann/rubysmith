@@ -20,7 +20,6 @@ module Rubysmith
     register :defaults do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(Etcher::Loaders::YAML.new(self[:defaults_path]))
-                      .add_transformer(Configuration::Transformers::CurrentTime)
                       .add_transformer(Configuration::Transformers::GitHubUser.new)
                       .add_transformer(Configuration::Transformers::GitEmail.new)
                       .add_transformer(Configuration::Transformers::GitUser.new)

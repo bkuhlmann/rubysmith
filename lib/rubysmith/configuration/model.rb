@@ -53,7 +53,6 @@ module Rubysmith
       :license_name,
       :license_version,
       :loaded_at,
-      :now,
       :organization_url,
       :project_name,
       :project_url_community,
