@@ -26,6 +26,7 @@ module Rubysmith
                       .add_transformer(Configuration::Transformers::GitUser.new)
                       .add_transformer(Configuration::Transformers::TemplateRoot.new)
                       .add_transformer(Configuration::Transformers::TargetRoot)
+                      .add_transformer(Etcher::Transformers::Time.new)
     end
 
     register(:specification) { Spek::Loader.call "#{__dir__}/../../rubysmith.gemspec" }
