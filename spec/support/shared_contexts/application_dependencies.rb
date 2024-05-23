@@ -14,6 +14,7 @@ RSpec.shared_context "with application dependencies" do
             citation_orcid: "0000-1111-2222-3333",
             git_hub_user: "hubber",
             now: Time.local(2020, 1, 1, 0, 0, 0),
+            organization_url: "https://www.example.com",
             project_name: "test",
             project_url_community: "https://www.example.com/%project_name%/community",
             project_url_conduct: "https://www.example.com/%project_name%/code_of_conduct",
