@@ -8,33 +8,18 @@ toc::[]
 
 == Features
 
-== Screencasts
-
 == Requirements
 
 . link:https://www.ruby-lang.org[Ruby].
 
 == Setup
 
-To install, run:
+To set up project, run:
 
 [source,bash]
 ----
-gem install test
-----
-
-You can also add the gem directly to your project:
-
-[source,bash]
-----
-bundle add test
-----
-
-Once the gem is installed, you only need to require it:
-
-[source,ruby]
-----
-require "test"
+git clone https://www.example.com/test/source
+cd test
 ----
 
 == Usage

@@ -37,23 +37,6 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       end
     end
 
-    context "when enabled with ASCII Doc format and using dashed project name" do
-      let :test_configuration do
-        configuration.minimize.merge build_readme: true,
-                                     documentation_format: "adoc",
-                                     project_name: "test-example"
-      end
-
-      it "builds README" do
-        expect(temp_dir.join("test-example/README.adoc").read).to include(<<~SNIPPET)
-          [source,ruby]
-          ----
-          require "test/example"
-          ----
-        SNIPPET
-      end
-    end
-
     context "when enabled with Markdown format and minimum configuration" do
       let :test_configuration do
         configuration.minimize.merge build_readme: true, documentation_format: "md"
@@ -73,18 +56,6 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
         expect(temp_dir.join("test/README.md").read).to eq(
           SPEC_ROOT.join("support/fixtures/readmes/maximum.md").read
         )
-      end
-    end
-
-    context "when enabled with Markdown format and using dashed project name" do
-      let :test_configuration do
-        configuration.minimize.merge build_readme: true,
-                                     documentation_format: "md",
-                                     project_name: "test-example"
-      end
-
-      it "builds README" do
-        expect(temp_dir.join("test-example/README.md").read).to include(%(require "test/example"))
       end
     end
 

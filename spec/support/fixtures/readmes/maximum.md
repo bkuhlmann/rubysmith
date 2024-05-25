@@ -5,31 +5,17 @@
 
 ## Features
 
-## Screencasts
-
 ## Requirements
 
 1. [Ruby](https://www.ruby-lang.org)
 
 ## Setup
 
-To install _with_ security, run:
+To set up project, run:
 
-    # 💡 Skip this line if you already have the public certificate installed.
-    gem cert --add <(curl --compressed --location https://www.example.com/gems.pem)
-    gem install test --trust-policy HighSecurity
-
-To install _without_ security, run:
-
-    gem install test
-
-You can also add the gem directly to your project:
-
-    bundle add test
-
-Once the gem is installed, you only need to require it:
-
-    require "test"
+    git clone https://www.example.com/test/source
+    cd test
+    bin/setup
 
 ## Usage
 

@@ -5,25 +5,16 @@
 
 ## Features
 
-## Screencasts
-
 ## Requirements
 
 1. [Ruby](https://www.ruby-lang.org)
 
 ## Setup
 
-To install, run:
+To set up project, run:
 
-    gem install test
-
-You can also add the gem directly to your project:
-
-    bundle add test
-
-Once the gem is installed, you only need to require it:
-
-    require "test"
+    git clone https://www.example.com/test/source
+    cd test
 
 ## Usage
 

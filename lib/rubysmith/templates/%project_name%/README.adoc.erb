@@ -8,52 +8,21 @@ toc::[]
 
 == Features
 
-== Screencasts
-
 == Requirements
 
 . link:https://www.ruby-lang.org[Ruby].
 
 == Setup
-<% if configuration.build_security %>
 
-To install _with_ security, run:
-
-[source,bash]
-----
-# 💡 Skip this line if you already have the public certificate installed.
-gem cert --add <(curl --compressed --location <%= configuration.organization_url %>/gems.pem)
-gem install <%= configuration.project_name %> --trust-policy HighSecurity
-----
-
-To install _without_ security, run:
+To set up project, run:
 
 [source,bash]
 ----
-gem install <%= configuration.project_name %>
-----
-<% else %>
-
-To install, run:
-
-[source,bash]
-----
-gem install <%= configuration.project_name %>
-----
+git clone <%= configuration.computed_project_url_source %>
+cd <%= configuration.project_name %>
+<% if configuration.build_setup %>
+bin/setup
 <% end %>
-
-You can also add the gem directly to your project:
-
-[source,bash]
-----
-bundle add <%= configuration.project_name %>
-----
-
-Once the gem is installed, you only need to require it:
-
-[source,ruby]
-----
-require "<%= configuration.project_path %>"
 ----
 
 == Usage

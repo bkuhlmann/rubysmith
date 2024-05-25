@@ -20,7 +20,7 @@ module Rubysmith
           configuration
         end
 
-        private
+        protected
 
         def kind = configuration.documentation_format
       end

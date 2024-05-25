@@ -5,38 +5,19 @@
 
 ## Features
 
-## Screencasts
-
 ## Requirements
 
 1. [Ruby](https://www.ruby-lang.org)
 
 ## Setup
-<% if configuration.build_security %>
 
-To install _with_ security, run:
+To set up project, run:
 
-    # 💡 Skip this line if you already have the public certificate installed.
-    gem cert --add <(curl --compressed --location <%= configuration.organization_url %>/gems.pem)
-    gem install <%= configuration.project_name %> --trust-policy HighSecurity
-
-To install _without_ security, run:
-
-    gem install <%= configuration.project_name %>
-<% else %>
-
-To install, run:
-
-    gem install <%= configuration.project_name %>
-<% end %>
-
-You can also add the gem directly to your project:
-
-    bundle add <%= configuration.project_name %>
-
-Once the gem is installed, you only need to require it:
-
-    require "<%= configuration.project_path %>"
+    git clone <%= configuration.computed_project_url_source %>
+    cd <%= configuration.project_name %>
+    <% if configuration.build_setup %>
+    bin/setup
+    <% end %>
 
 ## Usage
 
