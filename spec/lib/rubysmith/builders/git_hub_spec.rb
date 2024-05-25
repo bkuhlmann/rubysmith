@@ -79,7 +79,7 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
       it "builds funding configuration" do
         builder.call
-        expect(funding_path.read).to eq("github: [hubber]\n")
+        expect(funding_path.read).to eq("github: [jsmith]\n")
       end
 
       it "does not build issue template" do

@@ -24,7 +24,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
       it "builds LICENSE" do
         expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-          "Copyright 2020 link:https://www.jillsmith.com[Jill Smith]."
+          "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
         )
       end
     end
@@ -38,7 +38,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
       it "builds LICENSE" do
         expect(temp_dir.join("test", "LICENSE.md").read).to include(
-          "Copyright 2020 [Jill Smith](https://www.jillsmith.com)."
+          "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
         )
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
       it "builds LICENSE" do
         expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-          "Copyright 2020 link:https://www.jillsmith.com[Jill Smith]."
+          "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
         )
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
       it "builds LICENSE" do
         expect(temp_dir.join("test", "LICENSE.md").read).to include(
-          "Copyright 2020 [Jill Smith](https://www.jillsmith.com)."
+          "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
         )
       end
     end
