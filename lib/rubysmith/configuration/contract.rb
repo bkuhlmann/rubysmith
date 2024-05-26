@@ -48,7 +48,7 @@ module Rubysmith
       optional(:citation_orcid).filled :string
       required(:documentation_format).filled :string
       optional(:git_hub_user).filled :string
-      optional(:loaded_at).filled :time
+      required(:loaded_at).filled :time
       required(:license_label).filled :string
       required(:license_name).filled :string
       required(:license_version).filled :string
