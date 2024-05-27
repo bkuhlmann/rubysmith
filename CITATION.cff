@@ -14,5 +14,6 @@ keywords:
  - ruby
  - command line interface
  - generator
-repository-code: https://alchemists.io/projects/rubysmith
+repository-code: https://github.com/bkuhlmann/rubysmith
 repository-artifact: https://rubygems.org/gems/rubysmith
+url: https://alchemists.io/projects/rubysmith
