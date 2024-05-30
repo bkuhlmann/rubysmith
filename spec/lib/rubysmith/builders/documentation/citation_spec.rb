@@ -37,6 +37,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
            - ruby
           repository-code: https://acme.io/test/source
           repository-artifact: https://acme.io/test/download
+          url: https://acme.io/test
         CONTENT
       end
     end
