@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "runcom", "~> 11.0"
   spec.add_dependency "sod", "~> 0.8"
   spec.add_dependency "spek", "~> 3.0"
-  spec.add_dependency "tocer", "~> 17.3"
+  spec.add_dependency "tocer", "~> 17.5"
   spec.add_dependency "tone", "~> 1.0"
   spec.add_dependency "zeitwerk", "~> 2.6"
 
