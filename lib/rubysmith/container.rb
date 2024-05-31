@@ -13,19 +13,19 @@ module Rubysmith
     extend Containable
 
     register :configuration do
-      self[:defaults].add_loader(Etcher::Loaders::YAML.new(self[:xdg_config].active))
+      self[:defaults].add_loader(:yaml, self[:xdg_config].active)
                      .then { |registry| Etcher.call registry }
     end
 
     register :defaults do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
-                      .add_loader(Etcher::Loaders::YAML.new(self[:defaults_path]))
+                      .add_loader(:yaml, self[:defaults_path])
                       .add_transformer(Configuration::Transformers::GitHubUser.new)
                       .add_transformer(Configuration::Transformers::GitEmail.new)
                       .add_transformer(Configuration::Transformers::GitUser.new)
                       .add_transformer(Configuration::Transformers::TemplateRoot.new)
                       .add_transformer(Configuration::Transformers::TargetRoot)
-                      .add_transformer(Etcher::Transformers::Time.new)
+                      .add_transformer(:time)
     end
 
     register(:specification) { Spek::Loader.call "#{__dir__}/../../rubysmith.gemspec" }
