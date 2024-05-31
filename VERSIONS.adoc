@@ -1,5 +1,15 @@
 = Versions
 
+== 6.9.0 (2024-05-31)
+
+* 🟢 Added citation URL to citation builder - Brooke Kuhlmann
+* 🔼 Updated citation URLs - Brooke Kuhlmann
+* 🔼 Updated configuration contract to ensure loaded date/time is required - Brooke Kuhlmann
+* 🔼 Updated to Etcher 1.6.0 - Brooke Kuhlmann
+* 🔼 Updated to Pragmater 14.6.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.2 - Brooke Kuhlmann
+* 🔼 Updated to Tocer 17.5.0 - Brooke Kuhlmann
+
 == 6.8.0 (2024-05-25)
 
 * ✅ Fixed readme builder gem certificate to use organization URL - Brooke Kuhlmann
