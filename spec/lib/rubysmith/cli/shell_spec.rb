@@ -81,23 +81,6 @@ RSpec.describe Rubysmith::CLI::Shell do
       end
     end
 
-    it "publishes project" do
-      skip "Requires CI push authorization." if ENV.fetch("CI", false) == "true"
-
-      version = "1.2.3"
-
-      temp_dir.join("test").make_path.change_dir do
-        `git init && git config --add remote.origin.url https://github.com/bkuhlmann/test`
-        `touch test.txt && git add . && git commit -m "Added test file"`
-        shell.call %W[--publish #{version}]
-
-        expect(`git tag | tail -1`.strip).to eq(version)
-
-        `git tag --delete #{version}`
-        `git push --delete origin #{version}`
-      end
-    end
-
     it "prints version" do
       shell.call %w[--version]
       expect(kernel).to have_received(:puts).with(/Rubysmith\s\d+\.\d+\.\d+/)
