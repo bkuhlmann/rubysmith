@@ -26,7 +26,6 @@ module Rubysmith
         dsl.new :rubysmith, banner: specification.banner do
           on(Sod::Prefabs::Commands::Config, context:)
           on Commands::Build
-          on Actions::Publish
           on(Sod::Prefabs::Actions::Version, context:)
           on Sod::Prefabs::Actions::Help, self
         end
