@@ -10,10 +10,10 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_citation
+          return settings unless settings.build_citation
 
-          builder.call(configuration.merge(template_path: "%project_name%/CITATION.cff.erb")).render
-          configuration
+          builder.call(settings.merge(template_path: "%project_name%/CITATION.cff.erb")).render
+          settings
         end
       end
     end

@@ -1,7 +1,7 @@
 #! /usr/bin/env ruby
 
-require "<%= configuration.project_name %>"
-<% if configuration.build_debug %>
+require "<%= settings.project_name %>"
+<% if settings.build_debug %>
 require "debug"
 <% end %>
 

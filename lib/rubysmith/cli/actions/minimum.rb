@@ -6,9 +6,9 @@ require "sod"
 module Rubysmith
   module CLI
     module Actions
-      # Forces minimum configuration.
+      # Forces minimum settings.
       class Minimum < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         using ::Refinements::Struct
 
@@ -16,9 +16,9 @@ module Rubysmith
 
         on "--min"
 
-        default { Container[:configuration].build_minimum }
+        default { Container[:settings].build_minimum }
 
-        def call(*) = input.merge! input.minimize
+        def call(*) = settings.merge! settings.minimize
       end
     end
   end

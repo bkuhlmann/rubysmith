@@ -6,65 +6,54 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    it "builds README when enabled with ASCII Doc format and minimum configuration" do
+      settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "adoc")
+      builder.call
 
-    context "when enabled with ASCII Doc format and minimum configuration" do
-      let :test_configuration do
-        configuration.minimize.merge build_readme: true, documentation_format: "adoc"
-      end
-
-      it "builds README" do
-        expect(temp_dir.join("test/README.adoc").read).to eq(
-          SPEC_ROOT.join("support/fixtures/readmes/minimum.adoc").read
-        )
-      end
+      expect(temp_dir.join("test/README.adoc").read).to eq(
+        SPEC_ROOT.join("support/fixtures/readmes/minimum.adoc").read
+      )
     end
 
-    context "when enabled with ASCII Doc format and maximum configuration" do
-      let(:test_configuration) { configuration.maximize.merge documentation_format: "adoc" }
+    it "builds README when enabled with ASCII Doc format and maximum configuration" do
+      settings.merge! settings.maximize.merge(documentation_format: "adoc")
+      builder.call
 
-      it "builds README" do
-        expect(temp_dir.join("test/README.adoc").read).to eq(
-          SPEC_ROOT.join("support/fixtures/readmes/maximum.adoc").read
-        )
-      end
+      expect(temp_dir.join("test/README.adoc").read).to eq(
+        SPEC_ROOT.join("support/fixtures/readmes/maximum.adoc").read
+      )
     end
 
-    context "when enabled with Markdown format and minimum configuration" do
-      let :test_configuration do
-        configuration.minimize.merge build_readme: true, documentation_format: "md"
-      end
+    it "builds README when enabled with Markdown format and minimum configuration" do
+      settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "md")
+      builder.call
 
-      it "builds README" do
-        expect(temp_dir.join("test/README.md").read).to eq(
-          SPEC_ROOT.join("support/fixtures/readmes/minimum.md").read
-        )
-      end
+      expect(temp_dir.join("test/README.md").read).to eq(
+        SPEC_ROOT.join("support/fixtures/readmes/minimum.md").read
+      )
     end
 
-    context "when enabled with Markdown format and maximum configuration" do
-      let(:test_configuration) { configuration.maximize.merge documentation_format: "md" }
+    it "builds README when enabled with Markdown format and maximum configuration" do
+      settings.merge! settings.maximize.merge(documentation_format: "md")
+      builder.call
 
-      it "builds README" do
-        expect(temp_dir.join("test/README.md").read).to eq(
-          SPEC_ROOT.join("support/fixtures/readmes/maximum.md").read
-        )
-      end
+      expect(temp_dir.join("test/README.md").read).to eq(
+        SPEC_ROOT.join("support/fixtures/readmes/maximum.md").read
+      )
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build README when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build README" do
-        expect(temp_dir.files.empty?).to be(true)
-      end
+      expect(temp_dir.files.empty?).to be(true)
     end
   end
 end

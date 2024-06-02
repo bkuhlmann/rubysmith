@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores GitHub CI flag.
       class GitHubCI < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add GitHub continuous integration."
 
         on "--[no-]git_hub_ci"
 
-        default { Container[:configuration].build_git_hub_ci }
+        default { Container[:settings].build_git_hub_ci }
 
-        def call(value = nil) = input.build_git_hub_ci = value
+        def call(value = nil) = settings.build_git_hub_ci = value
       end
     end
   end

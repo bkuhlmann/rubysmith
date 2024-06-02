@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores funding flag.
       class Funding < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
-        description "Add GitHub funding configuration."
+        description "Add GitHub funding settings."
 
         on "--[no-]funding"
 
-        default { Container[:configuration].build_funding }
+        default { Container[:settings].build_funding }
 
-        def call(value = nil) = input.build_funding = value
+        def call(value = nil) = settings.build_funding = value
       end
     end
   end

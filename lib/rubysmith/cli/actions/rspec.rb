@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores RSpec flag.
       class RSpec < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add RSpec gem."
 
         on "--[no-]rspec"
 
-        default { Container[:configuration].build_rspec }
+        default { Container[:settings].build_rspec }
 
-        def call(value = nil) = input.build_rspec = value
+        def call(value = nil) = settings.build_rspec = value
       end
     end
   end

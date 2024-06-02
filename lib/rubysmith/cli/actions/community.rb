@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores community flag.
       class Community < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add community documentation."
 
         on "--[no-]community"
 
-        default { Container[:configuration].build_community }
+        default { Container[:settings].build_community }
 
-        def call(value = nil) = input.build_community = value
+        def call(value = nil) = settings.build_community = value
       end
     end
   end

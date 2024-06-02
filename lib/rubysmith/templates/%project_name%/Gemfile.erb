@@ -2,57 +2,57 @@ ruby file: ".ruby-version"
 
 source "https://rubygems.org"
 
-<% if configuration.build_refinements %>
+<% if settings.build_refinements %>
   gem "refinements", "~> 12.5"
 <% end %>
-<% if configuration.build_zeitwerk %>
+<% if settings.build_zeitwerk %>
   gem "zeitwerk", "~> 2.6"
 <% end %>
 
 group :quality do
-  <% if configuration.build_caliber %>
+  <% if settings.build_caliber %>
     gem "caliber", "~> 0.58"
   <% end %>
-  <% if configuration.build_git && configuration.build_git_lint %>
+  <% if settings.build_git && settings.build_git_lint %>
     gem "git-lint", "~> 7.3"
   <% end %>
-  <% if configuration.build_reek %>
+  <% if settings.build_reek %>
     gem "reek", "~> 6.3", require: false
   <% end %>
-  <% if configuration.build_simple_cov %>
+  <% if settings.build_simple_cov %>
     gem "simplecov", "~> 0.22", require: false
   <% end %>
 end
 
 group :development do
-  <% if configuration.build_rake %>
+  <% if settings.build_rake %>
     gem "rake", "~> 13.2"
   <% end %>
-  <% if configuration.markdown? %>
+  <% if settings.markdown? %>
     gem "tocer", "~> 17.5"
   <% end %>
 end
 
 group :test do
-  <% if configuration.build_guard %>
+  <% if settings.build_guard %>
     gem "guard-rspec", "~> 4.7", require: false
   <% end %>
-  <% if configuration.build_rspec %>
+  <% if settings.build_rspec %>
     gem "rspec", "~> 3.13"
   <% end %>
 end
 
 group :tools do
-  <% if configuration.build_amazing_print %>
+  <% if settings.build_amazing_print %>
     gem "amazing_print", "~> 1.6"
   <% end %>
-  <% if configuration.build_debug %>
+  <% if settings.build_debug %>
     gem "debug", "~> 1.9"
   <% end %>
-  <% if configuration.build_irb_kit %>
+  <% if settings.build_irb_kit %>
     gem "irb-kit", "~> 0.0"
   <% end %>
-  <% if configuration.build_rtc %>
+  <% if settings.build_rtc %>
     gem "repl_type_completor", "~> 0.1"
   <% end %>
 end

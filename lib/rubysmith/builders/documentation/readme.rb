@@ -10,19 +10,19 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_readme
+          return settings unless settings.build_readme
 
-          builder.call(configuration.merge(template_path: "%project_name%/README.#{kind}.erb"))
+          builder.call(settings.merge(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace(/\n{2,}/, "\n\n")
                  .replace("\n    \n", "\n")
 
-          configuration
+          settings
         end
 
         protected
 
-        def kind = configuration.documentation_format
+        def kind = settings.documentation_format
       end
     end
   end

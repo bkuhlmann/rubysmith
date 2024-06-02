@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Caliber flag.
       class Caliber < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Caliber gem."
 
         on "--[no-]caliber"
 
-        default { Container[:configuration].build_caliber }
+        default { Container[:settings].build_caliber }
 
-        def call(value = nil) = input.build_caliber = value
+        def call(value = nil) = settings.build_caliber = value
       end
     end
   end

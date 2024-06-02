@@ -5,19 +5,18 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Console do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:build_path) { temp_dir.join "test/bin/console" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    context "when enabled with non-dashed project name" do
-      let(:test_configuration) { configuration.minimize.merge build_console: true }
+    let(:build_path) { temp_dir.join "test/bin/console" }
 
+    context "when enabled with non-dashed project name" do
       it "builds console script" do
+        settings.merge! settings.minimize.merge(build_console: true)
         builder.call
 
         expect(build_path.read).to eq(<<~CONTENT)
@@ -34,19 +33,18 @@ RSpec.describe Rubysmith::Builders::Console do
       end
 
       it "updates file permissions" do
+        settings.merge! settings.minimize.merge(build_console: true)
         builder.call
+
         expect(build_path.stat.mode).to eq(33261)
       end
     end
 
     context "when enabled with dashed project name" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "demo-test", build_console: true
-      end
-
       let(:build_path) { temp_dir.join "demo-test/bin/console" }
 
       it "builds console script" do
+        settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
         builder.call
 
         expect(build_path.read).to eq(<<~CONTENT)
@@ -63,18 +61,18 @@ RSpec.describe Rubysmith::Builders::Console do
       end
 
       it "updates file permissions" do
+        settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
         builder.call
+
         expect(build_path.stat.mode).to eq(33261)
       end
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "does not build console script when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "does not build console script" do
-        builder.call
-        expect(build_path.exist?).to be(false)
-      end
+      expect(build_path.exist?).to be(false)
     end
   end
 end

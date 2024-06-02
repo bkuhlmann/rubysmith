@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builders::Abstract do
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 

@@ -3,27 +3,25 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Builder do
-  subject(:builder) { described_class.new configuration }
+  subject(:builder) { described_class.new settings }
 
   include_context "with application dependencies"
 
   using Refinements::Pathname
   using Refinements::Struct
 
-  let :configuration do
-    Rubysmith::Configuration::Model[
-      template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
-      template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
-      target_root: temp_dir,
-      project_name: "demo-test"
-    ]
-  end
-
   let(:build_path) { temp_dir.join "demo-test", "lib", "demo", "test", "identity.rb" }
+
+  before do
+    settings.merge! template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
+                    template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
+                    target_root: temp_dir,
+                    project_name: "demo-test"
+  end
 
   describe ".call" do
     it "answers builder" do
-      expect(described_class.call(configuration)).to be_a(described_class)
+      expect(described_class.call(settings)).to be_a(described_class)
     end
   end
 
@@ -55,12 +53,10 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#check" do
-    let :configuration do
-      Rubysmith::Configuration::Model[
-        template_path: "%project_name%",
-        target_root: temp_dir,
-        project_name: "demo-test"
-      ]
+    before do
+      settings.merge! template_path: "%project_name%",
+                      target_root: temp_dir,
+                      project_name: "demo-test"
     end
 
     it "logs debug info when project doesn't exist" do
@@ -71,7 +67,7 @@ RSpec.describe Rubysmith::Builder do
     it "aborts when project exists" do
       builder.make_path
       logger = instance_spy Cogger::Hub
-      described_class.new(configuration, logger:).check
+      described_class.new(settings, logger:).check
 
       expect(logger).to have_received(:abort).with(%(Path exists: #{temp_dir.join "demo-test"}.))
     end
@@ -172,15 +168,13 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#make_path" do
-    let :configuration do
-      Rubysmith::Configuration::Model[
-        template_path: "%project_name%/lib/%project_path%/one/two",
-        target_root: temp_dir,
-        project_name: "demo-test"
-      ]
-    end
-
     let(:build_path) { temp_dir.join "demo-test/lib/demo/test/one/two" }
+
+    before do
+      settings.merge! template_path: "%project_name%/lib/%project_path%/one/two",
+                      target_root: temp_dir,
+                      project_name: "demo-test"
+    end
 
     it "logs information" do
       builder.make_path
@@ -255,7 +249,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "inserts content at start of file" do
       builder.rename "identity.backup"
-      build_path = configuration.target_root.join "demo-test/lib/demo/test/identity.backup"
+      build_path = settings.target_root.join "demo-test/lib/demo/test/identity.backup"
 
       expect(build_path.exist?).to be(true)
     end
@@ -282,13 +276,12 @@ RSpec.describe Rubysmith::Builder do
     end
 
     context "with duplicated project name in path" do
-      let :configuration do
-        Rubysmith::Configuration::Model[
-          template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
-          template_path: "%project_name%/bin/%project_name%.erb",
-          target_root: temp_dir,
-          project_name: "demo-test"
-        ]
+      before do
+        settings.merge! build_debug: false,
+                        template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
+                        template_path: "%project_name%/bin/%project_name%.erb",
+                        target_root: temp_dir,
+                        project_name: "demo-test"
       end
 
       it "renders template" do
@@ -382,7 +375,7 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "creates empty directory" do
-      described_class.new(configuration.merge(template_path: "test/path")).touch
+      described_class.new(settings.merge(template_path: "test/path")).touch
       expect(temp_dir.join("test", "path").exist?).to be(true)
     end
 

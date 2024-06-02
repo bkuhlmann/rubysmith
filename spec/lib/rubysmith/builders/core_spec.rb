@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Core do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
@@ -14,10 +14,11 @@ RSpec.describe Rubysmith::Builders::Core do
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
-
     context "with default configuration" do
-      let(:test_configuration) { configuration.minimize }
+      before do
+        settings.merge! settings.minimize
+        builder.call
+      end
 
       it "builds project file" do
         expect(temp_dir.join("test", "lib", "test.rb").read).to eq(<<~CONTENT)
@@ -33,7 +34,10 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with dashed project name" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "demo-test" }
+      before do
+        settings.merge! settings.minimize.merge(project_name: "demo-test")
+        builder.call
+      end
 
       it "builds project file" do
         expect(temp_dir.join("demo-test", "lib", "demo", "test.rb").read).to eq(<<~CONTENT)
@@ -51,7 +55,10 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with default configuration and Zeitwerk enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_zeitwerk: true }
+      before do
+        settings.merge! settings.minimize.merge(build_zeitwerk: true)
+        builder.call
+      end
 
       it "builds project file" do
         expect(temp_dir.join("test", "lib", "test.rb").read).to eq(<<~CONTENT)
@@ -94,8 +101,9 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with single dashed project name and Zeitwerk enabled" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "demo-test", build_zeitwerk: true
+      before do
+        settings.merge! settings.minimize.merge(project_name: "demo-test", build_zeitwerk: true)
+        builder.call
       end
 
       it "builds project file" do
@@ -141,8 +149,13 @@ RSpec.describe Rubysmith::Builders::Core do
     end
 
     context "with multi-dashed project name and Zeitwerk enabled" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "demo-test-example", build_zeitwerk: true
+      before do
+        settings.merge! settings.minimize.merge(
+          project_name: "demo-test-example",
+          build_zeitwerk: true
+        )
+
+        builder.call
       end
 
       it "builds project file" do

@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Amazing Print flag.
       class AmazingPrint < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Amazing Print gem."
 
         on "--[no-]amazing_print"
 
-        default { Container[:configuration].build_amazing_print }
+        default { Container[:settings].build_amazing_print }
 
-        def call(value = nil) = input.build_amazing_print = value
+        def call(value = nil) = settings.build_amazing_print = value
       end
     end
   end

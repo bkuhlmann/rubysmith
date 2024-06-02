@@ -6,10 +6,10 @@ module Rubysmith
   module Renderers
     # Renders ERB templates as fully functional files.
     class ERB
-      def initialize configuration,
-                     scope: Renderers::Namespace.new(configuration.project_namespaced_class),
+      def initialize settings,
+                     scope: Renderers::Namespace.new(settings.project_namespaced_class),
                      client: ::ERB
-        @configuration = configuration
+        @settings = settings
         @scope = scope
         @client = client
       end
@@ -19,7 +19,7 @@ module Rubysmith
       private
 
       attr_accessor :buffer
-      attr_reader :configuration, :scope, :client
+      attr_reader :settings, :scope, :client
 
       def namespace
         source = buffer.dup

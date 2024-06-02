@@ -1,4 +1,4 @@
-<% if configuration.build_simple_cov %>
+<% if settings.build_simple_cov %>
 require "simplecov"
 
 unless ENV["NO_COVERAGE"]
@@ -13,12 +13,12 @@ end
 
 Bundler.require :tools
 
-require "<%= configuration.project_path %>"
-<% if configuration.build_refinements %>
+require "<%= settings.project_path %>"
+<% if settings.build_refinements %>
 require "refinements"
 <% end %>
 
-<% if configuration.build_refinements %>
+<% if settings.build_refinements %>
 SPEC_ROOT = Pathname(__dir__).realpath.freeze
 
 using Refinements::Pathname

@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Circle CI flag.
       class CircleCI < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
-        description "Add Circle CI configuration."
+        description "Add Circle CI settings."
 
         on "--[no-]circle_ci"
 
-        default { Container[:configuration].build_circle_ci }
+        default { Container[:settings].build_circle_ci }
 
-        def call(value = nil) = input.build_circle_ci = value
+        def call(value = nil) = settings.build_circle_ci = value
       end
     end
   end

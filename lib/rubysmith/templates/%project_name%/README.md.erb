@@ -1,4 +1,4 @@
-# <%= configuration.project_label %>
+# <%= settings.project_label %>
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
@@ -13,9 +13,9 @@
 
 To set up project, run:
 
-    git clone <%= configuration.computed_project_url_source %>
-    cd <%= configuration.project_name %>
-    <% if configuration.build_setup %>
+    git clone <%= settings.computed_project_url_source %>
+    cd <%= settings.project_name %>
+    <% if settings.build_setup %>
     bin/setup
     <% end %>
 
@@ -25,13 +25,13 @@ To set up project, run:
 
 To contribute, run:
 
-    git clone <%= configuration.computed_project_url_source %>
-    cd <%= configuration.project_name %>
-    <% if configuration.build_setup %>
+    git clone <%= settings.computed_project_url_source %>
+    cd <%= settings.project_name %>
+    <% if settings.build_setup %>
     bin/setup
     <% end %>
 
-<% if configuration.build_console %>
+<% if settings.build_console %>
 
 You can also use the IRB console for direct access to all objects:
 
@@ -44,31 +44,31 @@ To test, run:
 
     bin/rake
 
-<% if configuration.build_license %>
-## [License](<%= configuration.computed_project_url_license %>)
+<% if settings.build_license %>
+## [License](<%= settings.computed_project_url_license %>)
 <% end %>
 
-<% if configuration.build_security %>
-## [Security](<%= configuration.computed_project_url_security %>)
+<% if settings.build_security %>
+## [Security](<%= settings.computed_project_url_security %>)
 <% end %>
 
-<% if configuration.build_conduct %>
-## [Code of Conduct](<%= configuration.computed_project_url_conduct %>)
+<% if settings.build_conduct %>
+## [Code of Conduct](<%= settings.computed_project_url_conduct %>)
 <% end %>
 
-<% if configuration.build_contributions %>
-## [Contributions](<%= configuration.computed_project_url_contributions %>)
+<% if settings.build_contributions %>
+## [Contributions](<%= settings.computed_project_url_contributions %>)
 <% end %>
 
-<% if configuration.build_versions %>
-## [Versions](<%= configuration.computed_project_url_versions %>)
+<% if settings.build_versions %>
+## [Versions](<%= settings.computed_project_url_versions %>)
 <% end %>
 
-<% if configuration.build_community %>
-## [Community](<%= configuration.computed_project_url_community %>)
+<% if settings.build_community %>
+## [Community](<%= settings.computed_project_url_community %>)
 <% end %>
 
 ## Credits
 
 - Built with [Rubysmith](https://alchemists.io/projects/rubysmith).
-- Engineered by [<%= configuration.author_name %>](<%= configuration.author_url %>).
+- Engineered by [<%= settings.author_name %>](<%= settings.author_url %>).

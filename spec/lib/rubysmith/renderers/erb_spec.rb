@@ -5,20 +5,20 @@ require "spec_helper"
 RSpec.describe Rubysmith::Renderers::ERB do
   using Refinements::Struct
 
-  subject(:renderer) { described_class.new test_configuration }
+  subject(:renderer) { described_class.new test_settings }
 
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:test_configuration) { configuration.minimize }
+    let(:test_settings) { settings.minimize }
 
     it "answers evaluated result" do
-      expect(renderer.call("Name: <%= configuration.project_name %>.")).to eq("Name: test.")
+      expect(renderer.call("Name: <%= settings.project_name %>.")).to eq("Name: test.")
     end
 
     it "trims conditional new lines" do
       content = <<~TEMPLATE
-        <% if configuration.project_name == "invalid" %>
+        <% if settings.project_name == "invalid" %>
           This is not valid.
         <% end %>
       TEMPLATE
@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -48,7 +48,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace block" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -74,7 +74,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content after namespace" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -95,7 +95,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content after namespace block" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -121,7 +121,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single lined namespace" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -143,7 +143,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with empty namespace" do
-      let(:test_configuration) { configuration.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.merge project_name: "example" }
 
       let(:content) { "<% namespace %>" }
 
@@ -158,8 +158,8 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with empty namespaces" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "example-one-two"
+      let :test_settings do
+        settings.minimize.merge project_name: "example-one-two"
       end
 
       let(:content) { "<% namespace %>" }
@@ -182,8 +182,8 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with filled namespaces" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "example-one-two"
+      let :test_settings do
+        settings.minimize.merge project_name: "example-one-two"
       end
 
       let :content do

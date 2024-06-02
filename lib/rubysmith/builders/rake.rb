@@ -9,23 +9,23 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return configuration unless configuration.build_rake
+        return settings unless settings.build_rake
 
         add_binstub
         add_configuration
-        configuration
+        settings
       end
 
       private
 
       def add_binstub
-        builder.call(configuration.merge(template_path: "%project_name%/bin/rake.erb"))
+        builder.call(settings.merge(template_path: "%project_name%/bin/rake.erb"))
                .render
                .permit 0o755
       end
 
       def add_configuration
-        builder.call(configuration.merge(template_path: "%project_name%/Rakefile.erb"))
+        builder.call(settings.merge(template_path: "%project_name%/Rakefile.erb"))
                .render
                .replace(/\[\s+/, "[")
                .replace(/\s+\]/, "]")

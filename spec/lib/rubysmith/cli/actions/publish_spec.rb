@@ -12,9 +12,14 @@ RSpec.describe Rubysmith::CLI::Actions::Publish do
   let(:extension) { class_spy Rubysmith::Extensions::Milestoner }
 
   describe "#call" do
+    it "updates settings" do
+      action.call "0.0.0"
+      expect(settings).to eq(settings.merge(project_version: "0.0.0"))
+    end
+
     it "messages extension" do
       action.call "0.0.0"
-      expect(extension).to have_received(:call).with(configuration.merge(project_version: "0.0.0"))
+      expect(extension).to have_received(:call)
     end
   end
 end

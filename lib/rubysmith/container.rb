@@ -12,24 +12,20 @@ module Rubysmith
   module Container
     extend Containable
 
-    register :configuration do
-      self[:defaults].add_loader(:yaml, self[:xdg_config].active)
-                     .then { |registry| Etcher.call registry }
-    end
-
-    register :defaults do
+    register :registry do
       Etcher::Registry.new(contract: Configuration::Contract, model: Configuration::Model)
                       .add_loader(:yaml, self[:defaults_path])
+                      .add_loader(:yaml, self[:xdg_config].active)
                       .add_transformer(Configuration::Transformers::GitHubUser.new)
                       .add_transformer(Configuration::Transformers::GitEmail.new)
                       .add_transformer(Configuration::Transformers::GitUser.new)
                       .add_transformer(Configuration::Transformers::TemplateRoot.new)
-                      .add_transformer(Configuration::Transformers::TargetRoot)
-                      .add_transformer(:time)
+                      .add_transformer(:root, :target_root)
+                      .add_transformer(:time, :loaded_at)
     end
 
+    register(:settings) { Etcher.call(self[:registry]).dup }
     register(:specification) { Spek::Loader.call "#{__dir__}/../../rubysmith.gemspec" }
-    register(:input) { self[:configuration].dup }
     register(:defaults_path) { Pathname(__dir__).join("configuration/defaults.yml") }
     register(:xdg_config) { Runcom::Config.new "rubysmith/configuration.yml" }
     register(:git) { Gitt::Repository.new }

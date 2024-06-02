@@ -5,31 +5,27 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Git::Safe do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:safe_path) { temp_dir.join "test/.git/safe" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    context "with minimum options" do
-      let(:test_configuration) { configuration.minimize }
+    let(:safe_path) { temp_dir.join "test/.git/safe" }
 
-      it "doesn't build safe directory" do
-        builder.call
-        expect(safe_path.exist?).to be(false)
-      end
+    it "doesn't build safe directory with minimum options" do
+      settings.merge! settings.minimize
+      builder.call
+
+      expect(safe_path.exist?).to be(false)
     end
 
-    context "with maximum options" do
-      let(:test_configuration) { configuration.maximize }
+    it "doesn't build ignore file with maximum options" do
+      settings.merge! settings.maximize
+      builder.call
 
-      it "doesn't build ignore file" do
-        builder.call
-        expect(safe_path.exist?).to be(true)
-      end
+      expect(safe_path.exist?).to be(true)
     end
   end
 end

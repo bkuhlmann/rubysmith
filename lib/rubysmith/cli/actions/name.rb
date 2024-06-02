@@ -7,13 +7,13 @@ module Rubysmith
     module Actions
       # Stores project (build) name.
       class Name < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Set project name."
 
         on %w[-n --name], argument: "NAME"
 
-        def call(name) = input.project_name = name
+        def call(name) = settings.project_name = name
       end
     end
   end

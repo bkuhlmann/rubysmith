@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Version do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
@@ -14,22 +14,18 @@ RSpec.describe Rubysmith::Builders::Version do
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    it "builds Ruby version file with minimum settings" do
+      settings.merge! settings.minimize
+      builder.call
 
-    context "with minimum configuration" do
-      let(:test_configuration) { configuration.minimize }
-
-      it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
-      end
+      expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
     end
 
-    context "with maximum configuration" do
-      let(:test_configuration) { configuration.maximize }
+    it "builds Ruby version file with maximum settings" do
+      settings.merge! settings.maximize
+      builder.call
 
-      it "builds Ruby version file" do
-        expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
-      end
+      expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
     end
   end
 end

@@ -4,11 +4,13 @@ module Rubysmith
   module Builders
     # Provides default implementation from which builders can inherit from.
     class Abstract
+      include Import[:settings]
+
       def self.call(...) = new(...).call
 
-      def initialize configuration, builder: Builder
-        @configuration = configuration
+      def initialize(builder: Builder, **)
         @builder = builder
+        super(**)
       end
 
       def call
@@ -18,7 +20,7 @@ module Rubysmith
 
       protected
 
-      attr_reader :configuration, :builder
+      attr_reader :builder
     end
   end
 end

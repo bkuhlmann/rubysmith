@@ -9,10 +9,10 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        builder.call(configuration.merge(template_path: "%project_name%/.ruby-version.erb"))
+        builder.call(settings.merge(template_path: "%project_name%/.ruby-version.erb"))
                .render
                .append("\n")
-        configuration
+        settings
       end
     end
   end

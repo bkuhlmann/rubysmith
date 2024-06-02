@@ -6,36 +6,29 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:git_dir) { temp_dir.join "test", ".git" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before do
-      temp_dir.change_dir do |path|
-        path.join("test").make_path
-        builder.call
-      end
+    let(:git_dir) { temp_dir.join "test", ".git" }
+
+    before { temp_dir.change_dir { |path| path.join("test").make_path } }
+
+    it "initializes repository when enabled" do
+      settings.merge! settings.minimize.merge(build_git: true)
+      temp_dir.change_dir { builder.call }
+
+      expect(git_dir.exist?).to be(true)
     end
 
-    context "when enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_git: true }
+    it "doesn't initialize repository when disabled" do
+      settings.merge! settings.minimize
+      temp_dir.change_dir { builder.call }
 
-      it "initializes repository" do
-        expect(git_dir.exist?).to be(true)
-      end
-    end
-
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
-
-      it "doesn't initialize repository" do
-        expect(git_dir.exist?).to be(false)
-      end
+      expect(git_dir.exist?).to be(false)
     end
   end
 end

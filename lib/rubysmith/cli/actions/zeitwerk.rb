@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Zeitwerk flag.
       class Zeitwerk < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Zeitwerk gem."
 
         on "--[no-]zeitwerk"
 
-        default { Container[:configuration].build_zeitwerk }
+        default { Container[:settings].build_zeitwerk }
 
-        def call(value = nil) = input.build_zeitwerk = value
+        def call(value = nil) = settings.build_zeitwerk = value
       end
     end
   end

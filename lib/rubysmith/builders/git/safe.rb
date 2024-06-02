@@ -10,10 +10,10 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_git
+          return settings unless settings.build_git
 
-          builder.call(configuration.merge(template_path: "%project_name%/.git/safe")).make_path
-          configuration
+          builder.call(settings.merge(template_path: "%project_name%/.git/safe")).make_path
+          settings
         end
       end
     end

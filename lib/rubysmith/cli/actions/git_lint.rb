@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Git Lint flag.
       class GitLint < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Git Lint gem."
 
         on "--[no-]git-lint"
 
-        default { Container[:configuration].build_git_lint }
+        default { Container[:settings].build_git_lint }
 
-        def call(value = nil) = input.build_git_lint = value
+        def call(value = nil) = settings.build_git_lint = value
       end
     end
   end

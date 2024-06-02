@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Reek flag.
       class Reek < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Reek gem."
 
         on "--[no-]reek"
 
-        default { Container[:configuration].build_reek }
+        default { Container[:settings].build_reek }
 
-        def call(value = nil) = input.build_reek = value
+        def call(value = nil) = settings.build_reek = value
       end
     end
   end
