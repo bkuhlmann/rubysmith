@@ -10,15 +10,15 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_rspec
+          return settings unless settings.build_rspec
 
           template = "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb"
-          configuration.merge(template_path: template)
-                       .then { |updated_configuration| builder.call updated_configuration }
-                       .render
-                       .replace(/\n\s+\n\s+/, "\n  ")
+          settings.merge(template_path: template)
+                  .then { |updated_configuration| builder.call updated_configuration }
+                  .render
+                  .replace(/\n\s+\n\s+/, "\n  ")
 
-          configuration
+          settings
         end
       end
     end

@@ -6,9 +6,9 @@ require "sod"
 module Rubysmith
   module CLI
     module Actions
-      # Forces maximum configuration.
+      # Forces maximum settings.
       class Maximum < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         using ::Refinements::Struct
 
@@ -16,9 +16,9 @@ module Rubysmith
 
         on "--max"
 
-        default { Container[:configuration].build_maximum }
+        default { Container[:settings].build_maximum }
 
-        def call(*) = input.merge! input.maximize
+        def call(*) = settings.merge! settings.maximize
       end
     end
   end

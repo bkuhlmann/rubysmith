@@ -1,9 +1,9 @@
-<% if configuration.build_zeitwerk %>
+<% if settings.build_zeitwerk %>
   require "zeitwerk"
-  <% if configuration.project_levels.positive? %>
+  <% if settings.project_levels.positive? %>
     Zeitwerk::Loader.new.then do |loader|
-      loader.tag = "<%= configuration.project_name %>"
-      loader.push_dir "#{__dir__}<%= Array.new(configuration.project_levels, "/..").join %>"
+      loader.tag = "<%= settings.project_name %>"
+      loader.push_dir "#{__dir__}<%= Array.new(settings.project_levels, "/..").join %>"
       loader.setup
     end
   <% else %>
@@ -14,11 +14,11 @@
     end
   <% end %>
 <% end %>
-<% if configuration.build_zeitwerk %>
+<% if settings.build_zeitwerk %>
 <% namespace do %>
-  <% if configuration.project_levels.positive? %>
+  <% if settings.project_levels.positive? %>
     def self.loader registry = Zeitwerk::Registry
-      @loader ||= registry.loaders.find { |loader| loader.tag == "<%= configuration.project_name %>" }
+      @loader ||= registry.loaders.find { |loader| loader.tag == "<%= settings.project_name %>" }
     end
   <% else %>
     def self.loader registry = Zeitwerk::Registry

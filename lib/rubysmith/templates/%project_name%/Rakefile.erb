@@ -1,32 +1,32 @@
 require "bundler/setup"
 
-<% if configuration.build_git && configuration.build_git_lint %>
+<% if settings.build_git && settings.build_git_lint %>
   require "git/lint/rake/register"
 <% end %>
-<% if configuration.build_reek %>
+<% if settings.build_reek %>
   require "reek/rake/task"
 <% end %>
-<% if configuration.build_rspec %>
+<% if settings.build_rspec %>
   require "rspec/core/rake_task"
 <% end %>
-<% if configuration.build_caliber %>
+<% if settings.build_caliber %>
   require "rubocop/rake_task"
 <% end %>
 
-<% if configuration.build_git && configuration.build_git_lint %>
+<% if settings.build_git && settings.build_git_lint %>
   Git::Lint::Rake::Register.call
 <% end %>
-<% if configuration.build_reek %>
+<% if settings.build_reek %>
   Reek::Rake::Task.new
 <% end %>
-<% if configuration.build_rspec %>
+<% if settings.build_rspec %>
   RSpec::Core::RakeTask.new { |task| task.verbose = false }
 <% end %>
-<% if configuration.build_caliber %>
+<% if settings.build_caliber %>
   RuboCop::RakeTask.new
 <% end %>
 
 desc "Run code quality checks"
-task quality: %i[<% if configuration.build_git && configuration.build_git_lint %>git_lint<% end %> <% if configuration.build_reek %>reek<% end %> <% if configuration.build_caliber %>rubocop<% end %>]
+task quality: %i[<% if settings.build_git && settings.build_git_lint %>git_lint<% end %> <% if settings.build_reek %>reek<% end %> <% if settings.build_caliber %>rubocop<% end %>]
 
-task default: %i[quality <% if configuration.build_rspec %>spec<% end %>]
+task default: %i[quality <% if settings.build_rspec %>spec<% end %>]

@@ -3,21 +3,21 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Actions::Reek do
-  subject(:action) { described_class.new input: }
+  subject(:action) { described_class.new }
 
-  let(:input) { configuration.dup }
+  let(:settings) { settings.dup }
 
   include_context "with application dependencies"
 
   describe "#call" do
     it "answers nil without arguments" do
       action.call
-      expect(input.build_reek).to be(nil)
+      expect(settings.build_reek).to be(nil)
     end
 
     it "answers value when given agrument" do
       action.call true
-      expect(input.build_reek).to be(true)
+      expect(settings.build_reek).to be(true)
     end
   end
 end

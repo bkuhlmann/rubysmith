@@ -15,10 +15,10 @@ module Rubysmith
 
     def self.call(...) = new(...)
 
-    def initialize(configuration, helpers: HELPERS, **)
-      super(**)
-      @configuration = configuration
+    def initialize(settings, helpers: HELPERS, **)
+      @settings = settings
       @helpers = helpers
+      super(**)
     end
 
     def append content
@@ -107,7 +107,7 @@ module Rubysmith
 
     private
 
-    attr_reader :configuration, :helpers
+    attr_reader :settings, :helpers
 
     def execute *command
       executor.capture2e(*command).then do |result, status|
@@ -117,20 +117,20 @@ module Rubysmith
 
     def inserter = helpers.fetch(__method__)
 
-    def renderer = helpers.fetch(__method__).new(configuration)
+    def renderer = helpers.fetch(__method__).new(settings)
 
     def executor = helpers.fetch(__method__)
 
-    def relative_build_path = build_path.relative_path_from(configuration.target_root)
+    def relative_build_path = build_path.relative_path_from(settings.target_root)
 
     def build_path
       pathway.end_path
-             .gsub("%project_name%", configuration.project_name)
-             .sub("%project_path%", configuration.project_path)
+             .gsub("%project_name%", settings.project_name)
+             .sub("%project_path%", settings.project_path)
              .sub ".erb", ""
     end
 
-    def pathway = configuration.pathway
+    def pathway = settings.pathway
 
     def log_debug(message) = logger.debug { message }
 

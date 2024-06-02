@@ -20,7 +20,7 @@ RSpec.describe Rubysmith::CLI::Commands::Build do
 
     it "calls builders" do
       command.call
-      expect(builder).to have_received(:call).with(configuration)
+      expect(builder).to have_received(:call)
     end
   end
 end

@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores readme flag.
       class Readme < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add readme documentation."
 
         on "--[no-]readme"
 
-        default { Container[:configuration].build_readme }
+        default { Container[:settings].build_readme }
 
-        def call(value = nil) = input.build_readme = value
+        def call(value = nil) = settings.build_readme = value
       end
     end
   end

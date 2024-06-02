@@ -6,101 +6,98 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    it "builds LICENSE when enabled with Apache and ASCII Doc format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "adoc",
+        license_name: "apache"
+      )
 
-    context "when enabled with Apache and ASCII Doc format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "adoc",
-                                     license_name: "apache"
-      end
+      builder.call
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-          "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
-        )
-      end
+      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+        "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
+      )
     end
 
-    context "when enabled with Apache and Markdown format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "md",
-                                     license_name: "apache"
-      end
+    it "builds LICENSE when enabled with Apache and Markdown format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "md",
+        license_name: "apache"
+      )
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.md").read).to include(
-          "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
-        )
-      end
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.md").read).to include(
+        "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
+      )
     end
 
-    context "when enabled with Hippocratic and ASCII Doc format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "adoc",
-                                     license_name: "hippocratic"
-      end
+    it "builds LICENSE when enabled with Hippocratic and ASCII Doc format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "adoc",
+        license_name: "hippocratic"
+      )
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Hippocratic License")
-      end
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Hippocratic License")
     end
 
-    context "when enabled with Hippocratic and Markdown format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "md",
-                                     license_name: "hippocratic"
-      end
+    it "builds LICENSE when enabled with Hippocratic and Markdown format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "md",
+        license_name: "hippocratic"
+      )
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.md").read).to include("# Hippocratic License")
-      end
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.md").read).to include("# Hippocratic License")
     end
 
-    context "when enabled with MIT and ASCII Doc format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "adoc",
-                                     license_name: "mit"
-      end
+    it "builds LICENSE when enabled with MIT and ASCII Doc format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "adoc",
+        license_name: "mit"
+      )
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-          "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
-        )
-      end
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+        "Copyright 2020 link:https://acme.io/team/jill_smith[Jill Smith]."
+      )
     end
 
-    context "when enabled with MIT and Markdown format" do
-      let :test_configuration do
-        configuration.minimize.merge build_license: true,
-                                     documentation_format: "md",
-                                     license_name: "mit"
-      end
+    it "builds LICENSE when enabled with MIT and Markdown format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "md",
+        license_name: "mit"
+      )
 
-      it "builds LICENSE" do
-        expect(temp_dir.join("test", "LICENSE.md").read).to include(
-          "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
-        )
-      end
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.md").read).to include(
+        "Copyright 2020 [Jill Smith](https://acme.io/team/jill_smith)."
+      )
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build documentation when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build documentation" do
-        expect(temp_dir.files.empty?).to be(true)
-      end
+      expect(temp_dir.files.empty?).to be(true)
     end
   end
 end

@@ -11,21 +11,21 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_license
+          return settings unless settings.build_license
 
-          configuration.merge(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
-                       .then do |updated_configuration|
-                         builder.call(updated_configuration).render.rename "LICENSE.#{kind}"
-                       end
+          settings.merge(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
+                  .then do |updated_settings|
+                    builder.call(updated_settings).render.rename "LICENSE.#{kind}"
+                  end
 
-          configuration
+          settings
         end
 
         private
 
-        def kind = configuration.documentation_format
+        def kind = settings.documentation_format
 
-        def license = configuration.license_name
+        def license = settings.license_name
       end
     end
   end

@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Git flag.
       class Git < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Git repository."
 
         on "--[no-]git"
 
-        default { Container[:configuration].build_git }
+        default { Container[:settings].build_git }
 
-        def call(value = nil) = input.build_git = value
+        def call(value = nil) = settings.build_git = value
       end
     end
   end

@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::RSpec::Helper do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
@@ -14,11 +14,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
-
     context "when enabled with no options" do
-      let(:test_configuration) { configuration.minimize.merge build_rspec: true }
-
       let :proof do
         <<~BODY
           Bundler.require :tools
@@ -54,15 +50,14 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       end
 
       it "builds spec helper" do
+        settings.merge! settings.minimize.merge(build_rspec: true)
+        builder.call
+
         expect(spec_helper_path.read).to eq(proof)
       end
     end
 
     context "when enabled with dashed project name" do
-      let :test_configuration do
-        configuration.minimize.merge project_name: "demo-test", build_rspec: true
-      end
-
       let :proof do
         <<~BODY
           Bundler.require :tools
@@ -98,15 +93,14 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       end
 
       it "builds spec helper" do
+        settings.merge! settings.minimize.merge(project_name: "demo-test", build_rspec: true)
+        builder.call
+
         expect(temp_dir.join("demo-test/spec/spec_helper.rb").read).to eq(proof)
       end
     end
 
     context "when enabled with Refinements only" do
-      let :test_configuration do
-        configuration.minimize.merge build_rspec: true, build_refinements: true
-      end
-
       let :proof do
         <<~BODY
           Bundler.require :tools
@@ -145,15 +139,14 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       end
 
       it "builds spec helper" do
+        settings.merge! settings.minimize.merge(build_rspec: true, build_refinements: true)
+        builder.call
+
         expect(spec_helper_path.read).to eq(proof)
       end
     end
 
     context "when enabled with SimpleCov only" do
-      let :test_configuration do
-        configuration.minimize.merge build_rspec: true, build_simple_cov: true
-      end
-
       let :proof do
         <<~BODY
           require "simplecov"
@@ -200,13 +193,14 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       end
 
       it "builds spec helper" do
+        settings.merge! settings.minimize.merge(build_rspec: true, build_simple_cov: true)
+        builder.call
+
         expect(spec_helper_path.read).to eq(proof)
       end
     end
 
     context "when enabled with all options" do
-      let(:test_configuration) { configuration.maximize }
-
       let :proof do
         <<~BODY
           require "simplecov"
@@ -256,16 +250,18 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       end
 
       it "builds spec helper" do
+        settings.merge! settings.maximize
+        builder.call
+
         expect(spec_helper_path.read).to eq(proof)
       end
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build spec helper when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build spec helper" do
-        expect(spec_helper_path.exist?).to be(false)
-      end
+      expect(spec_helper_path.exist?).to be(false)
     end
   end
 end

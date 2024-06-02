@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Rubysmith::Extensions::Bundler do
   using Refinements::Pathname
 
-  subject(:extension) { described_class.new configuration, client: }
+  subject(:extension) { described_class.new client: }
 
   include_context "with application dependencies"
 
@@ -15,9 +15,7 @@ RSpec.describe Rubysmith::Extensions::Bundler do
 
   describe ".call" do
     it "answers configuration" do
-      expect(described_class.call(configuration, client:)).to be_a(
-        Rubysmith::Configuration::Model
-      )
+      expect(described_class.call(client:)).to be_a(Rubysmith::Configuration::Model)
     end
   end
 

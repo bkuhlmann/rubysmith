@@ -6,12 +6,9 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration, specification: }
+  subject(:builder) { described_class.new specification: }
 
   include_context "with application dependencies"
-
-  let(:project_dir) { temp_dir.join "test" }
-  let(:commit) { project_dir.change_dir { `git log --pretty=format:%s%n%n%b -1` } }
 
   let :specification do
     instance_double Spek::Presenter,
@@ -23,35 +20,37 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
   it_behaves_like "a builder"
 
   describe "#call" do
-    before do
+    let(:project_dir) { temp_dir.join "test" }
+    let(:commit) { project_dir.change_dir { `git log --pretty=format:%s%n%n%b -1` } }
+
+    it "creates commit when enabled" do
+      settings.merge! settings.minimize.merge(build_git: true)
+
       project_dir.make_path.change_dir do |path|
         `git init`
-        `git config user.name "#{configuration.author_name}"`
-        `git config user.email "#{configuration.author_email}"`
+        `git config user.name "#{settings.author_name}"`
+        `git config user.email "#{settings.author_email}"`
         path.join("test.txt").touch
       end
 
       temp_dir.change_dir { builder.call }
+
+      expect(commit).to eq(<<~BODY)
+        Added project skeleton
+
+        Generated with link:https://example.com[Test] 0.0.0.
+      BODY
     end
 
-    context "when enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_git: true }
+    it "doesn't create commit when disabled" do
+      settings.merge! settings.minimize
 
-      it "creates commit" do
-        expect(commit).to eq(<<~BODY)
-          Added project skeleton
-
-          Generated with link:https://example.com[Test] 0.0.0.
-        BODY
+      project_dir.make_path.change_dir do
+        `git init`
+        builder.call
       end
-    end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
-
-      it "doesn't create commit" do
-        expect(commit).to eq("")
-      end
+      expect(commit).to eq("")
     end
   end
 end

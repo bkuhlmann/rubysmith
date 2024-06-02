@@ -6,10 +6,10 @@ module Rubysmith
       # Initializes project skeleton as a Git repository.
       class Setup < Abstract
         def call
-          return configuration unless configuration.build_git
+          return settings unless settings.build_git
 
-          builder.call(configuration).run("git init", chdir: configuration.project_name)
-          configuration
+          builder.call(settings).run("git init", chdir: settings.project_name)
+          settings
         end
       end
     end

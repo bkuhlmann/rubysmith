@@ -6,89 +6,80 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    it "builds default version history when enabled with Markdown format" do
+      settings.merge! settings.minimize.merge(build_versions: true, documentation_format: "md")
+      builder.call
 
-    context "when enabled with Markdown format" do
-      let :test_configuration do
-        configuration.minimize.merge build_versions: true, documentation_format: "md"
-      end
+      expect(temp_dir.join("test", "VERSIONS.md").read).to eq(<<~CONTENT)
+        # Versions
 
-      it "builds default version history" do
-        expect(temp_dir.join("test", "VERSIONS.md").read).to eq(<<~CONTENT)
-          # Versions
+        ## 0.0.0 (2020-01-01)
 
-          ## 0.0.0 (2020-01-01)
-
-          - Added initial implementation.
-        CONTENT
-      end
+        - Added initial implementation.
+      CONTENT
     end
 
-    context "when enabled with Markdown format and custom version" do
-      let :test_configuration do
-        configuration.minimize.merge build_versions: true,
-                                     documentation_format: "md",
-                                     project_version: "1.2.3"
-      end
+    it "builds default version history when enabled with Markdown format and custom version" do
+      settings.merge! settings.minimize.merge(
+        build_versions: true,
+        documentation_format: "md",
+        project_version: "1.2.3"
+      )
 
-      it "builds default version history" do
-        expect(temp_dir.join("test", "VERSIONS.md").read).to eq(<<~CONTENT)
-          # Versions
+      builder.call
 
-          ## 1.2.3 (2020-01-01)
+      expect(temp_dir.join("test", "VERSIONS.md").read).to eq(<<~CONTENT)
+        # Versions
 
-          - Added initial implementation.
-        CONTENT
-      end
+        ## 1.2.3 (2020-01-01)
+
+        - Added initial implementation.
+      CONTENT
     end
 
-    context "when enabled with ASCII Doc format" do
-      let :test_configuration do
-        configuration.minimize.merge build_versions: true, documentation_format: "adoc"
-      end
+    it "builds default version history when enabled with ASCII Doc format" do
+      settings.merge! settings.minimize.merge(build_versions: true, documentation_format: "adoc")
+      builder.call
 
-      it "builds default version history" do
-        expect(temp_dir.join("test", "VERSIONS.adoc").read).to eq(<<~CONTENT)
-          = Versions
+      expect(temp_dir.join("test", "VERSIONS.adoc").read).to eq(<<~CONTENT)
+        = Versions
 
-          == 0.0.0 (2020-01-01)
+        == 0.0.0 (2020-01-01)
 
-          * Added initial implementation.
-        CONTENT
-      end
+        * Added initial implementation.
+      CONTENT
     end
 
-    context "when enabled with ASCII Doc format and custom version" do
-      let :test_configuration do
-        configuration.minimize.merge build_versions: true,
-                                     documentation_format: "adoc",
-                                     project_version: "1.2.3"
-      end
+    it "builds default version history when enabled with ASCII Doc format and custom version" do
+      settings.merge! settings.minimize.merge(
+        build_versions: true,
+        documentation_format: "adoc",
+        project_version: "1.2.3"
+      )
 
-      it "builds default version history" do
-        expect(temp_dir.join("test", "VERSIONS.adoc").read).to eq(<<~CONTENT)
-          = Versions
+      builder.call
 
-          == 1.2.3 (2020-01-01)
+      expect(temp_dir.join("test", "VERSIONS.adoc").read).to eq(<<~CONTENT)
+        = Versions
 
-          * Added initial implementation.
-        CONTENT
-      end
+        == 1.2.3 (2020-01-01)
+
+        * Added initial implementation.
+      CONTENT
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build documentation when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build documentation" do
-        expect(temp_dir.files.empty?).to be(true)
-      end
+      expect(temp_dir.files.empty?).to be(true)
     end
   end
 end

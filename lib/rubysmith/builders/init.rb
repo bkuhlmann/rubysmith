@@ -10,8 +10,8 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        builder.call(configuration.merge(template_path: "%project_name%")).check
-        configuration
+        builder.call(settings.merge(template_path: "%project_name%")).check
+        settings
       end
     end
   end

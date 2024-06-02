@@ -8,7 +8,7 @@ module Rubysmith
     module Commands
       # Stores table of contents root path.
       class Build < Sod::Command
-        include Import[:input, :kernel, :logger]
+        include Import[:settings, :kernel, :logger]
 
         # Order is important.
         BUILDERS = [
@@ -84,8 +84,8 @@ module Rubysmith
         end
 
         def call
-          log_info "Building project skeleton: #{input.project_name}..."
-          builders.each { |builder| builder.call input }
+          log_info "Building project skeleton: #{settings.project_name}..."
+          builders.each(&:call)
           log_info "Project skeleton complete!"
         end
 

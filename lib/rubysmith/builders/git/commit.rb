@@ -7,21 +7,17 @@ module Rubysmith
       class Commit < Abstract
         include Import[:specification]
 
-        def initialize(configuration, builder: Builder, **)
-          super
-        end
-
         def call
-          return configuration unless configuration.build_git
+          return settings unless settings.build_git
 
-          builder.call(configuration)
+          builder.call(settings)
                  .run("git add .", chdir: project_name)
                  .run(
                    %(git commit --all --message "Added project skeleton" --message "#{body}"),
                    chdir: project_name
                  )
 
-          configuration
+          settings
         end
 
         private
@@ -31,7 +27,7 @@ module Rubysmith
           "#{specification.version}."
         end
 
-        def project_name = configuration.project_name
+        def project_name = settings.project_name
       end
     end
   end

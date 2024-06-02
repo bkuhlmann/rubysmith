@@ -7,25 +7,26 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton has pragmas.
     class Pragmater
+      include Import[:settings]
+
       using Refinements::Pathname
+
+      CONFIGURATION = ::Pragmater::Configuration::Model[
+        comments: ["# frozen_string_literal: true"],
+        patterns: %w[**/*.rake **/*.rb *.gemspec exe/* bin/* config.ru *file]
+      ].freeze
 
       def self.call(...) = new(...).call
 
-      def self.custom_configuration
-        ::Pragmater::Configuration::Model[
-          comments: ["# frozen_string_literal: true"],
-          patterns: %w[**/*.rake **/*.rb *.gemspec exe/* bin/* config.ru *file]
-        ]
-      end
-
-      def initialize configuration, client: ::Pragmater::Inserter.new
+      def initialize(configuration = CONFIGURATION, client: ::Pragmater::Inserter.new, **)
         @configuration = configuration
         @client = client
+        super(**)
       end
 
       def call
-        configuration.project_root.change_dir { client.call self.class.custom_configuration }
-        configuration
+        settings.project_root.change_dir { client.call configuration }
+        settings
       end
 
       private

@@ -5,47 +5,47 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::GitHub do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:funding_path) { temp_dir.join "test/.github/FUNDING.yml" }
-  let(:issue_path) { temp_dir.join "test/.github/ISSUE_TEMPLATE.md" }
-  let(:pull_request_path) { temp_dir.join "test/.github/PULL_REQUEST_TEMPLATE.md" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
+    let(:funding_path) { temp_dir.join "test/.github/FUNDING.yml" }
+    let(:issue_path) { temp_dir.join "test/.github/ISSUE_TEMPLATE.md" }
+    let(:pull_request_path) { temp_dir.join "test/.github/PULL_REQUEST_TEMPLATE.md" }
+
     context "when enabled with all options" do
-      let(:test_configuration) { configuration.maximize }
+      before do
+        settings.merge! settings.maximize
+        builder.call
+      end
 
       it "builds funding configuration" do
-        builder.call
         expect(funding_path.exist?).to be(true)
       end
 
       it "builds issue template" do
-        builder.call
         expect(issue_path.exist?).to be(true)
       end
 
       it "builds pull request template" do
-        builder.call
         expect(pull_request_path.exist?).to be(true)
       end
     end
 
     context "when enabled without funding" do
-      let(:test_configuration) { configuration.minimize.merge build_git_hub: true }
+      before do
+        settings.merge! settings.minimize.merge(build_git_hub: true)
+        builder.call
+      end
 
       it "does not build funding configuration" do
-        builder.call
         expect(funding_path.exist?).to be(false)
       end
 
       it "builds issue template" do
-        builder.call
-
         expect(issue_path.read).to eq(<<~CONTENT)
           ## Why
           <!-- Required. Describe, briefly, why this issue is important. -->
@@ -59,8 +59,6 @@ RSpec.describe Rubysmith::Builders::GitHub do
       end
 
       it "builds pull request template" do
-        builder.call
-
         expect(pull_request_path.read).to eq(<<~CONTENT)
           ## Overview
           <!-- Required. Why is this important/necessary and what is the overarching architecture. -->
@@ -75,39 +73,39 @@ RSpec.describe Rubysmith::Builders::GitHub do
     end
 
     context "with funding enabled only" do
-      let(:test_configuration) { configuration.minimize.merge build_funding: true }
+      before do
+        settings.merge! settings.minimize.merge(build_funding: true)
+        builder.call
+      end
 
       it "builds funding configuration" do
-        builder.call
         expect(funding_path.read).to eq("github: [jsmith]\n")
       end
 
       it "does not build issue template" do
-        builder.call
         expect(issue_path.exist?).to be(false)
       end
 
       it "does not build pull request template" do
-        builder.call
         expect(pull_request_path.exist?).to be(false)
       end
     end
 
     context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+      before do
+        settings.merge! settings.minimize
+        builder.call
+      end
 
       it "does not build funding configuration" do
-        builder.call
         expect(funding_path.exist?).to be(false)
       end
 
       it "does not build issue template" do
-        builder.call
         expect(issue_path.exist?).to be(false)
       end
 
       it "does not build pull request template" do
-        builder.call
         expect(pull_request_path.exist?).to be(false)
       end
     end

@@ -19,7 +19,7 @@ jobs:
       - name: Build
         run: bundle exec rake
 
-<% if configuration.build_simple_cov %>
+<% if settings.build_simple_cov %>
       - name: SimpleCov Report
         uses: actions/upload-artifact@v4
         with:

@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores IRB Kit flag.
       class IRBKit < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add IRB Kit gem."
 
         on "--[no-]irb-kit"
 
-        default { Container[:configuration].build_irb_kit }
+        default { Container[:settings].build_irb_kit }
 
-        def call(value = nil) = input.build_irb_kit = value
+        def call(value = nil) = settings.build_irb_kit = value
       end
     end
   end

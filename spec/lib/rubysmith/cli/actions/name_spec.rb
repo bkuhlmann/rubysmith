@@ -3,16 +3,16 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::CLI::Actions::Name do
-  subject(:action) { described_class.new input: }
+  subject(:action) { described_class.new }
 
-  let(:input) { configuration.dup }
+  let(:settings) { settings.dup }
 
   include_context "with application dependencies"
 
   describe "#call" do
     it "sets project name" do
       action.call "test"
-      expect(input.project_name).to eq("test")
+      expect(settings.project_name).to eq("test")
     end
   end
 end

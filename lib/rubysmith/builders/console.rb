@@ -9,13 +9,13 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return configuration unless configuration.build_console
+        return settings unless settings.build_console
 
-        builder.call(configuration.merge(template_path: "%project_name%/bin/console.erb"))
+        builder.call(settings.merge(template_path: "%project_name%/bin/console.erb"))
                .render
                .permit 0o755
 
-        configuration
+        settings
       end
     end
   end

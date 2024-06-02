@@ -5,17 +5,20 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Setup do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:build_path) { temp_dir.join "test", "bin", "setup" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
+    let(:build_path) { temp_dir.join "test", "bin", "setup" }
+
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_setup: true }
+      before do
+        settings.merge! settings.minimize.merge(build_setup: true)
+        builder.call
+      end
 
       it "builds setup script without Pry support" do
         builder.call
@@ -46,7 +49,10 @@ RSpec.describe Rubysmith::Builders::Setup do
     end
 
     context "when enabled with debug" do
-      let(:test_configuration) { configuration.minimize.merge build_setup: true, build_debug: true }
+      before do
+        settings.merge! settings.minimize.merge(build_setup: true, build_debug: true)
+        builder.call
+      end
 
       it "builds setup script without Pry support" do
         builder.call
@@ -77,13 +83,11 @@ RSpec.describe Rubysmith::Builders::Setup do
       end
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "does not build setup script when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "does not build setup script" do
-        builder.call
-        expect(build_path.exist?).to be(false)
-      end
+      expect(build_path.exist?).to be(false)
     end
   end
 end

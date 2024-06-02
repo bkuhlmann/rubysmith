@@ -5,20 +5,21 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Guard do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:binstub_path) { temp_dir.join "test", "bin", "guard" }
-  let(:configuration_path) { temp_dir.join "test", "Guardfile" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    let(:binstub_path) { temp_dir.join "test/bin/guard" }
+    let(:settings_path) { temp_dir.join "test/Guardfile" }
 
     context "when enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_guard: true }
+      before do
+        settings.merge! settings.minimize.merge(build_guard: true)
+        builder.call
+      end
 
       it "builds binstub" do
         expect(binstub_path.read).to eq(<<~CONTENT)
@@ -31,7 +32,7 @@ RSpec.describe Rubysmith::Builders::Guard do
       end
 
       it "builds configuration" do
-        expect(configuration_path.read).to eq(<<~CONTENT)
+        expect(settings_path.read).to eq(<<~CONTENT)
           guard :rspec, cmd: "NO_COVERAGE=true bin/rspec --format documentation" do
             watch %r(^spec/.+_spec\\.rb$)
             watch(%r(^lib/(.+)\\.rb$)) { |m| "spec/lib/\#{m[1]}_spec.rb" }
@@ -41,20 +42,22 @@ RSpec.describe Rubysmith::Builders::Guard do
       end
 
       it "updates file permissions" do
-        builder.call
         expect(binstub_path.stat.mode).to eq(33261)
       end
     end
 
     context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+      before do
+        settings.merge! settings.minimize
+        builder.call
+      end
 
       it "doesn't build binstub" do
         expect(binstub_path.exist?).to be(false)
       end
 
       it "doesn't build configuration" do
-        expect(configuration_path.exist?).to be(false)
+        expect(settings_path.exist?).to be(false)
       end
     end
   end

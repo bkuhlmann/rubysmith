@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Repl Type Completor flag.
       class RTC < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Repl Type Completor gem."
 
         on "--[no-]rtc"
 
-        default { Container[:configuration].build_rtc }
+        default { Container[:settings].build_rtc }
 
-        def call(value = nil) = input.build_rtc = value
+        def call(value = nil) = settings.build_rtc = value
       end
     end
   end

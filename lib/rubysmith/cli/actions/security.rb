@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores security flag.
       class Security < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add security."
 
         on "--[no-]security"
 
-        default { Container[:configuration].build_security }
+        default { Container[:settings].build_security }
 
-        def call(value = nil) = input.build_security = value
+        def call(value = nil) = settings.build_security = value
       end
     end
   end

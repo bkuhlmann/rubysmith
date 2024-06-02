@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Refinements flag.
       class Refinements < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Refinements gem."
 
         on "--[no-]refinements"
 
-        default { Container[:configuration].build_refinements }
+        default { Container[:settings].build_refinements }
 
-        def call(value = nil) = input.build_refinements = value
+        def call(value = nil) = settings.build_refinements = value
       end
     end
   end

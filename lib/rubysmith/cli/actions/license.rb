@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores license flag.
       class License < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add license documentation."
 
         on "--[no-]license"
 
-        default { Container[:configuration].build_license }
+        default { Container[:settings].build_license }
 
-        def call(value = nil) = input.build_license = value
+        def call(value = nil) = settings.build_license = value
       end
     end
   end

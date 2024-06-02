@@ -5,22 +5,16 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::RSpec::Context do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 
     context "when enabled with refinements" do
-      let :test_configuration do
-        configuration.minimize.merge build_rspec: true, build_refinements: true
-      end
-
       let :content do
         <<~CONTENT
           RSpec.shared_context "with temporary directory" do
@@ -38,13 +32,14 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
       end
 
       it "builds temporary directory shared context" do
+        settings.merge! settings.minimize.merge(build_rspec: true, build_refinements: true)
+        builder.call
+
         expect(context_path.read).to eq(content)
       end
     end
 
     context "when enabled without refinements" do
-      let(:test_configuration) { configuration.minimize.merge build_rspec: true }
-
       let :content do
         <<~CONTENT
           RSpec.shared_context "with temporary directory" do
@@ -60,16 +55,18 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
       end
 
       it "builds temporary directory shared context" do
+        settings.merge! settings.minimize.merge(build_rspec: true)
+        builder.call
+
         expect(context_path.read).to eq(content)
       end
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build temporary directory shared context when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build temporary directory shared context" do
-        expect(context_path.exist?).to be(false)
-      end
+      expect(context_path.exist?).to be(false)
     end
   end
 end

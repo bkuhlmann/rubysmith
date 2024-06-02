@@ -1,17 +1,17 @@
 cff-version: 1.2.0
-message: <%= configuration.citation_message %>
-title: <%= configuration.project_label %>
+message: <%= settings.citation_message %>
+title: <%= settings.project_label %>
 abstract:
-version: <%= configuration.project_version %>
-license: <%= configuration.license_label_version %>
-date-released: <%= configuration.loaded_at.strftime "%Y-%m-%d" %>
+version: <%= settings.project_version %>
+license: <%= settings.license_label_version %>
+date-released: <%= settings.loaded_at.strftime "%Y-%m-%d" %>
 authors:
-  - family-names: <%= configuration.author_family_name %>
-    given-names: <%= configuration.author_given_name %>
-    affiliation: <%= configuration.citation_affiliation %>
-    orcid: https://orcid.org/<%= configuration.citation_orcid %>
+  - family-names: <%= settings.author_family_name %>
+    given-names: <%= settings.author_given_name %>
+    affiliation: <%= settings.citation_affiliation %>
+    orcid: https://orcid.org/<%= settings.citation_orcid %>
 keywords:
  - ruby
-repository-code: <%= configuration.computed_project_url_source %>
-repository-artifact: <%= configuration.computed_project_url_download %>
-url: <%= configuration.computed_project_url_home %>
+repository-code: <%= settings.computed_project_url_source %>
+repository-artifact: <%= settings.computed_project_url_download %>
+url: <%= settings.computed_project_url_home %>

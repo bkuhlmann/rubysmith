@@ -9,16 +9,16 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return configuration unless configuration.build_git_hub_ci
+        return settings unless settings.build_git_hub_ci
 
         builder.call(configuration_with_template).render.replace(/\n\n\Z/, "\n")
-        configuration
+        settings
       end
 
       private
 
       def configuration_with_template
-        configuration.merge template_path: "%project_name%/.github/workflows/ci.yml.erb"
+        settings.merge template_path: "%project_name%/.github/workflows/ci.yml.erb"
       end
     end
   end

@@ -5,39 +5,35 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Reek do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:configuration_path) { temp_dir.join "test", ".reek.yml" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    let(:settings_path) { temp_dir.join "test", ".reek.yml" }
 
-    context "when enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_reek: true }
+    it "builds configuration when enabled" do
+      settings.merge! settings.minimize.merge(build_reek: true)
+      builder.call
 
-      it "builds configuration" do
-        expect(configuration_path.read).to eq(<<~CONTENT)
-          exclude_paths:
-            - tmp
-            - vendor
+      expect(settings_path.read).to eq(<<~CONTENT)
+        exclude_paths:
+          - tmp
+          - vendor
 
-          detectors:
-            LongParameterList:
-              enabled: false
-        CONTENT
-      end
+        detectors:
+          LongParameterList:
+            enabled: false
+      CONTENT
     end
 
-    context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+    it "doesn't build configuration when disabled" do
+      settings.merge! settings.minimize
+      builder.call
 
-      it "doesn't build configuration" do
-        expect(configuration_path.exist?).to be(false)
-      end
+      expect(settings_path.exist?).to be(false)
     end
   end
 end

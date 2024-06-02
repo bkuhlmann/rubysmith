@@ -5,19 +5,20 @@ require "spec_helper"
 RSpec.describe Rubysmith::Builders::Rake do
   using Refinements::Struct
 
-  subject(:builder) { described_class.new test_configuration }
+  subject(:builder) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:rakefile_path) { temp_dir.join "test", "Rakefile" }
 
   it_behaves_like "a builder"
 
   describe "#call" do
-    before { builder.call }
+    let(:rakefile_path) { temp_dir.join "test", "Rakefile" }
 
     context "when enabled with default options" do
-      let(:test_configuration) { configuration.minimize.merge build_rake: true }
+      before do
+        settings.merge! settings.minimize.merge(build_rake: true)
+        builder.call
+      end
 
       it "builds Rakefile" do
         expect(rakefile_path.read).to eq(<<~CONTENT)
@@ -41,84 +42,84 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
     end
 
-    context "when enabled with only Git and Git Lint" do
-      let :test_configuration do
-        configuration.minimize.merge build_rake: true, build_git: true, build_git_lint: true
-      end
+    it "builds Rakefile when enabled with only Git and Git Lint" do
+      settings.merge! settings.minimize.merge(
+        build_rake: true,
+        build_git: true,
+        build_git_lint: true
+      )
 
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "git/lint/rake/register"
+      builder.call
 
-          Git::Lint::Rake::Register.call
+      expect(rakefile_path.read).to eq(<<~CONTENT)
+        require "bundler/setup"
+        require "git/lint/rake/register"
 
-          desc "Run code quality checks"
-          task quality: %i[git_lint]
+        Git::Lint::Rake::Register.call
 
-          task default: %i[quality]
-        CONTENT
-      end
+        desc "Run code quality checks"
+        task quality: %i[git_lint]
+
+        task default: %i[quality]
+      CONTENT
     end
 
-    context "when enabled with only Reek" do
-      let(:test_configuration) { configuration.minimize.merge build_rake: true, build_reek: true }
+    it "builds Rakefile when enabled with only Reek" do
+      settings.merge! settings.minimize.merge(build_rake: true, build_reek: true)
+      builder.call
 
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "reek/rake/task"
+      expect(rakefile_path.read).to eq(<<~CONTENT)
+        require "bundler/setup"
+        require "reek/rake/task"
 
-          Reek::Rake::Task.new
+        Reek::Rake::Task.new
 
-          desc "Run code quality checks"
-          task quality: %i[reek]
+        desc "Run code quality checks"
+        task quality: %i[reek]
 
-          task default: %i[quality]
-        CONTENT
-      end
+        task default: %i[quality]
+      CONTENT
     end
 
-    context "when enabled with only RSpec" do
-      let(:test_configuration) { configuration.minimize.merge build_rake: true, build_rspec: true }
+    it "builds Rakefile when enabled with only RSpec" do
+      settings.merge! settings.minimize.merge(build_rake: true, build_rspec: true)
+      builder.call
 
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "rspec/core/rake_task"
+      expect(rakefile_path.read).to eq(<<~CONTENT)
+        require "bundler/setup"
+        require "rspec/core/rake_task"
 
-          RSpec::Core::RakeTask.new { |task| task.verbose = false }
+        RSpec::Core::RakeTask.new { |task| task.verbose = false }
 
-          desc "Run code quality checks"
-          task quality: %i[]
+        desc "Run code quality checks"
+        task quality: %i[]
 
-          task default: %i[quality spec]
-        CONTENT
-      end
+        task default: %i[quality spec]
+      CONTENT
     end
 
-    context "when enabled with only Caliber" do
-      let :test_configuration do
-        configuration.minimize.merge build_rake: true, build_caliber: true
-      end
+    it "builds Rakefile when enabled with only Caliber" do
+      settings.merge! settings.minimize.merge(build_rake: true, build_caliber: true)
+      builder.call
 
-      it "builds Rakefile" do
-        expect(rakefile_path.read).to eq(<<~CONTENT)
-          require "bundler/setup"
-          require "rubocop/rake_task"
+      expect(rakefile_path.read).to eq(<<~CONTENT)
+        require "bundler/setup"
+        require "rubocop/rake_task"
 
-          RuboCop::RakeTask.new
+        RuboCop::RakeTask.new
 
-          desc "Run code quality checks"
-          task quality: %i[rubocop]
+        desc "Run code quality checks"
+        task quality: %i[rubocop]
 
-          task default: %i[quality]
-        CONTENT
-      end
+        task default: %i[quality]
+      CONTENT
     end
 
     context "when enabled with all options" do
-      let(:test_configuration) { configuration.maximize }
+      before do
+        settings.merge! settings.maximize
+        builder.call
+      end
 
       let :proof do
         <<~CONTENT
@@ -146,7 +147,10 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when disabled" do
-      let(:test_configuration) { configuration.minimize }
+      before do
+        settings.merge! settings.minimize
+        builder.call
+      end
 
       it "doesn't build binstub" do
         expect(temp_dir.join("test/bin/rake").exist?).to be(false)

@@ -11,17 +11,16 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return configuration unless configuration.build_versions
+          return settings unless settings.build_versions
 
-          builder.call(configuration.merge(template_path: "%project_name%/VERSIONS.#{kind}.erb"))
-                 .render
+          builder.call(settings.merge(template_path: "%project_name%/VERSIONS.#{kind}.erb")).render
 
-          configuration
+          settings
         end
 
         private
 
-        def kind = configuration.documentation_format
+        def kind = settings.documentation_format
       end
     end
   end

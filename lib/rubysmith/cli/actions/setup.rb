@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores setup flag.
       class Setup < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add setup script."
 
         on "--[no-]setup"
 
-        default { Container[:configuration].build_setup }
+        default { Container[:settings].build_setup }
 
-        def call(value = nil) = input.build_setup = value
+        def call(value = nil) = settings.build_setup = value
       end
     end
   end

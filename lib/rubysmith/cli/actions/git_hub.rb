@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores GitHub flag.
       class GitHub < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add GitHub templates."
 
         on "--[no-]git_hub"
 
-        default { Container[:configuration].build_git_hub }
+        default { Container[:settings].build_git_hub }
 
-        def call(value = nil) = input.build_git_hub = value
+        def call(value = nil) = settings.build_git_hub = value
       end
     end
   end

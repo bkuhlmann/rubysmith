@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Guard flag.
       class Guard < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Guard gem."
 
         on "--[no-]guard"
 
-        default { Container[:configuration].build_guard }
+        default { Container[:settings].build_guard }
 
-        def call(value = nil) = input.build_guard = value
+        def call(value = nil) = settings.build_guard = value
       end
     end
   end

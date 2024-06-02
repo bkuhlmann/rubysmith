@@ -7,15 +7,15 @@ module Rubysmith
     module Actions
       # Stores Debug flag.
       class Debug < Sod::Action
-        include Import[:input]
+        include Import[:settings]
 
         description "Add Debug gem."
 
         on "--[no-]debug"
 
-        default { Container[:configuration].build_debug }
+        default { Container[:settings].build_debug }
 
-        def call(value = nil) = input.build_debug = value
+        def call(value = nil) = settings.build_debug = value
       end
     end
   end

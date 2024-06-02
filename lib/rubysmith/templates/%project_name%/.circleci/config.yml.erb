@@ -30,7 +30,7 @@ jobs:
           name: Rake
           command: bundle exec rake
 
-<% if configuration.build_simple_cov %>
+<% if settings.build_simple_cov %>
       - store_artifacts:
           name: SimpleCov Report
           path: ~/project/coverage
