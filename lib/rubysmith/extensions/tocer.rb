@@ -7,25 +7,27 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton documentation has table of content.
     class Tocer
+      include Import[:settings]
+
       using Refinements::Pathname
 
       def self.call(...) = new(...).call
 
-      def initialize configuration, client: ::Tocer::Runner.new
-        @configuration = configuration
+      def initialize(client: ::Tocer::Runner.new, **)
         @client = client
+        super(**)
       end
 
       def call
-        return configuration unless configuration.build_readme
+        return settings unless settings.build_readme
 
-        configuration.project_root.change_dir { client.call ::Tocer::Container[:configuration] }
-        configuration
+        settings.project_root.change_dir { client.call }
+        settings
       end
 
       private
 
-      attr_reader :configuration, :client
+      attr_reader :client
     end
   end
 end
