@@ -6,31 +6,22 @@ RSpec.describe Rubysmith::Extensions::Tocer do
   using Refinements::Pathname
   using Refinements::Struct
 
-  subject(:extension) { described_class.new test_configuration, client: }
+  subject(:extension) { described_class.new }
 
   include_context "with application dependencies"
-
-  let(:client) { instance_spy Tocer::Runner }
 
   before { temp_dir.join("test/README.md").make_ancestors.write("## Test") }
 
   describe ".call" do
     it "answers configuration" do
-      expect(described_class.call(configuration, client:)).to be_a(Rubysmith::Configuration::Model)
+      expect(described_class.call).to be_a(Rubysmith::Configuration::Model)
     end
   end
 
   describe "#call" do
     context "with readme enabled" do
-      let(:test_configuration) { configuration.minimize.merge build_readme: true }
-
-      it "delegates to client" do
-        extension.call
-        expect(client).to have_received(:call)
-      end
-
       it "adds table of contents" do
-        described_class.new(configuration).call
+        extension.call
 
         expect(temp_dir.join("test/README.md").read).to eq(<<~CONTENT.strip)
           <!-- Tocer[start]: Auto-generated, don't remove. -->
@@ -45,21 +36,21 @@ RSpec.describe Rubysmith::Extensions::Tocer do
         CONTENT
       end
 
-      it "answers configuration" do
-        expect(extension.call).to eq(test_configuration)
+      it "answers settings" do
+        expect(extension.call).to eq(settings)
       end
     end
 
     context "with readme disabled" do
-      let(:test_configuration) { configuration.minimize }
+      before { settings.merge! settings.minimize }
 
       it "doesn't delegate to client" do
         extension.call
-        expect(client).not_to have_received(:call)
+        expect(temp_dir.join("test/README.md").read).to eq("## Test")
       end
 
-      it "answers configuration" do
-        expect(extension.call).to eq(test_configuration)
+      it "answers settings" do
+        expect(extension.call).to eq(settings)
       end
     end
   end
