@@ -15,7 +15,7 @@ build:
   git_hub_ci: false
   git_lint: true
   guard: true
-  irb_kit: false
+  irb_kit: true
   license: true
   maximum: false
   minimum: false
