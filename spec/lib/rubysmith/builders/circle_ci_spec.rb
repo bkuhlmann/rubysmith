@@ -9,48 +9,53 @@ RSpec.describe Rubysmith::Builders::CircleCI do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:build_path) { temp_dir.join "test/.circleci/config.yml" }
 
-    it "builds configuration when enabled" do
-      settings.merge! settings.minimize.merge(build_circle_ci: true)
-      builder.call
+    context "when enabled" do
+      before { settings.merge! settings.minimize.merge(build_circle_ci: true) }
 
-      expect(build_path.read).to eq(<<~CONTENT)
-        version: 2.1
-        jobs:
-          build:
-            working_directory: ~/project
-            docker:
-              - image: bkuhlmann/alpine-ruby:latest
-            steps:
-              - checkout
+      it "builds configuration when enabled" do
+        builder.call
 
-              - restore_cache:
-                  name: Gems Restore
-                  keys:
-                    - gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
-                    - gem-cache-
+        expect(build_path.read).to eq(<<~CONTENT)
+          version: 2.1
+          jobs:
+            build:
+              working_directory: ~/project
+              docker:
+                - image: bkuhlmann/alpine-ruby:latest
+              steps:
+                - checkout
 
-              - run:
-                  name: Gems Install
-                  command: |
-                    gem update --system
-                    bundle config set path "vendor/bundle"
-                    bundle install
+                - restore_cache:
+                    name: Gems Restore
+                    keys:
+                      - gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
+                      - gem-cache-
 
-              - save_cache:
-                  name: Gems Store
-                  key: gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
-                  paths:
-                    - vendor/bundle
+                - run:
+                    name: Gems Install
+                    command: |
+                      gem update --system
+                      bundle config set path "vendor/bundle"
+                      bundle install
 
-              - run:
-                  name: Rake
-                  command: bundle exec rake
-      CONTENT
+                - save_cache:
+                    name: Gems Store
+                    key: gem-cache-{{.Branch}}-{{checksum "Gemfile.lock"}}
+                    paths:
+                      - vendor/bundle
+
+                - run:
+                    name: Rake
+                    command: bundle exec rake
+        CONTENT
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
     it "builds configuration when enabled with SimpleCov" do
@@ -97,11 +102,17 @@ RSpec.describe Rubysmith::Builders::CircleCI do
       CONTENT
     end
 
-    it "does not build configuration when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(build_path.exist?).to be(false)
+      it "does not build configuration" do
+        builder.call
+        expect(build_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

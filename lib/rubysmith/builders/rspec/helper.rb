@@ -10,14 +10,14 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return settings unless settings.build_rspec
+          return false unless settings.build_rspec
 
           builder.call(settings.merge(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
                  .replace(/\A\n/, "")
                  .replace("\n\n\n", "\n\n")
 
-          settings
+          true
         end
       end
     end

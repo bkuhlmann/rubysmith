@@ -11,8 +11,6 @@ RSpec.describe Rubysmith::Builders::Core do
 
   using Refinements::Struct
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     context "with default configuration" do
       before do
@@ -30,6 +28,10 @@ RSpec.describe Rubysmith::Builders::Core do
 
       it "doesn't build specification" do
         expect(temp_dir.join("test/spec/lib/test_spec.rb").exist?).to be(false)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 

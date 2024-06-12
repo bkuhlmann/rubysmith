@@ -9,26 +9,38 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:ignore_path) { temp_dir.join "test", ".gitignore" }
 
-    it "doesn't build ignore file with minimum options" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when enabled" do
+      before { settings.build_git = true }
 
-      expect(ignore_path.exist?).to be(false)
+      it "builds ignore file" do
+        builder.call
+
+        expect(ignore_path.read).to eq(<<~CONTENT)
+          .bundle
+          tmp
+        CONTENT
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
-    it "doesn't build ignore file with maximum options" do
-      settings.merge! settings.maximize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(ignore_path.read).to eq(<<~CONTENT)
-        .bundle
-        tmp
-      CONTENT
+      it "doesn't build ignore file" do
+        builder.call
+
+        expect(ignore_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

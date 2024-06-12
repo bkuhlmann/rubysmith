@@ -8,7 +8,7 @@ module Rubysmith
         include Import[:specification]
 
         def call
-          return settings unless settings.build_git
+          return false unless settings.build_git
 
           builder.call(settings)
                  .run("git add .", chdir: project_name)
@@ -17,7 +17,7 @@ module Rubysmith
                    chdir: project_name
                  )
 
-          settings
+          true
         end
 
         private

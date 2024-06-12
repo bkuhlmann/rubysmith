@@ -9,18 +9,15 @@ RSpec.describe Rubysmith::Builders::Rake do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:rakefile_path) { temp_dir.join "test", "Rakefile" }
 
     context "when enabled with default options" do
-      before do
-        settings.merge! settings.minimize.merge(build_rake: true)
-        builder.call
-      end
+      before { settings.merge! settings.minimize.merge(build_rake: true) }
 
       it "builds Rakefile" do
+        builder.call
+
         expect(rakefile_path.read).to eq(<<~CONTENT)
           require "bundler/setup"
 
@@ -32,6 +29,8 @@ RSpec.describe Rubysmith::Builders::Rake do
       end
 
       it "builds binstub" do
+        builder.call
+
         expect(temp_dir.join("test/bin/rake").read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
 
@@ -39,6 +38,10 @@ RSpec.describe Rubysmith::Builders::Rake do
 
           load Gem.bin_path "rake", "rake"
         CONTENT
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -147,17 +150,20 @@ RSpec.describe Rubysmith::Builders::Rake do
     end
 
     context "when disabled" do
-      before do
-        settings.merge! settings.minimize
-        builder.call
-      end
+      before { settings.merge! settings.minimize }
 
       it "doesn't build binstub" do
+        builder.call
         expect(temp_dir.join("test/bin/rake").exist?).to be(false)
       end
 
       it "doesn't build Rakefile" do
+        builder.call
         expect(rakefile_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
       end
     end
   end

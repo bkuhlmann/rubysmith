@@ -9,23 +9,33 @@ RSpec.describe Rubysmith::Builders::Git::Safe do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:safe_path) { temp_dir.join "test/.git/safe" }
 
-    it "doesn't build safe directory with minimum options" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when enabled" do
+      before { settings.build_git = true }
 
-      expect(safe_path.exist?).to be(false)
+      it "build safe directory" do
+        builder.call
+        expect(safe_path.exist?).to be(true)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
-    it "doesn't build ignore file with maximum options" do
-      settings.merge! settings.maximize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(safe_path.exist?).to be(true)
+      it "doesn't build safe path" do
+        builder.call
+        expect(safe_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

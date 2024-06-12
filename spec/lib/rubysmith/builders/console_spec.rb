@@ -9,8 +9,6 @@ RSpec.describe Rubysmith::Builders::Console do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:build_path) { temp_dir.join "test/bin/console" }
 
@@ -68,11 +66,22 @@ RSpec.describe Rubysmith::Builders::Console do
       end
     end
 
-    it "does not build console script when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    it "answers true when enabled" do
+      settings.build_console = true
+      expect(builder.call).to be(true)
+    end
 
-      expect(build_path.exist?).to be(false)
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
+
+      it "does not build console script when disabled" do
+        builder.call
+        expect(build_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

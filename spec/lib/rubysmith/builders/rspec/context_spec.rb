@@ -9,8 +9,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:context_path) { temp_dir.join "test", "spec", "support", "shared_contexts", "temp_dir.rb" }
 
@@ -31,11 +29,17 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
         CONTENT
       end
 
-      it "builds temporary directory shared context" do
+      before do
         settings.merge! settings.minimize.merge(build_rspec: true, build_refinements: true)
-        builder.call
+      end
 
+      it "builds temporary directory shared context" do
+        builder.call
         expect(context_path.read).to eq(content)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -54,19 +58,31 @@ RSpec.describe Rubysmith::Builders::RSpec::Context do
         CONTENT
       end
 
-      it "builds temporary directory shared context" do
-        settings.merge! settings.minimize.merge(build_rspec: true)
-        builder.call
+      before do
+        settings.merge! settings.minimize.merge(build_rspec: true, build_refinements: false)
+      end
 
+      it "builds temporary directory shared context" do
+        builder.call
         expect(context_path.read).to eq(content)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
-    it "doesn't build temporary directory shared context when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(context_path.exist?).to be(false)
+      it "doesn't build temporary directory shared context" do
+        builder.call
+        expect(context_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

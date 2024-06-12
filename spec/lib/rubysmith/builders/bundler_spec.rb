@@ -9,8 +9,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
 
@@ -317,6 +315,10 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         expect(gemfile_path.read).to eq(proof)
       end
+    end
+
+    it "answers true" do
+      expect(builder.call).to be(true)
     end
   end
 end

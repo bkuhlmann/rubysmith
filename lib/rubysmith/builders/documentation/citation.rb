@@ -10,10 +10,10 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return settings unless settings.build_citation
+          return false unless settings.build_citation
 
           builder.call(settings.merge(template_path: "%project_name%/CITATION.cff.erb")).render
-          settings
+          true
         end
       end
     end

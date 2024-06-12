@@ -11,20 +11,14 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
 
   before { temp_dir.join("test/Gemfile").make_ancestors.touch }
 
-  describe ".call" do
-    it "answers configuration" do
-      expect(described_class.call).to be_a(Rubysmith::Configuration::Model)
-    end
-  end
-
   describe "#call" do
     it "adds frozen string literal" do
       extension.call
       expect(temp_dir.join("test/Gemfile").read).to eq("# frozen_string_literal: true\n")
     end
 
-    it "answers settings" do
-      expect(extension.call).to eq(settings)
+    it "answers true" do
+      expect(extension.call).to be(true)
     end
   end
 end

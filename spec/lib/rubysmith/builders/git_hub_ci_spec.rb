@@ -9,8 +9,6 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:yaml_path) { temp_dir.join "test/.github/workflows/ci.yml" }
 
@@ -76,11 +74,22 @@ RSpec.describe Rubysmith::Builders::GitHubCI do
       CONTENT
     end
 
-    it "does not build YAML template when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    it "answers true when enabled" do
+      settings.build_git_hub_ci = true
+      expect(builder.call).to be(true)
+    end
 
-      expect(yaml_path.exist?).to be(false)
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
+
+      it "does not build YAML template" do
+        builder.call
+        expect(yaml_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

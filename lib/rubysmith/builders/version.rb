@@ -12,7 +12,7 @@ module Rubysmith
         builder.call(settings.merge(template_path: "%project_name%/.ruby-version.erb"))
                .render
                .append("\n")
-        settings
+        true
       end
     end
   end

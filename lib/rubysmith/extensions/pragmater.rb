@@ -18,8 +18,6 @@ module Rubysmith
         ]
       ).freeze
 
-      def self.call(...) = new(...).call
-
       def initialize(client: CLIENT, **)
         @client = client
         super(**)
@@ -27,7 +25,7 @@ module Rubysmith
 
       def call
         settings.project_root.change_dir { client.call }
-        settings
+        true
       end
 
       private

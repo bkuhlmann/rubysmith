@@ -10,14 +10,14 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return settings unless settings.build_readme
+          return false unless settings.build_readme
 
           builder.call(settings.merge(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace(/\n{2,}/, "\n\n")
                  .replace("\n    \n", "\n")
 
-          settings
+          true
         end
 
         protected

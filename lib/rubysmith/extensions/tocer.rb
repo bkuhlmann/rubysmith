@@ -11,18 +11,16 @@ module Rubysmith
 
       using Refinements::Pathname
 
-      def self.call(...) = new(...).call
-
       def initialize(client: ::Tocer::Runner.new, **)
         @client = client
         super(**)
       end
 
       def call
-        return settings unless settings.build_readme
+        return false unless settings.build_readme
 
         settings.project_root.change_dir { client.call }
-        settings
+        true
       end
 
       private

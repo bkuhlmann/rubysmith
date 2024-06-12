@@ -10,15 +10,9 @@ RSpec.describe Rubysmith::Extensions::Tocer do
 
   include_context "with application dependencies"
 
-  before { temp_dir.join("test/README.md").make_ancestors.write("## Test") }
-
-  describe ".call" do
-    it "answers configuration" do
-      expect(described_class.call).to be_a(Rubysmith::Configuration::Model)
-    end
-  end
-
   describe "#call" do
+    before { temp_dir.join("test/README.md").make_ancestors.write("## Test") }
+
     context "with readme enabled" do
       it "adds table of contents" do
         extension.call
@@ -36,8 +30,8 @@ RSpec.describe Rubysmith::Extensions::Tocer do
         CONTENT
       end
 
-      it "answers settings" do
-        expect(extension.call).to eq(settings)
+      it "answers true" do
+        expect(extension.call).to be(true)
       end
     end
 
@@ -49,8 +43,8 @@ RSpec.describe Rubysmith::Extensions::Tocer do
         expect(temp_dir.join("test/README.md").read).to eq("## Test")
       end
 
-      it "answers settings" do
-        expect(extension.call).to eq(settings)
+      it "answers false" do
+        expect(extension.call).to be(false)
       end
     end
   end
