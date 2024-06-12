@@ -10,7 +10,7 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return settings unless settings.build_rspec
+          return false unless settings.build_rspec
 
           template = "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb"
           settings.merge(template_path: template)
@@ -18,7 +18,7 @@ module Rubysmith
                   .render
                   .replace(/\n\s+\n\s+/, "\n  ")
 
-          settings
+          true
         end
       end
     end

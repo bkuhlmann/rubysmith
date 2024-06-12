@@ -11,7 +11,7 @@ module Rubysmith
 
       def call
         builder.call(settings.merge(template_path: "%project_name%")).check
-        settings
+        true
       end
     end
   end

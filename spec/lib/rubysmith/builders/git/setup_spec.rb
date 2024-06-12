@@ -10,25 +10,35 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
-    let(:git_dir) { temp_dir.join "test", ".git" }
+    let(:git_dir) { temp_dir.join "test/.git" }
 
     before { temp_dir.change_dir { |path| path.join("test").make_path } }
 
-    it "initializes repository when enabled" do
-      settings.merge! settings.minimize.merge(build_git: true)
-      temp_dir.change_dir { builder.call }
+    context "when enabled" do
+      before { settings.build_git = true }
 
-      expect(git_dir.exist?).to be(true)
+      it "builds repository" do
+        temp_dir.change_dir { builder.call }
+        expect(git_dir.exist?).to be(true)
+      end
+
+      it "answers true" do
+        temp_dir.change_dir { expect(builder.call).to be(true) }
+      end
     end
 
-    it "doesn't initialize repository when disabled" do
-      settings.merge! settings.minimize
-      temp_dir.change_dir { builder.call }
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(git_dir.exist?).to be(false)
+      it "doesn't build repository" do
+        temp_dir.change_dir { builder.call }
+        expect(git_dir.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

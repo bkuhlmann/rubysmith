@@ -11,15 +11,9 @@ RSpec.describe Rubysmith::Extensions::Bundler do
 
   let(:client) { class_spy Bundler::CLI }
 
-  before { temp_dir.join("test/Gemfile").make_ancestors.write(%(source "https://rubygems.org")) }
-
-  describe ".call" do
-    it "answers configuration" do
-      expect(described_class.call(client:)).to be_a(Rubysmith::Configuration::Model)
-    end
-  end
-
   describe "#call" do
+    before { temp_dir.join("test/Gemfile").make_ancestors.write(%(source "https://rubygems.org")) }
+
     it "installs gems" do
       extension.call
       expect(client).to have_received(:start).with(%w[install --quiet])
@@ -28,6 +22,10 @@ RSpec.describe Rubysmith::Extensions::Bundler do
     it "adds Linux (x86) platform" do
       extension.call
       expect(client).to have_received(:start).with(%w[lock --add-platform x86_64-linux --update])
+    end
+
+    it "answers true" do
+      expect(extension.call).to be(true)
     end
   end
 end

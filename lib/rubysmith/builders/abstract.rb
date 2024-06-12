@@ -6,8 +6,6 @@ module Rubysmith
     class Abstract
       include Import[:settings]
 
-      def self.call(...) = new(...).call
-
       def initialize(builder: Builder, **)
         @builder = builder
         super(**)

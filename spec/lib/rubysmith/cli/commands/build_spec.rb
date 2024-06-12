@@ -7,7 +7,7 @@ RSpec.describe Rubysmith::CLI::Commands::Build do
 
   include_context "with application dependencies"
 
-  let(:builder) { class_spy Rubysmith::Builders::Core }
+  let(:builder) { instance_spy Rubysmith::Builders::Core }
 
   describe "#call" do
     it "logs message" do

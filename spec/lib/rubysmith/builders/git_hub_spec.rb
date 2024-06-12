@@ -9,8 +9,6 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:funding_path) { temp_dir.join "test/.github/FUNDING.yml" }
     let(:issue_path) { temp_dir.join "test/.github/ISSUE_TEMPLATE.md" }
@@ -32,6 +30,10 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
       it "builds pull request template" do
         expect(pull_request_path.exist?).to be(true)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -107,6 +109,10 @@ RSpec.describe Rubysmith::Builders::GitHub do
 
       it "does not build pull request template" do
         expect(pull_request_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
       end
     end
   end

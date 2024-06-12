@@ -9,36 +9,45 @@ RSpec.describe Rubysmith::Builders::RSpec::Binstub do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:binstub_path) { temp_dir.join "test", "bin", "rspec" }
 
-    it "builds binstub when enabled" do
-      settings.merge! settings.minimize.merge(build_rspec: true)
-      builder.call
+    context "when enabled" do
+      before { settings.build_rspec = true }
 
-      expect(binstub_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
+      it "builds binstub" do
+        builder.call
 
-        require "bundler/setup"
+        expect(binstub_path.read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
 
-        load Gem.bin_path "rspec-core", "rspec"
-      CONTENT
+          require "bundler/setup"
+
+          load Gem.bin_path "rspec-core", "rspec"
+        CONTENT
+      end
+
+      it "updates file permissions" do
+        builder.call
+        expect(binstub_path.stat.mode).to eq(33261)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
-    it "updates file permissions when enabled" do
-      settings.merge! settings.minimize.merge(build_rspec: true)
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(binstub_path.stat.mode).to eq(33261)
-    end
+      it "doesn't build binstub" do
+        builder.call
+        expect(binstub_path.exist?).to be(false)
+      end
 
-    it "doesn't build binstub when disabled" do
-      settings.merge! settings.minimize
-      builder.call
-
-      expect(binstub_path.exist?).to be(false)
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

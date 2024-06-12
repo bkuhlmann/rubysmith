@@ -9,10 +9,10 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_reek
+        return false unless settings.build_reek
 
         builder.call(settings.merge(template_path: "%project_name%/.reek.yml.erb")).render
-        settings
+        true
       end
     end
   end

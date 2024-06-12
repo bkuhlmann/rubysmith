@@ -9,14 +9,14 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_guard
+        return false unless settings.build_guard
 
         builder.call(settings.merge(template_path: "%project_name%/bin/guard.erb"))
                .render
                .permit 0o755
 
         builder.call(settings.merge(template_path: "%project_name%/Guardfile.erb")).render
-        settings
+        true
       end
     end
   end

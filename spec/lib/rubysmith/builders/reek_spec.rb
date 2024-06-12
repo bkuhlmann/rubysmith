@@ -9,31 +9,42 @@ RSpec.describe Rubysmith::Builders::Reek do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:settings_path) { temp_dir.join "test", ".reek.yml" }
 
-    it "builds configuration when enabled" do
-      settings.merge! settings.minimize.merge(build_reek: true)
-      builder.call
+    context "when enabled" do
+      before { settings.merge! settings.minimize.merge(build_reek: true) }
 
-      expect(settings_path.read).to eq(<<~CONTENT)
-        exclude_paths:
-          - tmp
-          - vendor
+      it "builds configuration" do
+        builder.call
 
-        detectors:
-          LongParameterList:
-            enabled: false
-      CONTENT
+        expect(settings_path.read).to eq(<<~CONTENT)
+          exclude_paths:
+            - tmp
+            - vendor
+
+          detectors:
+            LongParameterList:
+              enabled: false
+        CONTENT
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
-    it "doesn't build configuration when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(settings_path.exist?).to be(false)
+      it "doesn't build configuration when disabled" do
+        builder.call
+        expect(settings_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

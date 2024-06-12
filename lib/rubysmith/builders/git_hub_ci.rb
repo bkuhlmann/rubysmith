@@ -9,10 +9,10 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_git_hub_ci
+        return false unless settings.build_git_hub_ci
 
         builder.call(configuration_with_template).render.replace(/\n\n\Z/, "\n")
-        settings
+        true
       end
 
       private

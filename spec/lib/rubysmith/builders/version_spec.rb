@@ -11,8 +11,6 @@ RSpec.describe Rubysmith::Builders::Version do
 
   using Refinements::Struct
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     it "builds Ruby version file with minimum settings" do
       settings.merge! settings.minimize
@@ -26,6 +24,10 @@ RSpec.describe Rubysmith::Builders::Version do
       builder.call
 
       expect(temp_dir.join("test", ".ruby-version").read).to eq("#{RUBY_VERSION}\n")
+    end
+
+    it "answers true" do
+      expect(builder.call).to be(true)
     end
   end
 end

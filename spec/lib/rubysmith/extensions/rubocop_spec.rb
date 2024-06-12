@@ -11,15 +11,9 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
 
   let(:client) { instance_spy RuboCop::CLI }
 
-  before { temp_dir.join("test").make_path }
-
-  describe ".call" do
-    it "answers configuration" do
-      expect(described_class.call(client:)).to be_a(Rubysmith::Configuration::Model)
-    end
-  end
-
   describe "#call" do
+    before { temp_dir.join("test").make_path }
+
     it "runs RuboCop" do
       extension.call
 
@@ -28,8 +22,8 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
       )
     end
 
-    it "answers configuration" do
-      expect(extension.call).to eq(settings)
+    it "answers true" do
+      expect(extension.call).to be(true)
     end
   end
 end

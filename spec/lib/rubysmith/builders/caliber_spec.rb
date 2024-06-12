@@ -10,54 +10,60 @@ RSpec.describe Rubysmith::Builders::Caliber do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:binstub_path) { temp_dir.join "test/bin/rubocop" }
     let(:settings_path) { temp_dir.join "test/.config/rubocop/config.yml" }
 
-    it "builds binstub when enabled" do
-      settings.merge! settings.minimize.merge(build_caliber: true)
-      builder.call
+    context "when enabled" do
+      before { settings.merge! settings.minimize.merge(build_caliber: true) }
 
-      expect(binstub_path.read).to eq(<<~CONTENT)
-        #! /usr/bin/env ruby
+      it "builds binstub" do
+        builder.call
 
-        require "bundler/setup"
+        expect(binstub_path.read).to eq(<<~CONTENT)
+          #! /usr/bin/env ruby
 
-        load Gem.bin_path "rubocop", "rubocop"
-      CONTENT
+          require "bundler/setup"
+
+          load Gem.bin_path "rubocop", "rubocop"
+        CONTENT
+      end
+
+      it "updates file permissions" do
+        builder.call
+        expect(binstub_path.stat.mode).to eq(33261)
+      end
+
+      it "builds configuration" do
+        builder.call
+
+        expect(settings_path.read).to eq(<<~CONTENT)
+          inherit_gem:
+            caliber: config/all.yml
+        CONTENT
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
-    it "updates file permissions when enabled" do
-      settings.merge! settings.minimize.merge(build_caliber: true)
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(binstub_path.stat.mode).to eq(33261)
-    end
+      it "doesn't build binstub" do
+        builder.call
+        expect(binstub_path.exist?).to be(false)
+      end
 
-    it "builds configuration when enabled" do
-      settings.merge! settings.minimize.merge(build_caliber: true)
-      builder.call
+      it "doesn't build configuration" do
+        builder.call
+        expect(settings_path.exist?).to be(false)
+      end
 
-      expect(settings_path.read).to eq(<<~CONTENT)
-        inherit_gem:
-          caliber: config/all.yml
-      CONTENT
-    end
-
-    it "doesn't build binstub when disabled" do
-      settings.merge! settings.minimize
-      builder.call
-
-      expect(binstub_path.exist?).to be(false)
-    end
-
-    it "doesn't build configuration when disabled" do
-      settings.merge! settings.minimize
-      builder.call
-
-      expect(settings_path.exist?).to be(false)
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

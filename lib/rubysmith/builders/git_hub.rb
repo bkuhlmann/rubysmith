@@ -11,11 +11,11 @@ module Rubysmith
       def call
         render_funding
 
-        return settings unless settings.build_git_hub
+        return false unless settings.build_git_hub
 
         builder.call(with_issue_template).render
         builder.call(with_pull_request_template).render
-        settings
+        true
       end
 
       private

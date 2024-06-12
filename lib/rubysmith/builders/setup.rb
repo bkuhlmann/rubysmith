@@ -9,13 +9,13 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_setup
+        return false unless settings.build_setup
 
         builder.call(settings.merge(template_path: "%project_name%/bin/setup.erb"))
                .render
                .permit 0o755
 
-        settings
+        true
       end
     end
   end

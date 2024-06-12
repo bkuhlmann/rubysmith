@@ -9,16 +9,11 @@ RSpec.describe Rubysmith::Builders::Setup do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:build_path) { temp_dir.join "test", "bin", "setup" }
 
     context "when enabled" do
-      before do
-        settings.merge! settings.minimize.merge(build_setup: true)
-        builder.call
-      end
+      before { settings.merge! settings.minimize.merge(build_setup: true) }
 
       it "builds setup script without Pry support" do
         builder.call
@@ -46,6 +41,10 @@ RSpec.describe Rubysmith::Builders::Setup do
         builder.call
         expect(build_path.stat.mode).to eq(33261)
       end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
     end
 
     context "when enabled with debug" do
@@ -55,8 +54,6 @@ RSpec.describe Rubysmith::Builders::Setup do
       end
 
       it "builds setup script without Pry support" do
-        builder.call
-
         expect(build_path.read).to eq(<<~'CONTENT')
           #! /usr/bin/env ruby
 
@@ -78,16 +75,21 @@ RSpec.describe Rubysmith::Builders::Setup do
       end
 
       it "updates script permissions" do
-        builder.call
         expect(build_path.stat.mode).to eq(33261)
       end
     end
 
-    it "does not build setup script when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(build_path.exist?).to be(false)
+      it "does not build setup script when disabled" do
+        builder.call
+        expect(build_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

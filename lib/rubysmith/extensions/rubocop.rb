@@ -13,8 +13,6 @@ module Rubysmith
       using Refinements::IO
       using Refinements::Pathname
 
-      def self.call(...) = new(...).call
-
       def initialize(client: ::RuboCop::CLI.new, **)
         @client = client
         super(**)
@@ -27,7 +25,7 @@ module Rubysmith
           STDOUT.squelch { client.run ["--autocorrect-all", project_root.to_s] }
         end
 
-        settings
+        true
       end
 
       private

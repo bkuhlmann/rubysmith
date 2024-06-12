@@ -17,40 +17,52 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
                     version: "0.0.0"
   end
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     let(:project_dir) { temp_dir.join "test" }
     let(:commit) { project_dir.change_dir { `git log --pretty=format:%s%n%n%b -1` } }
 
-    it "creates commit when enabled" do
-      settings.merge! settings.minimize.merge(build_git: true)
+    context "when enabled" do
+      before do
+        settings.merge! settings.minimize.merge(build_git: true)
 
-      project_dir.make_path.change_dir do |path|
-        `git init`
-        `git config user.name "#{settings.author_name}"`
-        `git config user.email "#{settings.author_email}"`
-        path.join("test.txt").touch
+        project_dir.make_path.change_dir do |path|
+          `git init`
+          `git config user.name "#{settings.author_name}"`
+          `git config user.email "#{settings.author_email}"`
+          path.join("test.txt").touch
+        end
       end
 
-      temp_dir.change_dir { builder.call }
+      it "creates commit" do
+        temp_dir.change_dir { builder.call }
 
-      expect(commit).to eq(<<~BODY)
-        Added project skeleton
+        expect(commit).to eq(<<~BODY)
+          Added project skeleton
 
-        Generated with link:https://example.com[Test] 0.0.0.
-      BODY
+          Generated with link:https://example.com[Test] 0.0.0.
+        BODY
+      end
+
+      it "answers true" do
+        temp_dir.change_dir { expect(builder.call).to be(true) }
+      end
     end
 
-    it "doesn't create commit when disabled" do
-      settings.merge! settings.minimize
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      project_dir.make_path.change_dir do
-        `git init`
-        builder.call
+      it "doesn't create commit" do
+        project_dir.make_path.change_dir do
+          `git init`
+          builder.call
+        end
+
+        expect(commit).to eq("")
       end
 
-      expect(commit).to eq("")
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

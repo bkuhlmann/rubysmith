@@ -10,8 +10,6 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     it "builds README when enabled with ASCII Doc format and minimum configuration" do
       settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "adoc")
@@ -49,11 +47,22 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       )
     end
 
-    it "doesn't build README when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    it "answers true when enabled" do
+      settings.merge! settings.merge(build_readme: true)
+      expect(builder.call).to be(true)
+    end
 
-      expect(temp_dir.files.empty?).to be(true)
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
+
+      it "doesn't build README" do
+        builder.call
+        expect(temp_dir.files.empty?).to be(true)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

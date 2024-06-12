@@ -13,7 +13,7 @@ module Rubysmith
       def call
         render_implementation
         render_specification
-        settings
+        true
       end
 
       private

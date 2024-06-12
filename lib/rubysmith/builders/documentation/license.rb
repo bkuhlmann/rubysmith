@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "refinements/struct"
-require "tocer"
 
 module Rubysmith
   module Builders
@@ -11,14 +10,14 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return settings unless settings.build_license
+          return false unless settings.build_license
 
           settings.merge(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
                   .then do |updated_settings|
                     builder.call(updated_settings).render.rename "LICENSE.#{kind}"
                   end
 
-          settings
+          true
         end
 
         private

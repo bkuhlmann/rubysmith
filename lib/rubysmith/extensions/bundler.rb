@@ -14,8 +14,6 @@ module Rubysmith
       using Refinements::IO
       using Refinements::Pathname
 
-      def self.call(...) = new(...).call
-
       def initialize(client: ::Bundler::CLI, **)
         @client = client
         super(**)
@@ -27,7 +25,7 @@ module Rubysmith
           STDOUT.squelch { client.start %w[lock --add-platform x86_64-linux --update] }
         end
 
-        settings
+        true
       end
 
       private

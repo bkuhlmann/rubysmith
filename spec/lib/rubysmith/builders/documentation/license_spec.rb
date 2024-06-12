@@ -10,8 +10,6 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
 
   include_context "with application dependencies"
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     it "builds LICENSE when enabled with Apache and ASCII Doc format" do
       settings.merge! settings.minimize.merge(
@@ -93,11 +91,22 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
       )
     end
 
-    it "doesn't build documentation when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    it "answers true when enabled" do
+      settings.merge! settings.minimize.merge(build_license: true)
+      expect(builder.call).to be(true)
+    end
 
-      expect(temp_dir.files.empty?).to be(true)
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
+
+      it "doesn't build documentation when disabled" do
+        builder.call
+        expect(temp_dir.files.empty?).to be(true)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

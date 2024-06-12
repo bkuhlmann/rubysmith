@@ -9,13 +9,13 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_circle_ci
+        return false unless settings.build_circle_ci
 
         builder.call(settings.merge(template_path: "%project_name%/.circleci/config.yml.erb"))
                .render
                .replace(/\n\n\Z/, "\n")
 
-        settings
+        true
       end
     end
   end

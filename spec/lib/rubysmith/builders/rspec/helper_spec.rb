@@ -11,8 +11,6 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
 
   let(:spec_helper_path) { temp_dir.join "test/spec/spec_helper.rb" }
 
-  it_behaves_like "a builder"
-
   describe "#call" do
     context "when enabled with no options" do
       let :proof do
@@ -49,11 +47,15 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         BODY
       end
 
-      it "builds spec helper" do
-        settings.merge! settings.minimize.merge(build_rspec: true)
-        builder.call
+      before { settings.merge! settings.minimize.merge(build_rspec: true) }
 
+      it "builds spec helper" do
+        builder.call
         expect(spec_helper_path.read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -92,11 +94,17 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         BODY
       end
 
-      it "builds spec helper" do
+      before do
         settings.merge! settings.minimize.merge(project_name: "demo-test", build_rspec: true)
-        builder.call
+      end
 
+      it "builds spec helper" do
+        builder.call
         expect(temp_dir.join("demo-test/spec/spec_helper.rb").read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -138,11 +146,17 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         BODY
       end
 
-      it "builds spec helper" do
+      before do
         settings.merge! settings.minimize.merge(build_rspec: true, build_refinements: true)
-        builder.call
+      end
 
+      it "builds spec helper" do
+        builder.call
         expect(spec_helper_path.read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -192,11 +206,17 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         BODY
       end
 
-      it "builds spec helper" do
+      before do
         settings.merge! settings.minimize.merge(build_rspec: true, build_simple_cov: true)
-        builder.call
+      end
 
+      it "builds spec helper" do
+        builder.call
         expect(spec_helper_path.read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
@@ -249,19 +269,29 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         BODY
       end
 
-      it "builds spec helper" do
-        settings.merge! settings.maximize
-        builder.call
+      before { settings.merge! settings.maximize }
 
+      it "builds spec helper" do
+        builder.call
         expect(spec_helper_path.read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
       end
     end
 
-    it "doesn't build spec helper when disabled" do
-      settings.merge! settings.minimize
-      builder.call
+    context "when disabled" do
+      before { settings.merge! settings.minimize }
 
-      expect(spec_helper_path.exist?).to be(false)
+      it "doesn't build spec helper" do
+        builder.call
+        expect(spec_helper_path.exist?).to be(false)
+      end
+
+      it "answers false" do
+        expect(builder.call).to be(false)
+      end
     end
   end
 end

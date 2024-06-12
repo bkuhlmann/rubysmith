@@ -9,11 +9,11 @@ module Rubysmith
       using Refinements::Struct
 
       def call
-        return settings unless settings.build_rake
+        return false unless settings.build_rake
 
         add_binstub
         add_configuration
-        settings
+        true
       end
 
       private

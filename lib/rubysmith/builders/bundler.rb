@@ -18,7 +18,7 @@ module Rubysmith
                .replace(/\n\ngroup :(quality|development|test|tools) do\nend/, "")
                .replace(/org"\n+/, "org\"\n\n")
 
-        settings
+        true
       end
     end
   end
