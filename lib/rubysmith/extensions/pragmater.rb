@@ -11,27 +11,28 @@ module Rubysmith
 
       using Refinements::Pathname
 
-      CONFIGURATION = ::Pragmater::Configuration::Model[
-        comments: ["# frozen_string_literal: true"],
-        patterns: %w[**/*.rake **/*.rb *.gemspec exe/* bin/* config.ru *file]
-      ].freeze
+      CLIENT = ::Pragmater::Inserter.new(
+        settings: ::Pragmater::Configuration::Model[
+          comments: ["# frozen_string_literal: true"],
+          patterns: %w[**/*.rake **/*.rb *.gemspec exe/* bin/* config.ru *file]
+        ]
+      ).freeze
 
       def self.call(...) = new(...).call
 
-      def initialize(configuration = CONFIGURATION, client: ::Pragmater::Inserter.new, **)
-        @configuration = configuration
+      def initialize(client: CLIENT, **)
         @client = client
         super(**)
       end
 
       def call
-        settings.project_root.change_dir { client.call configuration }
+        settings.project_root.change_dir { client.call }
         settings
       end
 
       private
 
-      attr_reader :configuration, :client
+      attr_reader :client
     end
   end
 end
