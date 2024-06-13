@@ -4,6 +4,7 @@ require "zeitwerk"
 
 Zeitwerk::Loader.new.then do |loader|
   loader.inflector.inflect "cli" => "CLI",
+                           "ci" => "CI",
                            "circle_ci" => "CircleCI",
                            "erb" => "ERB",
                            "git_hub_ci" => "GitHubCI",

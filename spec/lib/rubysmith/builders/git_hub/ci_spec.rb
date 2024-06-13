@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-RSpec.describe Rubysmith::Builders::GitHubCI do
+RSpec.describe Rubysmith::Builders::GitHub::CI do
   using Refinements::Struct
 
   subject(:builder) { described_class.new }
