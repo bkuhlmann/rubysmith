@@ -27,7 +27,7 @@ module Rubysmith
           Builders::Console.new,
           Builders::CircleCI.new,
           Builders::Setup.new,
-          Builders::GitHub.new,
+          Builders::GitHub::Template.new,
           Builders::GitHubCI.new,
           Builders::Guard.new,
           Builders::Reek.new,
