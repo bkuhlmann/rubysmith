@@ -28,7 +28,7 @@ module Rubysmith
           Builders::CircleCI.new,
           Builders::Setup.new,
           Builders::GitHub::Template.new,
-          Builders::GitHubCI.new,
+          Builders::GitHub::CI.new,
           Builders::Guard.new,
           Builders::Reek.new,
           Builders::RSpec::Binstub.new,
