@@ -10,8 +10,6 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          render_funding
-
           return false unless settings.build_git_hub
 
           builder.call(with_issue).render
@@ -20,13 +18,6 @@ module Rubysmith
         end
 
         private
-
-        def render_funding
-          return unless settings.build_funding
-
-          settings.merge(template_path: "%project_name%/.github/FUNDING.yml.erb")
-                  .then { |updated_configuration| builder.call(updated_configuration).render }
-        end
 
         def with_issue
           settings.merge template_path: "%project_name%/.github/ISSUE_TEMPLATE.md.erb"

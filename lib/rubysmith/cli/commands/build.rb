@@ -28,6 +28,7 @@ module Rubysmith
           Builders::CircleCI.new,
           Builders::Setup.new,
           Builders::GitHub::Template.new,
+          Builders::GitHub::Funding.new,
           Builders::GitHub::CI.new,
           Builders::Guard.new,
           Builders::Reek.new,
