@@ -11,12 +11,14 @@ RSpec.describe Rubysmith::Configuration::Transformers::GitHubUser do
 
   describe "#call" do
     it "answers custom user when present" do
-      expect(transformer.call({git_hub_user: "test"})).to eq(Success(git_hub_user: "test"))
+      expect(transformer.call({repository_handle: "test"})).to eq(
+        Success(repository_handle: "test")
+      )
     end
 
     it "answers GitHub user when custom user is missing and GitHub user exists" do
       allow(git).to receive(:get).with("github.user", nil).and_return(Success("test"))
-      expect(transformer.call({})).to eq(Success(git_hub_user: "test"))
+      expect(transformer.call({})).to eq(Success(repository_handle: "test"))
     end
 
     it "answers original attributes when custom and GitHub users are missing" do

@@ -7,6 +7,3 @@ Metrics/ClassLength:
 Metrics/CollectionLiteralLength:
   Exclude:
     - "lib/rubysmith/cli/commands/build.rb"
-Metrics/ModuleLength:
-  Exclude:
-    - "lib/rubysmith/configuration/model.rb"

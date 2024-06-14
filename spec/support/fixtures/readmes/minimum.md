@@ -13,7 +13,7 @@
 
 To set up project, run:
 
-    git clone https://acme.io/test/source
+    git clone https://github.com/undefined/test
     cd test
 
 ## Usage
@@ -22,7 +22,7 @@ To set up project, run:
 
 To contribute, run:
 
-    git clone https://acme.io/test/source
+    git clone https://github.com/undefined/test
     cd test
 
 ## Tests
@@ -34,4 +34,4 @@ To test, run:
 ## Credits
 
 - Built with [Rubysmith](https://alchemists.io/projects/rubysmith).
-- Engineered by [Jill Smith](https://acme.io/team/jill_smith).
+- Engineered by [Jill Smith](https://undefined.io/team/undefined).

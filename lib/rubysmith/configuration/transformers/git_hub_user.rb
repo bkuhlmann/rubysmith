@@ -5,12 +5,12 @@ require "dry/monads"
 module Rubysmith
   module Configuration
     module Transformers
-      # Dynamically adds GitHub user if user is defined.
+      # Dynamically updates repository handle if GitHub user is defined.
       class GitHubUser
         include Import[:git]
         include Dry::Monads[:result]
 
-        def initialize(key = :git_hub_user, **)
+        def initialize(key = :repository_handle, **)
           @key = key
           super(**)
         end

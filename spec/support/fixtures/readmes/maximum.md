@@ -13,7 +13,7 @@
 
 To set up project, run:
 
-    git clone https://acme.io/test/source
+    git clone https://github.com/undefined/test
     cd test
     bin/setup
 
@@ -23,7 +23,7 @@ To set up project, run:
 
 To contribute, run:
 
-    git clone https://acme.io/test/source
+    git clone https://github.com/undefined/test
     cd test
     bin/setup
 
@@ -37,19 +37,19 @@ To test, run:
 
     bin/rake
 
-## [License](https://acme.io/test/license)
+## [License](https://undefined.io/policies/license)
 
-## [Security](https://acme.io/test/security)
+## [Security](https://undefined.io/policies/security)
 
-## [Code of Conduct](https://acme.io/test/code_of_conduct)
+## [Code of Conduct](https://undefined.io/policies/code_of_conduct)
 
-## [Contributions](https://acme.io/test/contributions)
+## [Contributions](https://undefined.io/policies/contributions)
 
-## [Versions](https://acme.io/test/versions)
+## [Versions](https://undefined.io/projects/test/versions)
 
-## [Community](https://acme.io/test/community)
+## [Community](https://undefined.io/community)
 
 ## Credits
 
 - Built with [Rubysmith](https://alchemists.io/projects/rubysmith).
-- Engineered by [Jill Smith](https://acme.io/team/jill_smith).
+- Engineered by [Jill Smith](https://undefined.io/team/undefined).
