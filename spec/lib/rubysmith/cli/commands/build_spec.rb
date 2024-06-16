@@ -13,8 +13,8 @@ RSpec.describe Rubysmith::CLI::Commands::Build do
     it "logs message" do
       command.call
       expect(logger.reread).to eq(<<~OUTPUT)
-        🟢 \e[32mBuilding project skeleton: test...\e[0m
-        🟢 \e[32mProject skeleton complete!\e[0m
+        🟢 [\e[32mrubysmith\e[0m] \e[32mBuilding project skeleton: test...\e[0m
+        🟢 [\e[32mrubysmith\e[0m] \e[32mProject skeleton complete!\e[0m
       OUTPUT
     end
 
