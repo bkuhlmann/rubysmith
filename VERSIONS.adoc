@@ -1,5 +1,12 @@
 = Versions
 
+== 6.10.0 (2024-06-16)
+
+* 🔼 Updated to Caliber 0.58.0 - Brooke Kuhlmann
+* 🔼 Updated to Cogger 0.21.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.3 - Brooke Kuhlmann
+* ⛔️ Removed SimpleCov coverage for eval task - Brooke Kuhlmann
+
 == 6.9.0 (2024-05-31)
 
 * 🟢 Added citation URL to citation builder - Brooke Kuhlmann
