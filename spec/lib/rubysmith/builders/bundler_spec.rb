@@ -109,7 +109,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         source "https://rubygems.org"
 
         group :tools do
-          gem "irb-kit", "~> 0.0"
+          gem "irb-kit", "~> 0.3"
         end
       CONTENT
     end
@@ -259,7 +259,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.6"
             gem "debug", "~> 1.9"
-            gem "irb-kit", "~> 0.0"
+            gem "irb-kit", "~> 0.3"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
@@ -303,7 +303,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 1.6"
             gem "debug", "~> 1.9"
-            gem "irb-kit", "~> 0.0"
+            gem "irb-kit", "~> 0.3"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
