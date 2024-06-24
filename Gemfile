@@ -6,6 +6,7 @@ source "https://rubygems.org"
 
 gem "etcher", path: "~/Engineering/OSS/etcher"
 gem "pragmater", path: "~/Engineering/OSS/pragmater"
+gem "sod", path: "~/Engineering/OSS/sod"
 gem "tocer", path: "~/Engineering/OSS/tocer"
 
 gemspec

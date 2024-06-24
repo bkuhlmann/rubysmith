@@ -5,12 +5,13 @@ require "spec_helper"
 RSpec.describe Rubysmith::CLI::Shell do
   using Refinements::Pathname
   using Refinements::Struct
+  using Refinements::StringIO
 
   subject(:shell) { described_class.new }
 
   include_context "with application dependencies"
 
-  before { Sod::Container.stub! kernel:, logger: }
+  before { Sod::Container.stub! logger:, io: }
 
   after { Sod::Container.restore }
 
@@ -30,7 +31,7 @@ RSpec.describe Rubysmith::CLI::Shell do
 
     it "prints configuration usage" do
       shell.call %w[config]
-      expect(kernel).to have_received(:puts).with(/Manage configuration.+/m)
+      expect(io.reread).to match(/Manage configuration.+/m)
     end
 
     context "with minimum forced build" do
@@ -83,12 +84,12 @@ RSpec.describe Rubysmith::CLI::Shell do
 
     it "prints version" do
       shell.call %w[--version]
-      expect(kernel).to have_received(:puts).with(/Rubysmith\s\d+\.\d+\.\d+/)
+      expect(io.reread).to match(/Rubysmith\s\d+\.\d+\.\d+/)
     end
 
     it "prints help" do
       shell.call %w[--help]
-      expect(kernel).to have_received(:puts).with(/Rubysmith.+USAGE.+/m)
+      expect(io.reread).to match(/Rubysmith.+USAGE.+/m)
     end
   end
 end
