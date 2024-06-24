@@ -6,8 +6,9 @@ RSpec.shared_context "with application dependencies" do
   include_context "with temporary directory"
 
   let(:settings) { Rubysmith::Container[:settings] }
-  let(:kernel) { class_spy Kernel }
   let(:logger) { Cogger.new id: :rubysmith, io: StringIO.new, level: :debug }
+  let(:kernel) { class_spy Kernel }
+  let(:io) { StringIO.new }
 
   before do
     settings.merge! Etcher.call(
@@ -33,7 +34,7 @@ RSpec.shared_context "with application dependencies" do
       target_root: temp_dir
     )
 
-    Rubysmith::Container.stub! kernel:, logger:
+    Rubysmith::Container.stub! logger:, kernel:, io:
   end
 
   after { Rubysmith::Container.restore }

@@ -31,5 +31,6 @@ module Rubysmith
     register(:git) { Gitt::Repository.new }
     register(:logger) { Cogger.new id: :rubysmith }
     register :kernel, Kernel
+    register :io, STDOUT
   end
 end
