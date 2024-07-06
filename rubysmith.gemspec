@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "infusible", "~> 3.8"
   spec.add_dependency "pragmater", "~> 15.0"
   spec.add_dependency "refinements", "~> 12.5"
-  spec.add_dependency "rubocop", "~> 1.63"
+  spec.add_dependency "rubocop", "~> 1.65"
   spec.add_dependency "runcom", "~> 11.5"
   spec.add_dependency "sod", "~> 0.12"
   spec.add_dependency "spek", "~> 3.0"
