@@ -14,7 +14,7 @@ group :quality do
     gem "caliber", "~> 0.58"
   <% end %>
   <% if settings.build_git && settings.build_git_lint %>
-    gem "git-lint", "~> 7.3"
+    gem "git-lint", "~> 8.0"
   <% end %>
   <% if settings.build_reek %>
     gem "reek", "~> 6.3", require: false
