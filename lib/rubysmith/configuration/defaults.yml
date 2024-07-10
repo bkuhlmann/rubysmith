@@ -1,3 +1,6 @@
+author:
+  handle: undefined
+  uri: "%<organization_uri>s/team/%<author_handle>s"
 build:
   amazing_print: true
   caliber: true
@@ -38,5 +41,22 @@ license:
   label: Hippocratic
   name: hippocratic
   version: "2.1"
+organization:
+  uri: https://undefined.io
 project:
+  uri:
+    community: "%<organization_uri>s/community"
+    conduct: "%<organization_uri>s/policies/code_of_conduct"
+    contributions: "%<organization_uri>s/policies/contributions"
+    download: "https://rubygems.org/gems/%<project_name>s"
+    funding: "%<repository_uri>s/sponsors/%<repository_handle>s"
+    home: "%<organization_uri>s/projects/%<project_name>s"
+    issues: "%<repository_uri>s/%<repository_handle>s/%<project_name>s/issues"
+    license: "%<organization_uri>s/policies/license"
+    security: "%<organization_uri>s/policies/security"
+    source: "%<repository_uri>s/%<repository_handle>s/%<project_name>s"
+    versions: "%<organization_uri>s/projects/%<project_name>s/versions"
   version: 0.0.0
+repository:
+  handle: undefined
+  uri: https://github.com

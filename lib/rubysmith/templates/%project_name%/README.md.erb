@@ -13,7 +13,7 @@
 
 To set up project, run:
 
-    git clone <%= settings.computed_project_url_source %>
+    git clone <%= settings.computed_project_uri_source %>
     cd <%= settings.project_name %>
     <% if settings.build_setup %>
     bin/setup
@@ -25,7 +25,7 @@ To set up project, run:
 
 To contribute, run:
 
-    git clone <%= settings.computed_project_url_source %>
+    git clone <%= settings.computed_project_uri_source %>
     cd <%= settings.project_name %>
     <% if settings.build_setup %>
     bin/setup
@@ -45,30 +45,30 @@ To test, run:
     bin/rake
 
 <% if settings.build_license %>
-## [License](<%= settings.computed_project_url_license %>)
+## [License](<%= settings.computed_project_uri_license %>)
 <% end %>
 
 <% if settings.build_security %>
-## [Security](<%= settings.computed_project_url_security %>)
+## [Security](<%= settings.computed_project_uri_security %>)
 <% end %>
 
 <% if settings.build_conduct %>
-## [Code of Conduct](<%= settings.computed_project_url_conduct %>)
+## [Code of Conduct](<%= settings.computed_project_uri_conduct %>)
 <% end %>
 
 <% if settings.build_contributions %>
-## [Contributions](<%= settings.computed_project_url_contributions %>)
+## [Contributions](<%= settings.computed_project_uri_contributions %>)
 <% end %>
 
 <% if settings.build_versions %>
-## [Versions](<%= settings.computed_project_url_versions %>)
+## [Versions](<%= settings.computed_project_uri_versions %>)
 <% end %>
 
 <% if settings.build_community %>
-## [Community](<%= settings.computed_project_url_community %>)
+## [Community](<%= settings.computed_project_uri_community %>)
 <% end %>
 
 ## Credits
 
 - Built with [Rubysmith](https://alchemists.io/projects/rubysmith).
-- Engineered by [<%= settings.author_name %>](<%= settings.author_url %>).
+- Engineered by [<%= settings.author_name %>](<%= settings.author_uri %>).

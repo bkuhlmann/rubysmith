@@ -18,7 +18,7 @@ To set up project, run:
 
 [source,bash]
 ----
-git clone <%= settings.computed_project_url_source %>
+git clone <%= settings.computed_project_uri_source %>
 cd <%= settings.project_name %>
 <% if settings.build_setup %>
 bin/setup
@@ -33,7 +33,7 @@ To contribute, run:
 
 [source,bash]
 ----
-git clone <%= settings.computed_project_url_source %>
+git clone <%= settings.computed_project_uri_source %>
 cd <%= settings.project_name %>
 <% if settings.build_setup %>
 bin/setup
@@ -60,30 +60,30 @@ bin/rake
 ----
 
 <% if settings.build_license %>
-== link:<%= settings.computed_project_url_license %>[License]
+== link:<%= settings.computed_project_uri_license %>[License]
 <% end %>
 
 <% if settings.build_security %>
-== link:<%= settings.computed_project_url_security %>[Security]
+== link:<%= settings.computed_project_uri_security %>[Security]
 <% end %>
 
 <% if settings.build_conduct %>
-== link:<%= settings.computed_project_url_conduct %>[Code of Conduct]
+== link:<%= settings.computed_project_uri_conduct %>[Code of Conduct]
 <% end %>
 
 <% if settings.build_contributions %>
-== link:<%= settings.computed_project_url_contributions %>[Contributions]
+== link:<%= settings.computed_project_uri_contributions %>[Contributions]
 <% end %>
 
 <% if settings.build_versions %>
-== link:<%= settings.computed_project_url_versions %>[Versions]
+== link:<%= settings.computed_project_uri_versions %>[Versions]
 <% end %>
 
 <% if settings.build_community %>
-== link:<%= settings.computed_project_url_community %>[Community]
+== link:<%= settings.computed_project_uri_community %>[Community]
 <% end %>
 
 == Credits
 
 * Built with link:https://alchemists.io/projects/rubysmith[Rubysmith].
-* Engineered by link:<%= settings.author_url %>[<%= settings.author_name %>].
+* Engineered by link:<%= settings.author_uri %>[<%= settings.author_name %>].

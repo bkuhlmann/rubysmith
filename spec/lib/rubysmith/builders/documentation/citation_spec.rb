@@ -39,9 +39,9 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
               orcid: https://orcid.org/0000-1111-2222-3333
           keywords:
            - ruby
-          repository-code: https://acme.io/test/source
-          repository-artifact: https://acme.io/test/download
-          url: https://acme.io/test
+          repository-code: https://github.com/undefined/test
+          repository-artifact: https://rubygems.org/gems/test
+          url: https://undefined.io/projects/test
         CONTENT
       end
 

@@ -212,80 +212,80 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
   end
 
-  describe "#computed_project_url_community" do
+  describe "#computed_project_uri_community" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_community: "test.com/%project_name%/commons"
-      expect(updated_record.computed_project_url_community).to eq("test.com/test/commons")
+      updated_record = record.merge project_uri_community: "test.com/%<project_name>s/commons"
+      expect(updated_record.computed_project_uri_community).to eq("test.com/test/commons")
     end
   end
 
-  describe "#computed_project_url_conduct" do
+  describe "#computed_project_uri_conduct" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_conduct: "test.com/%project_name%/conduct"
-      expect(updated_record.computed_project_url_conduct).to eq("test.com/test/conduct")
+      updated_record = record.merge project_uri_conduct: "test.com/%<project_name>s/conduct"
+      expect(updated_record.computed_project_uri_conduct).to eq("test.com/test/conduct")
     end
   end
 
-  describe "#computed_project_url_contributions" do
+  describe "#computed_project_uri_contributions" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_contributions: "test.com/%project_name%/contribs"
-      expect(updated_record.computed_project_url_contributions).to eq("test.com/test/contribs")
+      updated_record = record.merge project_uri_contributions: "test.com/%<project_name>s/contribs"
+      expect(updated_record.computed_project_uri_contributions).to eq("test.com/test/contribs")
     end
   end
 
-  describe "#computed_project_url_download" do
+  describe "#computed_project_uri_download" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_download: "test.com/%project_name%/latest"
-      expect(updated_record.computed_project_url_download).to eq("test.com/test/latest")
+      updated_record = record.merge project_uri_download: "test.com/%<project_name>s/latest"
+      expect(updated_record.computed_project_uri_download).to eq("test.com/test/latest")
     end
   end
 
-  describe "#computed_project_url_funding" do
+  describe "#computed_project_uri_funding" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_funding: "test.com/%project_name%/funding"
-      expect(updated_record.computed_project_url_funding).to eq("test.com/test/funding")
+      updated_record = record.merge project_uri_funding: "test.com/%<project_name>s/funding"
+      expect(updated_record.computed_project_uri_funding).to eq("test.com/test/funding")
     end
   end
 
-  describe "#computed_project_url_home" do
+  describe "#computed_project_uri_home" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_home: "test.com/%project_name%"
-      expect(updated_record.computed_project_url_home).to eq("test.com/test")
+      updated_record = record.merge project_uri_home: "test.com/%<project_name>s"
+      expect(updated_record.computed_project_uri_home).to eq("test.com/test")
     end
   end
 
-  describe "#computed_project_url_issues" do
+  describe "#computed_project_uri_issues" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_issues: "test.com/%project_name%/issues"
-      expect(updated_record.computed_project_url_issues).to eq("test.com/test/issues")
+      updated_record = record.merge project_uri_issues: "test.com/%<project_name>s/issues"
+      expect(updated_record.computed_project_uri_issues).to eq("test.com/test/issues")
     end
   end
 
-  describe "#computed_project_url_license" do
+  describe "#computed_project_uri_license" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_license: "test.com/%project_name%/license"
-      expect(updated_record.computed_project_url_license).to eq("test.com/test/license")
+      updated_record = record.merge project_uri_license: "test.com/%<project_name>s/license"
+      expect(updated_record.computed_project_uri_license).to eq("test.com/test/license")
     end
   end
 
-  describe "#computed_project_url_security" do
+  describe "#computed_project_uri_security" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_security: "test.com/%project_name%/security"
-      expect(updated_record.computed_project_url_security).to eq("test.com/test/security")
+      updated_record = record.merge project_uri_security: "test.com/%<project_name>s/security"
+      expect(updated_record.computed_project_uri_security).to eq("test.com/test/security")
     end
   end
 
-  describe "#computed_project_url_source" do
+  describe "#computed_project_uri_source" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_source: "test.com/%project_name%/source"
-      expect(updated_record.computed_project_url_source).to eq("test.com/test/source")
+      updated_record = record.merge project_uri_source: "test.com/%<project_name>s/source"
+      expect(updated_record.computed_project_uri_source).to eq("test.com/test/source")
     end
   end
 
-  describe "#computed_project_url_versions" do
+  describe "#computed_project_uri_versions" do
     it "answers formatted URL" do
-      updated_record = record.merge project_url_versions: "test.com/%project_name%/versions"
-      expect(updated_record.computed_project_url_versions).to eq("test.com/test/versions")
+      updated_record = record.merge project_uri_versions: "test.com/%<project_name>s/versions"
+      expect(updated_record.computed_project_uri_versions).to eq("test.com/test/versions")
     end
   end
 

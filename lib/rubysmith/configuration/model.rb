@@ -12,7 +12,8 @@ module Rubysmith
       :author_email,
       :author_family_name,
       :author_given_name,
-      :author_url,
+      :author_handle,
+      :author_uri,
       :build_amazing_print,
       :build_caliber,
       :build_circle_ci,
@@ -48,25 +49,26 @@ module Rubysmith
       :citation_message,
       :citation_orcid,
       :documentation_format,
-      :git_hub_user,
       :license_label,
       :license_name,
       :license_version,
       :loaded_at,
-      :organization_url,
+      :organization_uri,
       :project_name,
-      :project_url_community,
-      :project_url_conduct,
-      :project_url_contributions,
-      :project_url_download,
-      :project_url_funding,
-      :project_url_home,
-      :project_url_issues,
-      :project_url_license,
-      :project_url_security,
-      :project_url_source,
-      :project_url_versions,
+      :project_uri_community,
+      :project_uri_conduct,
+      :project_uri_contributions,
+      :project_uri_download,
+      :project_uri_funding,
+      :project_uri_home,
+      :project_uri_issues,
+      :project_uri_license,
+      :project_uri_security,
+      :project_uri_source,
+      :project_uri_versions,
       :project_version,
+      :repository_handle,
+      :repository_uri,
       :target_root,
       :template_path,
       :template_roots
@@ -95,27 +97,27 @@ module Rubysmith
 
       def project_root = target_root.join(project_name)
 
-      def computed_project_url_community = format_url(__method__)
+      def computed_project_uri_community = format_uri(__method__)
 
-      def computed_project_url_conduct = format_url(__method__)
+      def computed_project_uri_conduct = format_uri(__method__)
 
-      def computed_project_url_contributions = format_url(__method__)
+      def computed_project_uri_contributions = format_uri(__method__)
 
-      def computed_project_url_download = format_url(__method__)
+      def computed_project_uri_download = format_uri(__method__)
 
-      def computed_project_url_funding = format_url(__method__)
+      def computed_project_uri_funding = format_uri(__method__)
 
-      def computed_project_url_home = format_url(__method__)
+      def computed_project_uri_home = format_uri(__method__)
 
-      def computed_project_url_issues = format_url(__method__)
+      def computed_project_uri_issues = format_uri(__method__)
 
-      def computed_project_url_license = format_url(__method__)
+      def computed_project_uri_license = format_uri(__method__)
 
-      def computed_project_url_security = format_url(__method__)
+      def computed_project_uri_security = format_uri(__method__)
 
-      def computed_project_url_source = format_url(__method__)
+      def computed_project_uri_source = format_uri(__method__)
 
-      def computed_project_url_versions = format_url(__method__)
+      def computed_project_uri_versions = format_uri(__method__)
 
       def ascii_doc? = documentation_format == "adoc"
 
@@ -132,12 +134,12 @@ module Rubysmith
 
       private
 
-      def format_url kind
+      def format_uri kind
         kind.to_s
             .sub("computed_", "")
             .then { |method| public_send method }
-            .then { |url| String url }
-            .then { |url| url.sub "%project_name%", project_name }
+            .then { |uri| String uri }
+            .then { |uri| uri.sub "%<project_name>s", project_name }
       end
 
       def update_build_options value
