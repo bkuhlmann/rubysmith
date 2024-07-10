@@ -4,6 +4,7 @@
 
 :gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
 :bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
+:string_formats_link: link:https://docs.ruby-lang.org/en/3.3/format_specifications_rdoc.html[String Formats]
 
 = Rubysmith
 
@@ -77,7 +78,7 @@ gem install rubysmith
 
 From the command line, type: `rubysmith --help`
 
-image:https://alchemists.io/images/projects/rubysmith/screenshots/usage.png[Usage,width=604,height=345,role=focal_point]
+image:https://alchemists.io/images/projects/rubysmith/screenshots/usage.png[Usage,width=554,height=301,role=focal_point]
 
 ==== Build
 
@@ -279,21 +280,6 @@ The `--zeitwerk` option allows you add the link:https://github.com/fxn/zeitwerk[
 
 This includes having access to your project's Zeitwerk loader for inspection and debugging purposes. This means if you built a `Demo` project, you'd immediately have access to your project's loader via `Demo.loader` when using the project console (i.e. `bin/console`, assuming you built your project with the `--console` flag enabled which is default behavior).
 
-==== Publish
-
-Rubysmith can be used to publish your Ruby projects. This is done via the `--publish` command. If,
-for example, you want to publish `0.1.0` of your `demo` project you could do that as follows:
-
-[source,bash]
-----
-cd demo
-rubysmith --publish 0.1.0
-----
-
-This will publish (tag) your `demo` project as `0.1.0` both locally and on your remote Git repository.
-Rubysmith uses link:https://alchemists.io/projects/milestoner[Milestoner] to handle publishing
-of your project for you. You can use either but the convenience is built in for you.
-
 === Configuration
 
 This gem can be configured via a global configuration:
@@ -308,10 +294,8 @@ variables. The default configuration is as follows:
 [source,yaml]
 ----
 author:
-  email:
-  family_name:
-  given_name:
-  url:
+  handle: undefined
+  uri: "%<organization_uri>s/team/%<author_handle>s"
 build:
   amazing_print: true
   caliber: true
@@ -329,7 +313,7 @@ build:
   git_hub_ci: false
   git_lint: true
   guard: true
-  irb_kit: false
+  irb_kit: true
   license: true
   maximum: false
   minimum: false
@@ -345,64 +329,69 @@ build:
   versions: true
   zeitwerk: true
 citation:
-  affiliation:
   message: Please use the following metadata when citing this project in your work.
-  orcid:
 documentation:
   format: "adoc"
-git_hub:
-  user:
 license:
   label: Hippocratic
   name: hippocratic
   version: "2.1"
 organization:
-  url:
+  uri: https://undefined.io
 project:
-  url:
-    community:
-    conduct:
-    contributions:
-    download:
-    funding:
-    home:
-    issues:
-    license:
-    security:
-    source:
-    versions:
+  uri:
+    community: "%<organization_uri>s/community"
+    conduct: "%<organization_uri>s/policies/code_of_conduct"
+    contributions: "%<organization_uri>s/policies/contributions"
+    download: "https://rubygems.org/gems/%<project_name>s"
+    funding: "%<repository_uri>s/sponsors/%<repository_handle>s"
+    home: "%<organization_uri>s/projects/%<project_name>s"
+    issues: "%<repository_uri>s/%<repository_handle>s/%<project_name>s/issues"
+    license: "%<organization_uri>s/policies/license"
+    security: "%<organization_uri>s/policies/security"
+    source: "%<repository_uri>s/%<repository_handle>s/%<project_name>s"
+    versions: "%<organization_uri>s/projects/%<project_name>s/versions"
   version: 0.0.0
+repository:
+  handle: undefined
+  uri: https://github.com
 ----
 
-By customizing your configuration, you can change Rubysmith's default behavior when building projects. This is a great way to define your own specialized settings other than what is provide for you by default. This is also a handy way to provide additional information needed for some of the build options. The next sections will walk you through each configuration so you can learn more.
+By customizing your configuration, you can change Rubysmith's default behavior when building projects. This is a great way to define your own specialized settings other than what is provide for you by default. This is also a handy way to provide additional information needed for some of the build options.
+
+You'll also notice some of the values use {string_formats_link} which means you can use any fully qualified key as a string specifier for supported keys like those found in the `author` and `project` sections.
+
+The next sections will walk you through each configuration so you can learn more.
 
 ==== Author
 
 Author information is used when generating project documentation and is recommended you fill this
 information in before building a project. Example:
 
-    author:
-      email: jsmith@example.com
-      family_name: Smith
-      given_name: Jill
-      url: https://www.exmaple.com/team/jsmith
+[source,yaml]
+----
+author:
+  email: jsmith@example.com
+  family_name: Smith
+  given_name: Jill
+----
 
 If your global link:https://git-scm.com[Git] configuration is properly configured, your given name;
 family name; and email will be used by default. Should you not want to defer to Git, you can supply
-custom values as desired. The URL is the only value that can't be automatically computed for you.
+custom values as desired. The URI is the only value that can't be automatically computed for you.
 
 ==== Build
 
 All build options only accept booleans values and can be customized as desired. When changing your build options, they will dynamically render when displaying usage (i.e. `rubysmith --help`). All of these options have been explained in greater detail in the _Usage_ section.
 
-ℹ️ The `cli` option is provided to support the {gemsmith_link} gem but is not, currently, used by
+ℹ️ The `cli` option is provided to support {gemsmith_link} but is not, currently, used by
 this project.
 
 ==== Citations
 
 This section allows you to configure your link:https://orcid.org[ORCID]
 link:https://citation-file-format.github.io[citation] information used by the research community.
-You should definitely fill this in. Your author information, detailed above, will be used as well.
+You should definitely fill this in. Your author information, detailed above, will also be used when building this file.
 
 ==== Documentation
 
@@ -411,10 +400,6 @@ following options are available:
 
 * `adoc` - Uses link:https://asciidoctor.org[ASCII Doc] format.
 * `md` - Uses link:https://asciidoctor.org[Markdown] format.
-
-==== GitHub
-
-Your GitHub user is the handle you setup when creating your GitHub account (i.e. `+https://github.com/<your_handle>+`). This information is used for template, funding, and/or URL construction purposes.
 
 ==== License
 
@@ -428,20 +413,20 @@ When picking a license, you can also supply the appropriate label and version in
 
 ==== Organization
 
-Use this section to define URL information that points to your organization. This is useful for information that isn't project specific but related to all projects within your organization. You'll want to customize this URL especially for documentation purposes.
+Use this section to define URI information that points to your organization. This is useful for information that isn't project specific but related to all projects within your organization. You'll want to customize this URI especially for documentation purposes.
 
 ==== Project
 
-There are two sub-categories within this section: URLs and version. The URLs allow you to link to
-specific documentation related to your project. You'll want to customize these URLs since they are
-used for documentation, citations, and general project information. Some of the URLs are also used
+There are two sub-categories within this section: URIs and version. The URIs allow you to link to
+specific documentation related to your project. You'll want to customize these URIs since they are
+used for documentation, citations, and general project information. Some of the URIs are also used
 by the {gemsmith_link} gem.
 
-One powerful feature of this configuration is that you can use `%project_name%` as a placeholder _anywhere_ in your URLs and Rubysmith will ensure your place holder is replaced with your project name when generating a new project. Example:
+One powerful feature of this configuration is that you can use `%<project_name>s` as a placeholder _anywhere_ in your URIs and Rubysmith will ensure your place holder is replaced with your project name when generating a new project. Example:
 
 ....
 # Configuration
-https://www.example.com/%project_name%
+https://www.example.com/%<project_name>s
 
 # Command
 rubysmith build --name demo
@@ -451,6 +436,10 @@ https://www.example.com/demo
 ....
 
 As for the `version` key, this defines the default version of newly created projects. `0.0.0` is the default but you can use a higher version number like `0.1.0` or even `1.0.0` if you are super confident in your work. That said, a lower the number is recommended when building your initial project which is why `0.0.0` is the default.
+
+==== Repository
+
+Your repisotry handle is the handle you setup when creating your account (i.e. `+https://github.com/<your_handle>+`). This information is used for template, funding, and/or URI construction purposes.
 
 == Development
 
