@@ -12,13 +12,13 @@ RSpec.shared_context "with application dependencies" do
 
   before do
     settings.merge! Etcher.call(
-      Rubysmith::Container[:registry].remove_loader(1)
-                                     .add_loader(:hash, project_name: "test"),
+      Rubysmith::Container[:registry].remove_loader(1),
       author_email: "jill@acme.io",
       author_family_name: "Smith",
       author_given_name: "Jill",
       loaded_at: Time.utc(2020, 1, 1, 0, 0, 0),
-      target_root: temp_dir
+      target_root: temp_dir,
+      project_name: "test"
     )
 
     Rubysmith::Container.stub! logger:, kernel:, io:
