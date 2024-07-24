@@ -29,7 +29,6 @@ toc::[]
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://github.com[GitHub].
 * Supports link:https://alchemists.io/projects/git-lint[Git Lint].
-* Supports link:https://github.com/guard/guard[Guard].
 * Supports link:https://alchemists.io/projects/irb-kit[IRB Kit].
 * Supports link:https://github.com/ruby/rake[Rake].
 * Supports link:https://github.com/troessner/reek[Reek].
@@ -96,10 +95,10 @@ options, you can use `--no-*` prefixes. Example:
 
 [source,bash]
 ----
-rubysmith build --name demo --no-debug --no-guard
+rubysmith build --name demo --no-debug --no-reek
 ----
 
-With the above example, both Debug and Guard support would have been disabled when building the
+With the above example, both Debug and Reek support would have been disabled when building the
 `demo` project. Taking this a step further, you can also use the `--min` option to generate a
 project with bare minimum of options. Example:
 
@@ -209,6 +208,8 @@ manner.
 
 ===== Guard
 
+⚠️ _This is deprecated and will be removed in the next major version._
+
 The `--guard` option allows you add the link:https://github.com/guard/guard[Guard] gem to your
 project for rapid red, green, refactor development cycles.
 
@@ -312,7 +313,7 @@ build:
   git_hub: false
   git_hub_ci: false
   git_lint: true
-  guard: true
+  guard: false
   irb_kit: true
   license: true
   maximum: false

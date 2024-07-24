@@ -1,5 +1,12 @@
 = Versions
 
+== 7.1.0 (2024-07-23)
+
+* ✅ Fixed container duplicate transformer and test setup - Brooke Kuhlmann
+* 🔼 Updated Guard build flag to be false by default - Brooke Kuhlmann
+* 🔼 Updated to Refinements 12.7.0 - Brooke Kuhlmann
+* ⛔️ Removed Guard - Brooke Kuhlmann
+
 == 7.0.0 (2024-07-10)
 
 * 🟢 Added GitHub funding builder - Brooke Kuhlmann
