@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "etcher", "~> 2.1"
   spec.add_dependency "gitt", "~> 3.6"
   spec.add_dependency "infusible", "~> 3.8"
-  spec.add_dependency "pragmater", "~> 15.0"
+  spec.add_dependency "pragmater", "~> 15.2"
   spec.add_dependency "refinements", "~> 12.7"
   spec.add_dependency "rubocop", "~> 1.65"
   spec.add_dependency "runcom", "~> 11.5"
