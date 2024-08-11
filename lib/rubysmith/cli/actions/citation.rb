@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_citation }
 
-        def call(value = nil) = settings.build_citation = value
+        def call(boolean) = settings.build_citation = boolean
       end
     end
   end

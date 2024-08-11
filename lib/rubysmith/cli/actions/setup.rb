@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_setup }
 
-        def call(value = nil) = settings.build_setup = value
+        def call(boolean) = settings.build_setup = boolean
       end
     end
   end

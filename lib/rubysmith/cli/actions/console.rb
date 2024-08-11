@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_console }
 
-        def call(value = nil) = settings.build_console = value
+        def call(boolean) = settings.build_console = boolean
       end
     end
   end

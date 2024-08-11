@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_amazing_print }
 
-        def call(value = nil) = settings.build_amazing_print = value
+        def call(boolean) = settings.build_amazing_print = boolean
       end
     end
   end

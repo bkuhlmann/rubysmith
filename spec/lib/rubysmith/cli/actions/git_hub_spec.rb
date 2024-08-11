@@ -10,14 +10,14 @@ RSpec.describe Rubysmith::CLI::Actions::GitHub do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "answers nil without arguments" do
-      action.call
-      expect(settings.build_git_hub).to be(nil)
-    end
-
-    it "answers value when given agrument" do
+    it "answers true when true" do
       action.call true
       expect(settings.build_git_hub).to be(true)
+    end
+
+    it "answers false when false" do
+      action.call false
+      expect(settings.build_git_hub).to be(false)
     end
   end
 end

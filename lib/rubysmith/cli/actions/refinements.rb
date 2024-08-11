@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_refinements }
 
-        def call(value = nil) = settings.build_refinements = value
+        def call(boolean) = settings.build_refinements = boolean
       end
     end
   end

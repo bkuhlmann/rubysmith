@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_circle_ci }
 
-        def call(value = nil) = settings.build_circle_ci = value
+        def call(boolean) = settings.build_circle_ci = boolean
       end
     end
   end

@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_funding }
 
-        def call(value = nil) = settings.build_funding = value
+        def call(boolean) = settings.build_funding = boolean
       end
     end
   end

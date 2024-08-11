@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_rspec }
 
-        def call(value = nil) = settings.build_rspec = value
+        def call(boolean) = settings.build_rspec = boolean
       end
     end
   end

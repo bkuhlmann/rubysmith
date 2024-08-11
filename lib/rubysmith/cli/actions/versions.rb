@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_versions }
 
-        def call(value = nil) = settings.build_versions = value
+        def call(boolean) = settings.build_versions = boolean
       end
     end
   end

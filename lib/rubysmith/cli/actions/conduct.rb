@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_conduct }
 
-        def call(value = nil) = settings.build_conduct = value
+        def call(boolean) = settings.build_conduct = boolean
       end
     end
   end

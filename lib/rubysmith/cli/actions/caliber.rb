@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_caliber }
 
-        def call(value = nil) = settings.build_caliber = value
+        def call(boolean) = settings.build_caliber = boolean
       end
     end
   end

@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_rake }
 
-        def call(value = nil) = settings.build_rake = value
+        def call(boolean) = settings.build_rake = boolean
       end
     end
   end

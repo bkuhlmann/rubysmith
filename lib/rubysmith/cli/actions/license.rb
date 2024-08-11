@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_license }
 
-        def call(value = nil) = settings.build_license = value
+        def call(boolean) = settings.build_license = boolean
       end
     end
   end

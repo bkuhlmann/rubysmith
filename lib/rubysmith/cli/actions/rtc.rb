@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_rtc }
 
-        def call(value = nil) = settings.build_rtc = value
+        def call(boolean) = settings.build_rtc = boolean
       end
     end
   end

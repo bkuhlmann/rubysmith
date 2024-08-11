@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_simple_cov }
 
-        def call(value = nil) = settings.build_simple_cov = value
+        def call(boolean) = settings.build_simple_cov = boolean
       end
     end
   end

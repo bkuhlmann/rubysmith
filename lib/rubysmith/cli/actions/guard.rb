@@ -17,7 +17,7 @@ module Rubysmith
 
         default { Container[:settings].build_guard }
 
-        def call(value = nil) = settings.build_guard = value
+        def call(boolean) = settings.build_guard = boolean
       end
     end
   end

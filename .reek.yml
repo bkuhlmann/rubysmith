@@ -3,9 +3,6 @@ exclude_paths:
   - vendor
 
 detectors:
-  ControlParameter:
-    exclude:
-      - "Rubysmith::CLI::Actions::Publish#call"
   LongParameterList:
     enabled: false
   TooManyMethods:

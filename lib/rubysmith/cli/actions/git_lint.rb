@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_git_lint }
 
-        def call(value = nil) = settings.build_git_lint = value
+        def call(boolean) = settings.build_git_lint = boolean
       end
     end
   end

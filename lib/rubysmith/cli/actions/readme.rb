@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_readme }
 
-        def call(value = nil) = settings.build_readme = value
+        def call(boolean) = settings.build_readme = boolean
       end
     end
   end

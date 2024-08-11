@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_debug }
 
-        def call(value = nil) = settings.build_debug = value
+        def call(boolean) = settings.build_debug = boolean
       end
     end
   end

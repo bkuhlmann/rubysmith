@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_irb_kit }
 
-        def call(value = nil) = settings.build_irb_kit = value
+        def call(boolean) = settings.build_irb_kit = boolean
       end
     end
   end

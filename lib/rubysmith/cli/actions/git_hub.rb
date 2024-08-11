@@ -15,7 +15,7 @@ module Rubysmith
 
         default { Container[:settings].build_git_hub }
 
-        def call(value = nil) = settings.build_git_hub = value
+        def call(boolean) = settings.build_git_hub = boolean
       end
     end
   end
