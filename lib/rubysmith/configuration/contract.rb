@@ -22,6 +22,7 @@ module Rubysmith
       required(:build_conduct).filled :bool
       required(:build_console).filled :bool
       required(:build_contributions).filled :bool
+      required(:build_dcoo).filled :bool
       required(:build_debug).filled :bool
       required(:build_funding).filled :bool
       required(:build_git).filled :bool
@@ -58,6 +59,7 @@ module Rubysmith
       optional(:project_uri_community).filled :string
       optional(:project_uri_conduct).filled :string
       optional(:project_uri_contributions).filled :string
+      optional(:project_uri_dcoo).filled :string
       optional(:project_uri_download).filled :string
       optional(:project_uri_funding).filled :string
       optional(:project_uri_home).filled :string

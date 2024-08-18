@@ -223,6 +223,13 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
   end
 
+  describe "#computed_project_uri_dcoo" do
+    it "answers formatted URL" do
+      updated_record = record.merge project_uri_dcoo: "test.com/%<project_name>s/dcoo"
+      expect(updated_record.computed_project_uri_dcoo).to eq("test.com/test/dcoo")
+    end
+  end
+
   describe "#computed_project_uri_download" do
     it "answers formatted URL" do
       updated_record = record.merge project_uri_download: "test.com/%<project_name>s/latest"

@@ -7,6 +7,7 @@
 :build_conduct: true
 :build_console: true
 :build_contributions: true
+:build_dcoo: true
 :build_debug: true
 :build_funding: true
 :build_git: true

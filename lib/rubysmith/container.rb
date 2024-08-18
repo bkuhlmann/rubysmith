@@ -25,6 +25,7 @@ module Rubysmith
                       .add_transformer(:format, :project_uri_community)
                       .add_transformer(:format, :project_uri_conduct)
                       .add_transformer(:format, :project_uri_contributions)
+                      .add_transformer(:format, :project_uri_dcoo)
                       .add_transformer(:format, :project_uri_download, :project_name)
                       .add_transformer(:format, :project_uri_funding)
                       .add_transformer(:format, :project_uri_home, :project_name)

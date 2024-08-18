@@ -23,6 +23,7 @@ module Rubysmith
       :build_conduct,
       :build_console,
       :build_contributions,
+      :build_dcoo,
       :build_debug,
       :build_funding,
       :build_git,
@@ -59,6 +60,7 @@ module Rubysmith
       :project_uri_community,
       :project_uri_conduct,
       :project_uri_contributions,
+      :project_uri_dcoo,
       :project_uri_download,
       :project_uri_funding,
       :project_uri_home,
@@ -103,6 +105,8 @@ module Rubysmith
       def computed_project_uri_conduct = format_uri(__method__)
 
       def computed_project_uri_contributions = format_uri(__method__)
+
+      def computed_project_uri_dcoo = format_uri(__method__)
 
       def computed_project_uri_download = format_uri(__method__)
 

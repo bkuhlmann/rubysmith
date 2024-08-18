@@ -11,6 +11,7 @@ build:
   conduct: true
   console: true
   contributions: true
+  dcoo: false
   debug: true
   funding: false
   git: true
@@ -48,6 +49,7 @@ project:
     community: "%<organization_uri>s/community"
     conduct: "%<organization_uri>s/policies/code_of_conduct"
     contributions: "%<organization_uri>s/policies/contributions"
+    dcoo: "%<organization_uri>s/policies/developer_certificate_of_origin"
     download: "https://rubygems.org/gems/%<project_name>s"
     funding: "%<repository_uri>s/sponsors/%<repository_handle>s"
     home: "%<organization_uri>s/projects/%<project_name>s"
