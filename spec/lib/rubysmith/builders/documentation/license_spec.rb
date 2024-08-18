@@ -11,112 +11,130 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "builds LICENSE when enabled with Apache and ASCII Doc format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "adoc",
-        license_name: "apache"
-      )
+    context "with ASCII Doc format" do
+      before do
+        settings.merge! settings.minimize.merge(build_license: true, documentation_format: "adoc")
+      end
 
-      builder.call
+      it "builds Apache license" do
+        settings.merge! settings.merge(license_name: "apache")
+        builder.call
 
-      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-        "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]."
-      )
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Apache License")
+      end
+
+      it "includes Apache copyright" do
+        settings.merge! settings.merge(license_name: "apache")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+          "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]."
+        )
+      end
+
+      it "builds Fair license" do
+        settings.merge! settings.merge(license_name: "fair")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Functional Source License")
+      end
+
+      it "includes Fair copyright" do
+        settings.merge! settings.merge(license_name: "fair")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+          "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]"
+        )
+      end
+
+      it "builds Hippocratic license" do
+        settings.merge! settings.merge(license_name: "hippocratic")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Hippocratic License")
+      end
+
+      it "builds MIT license" do
+        settings.merge! settings.merge(license_name: "mit")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+          %(THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND)
+        )
+      end
+
+      it "includes MIT copyright" do
+        settings.merge! settings.merge(license_name: "mit")
+        builder.call
+
+        expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+          "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]."
+        )
+      end
     end
 
-    it "builds LICENSE when enabled with Apache and Markdown format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "md",
-        license_name: "apache"
-      )
+    context "with Markdown format" do
+      before do
+        settings.merge! settings.minimize.merge(build_license: true, documentation_format: "md")
+      end
 
-      builder.call
+      it "builds Apache license" do
+        settings.merge! settings.merge(license_name: "apache")
+        builder.call
 
-      expect(temp_dir.join("test", "LICENSE.md").read).to include(
-        "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)."
-      )
-    end
+        expect(temp_dir.join("test", "LICENSE.md").read).to include("# Apache License")
+      end
 
-    it "builds LICENSE when enabled with Fair and ASCII Doc format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "adoc",
-        license_name: "fair"
-      )
+      it "includes Apache copyright" do
+        settings.merge! settings.merge(license_name: "apache")
+        builder.call
 
-      builder.call
+        expect(temp_dir.join("test", "LICENSE.md").read).to include(
+          "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)."
+        )
+      end
 
-      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-        "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]"
-      )
-    end
+      it "builds Fair license" do
+        settings.merge! settings.merge(license_name: "fair")
+        builder.call
 
-    it "builds LICENSE when enabled with Fair and Markdown format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "md",
-        license_name: "fair"
-      )
+        expect(temp_dir.join("test", "LICENSE.md").read).to include("# Functional Source License")
+      end
 
-      builder.call
+      it "includes Fair copyright" do
+        settings.merge! settings.merge(license_name: "fair")
+        builder.call
 
-      expect(temp_dir.join("test", "LICENSE.md").read).to include(
-        "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)"
-      )
-    end
+        expect(temp_dir.join("test", "LICENSE.md").read).to include(
+          "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)"
+        )
+      end
 
-    it "builds LICENSE when enabled with Hippocratic and ASCII Doc format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "adoc",
-        license_name: "hippocratic"
-      )
+      it "builds Hippocratic license" do
+        settings.merge! settings.merge(license_name: "hippocratic")
+        builder.call
 
-      builder.call
+        expect(temp_dir.join("test", "LICENSE.md").read).to include("# Hippocratic License")
+      end
 
-      expect(temp_dir.join("test", "LICENSE.adoc").read).to include("= Hippocratic License")
-    end
+      it "builds MIT license" do
+        settings.merge! settings.merge(license_name: "mit")
+        builder.call
 
-    it "builds LICENSE when enabled with Hippocratic and Markdown format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "md",
-        license_name: "hippocratic"
-      )
+        expect(temp_dir.join("test", "LICENSE.md").read).to include(
+          %(THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND)
+        )
+      end
 
-      builder.call
+      it "includes MIT copyright" do
+        settings.merge! settings.merge(license_name: "mit")
+        builder.call
 
-      expect(temp_dir.join("test", "LICENSE.md").read).to include("# Hippocratic License")
-    end
-
-    it "builds LICENSE when enabled with MIT and ASCII Doc format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "adoc",
-        license_name: "mit"
-      )
-
-      builder.call
-
-      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
-        "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]."
-      )
-    end
-
-    it "builds LICENSE when enabled with MIT and Markdown format" do
-      settings.merge! settings.minimize.merge(
-        build_license: true,
-        documentation_format: "md",
-        license_name: "mit"
-      )
-
-      builder.call
-
-      expect(temp_dir.join("test", "LICENSE.md").read).to include(
-        "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)."
-      )
+        expect(temp_dir.join("test", "LICENSE.md").read).to include(
+          "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)."
+        )
+      end
     end
 
     it "answers true when enabled" do
