@@ -45,6 +45,8 @@ To test, run:
 
 ## [Contributions](https://undefined.io/policies/contributions)
 
+## [Developer Certificate of Origin](https://undefined.io/policies/developer_certificate_of_origin)
+
 ## [Versions](https://undefined.io/projects/test/versions)
 
 ## [Community](https://undefined.io/community)

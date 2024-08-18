@@ -75,6 +75,10 @@ bin/rake
 == link:<%= settings.computed_project_uri_contributions %>[Contributions]
 <% end %>
 
+<% if settings.build_dcoo %>
+== link:<%= settings.computed_project_uri_dcoo %>[Developer Certificate of Origin]
+<% end %>
+
 <% if settings.build_versions %>
 == link:<%= settings.computed_project_uri_versions %>[Versions]
 <% end %>
