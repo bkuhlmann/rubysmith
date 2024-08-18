@@ -57,6 +57,7 @@ module Rubysmith
         on Actions::Citation
         on Actions::Community
         on Actions::Conduct
+        on Actions::DCOO
         on Actions::Debug
         on Actions::Funding
         on Actions::Git
