@@ -27,6 +27,11 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
             runs-on: ubuntu-latest
 
             steps:
+              - name: System Update
+                run: |
+                  sudo apt-get update
+                  sudo apt-get install --no-install-recommends -y curl libjemalloc2
+
               - name: Checkout
                 uses: actions/checkout@v4
 
@@ -55,6 +60,11 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
             runs-on: ubuntu-latest
 
             steps:
+              - name: System Update
+                run: |
+                  sudo apt-get update
+                  sudo apt-get install --no-install-recommends -y curl libjemalloc2
+
               - name: Checkout
                 uses: actions/checkout@v4
 
