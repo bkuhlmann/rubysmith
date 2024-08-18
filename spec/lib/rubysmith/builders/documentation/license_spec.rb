@@ -39,6 +39,34 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
       )
     end
 
+    it "builds LICENSE when enabled with Fair and ASCII Doc format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "adoc",
+        license_name: "fair"
+      )
+
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.adoc").read).to include(
+        "Copyright 2020 link:https://undefined.io/team/undefined[Jill Smith]"
+      )
+    end
+
+    it "builds LICENSE when enabled with Fair and Markdown format" do
+      settings.merge! settings.minimize.merge(
+        build_license: true,
+        documentation_format: "md",
+        license_name: "fair"
+      )
+
+      builder.call
+
+      expect(temp_dir.join("test", "LICENSE.md").read).to include(
+        "Copyright 2020 [Jill Smith](https://undefined.io/team/undefined)"
+      )
+    end
+
     it "builds LICENSE when enabled with Hippocratic and ASCII Doc format" do
       settings.merge! settings.minimize.merge(
         build_license: true,
