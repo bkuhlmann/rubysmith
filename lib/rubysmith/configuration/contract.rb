@@ -52,6 +52,7 @@ module Rubysmith
       required(:license_label).filled :string
       required(:license_name).filled :string
       required(:license_version).filled :string
+      optional(:organization_label).filled :string
       required(:organization_uri).filled :string
       optional(:project_name).filled :string
       optional(:project_uri_community).filled :string
