@@ -2,8 +2,10 @@
 :toclevels: 5
 :figure-caption!:
 
-:gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
 :bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
+:development_containers_link: link:https://containers.dev[Development Containers]
+:docker_link: link:https://www.docker.com[Docker]
+:gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
 :string_formats_link: link:https://docs.ruby-lang.org/en/3.3/format_specifications_rdoc.html[String Formats]
 
 = Rubysmith
@@ -26,6 +28,8 @@ toc::[]
 * Supports link:https://orcid.org[Citations (ORCID)].
 * Supports console script for local development.
 * Supports link:https://github.com/ruby/debug[Debug].
+* Supports {development_containers_link}.
+* Supports {docker_link}.
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://github.com[GitHub].
 * Supports link:https://alchemists.io/projects/git-lint[Git Lint].
@@ -46,6 +50,7 @@ toc::[]
 ** Security
 ** Code of Conduct
 ** Contributions
+** Developer Certificate of Origin
 ** Communities
 
 == Requirements
@@ -135,6 +140,11 @@ link:https://github.com/amazing-print/amazing_print[Amazing Print] gem for debug
 a handy debugging tool when inspecting your Ruby objects and printing details in a quick to read
 format.
 
+===== Bootsnap
+
+The `--bootsnap` option allows you to build your project with the
+link:https://github.com/Shopify/bootsnap[Bootsnap] gem for improved performance. This is best used for pure, non-gem, Ruby projects and/or web applications in general.
+
 ===== Caliber
 
 The `--caliber` option allows you to build your project with the
@@ -175,11 +185,25 @@ loaded.
 The `--contributions` option allows you to link to contributing documentation so people know to
 contribute back to your work.
 
+===== Developer Certificate of Origin
+
+The `--dcoo` option allows to you add link:https://developercertificate.org[Developer Certificate of Origin] documentation so all contributors are aware of how their contributions are applied in terms of ownership, copyright, and licensing.
+
+ℹ️ This is disabled by default but will be enabled by default in the next major version.
+
 ===== Debug
 
 The `--debug` option allows you add the link:https://github.com/ruby/debug[Debug] gem to your
 project for debugging your code by setting breakpoints, remotely connecting to running code, and
 much more.
+
+===== Docker
+
+The `--docker` option allows you add {docker_link} to your project so you can build and deploy to production.
+
+===== Development Containers
+
+The `--devcontainer` option allows you add {development_containers_link} support to your project so you can develop locally by running your project within a {docker_link} container.
 
 ===== Funding
 
@@ -299,6 +323,7 @@ author:
   uri: "%<organization_uri>s/team/%<author_handle>s"
 build:
   amazing_print: true
+  bootsnap: false
   caliber: true
   circle_ci: false
   citation: true
@@ -307,7 +332,10 @@ build:
   conduct: true
   console: true
   contributions: true
+  dcoo: false
   debug: true
+  devcontainer: false
+  docker: false
   funding: false
   git: true
   git_hub: false
@@ -344,6 +372,7 @@ project:
     community: "%<organization_uri>s/community"
     conduct: "%<organization_uri>s/policies/code_of_conduct"
     contributions: "%<organization_uri>s/policies/contributions"
+    dcoo: "%<organization_uri>s/policies/developer_certificate_of_origin"
     download: "https://rubygems.org/gems/%<project_name>s"
     funding: "%<repository_uri>s/sponsors/%<repository_handle>s"
     home: "%<organization_uri>s/projects/%<project_name>s"
@@ -404,17 +433,68 @@ following options are available:
 
 ==== License
 
-Use this section to define the license you want to use for your project. The following are available:
+Use this section to define the license you want to use for your project. When picking a license, you can supply the appropriate `label` and `version` in addition to the `name`. The `name` is the only value you _can't_ customize. The following details all supported licenses.
 
-* `apache`: Uses the link:https://www.apache.org/licenses/LICENSE-2.0[Apache] license.
-* `hippocratic`: Uses the link:https://firstdonoharm.dev[Hippocratic] license.
-* `mit`: Uses the link:https://mit-license.org[MIT] license.
+===== Apache
 
-When picking a license, you can also supply the appropriate label and version in addition to the name.
+To use the link:https://www.apache.org/licenses/LICENSE-2.0[Apache] license, apply this configuration:
+
+[source,yaml]
+----
+license:
+  label: "Apache"
+  name: "apache"
+  version: "2.0"
+----
+
+===== Fair Source
+
+To use the link:https://fsl.software[Fair Source] license, apply this configuration:
+
+[source,yaml]
+----
+license:
+  label: "Fair Source"
+  name: "fair"
+  version: "FSL-1.1-Apache-2.0"
+----
+
+===== Hippocratic
+
+To use the link:https://firstdonoharm.dev[Hippocratic] license, apply this configuration:
+
+[source,yaml]
+----
+license:
+  label: "Hippocratic"
+  name: "hippocratic"
+  version: "2.1"
+----
+
+ℹ️ This is the default license unless you customize.
+
+===== MIT
+
+To use the  link:https://mit-license.org[MIT] license, apply this configuration:
+
+[source,yaml]
+----
+license:
+  label: "MIT"
+  name: "mit"
+  version: ""
+----
 
 ==== Organization
 
-Use this section to define URI information that points to your organization. This is useful for information that isn't project specific but related to all projects within your organization. You'll want to customize this URI especially for documentation purposes.
+Use this section to define organization specific information. This is useful for information that isn't project specific but related to all projects within your organization. You'll want -- highly recommended -- to supply configuration details. For example, here's what a fictional organization might look like:
+
+[source,yaml]
+----
+organization:
+  label: ACME
+  uri: https://acme.io
+----
 
 ==== Project
 

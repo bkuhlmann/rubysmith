@@ -1,5 +1,40 @@
 = Versions
 
+== 7.3.0 (2024-08-20)
+
+* ✅ Fixed Pragmater extension patterns - Brooke Kuhlmann
+* ✅ Fixed Tocer extension to not output which files are updated - Brooke Kuhlmann
+* 🟢 Added Bootsnap configuration - Brooke Kuhlmann
+* 🟢 Added CLI Bootsnap action - Brooke Kuhlmann
+* 🟢 Added CLI Developer Certificate of Origin action - Brooke Kuhlmann
+* 🟢 Added CLI Development Container action - Brooke Kuhlmann
+* 🟢 Added CLI Docker action - Brooke Kuhlmann
+* 🟢 Added Developer Certificate of Origin configuration - Brooke Kuhlmann
+* 🟢 Added Development Container Dockerfile builder - Brooke Kuhlmann
+* 🟢 Added Development Container compose builder - Brooke Kuhlmann
+* 🟢 Added Development Container configuration - Brooke Kuhlmann
+* 🟢 Added Development Container configuration builder - Brooke Kuhlmann
+* 🟢 Added Docker build builder - Brooke Kuhlmann
+* 🟢 Added Docker configuration - Brooke Kuhlmann
+* 🟢 Added Docker console builder - Brooke Kuhlmann
+* 🟢 Added Docker entrypoint builder - Brooke Kuhlmann
+* 🟢 Added Docker file builder - Brooke Kuhlmann
+* 🟢 Added Docker ignore file builder - Brooke Kuhlmann
+* 🟢 Added Fair Source 1.1.0, Apache 2.0.0 license build template - Brooke Kuhlmann
+* 🟢 Added README Developer Certificate of Origin documentation - Brooke Kuhlmann
+* 🟢 Added organization label configuration - Brooke Kuhlmann
+* 🟢 Added system update step to GitHub CI workflow - Brooke Kuhlmann
+* 🟢 Added version release notes - Brooke Kuhlmann
+* 🔼 Updated Bundler builder to account for Bootsnap gem - Brooke Kuhlmann
+* 🔼 Updated CLI action descriptions - Brooke Kuhlmann
+* 🔼 Updated README templates to include Developer Certificate of Origin - Brooke Kuhlmann
+* 🔼 Updated argument and BOM fixtures to account for new build actions - Brooke Kuhlmann
+* 🔼 Updated license spec to account for license and copyright - Brooke Kuhlmann
+* ⛔️ Removed RSpec default attributes fixture - Brooke Kuhlmann
+* ⛔️ Removed configuration model initialize spec - Brooke Kuhlmann
+* ⛔️ Removed excess settings from actions specs - Brooke Kuhlmann
+* 🔁 Refactored CLI build command actions to be more alphabetic - Brooke Kuhlmann
+
 == 7.2.0 (2024-08-11)
 
 * 🔼 Updated to Pragmater 15.2.0 - Brooke Kuhlmann
