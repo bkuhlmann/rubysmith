@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "refinements/pathname"
+require "stringio"
 require "tocer"
 
 module Rubysmith
@@ -11,7 +12,7 @@ module Rubysmith
 
       using Refinements::Pathname
 
-      def initialize(client: ::Tocer::Runner.new, **)
+      def initialize(client: ::Tocer::Runner.new(io: StringIO.new), **)
         @client = client
         super(**)
       end
