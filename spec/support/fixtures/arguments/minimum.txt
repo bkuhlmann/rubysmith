@@ -2,6 +2,7 @@ build
 --name
 test
 --no-amazing_print
+--no-bootsnap
 --no-caliber
 --no-circle_ci
 --no-citation
@@ -9,7 +10,10 @@ test
 --no-conduct
 --no-console
 --no-contributions
+--no-dcoo
 --no-debug
+--no-devcontainer
+--no-docker
 --no-funding
 --no-git
 --no-git_hub
@@ -24,8 +28,8 @@ test
 --no-refinements
 --no-rspec
 --no-rtc
---no-setup
 --no-security
+--no-setup
 --no-simple_cov
 --no-versions
 --no-zeitwerk
