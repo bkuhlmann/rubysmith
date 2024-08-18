@@ -10,6 +10,7 @@
 :build_contributions: false
 :build_dcoo: false
 :build_debug: false
+:build_docker: false
 :build_funding: false
 :build_git: false
 :build_git_hub: false

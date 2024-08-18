@@ -26,6 +26,7 @@ module Rubysmith
       :build_contributions,
       :build_dcoo,
       :build_debug,
+      :build_docker,
       :build_funding,
       :build_git,
       :build_git_hub,
