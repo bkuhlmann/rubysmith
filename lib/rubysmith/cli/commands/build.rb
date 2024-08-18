@@ -38,6 +38,7 @@ module Rubysmith
           Builders::RSpec::Helper.new,
           Builders::Caliber.new,
           Builders::Docker::Entrypoint.new,
+          Builders::Docker::File.new,
           Extensions::Bundler.new,
           Extensions::Pragmater.new,
           Extensions::Tocer.new,
