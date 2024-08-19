@@ -5,8 +5,6 @@ require "spec_helper"
 RSpec.describe Rubysmith::CLI::Actions::Versions do
   subject(:action) { described_class.new }
 
-  let(:settings) { settings.dup }
-
   include_context "with application dependencies"
 
   describe "#call" do
