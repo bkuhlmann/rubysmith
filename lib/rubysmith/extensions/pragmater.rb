@@ -14,7 +14,20 @@ module Rubysmith
       CLIENT = ::Pragmater::Inserter.new(
         settings: ::Pragmater::Configuration::Model[
           comments: ["# frozen_string_literal: true"],
-          patterns: %w[**/*.rake **/*.rb *.gemspec exe/* bin/* config.ru *file]
+          patterns: %w[
+            **/*.rake
+            **/*.rb
+            *.gemspec
+            exe/*
+            bin/console
+            bin/rake
+            bin/rspec
+            bin/rubocop
+            bin/setup
+            config.ru
+            Gemfile
+            Rakefile
+          ]
         ]
       ).freeze
 
