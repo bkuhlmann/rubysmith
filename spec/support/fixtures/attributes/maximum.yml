@@ -1,4 +1,5 @@
 :build_amazing_print: true
+:build_bootsnap: true
 :build_caliber: true
 :build_circle_ci: true
 :build_citation: true

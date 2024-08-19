@@ -3,6 +3,7 @@ author:
   uri: "%<organization_uri>s/team/%<author_handle>s"
 build:
   amazing_print: true
+  bootsnap: false
   caliber: true
   circle_ci: false
   citation: true

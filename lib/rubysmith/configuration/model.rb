@@ -15,6 +15,7 @@ module Rubysmith
       :author_handle,
       :author_uri,
       :build_amazing_print,
+      :build_bootsnap,
       :build_caliber,
       :build_circle_ci,
       :build_citation,

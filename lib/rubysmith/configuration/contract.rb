@@ -14,6 +14,7 @@ module Rubysmith
       required(:author_handle).filled :string
       required(:author_uri).filled :string
       required(:build_amazing_print).filled :bool
+      required(:build_bootsnap).filled :bool
       required(:build_caliber).filled :bool
       required(:build_circle_ci).filled :bool
       required(:build_citation).filled :bool

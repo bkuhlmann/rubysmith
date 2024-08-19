@@ -1,4 +1,5 @@
 :build_amazing_print: false
+:build_bootsnap: false
 :build_caliber: false
 :build_circle_ci: false
 :build_citation: false
