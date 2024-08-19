@@ -1,0 +1,14 @@
+#! /usr/bin/env ruby
+
+require "bundler/setup"
+Bundler.require :tools
+
+system <<~COMMAND
+  docker run \
+         --disable-content-trust \
+         --pull never \
+         --interactive \
+         --tty \
+         --rm <%= settings.project_name %>:latest \
+         bash
+COMMAND
