@@ -39,6 +39,19 @@ RSpec.describe Rubysmith::Builders::Bundler do
       CONTENT
     end
 
+    it "builds Gemfile with Bootsnap only" do
+      settings.merge! settings.minimize.merge(build_bootsnap: true)
+      builder.call
+
+      expect(gemfile_path.read).to eq(<<~CONTENT)
+        ruby file: ".ruby-version"
+
+        source "https://rubygems.org"
+
+        gem "bootsnap", "~> 1.18"
+      CONTENT
+    end
+
     it "builds Gemfile with Caliber only" do
       settings.merge! settings.minimize.merge(build_caliber: true)
       builder.call
@@ -237,6 +250,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
+          gem "bootsnap", "~> 1.18"
           gem "refinements", "~> 12.7"
           gem "zeitwerk", "~> 2.6"
 
@@ -280,6 +294,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
+          gem "bootsnap", "~> 1.18"
           gem "refinements", "~> 12.7"
           gem "zeitwerk", "~> 2.6"
 

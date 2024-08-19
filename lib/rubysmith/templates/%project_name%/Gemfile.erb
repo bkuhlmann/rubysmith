@@ -2,6 +2,9 @@ ruby file: ".ruby-version"
 
 source "https://rubygems.org"
 
+<% if settings.build_bootsnap %>
+  gem "bootsnap", "~> 1.18"
+<% end %>
 <% if settings.build_refinements %>
   gem "refinements", "~> 12.7"
 <% end %>

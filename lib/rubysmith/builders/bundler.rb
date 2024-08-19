@@ -13,7 +13,7 @@ module Rubysmith
                .render
                .replace(/\n\s+group/, "\n\ngroup")
                .replace(/\n\s+gem/, "\n  gem")
-               .replace(/  (?=.+(refinements|zeitwerk))/, "")
+               .replace(/  (?=.+(bootsnap|refinements|zeitwerk))/, "")
                .replace(/(\n+|\s+)end/, "\nend")
                .replace(/\n\ngroup :(quality|development|test|tools) do\nend/, "")
                .replace(/org"\n+/, "org\"\n\n")
