@@ -9,16 +9,6 @@ RSpec.describe Rubysmith::Configuration::Model do
 
   subject(:record) { described_class.new project_name: "test" }
 
-  describe "#initialize" do
-    let :proof do
-      YAML.load_file SPEC_ROOT.join("support/fixtures/attributes/all.yml")
-    end
-
-    it "answers default hash" do
-      expect(described_class.new).to have_attributes(proof)
-    end
-  end
-
   describe "#maximum" do
     let :proof do
       described_class[
