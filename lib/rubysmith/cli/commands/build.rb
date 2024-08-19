@@ -50,6 +50,7 @@ module Rubysmith
 
         on Actions::Name
         on Actions::AmazingPrint
+        on Actions::Bootsnap
         on Actions::Caliber
         on Actions::Console
         on Actions::Contributions
