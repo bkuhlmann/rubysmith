@@ -39,6 +39,7 @@ module Rubysmith
           Builders::Caliber.new,
           Builders::DevContainer::Dockerfile.new,
           Builders::DevContainer::Compose.new,
+          Builders::DevContainer::Configuration.new,
           Builders::Docker::Build.new,
           Builders::Docker::Console.new,
           Builders::Docker::Entrypoint.new,
