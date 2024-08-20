@@ -65,6 +65,7 @@ module Rubysmith
         on Actions::Conduct
         on Actions::DCOO
         on Actions::Debug
+        on Actions::DevContainer
         on Actions::Docker
         on Actions::Funding
         on Actions::Git
