@@ -10,6 +10,7 @@
 :build_contributions: true
 :build_dcoo: true
 :build_debug: true
+:build_devcontainer: true
 :build_docker: true
 :build_funding: true
 :build_git: true
