@@ -37,6 +37,7 @@ module Rubysmith
           Builders::RSpec::Context.new,
           Builders::RSpec::Helper.new,
           Builders::Caliber.new,
+          Builders::DevContainer::Dockerfile.new,
           Builders::Docker::Build.new,
           Builders::Docker::Console.new,
           Builders::Docker::Entrypoint.new,
