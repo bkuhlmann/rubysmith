@@ -12,7 +12,7 @@ module Rubysmith
 
         using ::Refinements::Struct
 
-        description "Use minimum options."
+        description "Use minimum configuration."
 
         on "--min"
 

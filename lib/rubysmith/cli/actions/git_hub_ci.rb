@@ -9,7 +9,7 @@ module Rubysmith
       class GitHubCI < Sod::Action
         include Import[:settings]
 
-        description "Add GitHub continuous integration."
+        description "Add GitHub continuous integration support."
 
         on "--[no-]git_hub_ci"
 

@@ -9,7 +9,7 @@ module Rubysmith
       class GitHub < Sod::Action
         include Import[:settings]
 
-        description "Add GitHub templates."
+        description "Add GitHub code review and issue templates."
 
         on "--[no-]git_hub"
 

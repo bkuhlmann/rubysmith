@@ -9,7 +9,7 @@ module Rubysmith
       class Funding < Sod::Action
         include Import[:settings]
 
-        description "Add GitHub funding settings."
+        description "Add GitHub funding."
 
         on "--[no-]funding"
 

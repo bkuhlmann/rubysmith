@@ -12,7 +12,7 @@ module Rubysmith
 
         using ::Refinements::Struct
 
-        description "Use maximum options."
+        description "Use maximum configuration."
 
         on "--max"
 

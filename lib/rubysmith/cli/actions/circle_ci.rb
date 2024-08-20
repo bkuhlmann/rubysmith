@@ -9,7 +9,7 @@ module Rubysmith
       class CircleCI < Sod::Action
         include Import[:settings]
 
-        description "Add Circle CI settings."
+        description "Add Circle CI support."
 
         on "--[no-]circle_ci"
 
