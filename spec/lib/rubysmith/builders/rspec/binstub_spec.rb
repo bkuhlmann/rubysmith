@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Binstub do
     context "when enabled" do
       before { settings.build_rspec = true }
 
-      it "builds binstub" do
+      it "builds file" do
         builder.call
 
         expect(binstub_path.read).to eq(<<~CONTENT)
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Binstub do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build binstub" do
+      it "doesn't build file" do
         builder.call
         expect(binstub_path.exist?).to be(false)
       end

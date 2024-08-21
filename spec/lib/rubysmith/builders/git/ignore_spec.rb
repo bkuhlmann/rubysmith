@@ -10,15 +10,15 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:ignore_path) { temp_dir.join "test", ".gitignore" }
+    let(:path) { temp_dir.join "test", ".gitignore" }
 
     context "when enabled" do
       before { settings.build_git = true }
 
-      it "builds ignore file" do
+      it "builds file" do
         builder.call
 
-        expect(ignore_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           .bundle
           tmp
         CONTENT
@@ -32,10 +32,10 @@ RSpec.describe Rubysmith::Builders::Git::Ignore do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build ignore file" do
+      it "doesn't build file" do
         builder.call
 
-        expect(ignore_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

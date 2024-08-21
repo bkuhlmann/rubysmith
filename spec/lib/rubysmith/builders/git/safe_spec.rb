@@ -10,14 +10,14 @@ RSpec.describe Rubysmith::Builders::Git::Safe do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:safe_path) { temp_dir.join "test/.git/safe" }
+    let(:path) { temp_dir.join "test/.git/safe" }
 
     context "when enabled" do
       before { settings.build_git = true }
 
-      it "build safe directory" do
+      it "builds path" do
         builder.call
-        expect(safe_path.exist?).to be(true)
+        expect(path.exist?).to be(true)
       end
 
       it "answers true" do
@@ -28,9 +28,9 @@ RSpec.describe Rubysmith::Builders::Git::Safe do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build safe path" do
+      it "doesn't build path" do
         builder.call
-        expect(safe_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

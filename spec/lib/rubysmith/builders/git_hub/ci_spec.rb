@@ -10,13 +10,13 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:yaml_path) { temp_dir.join "test/.github/workflows/ci.yml" }
+    let(:path) { temp_dir.join "test/.github/workflows/ci.yml" }
 
     it "builds YAML template when enabled" do
       settings.merge! settings.minimize.merge(build_git_hub_ci: true)
       builder.call
 
-      expect(yaml_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         name: Continuous Integration
 
         on: [push, pull_request]
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
       settings.merge! settings.minimize.merge(build_git_hub_ci: true, build_simple_cov: true)
       builder.call
 
-      expect(yaml_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         name: Continuous Integration
 
         on: [push, pull_request]
@@ -92,9 +92,9 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "does not build YAML template" do
+      it "doesn't build file" do
         builder.call
-        expect(yaml_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

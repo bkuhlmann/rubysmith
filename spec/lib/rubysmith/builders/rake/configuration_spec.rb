@@ -10,15 +10,15 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:file_path) { temp_dir.join "test", "Rakefile" }
+    let(:path) { temp_dir.join "test", "Rakefile" }
 
     context "when enabled" do
       before { settings.merge! settings.minimize.merge(build_rake: true) }
 
-      it "builds Rakefile" do
+      it "builds file" do
         builder.call
 
-        expect(file_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           require "bundler/setup"
 
           desc "Run code quality checks"
@@ -33,7 +33,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
       end
     end
 
-    it "builds Rakefile when enabled with Git and Git Lint only" do
+    it "builds file when enabled with Git and Git Lint only" do
       settings.merge! settings.minimize.merge(
         build_rake: true,
         build_git: true,
@@ -42,7 +42,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
 
       builder.call
 
-      expect(file_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         require "bundler/setup"
         require "git/lint/rake/register"
 
@@ -55,11 +55,11 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
       CONTENT
     end
 
-    it "builds Rakefile when enabled with Reek only" do
+    it "builds file when enabled with Reek only" do
       settings.merge! settings.minimize.merge(build_rake: true, build_reek: true)
       builder.call
 
-      expect(file_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         require "bundler/setup"
         require "reek/rake/task"
 
@@ -72,11 +72,11 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
       CONTENT
     end
 
-    it "builds Rakefile when enabled with RSpec only" do
+    it "builds file when enabled with RSpec only" do
       settings.merge! settings.minimize.merge(build_rake: true, build_rspec: true)
       builder.call
 
-      expect(file_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         require "bundler/setup"
         require "rspec/core/rake_task"
 
@@ -89,11 +89,11 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
       CONTENT
     end
 
-    it "builds Rakefile when enabled with Caliber only" do
+    it "builds file when enabled with Caliber only" do
       settings.merge! settings.minimize.merge(build_rake: true, build_caliber: true)
       builder.call
 
-      expect(file_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         require "bundler/setup"
         require "rubocop/rake_task"
 
@@ -132,17 +132,17 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
         CONTENT
       end
 
-      it "builds Rakefile" do
-        expect(file_path.read).to eq(proof)
+      it "builds file" do
+        expect(path.read).to eq(proof)
       end
     end
 
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build Rakefile" do
+      it "doesn't build file" do
         builder.call
-        expect(file_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

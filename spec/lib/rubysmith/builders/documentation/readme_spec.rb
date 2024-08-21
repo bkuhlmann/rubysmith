@@ -11,7 +11,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
   include_context "with application dependencies"
 
   describe "#call" do
-    it "builds README when enabled with ASCII Doc format and minimum configuration" do
+    it "builds file when enabled with ASCII Doc format and minimum configuration" do
       settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "adoc")
       builder.call
 
@@ -20,7 +20,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       )
     end
 
-    it "builds README when enabled with ASCII Doc format and maximum configuration" do
+    it "builds file when enabled with ASCII Doc format and maximum configuration" do
       settings.merge! settings.maximize.merge(documentation_format: "adoc")
       builder.call
 
@@ -29,7 +29,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       )
     end
 
-    it "builds README when enabled with Markdown format and minimum configuration" do
+    it "builds file when enabled with Markdown format and minimum configuration" do
       settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "md")
       builder.call
 
@@ -38,7 +38,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
       )
     end
 
-    it "builds README when enabled with Markdown format and maximum configuration" do
+    it "builds file when enabled with Markdown format and maximum configuration" do
       settings.merge! settings.maximize.merge(documentation_format: "md")
       builder.call
 
@@ -55,7 +55,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build README" do
+      it "doesn't build file" do
         builder.call
         expect(temp_dir.files.empty?).to be(true)
       end

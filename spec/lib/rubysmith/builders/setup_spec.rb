@@ -10,15 +10,15 @@ RSpec.describe Rubysmith::Builders::Setup do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:build_path) { temp_dir.join "test", "bin", "setup" }
+    let(:path) { temp_dir.join "test", "bin", "setup" }
 
     context "when enabled" do
       before { settings.merge! settings.minimize.merge(build_setup: true) }
 
-      it "builds setup script without Pry support" do
+      it "builds file" do
         builder.call
 
-        expect(build_path.read).to eq(<<~'CONTENT')
+        expect(path.read).to eq(<<~'CONTENT')
           #! /usr/bin/env ruby
 
           require "fileutils"
@@ -37,9 +37,9 @@ RSpec.describe Rubysmith::Builders::Setup do
         CONTENT
       end
 
-      it "updates script permissions" do
+      it "updates file permissions" do
         builder.call
-        expect(build_path.stat.mode).to eq(33261)
+        expect(path.stat.mode).to eq(33261)
       end
 
       it "answers true" do
@@ -53,8 +53,8 @@ RSpec.describe Rubysmith::Builders::Setup do
         builder.call
       end
 
-      it "builds setup script without Pry support" do
-        expect(build_path.read).to eq(<<~'CONTENT')
+      it "builds file" do
+        expect(path.read).to eq(<<~'CONTENT')
           #! /usr/bin/env ruby
 
           require "debug"
@@ -74,17 +74,17 @@ RSpec.describe Rubysmith::Builders::Setup do
         CONTENT
       end
 
-      it "updates script permissions" do
-        expect(build_path.stat.mode).to eq(33261)
+      it "updates file permissions" do
+        expect(path.stat.mode).to eq(33261)
       end
     end
 
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "does not build setup script when disabled" do
+      it "doesn't build file" do
         builder.call
-        expect(build_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

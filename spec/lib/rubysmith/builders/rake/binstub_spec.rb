@@ -10,7 +10,7 @@ RSpec.describe Rubysmith::Builders::Rake::Binstub do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:binstub_path) { temp_dir.join "test/bin/rake" }
+    let(:path) { temp_dir.join "test/bin/rake" }
 
     context "when enabled" do
       before { settings.build_rake = true }
@@ -18,7 +18,7 @@ RSpec.describe Rubysmith::Builders::Rake::Binstub do
       it "builds binstub" do
         builder.call
 
-        expect(binstub_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
 
           require "bundler/setup"
@@ -29,7 +29,7 @@ RSpec.describe Rubysmith::Builders::Rake::Binstub do
 
       it "updates file permissions" do
         builder.call
-        expect(binstub_path.stat.mode).to eq(33261)
+        expect(path.stat.mode).to eq(33261)
       end
 
       it "answers true" do
@@ -40,9 +40,9 @@ RSpec.describe Rubysmith::Builders::Rake::Binstub do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build binstub" do
+      it "doesn't build file" do
         builder.call
-        expect(binstub_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

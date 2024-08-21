@@ -29,7 +29,7 @@ RSpec.describe Rubysmith::Builders::Caliber do
         CONTENT
       end
 
-      it "updates file permissions" do
+      it "updates binstub permissions" do
         builder.call
         expect(binstub_path.stat.mode).to eq(33261)
       end

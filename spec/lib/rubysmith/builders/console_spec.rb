@@ -10,14 +10,14 @@ RSpec.describe Rubysmith::Builders::Console do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:build_path) { temp_dir.join "test/bin/console" }
+    let(:path) { temp_dir.join "test/bin/console" }
 
     context "when enabled with non-dashed project name" do
-      it "builds console script" do
+      it "builds file" do
         settings.merge! settings.minimize.merge(build_console: true)
         builder.call
 
-        expect(build_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
 
           require "bundler/setup"
@@ -34,18 +34,18 @@ RSpec.describe Rubysmith::Builders::Console do
         settings.merge! settings.minimize.merge(build_console: true)
         builder.call
 
-        expect(build_path.stat.mode).to eq(33261)
+        expect(path.stat.mode).to eq(33261)
       end
     end
 
     context "when enabled with dashed project name" do
-      let(:build_path) { temp_dir.join "demo-test/bin/console" }
+      let(:path) { temp_dir.join "demo-test/bin/console" }
 
-      it "builds console script" do
+      it "builds file" do
         settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
         builder.call
 
-        expect(build_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           #! /usr/bin/env ruby
 
           require "bundler/setup"
@@ -62,7 +62,7 @@ RSpec.describe Rubysmith::Builders::Console do
         settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
         builder.call
 
-        expect(build_path.stat.mode).to eq(33261)
+        expect(path.stat.mode).to eq(33261)
       end
     end
 
@@ -74,9 +74,9 @@ RSpec.describe Rubysmith::Builders::Console do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "does not build console script when disabled" do
+      it "doesn't build file" do
         builder.call
-        expect(build_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

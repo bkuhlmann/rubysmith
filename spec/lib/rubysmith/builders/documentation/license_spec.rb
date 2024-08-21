@@ -145,7 +145,7 @@ RSpec.describe Rubysmith::Builders::Documentation::License do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "doesn't build documentation when disabled" do
+      it "doesn't build file" do
         builder.call
         expect(temp_dir.files.empty?).to be(true)
       end

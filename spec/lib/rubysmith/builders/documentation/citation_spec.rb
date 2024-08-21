@@ -10,7 +10,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:build_path) { temp_dir.join "test/CITATION.cff" }
+    let(:path) { temp_dir.join "test/CITATION.cff" }
 
     context "when enabled" do
       before do
@@ -21,10 +21,10 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
         )
       end
 
-      it "builds citation" do
+      it "builds file" do
         builder.call
 
-        expect(build_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           cff-version: 1.2.0
           message: Please use the following metadata when citing this project in your work.
           title: Test
@@ -53,9 +53,9 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "does not build configuration" do
+      it "doesn't build file" do
         builder.call
-        expect(build_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do

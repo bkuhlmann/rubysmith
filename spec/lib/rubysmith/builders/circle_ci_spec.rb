@@ -10,15 +10,15 @@ RSpec.describe Rubysmith::Builders::CircleCI do
   include_context "with application dependencies"
 
   describe "#call" do
-    let(:build_path) { temp_dir.join "test/.circleci/config.yml" }
+    let(:path) { temp_dir.join "test/.circleci/config.yml" }
 
     context "when enabled" do
       before { settings.merge! settings.minimize.merge(build_circle_ci: true) }
 
-      it "builds configuration when enabled" do
+      it "builds file when enabled" do
         builder.call
 
-        expect(build_path.read).to eq(<<~CONTENT)
+        expect(path.read).to eq(<<~CONTENT)
           version: 2.1
           jobs:
             build:
@@ -58,11 +58,11 @@ RSpec.describe Rubysmith::Builders::CircleCI do
       end
     end
 
-    it "builds configuration when enabled with SimpleCov" do
+    it "builds file when enabled with SimpleCov" do
       settings.merge! settings.minimize.merge(build_circle_ci: true, build_simple_cov: true)
       builder.call
 
-      expect(build_path.read).to eq(<<~CONTENT)
+      expect(path.read).to eq(<<~CONTENT)
         version: 2.1
         jobs:
           build:
@@ -105,9 +105,9 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     context "when disabled" do
       before { settings.merge! settings.minimize }
 
-      it "does not build configuration" do
+      it "does not build file" do
         builder.call
-        expect(build_path.exist?).to be(false)
+        expect(path.exist?).to be(false)
       end
 
       it "answers false" do
