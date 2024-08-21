@@ -32,5 +32,18 @@ RSpec.describe Rubysmith::Extensions::Bundler do
     it "answers true" do
       expect(extension.call).to be(true)
     end
+
+    context "without internet" do
+      before { allow(client).to receive(:start).and_raise Bundler::HTTPError, "Danger!" }
+
+      it "logs error when there is no internet connection" do
+        extension.call
+        expect(logger.reread).to match(%r(🛑.+Unable to install gem dependencies...))
+      end
+
+      it "answers false" do
+        expect(extension.call).to be(false)
+      end
+    end
   end
 end

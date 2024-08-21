@@ -22,7 +22,8 @@ module Rubysmith
       def call
         logger.info { "Installing gem dependencies..." }
         install
-        true
+      rescue ::Bundler::HTTPError
+        log_error
       end
 
       private
@@ -34,6 +35,13 @@ module Rubysmith
           client.start %w[install --quiet]
           STDOUT.squelch { client.start %w[lock --add-platform x86_64-linux --update] }
         end
+
+        true
+      end
+
+      def log_error
+        logger.error { "Unable to install gem dependencies. Is your network stable?" }
+        false
       end
     end
   end
