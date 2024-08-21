@@ -8,7 +8,7 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton adheres to style guide.
     class Rubocop
-      include Import[:settings]
+      include Import[:settings, :logger]
 
       using Refinements::IO
       using Refinements::Pathname
@@ -19,18 +19,22 @@ module Rubysmith
       end
 
       def call
-        project_root = settings.project_root
-
-        project_root.change_dir do
-          STDOUT.squelch { client.run ["--autocorrect-all", project_root.to_s] }
-        end
-
+        logger.info { "Running RuboCop autocorrect..." }
+        autocorrect
         true
       end
 
       private
 
       attr_reader :client
+
+      def autocorrect
+        project_root = settings.project_root
+
+        project_root.change_dir do
+          STDOUT.squelch { client.run ["--autocorrect-all", project_root.to_s] }
+        end
+      end
     end
   end
 end

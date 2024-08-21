@@ -14,6 +14,11 @@ RSpec.describe Rubysmith::Extensions::Bundler do
   describe "#call" do
     before { temp_dir.join("test/Gemfile").make_ancestors.write(%(source "https://rubygems.org")) }
 
+    it "logs info" do
+      extension.call
+      expect(logger.reread).to match(%r(🟢.+Installing gem dependencies...))
+    end
+
     it "installs gems" do
       extension.call
       expect(client).to have_received(:start).with(%w[install --quiet])

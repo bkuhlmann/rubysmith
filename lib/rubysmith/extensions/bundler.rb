@@ -9,7 +9,7 @@ module Rubysmith
   module Extensions
     # Ensures gem dependencies are installed.
     class Bundler
-      include Import[:settings]
+      include Import[:settings, :logger]
 
       using Refinements::IO
       using Refinements::Pathname
@@ -20,17 +20,21 @@ module Rubysmith
       end
 
       def call
-        settings.project_root.change_dir do
-          client.start %w[install --quiet]
-          STDOUT.squelch { client.start %w[lock --add-platform x86_64-linux --update] }
-        end
-
+        logger.info { "Installing gem dependencies..." }
+        install
         true
       end
 
       private
 
       attr_reader :client
+
+      def install
+        settings.project_root.change_dir do
+          client.start %w[install --quiet]
+          STDOUT.squelch { client.start %w[lock --add-platform x86_64-linux --update] }
+        end
+      end
     end
   end
 end

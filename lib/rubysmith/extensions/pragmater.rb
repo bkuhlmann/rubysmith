@@ -7,7 +7,7 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton has pragmas.
     class Pragmater
-      include Import[:settings]
+      include Import[:settings, :logger]
 
       using Refinements::Pathname
 
@@ -37,6 +37,7 @@ module Rubysmith
       end
 
       def call
+        logger.info { "Adding frozen string literal pragmas..." }
         settings.project_root.change_dir { client.call }
         true
       end

@@ -14,6 +14,11 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
   describe "#call" do
     before { temp_dir.join("test").make_path }
 
+    it "logs info" do
+      extension.call
+      expect(logger.reread).to match(%r(🟢.+Running RuboCop autocorrect...))
+    end
+
     it "runs RuboCop" do
       extension.call
 

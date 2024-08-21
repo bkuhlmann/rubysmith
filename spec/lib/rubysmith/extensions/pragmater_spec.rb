@@ -12,6 +12,11 @@ RSpec.describe Rubysmith::Extensions::Pragmater do
   before { temp_dir.join("test/Gemfile").make_ancestors.touch }
 
   describe "#call" do
+    it "logs info" do
+      extension.call
+      expect(logger.reread).to match(%r(🟢.+Adding frozen string literal pragmas...))
+    end
+
     it "adds frozen string literal" do
       extension.call
       expect(temp_dir.join("test/Gemfile").read).to eq("# frozen_string_literal: true\n")
