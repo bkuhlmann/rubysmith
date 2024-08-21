@@ -4,10 +4,10 @@ module Rubysmith
   module Builders
     # Provides default implementation from which builders can inherit from.
     class Abstract
-      include Import[:settings]
+      include Import[:settings, :logger]
 
       def initialize(builder: Builder, **)
-        @builder = builder
+        @builder = -> settings, **keywords { builder.new settings, logger:, **keywords }
         super(**)
       end
 
