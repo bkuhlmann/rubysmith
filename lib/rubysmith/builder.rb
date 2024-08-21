@@ -34,7 +34,7 @@ module Rubysmith
     end
 
     def delete
-      log_debug "Deleting: #{relative_build_path}"
+      log_info "Deleting: #{relative_build_path}"
       build_path.delete
       self
     end
@@ -52,7 +52,7 @@ module Rubysmith
     end
 
     def make_path
-      log_debug "Creating path: #{relative_build_path}"
+      log_info "Making: #{relative_build_path}"
       build_path.make_path
       self
     end
@@ -76,7 +76,7 @@ module Rubysmith
     end
 
     def render
-      log_debug "Rendering: #{relative_build_path}"
+      log_info "Rendering: #{relative_build_path}"
 
       pathway.start_path.read.then do |content|
         build_path.make_ancestors.write renderer.call(content)
@@ -92,7 +92,7 @@ module Rubysmith
     end
 
     def run *command
-      log_debug "Running: #{command}"
+      log_info "Running: #{command}"
       execute(*command)
       self
     rescue StandardError => error
@@ -100,7 +100,7 @@ module Rubysmith
     end
 
     def touch
-      log_debug "Touching: #{relative_build_path}"
+      log_info "Touching: #{relative_build_path}"
       build_path.deep_touch
       self
     end
@@ -131,6 +131,8 @@ module Rubysmith
     end
 
     def pathway = settings.pathway
+
+    def log_info(message) = logger.info { message }
 
     def log_debug(message) = logger.debug { message }
 

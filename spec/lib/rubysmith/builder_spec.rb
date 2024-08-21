@@ -78,7 +78,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.delete
-      expect(logger.reread).to match(%r(🔎.+Deleting: demo-test/lib/demo/test/identity.rb))
+      expect(logger.reread).to match(%r(🟢.+Deleting: demo-test/lib/demo/test/identity.rb))
     end
 
     it "deletes existing file" do
@@ -178,7 +178,7 @@ RSpec.describe Rubysmith::Builder do
 
     it "logs information" do
       builder.make_path
-      expect(logger.reread).to match(%r(🔎.+Creating path: demo-test/lib/demo/test/one/two))
+      expect(logger.reread).to match(%r(🟢.+Making: demo-test/lib/demo/test/one/two))
     end
 
     it "creates empty directory" do
@@ -262,7 +262,7 @@ RSpec.describe Rubysmith::Builder do
   describe "#render" do
     it "logs information" do
       builder.render
-      expect(logger.reread).to match(%r(🔎.+Rendering: demo-test/lib/demo/test/identity.rb))
+      expect(logger.reread).to match(%r(🟢.+Rendering: demo-test/lib/demo/test/identity.rb))
     end
 
     it "renders template using nested project name and path" do
@@ -366,7 +366,7 @@ RSpec.describe Rubysmith::Builder do
   describe "#touch" do
     it "logs information" do
       builder.touch
-      expect(logger.reread).to match(%r(🔎.+Touching: demo-test/lib/demo/test/identity.rb))
+      expect(logger.reread).to match(%r(🟢.+Touching: demo-test/lib/demo/test/identity.rb))
     end
 
     it "creates empty file" do
