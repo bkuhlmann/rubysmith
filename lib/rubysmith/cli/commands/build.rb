@@ -60,12 +60,12 @@ module Rubysmith
         on Actions::AmazingPrint
         on Actions::Bootsnap
         on Actions::Caliber
-        on Actions::Console
-        on Actions::Contributions
         on Actions::CircleCI
         on Actions::Citation
         on Actions::Community
         on Actions::Conduct
+        on Actions::Console
+        on Actions::Contributions
         on Actions::DCOO
         on Actions::Debug
         on Actions::DevContainer
