@@ -10,7 +10,7 @@ module Rubysmith
         using Refinements::Struct
 
         def call
-          return false unless settings.build_git
+          return false unless settings.build_docker
 
           builder.call(settings.merge(template_path: "%project_name%/.dockerignore.erb")).render
           true
