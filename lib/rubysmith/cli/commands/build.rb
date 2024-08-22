@@ -12,44 +12,44 @@ module Rubysmith
 
         # Order is important.
         BUILDERS = [
-          Builders::Init.new,
-          Builders::Core.new,
-          Builders::Version.new,
-          Builders::Documentation::Readme.new,
-          Builders::Documentation::Citation.new,
-          Builders::Documentation::License.new,
-          Builders::Documentation::Version.new,
-          Builders::Git::Setup.new,
-          Builders::Git::Ignore.new,
-          Builders::Git::Safe.new,
-          Builders::Bundler.new,
-          Builders::Rake::Binstub.new,
-          Builders::Rake::Configuration.new,
-          Builders::Console.new,
-          Builders::CircleCI.new,
-          Builders::Setup.new,
-          Builders::GitHub::Template.new,
-          Builders::GitHub::Funding.new,
-          Builders::GitHub::CI.new,
-          Builders::Guard.new,
-          Builders::Reek.new,
-          Builders::RSpec::Binstub.new,
-          Builders::RSpec::Context.new,
-          Builders::RSpec::Helper.new,
-          Builders::Caliber.new,
-          Builders::DevContainer::Dockerfile.new,
-          Builders::DevContainer::Compose.new,
-          Builders::DevContainer::Configuration.new,
-          Builders::Docker::Build.new,
-          Builders::Docker::Console.new,
-          Builders::Docker::Entrypoint.new,
-          Builders::Docker::File.new,
-          Builders::Docker::Ignore.new,
-          Extensions::Bundler.new,
-          Extensions::Pragmater.new,
-          Extensions::Tocer.new,
-          Extensions::Rubocop.new,
-          Builders::Git::Commit.new
+          Builders::Init,
+          Builders::Core,
+          Builders::Version,
+          Builders::Documentation::Readme,
+          Builders::Documentation::Citation,
+          Builders::Documentation::License,
+          Builders::Documentation::Version,
+          Builders::Git::Setup,
+          Builders::Git::Ignore,
+          Builders::Git::Safe,
+          Builders::Bundler,
+          Builders::Rake::Binstub,
+          Builders::Rake::Configuration,
+          Builders::Console,
+          Builders::CircleCI,
+          Builders::Setup,
+          Builders::GitHub::Template,
+          Builders::GitHub::Funding,
+          Builders::GitHub::CI,
+          Builders::Guard,
+          Builders::Reek,
+          Builders::RSpec::Binstub,
+          Builders::RSpec::Context,
+          Builders::RSpec::Helper,
+          Builders::Caliber,
+          Builders::DevContainer::Dockerfile,
+          Builders::DevContainer::Compose,
+          Builders::DevContainer::Configuration,
+          Builders::Docker::Build,
+          Builders::Docker::Console,
+          Builders::Docker::Entrypoint,
+          Builders::Docker::File,
+          Builders::Docker::Ignore,
+          Extensions::Bundler,
+          Extensions::Pragmater,
+          Extensions::Tocer,
+          Extensions::Rubocop,
+          Builders::Git::Commit
         ].freeze
 
         handle "build"
@@ -99,7 +99,7 @@ module Rubysmith
 
         def call
           log_info "Building project skeleton: #{settings.project_name}..."
-          builders.each(&:call)
+          builders.each { |builder| builder.new(settings:, logger:).call }
           log_info "Project skeleton complete!"
         end
 
