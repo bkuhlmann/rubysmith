@@ -38,6 +38,7 @@ build:
   versions: true
   zeitwerk: true
 citation:
+  affiliation: "%<organization_label>s"
   message: Please use the following metadata when citing this project in your work.
 documentation:
   format: "adoc"

@@ -22,6 +22,7 @@ module Rubysmith
                       .add_transformer(Configuration::Transformers::TemplateRoot.new)
                       .add_transformer(:root, :target_root)
                       .add_transformer(:format, :author_uri)
+                      .add_transformer(:format, :citation_affiliation)
                       .add_transformer(:format, :project_uri_community)
                       .add_transformer(:format, :project_uri_conduct)
                       .add_transformer(:format, :project_uri_contributions)
