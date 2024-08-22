@@ -1,5 +1,16 @@
 = Versions
 
+== 7.4.0 (2024-08-22)
+
+* ✅ Fixed Bundler extension to account for unstable internet connection - Brooke Kuhlmann
+* ✅ Fixed Docker builder to only build ignore file when enabled - Brooke Kuhlmann
+* 🟢 Added extension logging - Brooke Kuhlmann
+* 🔼 Updated CLI build command to pass dependencies to builders - Brooke Kuhlmann
+* 🔼 Updated abstract builder to inject logger - Brooke Kuhlmann
+* 🔼 Updated builder path/run methods to log info - Brooke Kuhlmann
+* 🔼 Updated citation builder to default affiliation to organization label - Brooke Kuhlmann
+* 🔁 Refactored builder specs to use common descriptions - Brooke Kuhlmann
+
 == 7.3.0 (2024-08-20)
 
 * ✅ Fixed Pragmater extension patterns - Brooke Kuhlmann

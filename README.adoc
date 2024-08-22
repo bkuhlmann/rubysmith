@@ -4,9 +4,12 @@
 
 :bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
 :development_containers_link: link:https://containers.dev[Development Containers]
+:docker_alpine_ruby_link: link:https://alchemists.io/projects/docker-alpine-ruby[Docker Alpine Ruby]
 :docker_link: link:https://www.docker.com[Docker]
 :gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
+:runcom_link: link:https://alchemists.io/projects/runcom[Runcom]
 :string_formats_link: link:https://docs.ruby-lang.org/en/3.3/format_specifications_rdoc.html[String Formats]
+:xdg_link: link:https://alchemists.io/projects/xdg[XDG]
 
 = Rubysmith
 
@@ -103,19 +106,16 @@ options, you can use `--no-*` prefixes. Example:
 rubysmith build --name demo --no-debug --no-reek
 ----
 
-With the above example, both Debug and Reek support would have been disabled when building the
-`demo` project. Taking this a step further, you can also use the `--min` option to generate a
-project with bare minimum of options. Example:
+With the above example, both Debug and Reek support would have been disabled when building the `demo` project. Taking this a step further, you can also use the `--min` option to generate a project with bare minimum of options. Example:
 
 [source,bash]
 ----
 rubysmith build --name demo --min
 ----
 
-The above is essentially the same as building with _all_ options disabled. This is handy in situations where you need to quickly script something up for sharing with others yet still want to avoid using a {bundler_inline_link} script so gem dependencies are not installed each time the code is run.
+The above is the same as building with _all options disabled_. This is handy in situations where you need to quickly script something up for sharing with others yet still want to avoid using a {bundler_inline_link} script so gem dependencies are not installed each time the code is run.
 
-As shown earlier, you can combine options but be aware that order matters. Take the following, for
-example, where both minimum and maximum options are used in conjunction with other options:
+As shown earlier, you can combine options but be aware that order matters. Take the following, for example, where both minimum and maximum options are used in conjunction with other options:
 
 [source,bash]
 ----
@@ -123,15 +123,9 @@ rubysmith build --name demo --min --zeitwerk
 rubysmith build --name demo --max --no-debug
 ----
 
-With the above examples, the first line will _disable_ all options except Zeitwerk while the second
-line will _enable_ all options except Debug. This can be a handy way to build a new project with all
-options either disabled or enabled with only a few select options modified. To have specific options
-enabled/disabled _every time_ you build a new Ruby project, you can edit your global configuration
-for making these settings permanent (see below for details).
+With the above examples, the first line will _disable all options_ except Zeitwerk while the second line will _enable all options_ except Debug. This can be a handy way to build a new project with all options either disabled or enabled with only a few select options modified. To have specific options enabled/disabled _every time_, you can edit your global configuration for making these settings permanent (see below for details).
 
-There is a lot of flexibility when building a new project through the various build options. I'll
-walk you through each so you can better understand why you'd want to enable or disable any one of
-them.
+There is a lot of flexibility when building a new project through the various build options. I'll walk you through each so you can better understand why you'd want to enable or disable them.
 
 ===== Amazing Print
 
@@ -150,44 +144,66 @@ link:https://github.com/Shopify/bootsnap[Bootsnap] gem for improved performance.
 The `--caliber` option allows you to build your project with the
 link:https://alchemists.io/projects/caliber[Caliber] gem so you have an immediate working -- and
 high quality -- link:https://docs.rubocop.org/rubocop[RuboCop] configuration. Read the Caliber
-documentation for further customization.
+documentation for further customization. This adds the following files when enabled:
+
+....
+├── bin
+│  ├── rubocop
+├── .config
+│  └── rubocop
+│     └── config.yml
+....
 
 ===== Circle CI
 
 The `--circle_ci` option allows you to build your project with link:https://circleci.com[Circle CI]
-configured so you can get your project building as quickly as possible.
+configured so you can get your project building as quickly as possible. This adds the following file when enabled:
+
+....
+├── .circleci
+│  └── config.yml
+....
 
 ===== Citation
 
 The `--citation` option allows you to add a link:https://citation-file-format.github.io[citation]
 file to your project so you can help the research community cite your work in their studies if your
-project is used.
+project is used. This adds the following file when enabled:
+
+....
+├── CITATION.cff
+....
 
 ===== Community
 
 The `--community` option allows you to link to your open source community, organization, or group
-chat to help with community engagement of your work.
+chat to help with community engagement of your work. The link is added to the `README` file when enabled.
 
 ===== Code of Conduct
 
 The `--conduct` option allows you to link to your link:https://www.contributor-covenant.org[Code of
 Conduct] to encourage good community participation. Regardless of whether you have a community or
-not, the code of conduct is good to encourage in general.
+not, the code of conduct is good to encourage in general. The link is added to the `README` file when enabled.
 
 ===== Console
 
 The `--console` option allows you to add a `console` script for local development. So instead of
 typing `irb`, you can type `bin/console` and get an IRB session with all of your project's code
-loaded.
+loaded. This adds the following file when enabled:
+
+....
+├── bin
+│  ├── console
+....
 
 ===== Contributions
 
 The `--contributions` option allows you to link to contributing documentation so people know to
-contribute back to your work.
+contribute back to your work. The link is added to the `README` file when enabled.
 
 ===== Developer Certificate of Origin
 
-The `--dcoo` option allows to you add link:https://developercertificate.org[Developer Certificate of Origin] documentation so all contributors are aware of how their contributions are applied in terms of ownership, copyright, and licensing.
+The `--dcoo` option allows to you add link:https://developercertificate.org[Developer Certificate of Origin] documentation so all contributors are aware of how their contributions are applied in terms of ownership, copyright, and licensing. The link is added to the `README` file when enabled.
 
 ℹ️ This is disabled by default but will be enabled by default in the next major version.
 
@@ -199,17 +215,41 @@ much more.
 
 ===== Docker
 
-The `--docker` option allows you add {docker_link} to your project so you can build and deploy to production.
+The `--docker` option allows you add {docker_link} to your project so you can build and deploy a production image of your software. When enabled, these files will appear in your project:
+
+....
+├── bin
+│  ├── docker
+│  │  ├── build       # Use to build your production image for local use.
+│  │  ├── console     # Use to interact with your production image.
+│  │  └── entrypoint  # Conditionally enables jemalloc support.
+├── .dockerignore     # Defines the files/folders Docker should ignore.
+├── Dockerfile        # Defines how to build your production image.
+....
 
 ===== Development Containers
 
-The `--devcontainer` option allows you add {development_containers_link} support to your project so you can develop locally by running your project within a {docker_link} container.
+The `--devcontainer` option allows you add {development_containers_link} support to your project so you can develop locally by running your project within a {docker_link} container. When enabled, these files will be added to your project:
+
+....
+├── .devcontainer
+│  ├── compose.yaml       # Your Docker Compose configuration.
+│  ├── devcontainer.json  # Your Developer Container configuration.
+│  └── Dockerfile         # The steps for building your development environment.
+....
+
+ℹ️ The `Dockerfile` uses the {docker_alpine_ruby_link} base image so you have a small but functional image. This base image can be easily be swapped out with a base image you prefer.
 
 ===== Funding
 
 The `--funding` option allows you add a link:https://github.com[GitHub] funding configuration to
 your project so you can attract link:https://docs.github.com/en/sponsors[sponsors]. This option
-doesn't require use of the `--git_hub` option but is encouraged.
+doesn't require use of the `--git_hub` option but is encouraged. This adds the following file when enabled:
+
+....
+├── .github
+│  ├── FUNDING.yml
+....
 
 ===== Git
 
@@ -218,11 +258,23 @@ The `--git` option allows you add link:https://git-scm.com[Git] repository suppo
 ===== GitHub
 
 The `--git_hub` option allows you add link:https://github.com[GitHub] templates to your project for
-issues and pull requests.
+issues and pull requests. This adds the following fhile when enabled:
+
+....
+├── .github
+│  ├── ISSUE_TEMPLATE.md
+│  └── PULL_REQUEST_TEMPLATE.md
+....
 
 ===== GitHub CI
 
-The `--git_hub_ci` option allows you to build your project with link:https://docs.github.com/en/actions[GitHub Actions] configured so you can get your project building as quickly as possible.
+The `--git_hub_ci` option allows you to build your project with link:https://docs.github.com/en/actions[GitHub Actions] configured so you can get your project building as quickly as possible. This adds the following file when enabled:
+
+....
+├── .github
+│  ├── workflows
+│  │  └── ci.yml
+....
 
 ===== Git Lint
 
@@ -247,17 +299,23 @@ The `--license` option ensures you build your project with a license.
 
 ===== Maximum
 
-The `--max` option allows you to build your project with _all_ options _enabled_. This is a quick way
-to build a new project with all options enabled without having to pick and choose.
+The `--max` option allows you to build your project with _all options enabled_. This is a quick way
+to build a new project without having to pick and choose.
 
 ===== Minimum
 
-The `--min` option allows you to build your project with _all_ options _disabled_. This is a quick way to build a new project with the bare minimum of support which is a one step above reaching for a {bundler_inline_link} script.
+The `--min` option allows you to build your project with _all options disabled_. This is a quick way to build a new project with the bare minimum of support which is a one step above reaching for a {bundler_inline_link} script.
 
 ===== Rake
 
 The `--rake` option allows you to add the link:https://github.com/ruby/rake[Rake] gem for quickly
-crafting build scripts.
+crafting build scripts. This adds the following files to your project:
+
+....
+├── bin
+│  ├── rake
+├── Rakefile
+....
 
 ===== Readme
 
@@ -266,7 +324,7 @@ The `--readme` option allows you to add README documentation to your project.
 ===== Reek
 
 The `--reek` option allows you add the link:https://github.com/troessner/reek[Reek] gem to your
-project for code smell and code quality support.
+project for code smell and code quality support. This adds the `.reek.yml` configuration to your project.
 
 ===== Refinements
 
@@ -277,7 +335,19 @@ Ruby core objects without monkey patching your code.
 ===== RSpec
 
 The `--rspec` option allows you add the link:https://rspec.info[RSpec] gem to your project for
-defining your project specifications and have a framework for testing your code.
+defining your project specifications and have a framework for testing your code. This adds the following files to your project:
+
+....
+├── bin
+│  ├── rspec
+├── spec
+│  ├── lib
+│  │  └── <your project name>_spec.rb
+│  ├── support
+│  │  └── shared_contexts
+│  │     └── temp_dir.rb
+│  └── spec_helper.rb
+....
 
 ===== Repl Type Completor (RTC)
 
@@ -286,13 +356,17 @@ The `--rtc` option allows you add the link:https://github.com/ruby/repl_type_com
 ===== Setup
 
 The `--setup` option allows you to configure you project with automated setup instructions so anyone
-new to your project can quickly get started by running the `bin/setup` script.
+new to your project can quickly get started by running the `bin/setup` script. This adds the following file to your project:
+
+....
+│  └── setup
+....
 
 ===== SimpleCov
 
 The `--simple_cov` option allows you add the
 link:https://github.com/simplecov-ruby/simplecov[SimpleCov] gem to your project to provide full
-analysis of what your quality of code is for the project.
+analysis of your project's code quality and/or find code that is unused.
 
 ===== Versions
 
@@ -313,8 +387,7 @@ This gem can be configured via a global configuration:
 $HOME/.config/rubysmith/configuration.yml
 ....
 
-It can also be configured via link:https://alchemists.io/projects/xdg[XDG] environment
-variables. The default configuration is as follows:
+It can also be configured via {xdg_link}/{runcom_link} environment variables. The default configuration is as follows:
 
 [source,yaml]
 ----
@@ -358,6 +431,7 @@ build:
   versions: true
   zeitwerk: true
 citation:
+  affiliation: "%<organization_label>s"
   message: Please use the following metadata when citing this project in your work.
 documentation:
   format: "adoc"
@@ -387,11 +461,11 @@ repository:
   uri: https://github.com
 ----
 
-By customizing your configuration, you can change Rubysmith's default behavior when building projects. This is a great way to define your own specialized settings other than what is provide for you by default. This is also a handy way to provide additional information needed for some of the build options.
+By customizing your configuration, you can change Rubysmith's default behavior when building projects. This is a great way to define your own specialized settings other than what is provided by default. This is also a handy way to provide additional information needed for some of the build options.
 
 You'll also notice some of the values use {string_formats_link} which means you can use any fully qualified key as a string specifier for supported keys like those found in the `author` and `project` sections.
 
-The next sections will walk you through each configuration so you can learn more.
+Each section of the configuration is explained below.
 
 ==== Author
 
@@ -404,6 +478,7 @@ author:
   email: jsmith@example.com
   family_name: Smith
   given_name: Jill
+  author_uri:  # Requires being supplied.
 ----
 
 If your global link:https://git-scm.com[Git] configuration is properly configured, your given name;
@@ -421,15 +496,23 @@ this project.
 
 This section allows you to configure your link:https://orcid.org[ORCID]
 link:https://citation-file-format.github.io[citation] information used by the research community.
-You should definitely fill this in. Your author information, detailed above, will also be used when building this file.
+[source,yaml]
+----
+citation:
+  affiliation:  # Defaults to organization label (see above).
+  message:      # Defaults to supplied message (see above).
+  orcid:        # Defaults to https://orcid.org/ when no ID is supplied.
+----
+
+Your author, project, and license information will be used when building this file.
 
 ==== Documentation
 
 Use this section to define the kind of documentation you want generated for your project. The
 following options are available:
 
-* `adoc` - Uses link:https://asciidoctor.org[ASCII Doc] format.
-* `md` - Uses link:https://asciidoctor.org[Markdown] format.
+* `adoc`: Uses link:https://asciidoctor.org[ASCII Doc] format.
+* `md`: Uses link:https://daringfireball.net/projects/markdown[Markdown] format.
 
 ==== License
 
@@ -520,7 +603,13 @@ As for the `version` key, this defines the default version of newly created proj
 
 ==== Repository
 
-Your repisotry handle is the handle you setup when creating your account (i.e. `+https://github.com/<your_handle>+`). This information is used for template, funding, and/or URI construction purposes.
+Your repository handle is the handle you setup when creating your account (i.e. `+https://github.com/<your_handle>+`). This information is used for template, funding, and/or URI construction purposes. These are the defaults but you'll want to customize to reflect the service you are using:
+
+``` yaml
+repository:
+  handle: undefined
+  uri: https://github.com
+```
 
 == Development
 
