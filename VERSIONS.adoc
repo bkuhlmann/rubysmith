@@ -1,5 +1,14 @@
 = Versions
 
+== 7.5.0 (2024-09-01)
+
+* 🔼 Updated gem specification documentation URI as homepage URI - Brooke Kuhlmann
+* 🔼 Updated gem specification to support Ruby 3.4.0 - Brooke Kuhlmann
+* 🔼 Updated to Cogger 0.26.0 - Brooke Kuhlmann
+* 🔼 Updated to Gitt 3.8.0 - Brooke Kuhlmann
+* 🔼 Updated to Refinements 12.8.0 - Brooke Kuhlmann
+* 🔼 Updated to RuboCop 1.66.0 - Brooke Kuhlmann
+
 == 7.4.0 (2024-08-22)
 
 * ✅ Fixed Bundler extension to account for unstable internet connection - Brooke Kuhlmann

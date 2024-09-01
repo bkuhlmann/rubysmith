@@ -46,15 +46,7 @@ toc::[]
 * Supports link:https://github.com/simplecov-ruby/simplecov[SimpleCov].
 * Supports link:https://github.com/fxn/zeitwerk[Zeitwerk].
 * Supports common settings and a structured layout for building projects.
-* Provides common documentation:
-** README
-** LICENSE
-** VERSIONS
-** Security
-** Code of Conduct
-** Contributions
-** Developer Certificate of Origin
-** Communities
+* Provides common documentation.
 
 == Requirements
 
