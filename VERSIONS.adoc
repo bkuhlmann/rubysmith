@@ -1,5 +1,12 @@
 = Versions
 
+== 7.7.0 (2024-10-13)
+
+* 🔼 Updated to Infusible 3.11.0 - Brooke Kuhlmann
+* 🔼 Updated to Refinements 12.9.0 - Brooke Kuhlmann
+* 🔼 Updated to Sod 0.17.0 - Brooke Kuhlmann
+* 🔼 Updated to Zeitwerk 2.7.0 - Brooke Kuhlmann
+
 == 7.6.0 (2024-09-07)
 
 * 🔼 Updated to Gitt 3.9.0 - Brooke Kuhlmann
