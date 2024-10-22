@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "gitt", "~> 3.9"
   spec.add_dependency "infusible", "~> 3.11"
   spec.add_dependency "pragmater", "~> 15.2"
-  spec.add_dependency "refinements", "~> 12.9"
+  spec.add_dependency "refinements", "~> 12.10"
   spec.add_dependency "rubocop", "~> 1.66"
   spec.add_dependency "runcom", "~> 11.5"
   spec.add_dependency "sod", "~> 0.17"
