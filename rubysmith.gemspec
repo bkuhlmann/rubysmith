@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-schema", "~> 1.13"
   spec.add_dependency "etcher", "~> 2.1"
   spec.add_dependency "gitt", "~> 3.9"
-  spec.add_dependency "infusible", "~> 3.11"
+  spec.add_dependency "infusible", "~> 3.12"
   spec.add_dependency "pragmater", "~> 15.6"
   spec.add_dependency "refinements", "~> 12.10"
   spec.add_dependency "rubocop", "~> 1.66"
