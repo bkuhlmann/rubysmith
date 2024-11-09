@@ -1,5 +1,20 @@
 = Versions
 
+== 7.9.0 (2024-11-09)
+
+* 🔼 Updated to Caliber 0.64.0 - Brooke Kuhlmann
+* 🔼 Updated to Cogger 0.31.0 - Brooke Kuhlmann
+* 🔼 Updated to Etcher 2.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Git Lint 8.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Gitt 3.12.0 - Brooke Kuhlmann
+* 🔼 Updated to Infusible 3.12.0 - Brooke Kuhlmann
+* 🔼 Updated to Pragmater 15.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Runcom 11.10.0 - Brooke Kuhlmann
+* 🔼 Updated to Sod 0.19.0 - Brooke Kuhlmann
+* 🔼 Updated to Sod 0.20.0 - Brooke Kuhlmann
+* 🔼 Updated to Tocer 18.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Tone 1.10.0 - Brooke Kuhlmann
+
 == 7.8.0 (2024-11-05)
 
 * 🔼 Updated to Cogger 0.30.0 - Brooke Kuhlmann
