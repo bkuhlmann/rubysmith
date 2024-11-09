@@ -62,7 +62,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         source "https://rubygems.org"
 
         group :quality do
-          gem "caliber", "~> 0.58"
+          gem "caliber", "~> 0.64"
         end
       CONTENT
     end
@@ -255,7 +255,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
-            gem "caliber", "~> 0.58"
+            gem "caliber", "~> 0.64"
             gem "git-lint", "~> 8.0"
             gem "reek", "~> 6.3", require: false
             gem "simplecov", "~> 0.22", require: false
@@ -299,7 +299,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
-            gem "caliber", "~> 0.58"
+            gem "caliber", "~> 0.64"
             gem "git-lint", "~> 8.0"
             gem "reek", "~> 6.3", require: false
             gem "simplecov", "~> 0.22", require: false
