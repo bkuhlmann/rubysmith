@@ -37,9 +37,6 @@ group :development do
 end
 
 group :test do
-  <% if settings.build_guard %>
-    gem "guard-rspec", "~> 4.7", require: false
-  <% end %>
   <% if settings.build_rspec %>
     gem "rspec", "~> 3.13"
   <% end %>

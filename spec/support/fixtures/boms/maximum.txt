@@ -16,7 +16,6 @@ test/bin/console
 test/bin/docker/build
 test/bin/docker/console
 test/bin/docker/entrypoint
-test/bin/guard
 test/bin/rake
 test/bin/rspec
 test/bin/rubocop
@@ -24,7 +23,6 @@ test/bin/setup
 test/CITATION.cff
 test/Dockerfile
 test/Gemfile
-test/Guardfile
 test/lib/test.rb
 test/LICENSE.adoc
 test/Rakefile

@@ -97,21 +97,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
       CONTENT
     end
 
-    it "builds Gemfile with Guard only" do
-      settings.merge! settings.minimize.merge(build_guard: true)
-      builder.call
-
-      expect(gemfile_path.read).to eq(<<~CONTENT)
-        ruby file: ".ruby-version"
-
-        source "https://rubygems.org"
-
-        group :test do
-          gem "guard-rspec", "~> 4.7", require: false
-        end
-      CONTENT
-    end
-
     it "builds Gemfile with IRB Kit only" do
       settings.merge! settings.minimize.merge(build_irb_kit: true)
       builder.call
@@ -266,7 +251,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :test do
-            gem "guard-rspec", "~> 4.7", require: false
             gem "rspec", "~> 3.13"
           end
 
@@ -311,7 +295,6 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :test do
-            gem "guard-rspec", "~> 4.7", require: false
             gem "rspec", "~> 3.13"
           end
 

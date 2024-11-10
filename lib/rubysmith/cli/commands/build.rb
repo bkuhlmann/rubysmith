@@ -31,7 +31,6 @@ module Rubysmith
           Builders::GitHub::Template,
           Builders::GitHub::Funding,
           Builders::GitHub::CI,
-          Builders::Guard,
           Builders::Reek,
           Builders::RSpec::Binstub,
           Builders::RSpec::Context,
@@ -75,7 +74,6 @@ module Rubysmith
         on Actions::GitHub
         on Actions::GitHubCI
         on Actions::GitLint
-        on Actions::Guard
         on Actions::IRBKit
         on Actions::License
         on Actions::Maximum
