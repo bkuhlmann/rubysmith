@@ -197,8 +197,6 @@ contribute back to your work. The link is added to the `README` file when enable
 
 The `--dcoo` option allows to you add link:https://developercertificate.org[Developer Certificate of Origin] documentation so all contributors are aware of how their contributions are applied in terms of ownership, copyright, and licensing. The link is added to the `README` file when enabled.
 
-ℹ️ This is disabled by default but will be enabled by default in the next major version.
-
 ===== Debug
 
 The `--debug` option allows you add the link:https://github.com/ruby/debug[Debug] gem to your
@@ -273,13 +271,6 @@ The `--git_hub_ci` option allows you to build your project with link:https://doc
 The `--git-lint` option allows you to add the link:https://alchemists.io/projects/git-lint[Git
 Lint] gem to your project to ensure you are crafting your Git commits in a consistent and readable
 manner.
-
-===== Guard
-
-⚠️ _This is deprecated and will be removed in the next major version._
-
-The `--guard` option allows you add the link:https://github.com/guard/guard[Guard] gem to your
-project for rapid red, green, refactor development cycles.
 
 ===== IRB Kit
 
@@ -397,7 +388,7 @@ build:
   conduct: true
   console: true
   contributions: true
-  dcoo: false
+  dcoo: true
   debug: true
   devcontainer: false
   docker: false
@@ -406,7 +397,6 @@ build:
   git_hub: false
   git_hub_ci: false
   git_lint: true
-  guard: false
   irb_kit: true
   license: true
   maximum: false
