@@ -12,7 +12,7 @@ build:
   conduct: true
   console: true
   contributions: true
-  dcoo: false
+  dcoo: true
   debug: true
   devcontainer: false
   docker: false
