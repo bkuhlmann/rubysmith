@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores GitHub CI flag.
       class GitHubCI < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add GitHub continuous integration support."
 

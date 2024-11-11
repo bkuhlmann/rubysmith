@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Git flag.
       class Git < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Git repository."
 

@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores citation flag.
       class Citation < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add citation documentation."
 

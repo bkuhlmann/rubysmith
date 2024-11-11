@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Repl Type Completor flag.
       class RTC < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Repl Type Completor gem."
 

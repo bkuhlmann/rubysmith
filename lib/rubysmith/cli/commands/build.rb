@@ -8,7 +8,7 @@ module Rubysmith
     module Commands
       # Stores table of contents root path.
       class Build < Sod::Command
-        include Import[:settings, :kernel, :logger]
+        include Dependencies[:settings, :kernel, :logger]
 
         # Order is important.
         BUILDERS = [

@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Forces minimum settings.
       class Minimum < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         using ::Refinements::Struct
 

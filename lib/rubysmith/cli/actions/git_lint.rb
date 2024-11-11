@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Git Lint flag.
       class GitLint < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Git Lint gem."
 

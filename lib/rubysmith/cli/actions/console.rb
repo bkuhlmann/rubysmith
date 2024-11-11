@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores console flag.
       class Console < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add console script."
 

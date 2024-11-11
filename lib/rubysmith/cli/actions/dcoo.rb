@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Developer Certificate of Origin flag.
       class DCOO < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Developer Certificate of Origin documentation."
 

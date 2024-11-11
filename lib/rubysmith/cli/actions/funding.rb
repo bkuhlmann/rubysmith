@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores funding flag.
       class Funding < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add GitHub funding."
 

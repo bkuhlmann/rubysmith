@@ -5,7 +5,7 @@ module Rubysmith
     module Git
       # Builds project skeleton initial Git commit message.
       class Commit < Abstract
-        include Import[:specification]
+        include Dependencies[:specification]
 
         def call
           return false unless settings.build_git

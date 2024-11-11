@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Circle CI flag.
       class CircleCI < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Circle CI support."
 

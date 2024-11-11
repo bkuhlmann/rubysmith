@@ -7,7 +7,7 @@ module Rubysmith
     module Transformers
       # Dynamically adds Git email if defined.
       class GitEmail
-        include Import[:git]
+        include Dependencies[:git]
         include Dry::Monads[:result]
 
         def initialize(key = :author_email, **)

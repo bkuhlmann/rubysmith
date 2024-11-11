@@ -8,7 +8,7 @@ module Rubysmith
     module Actions
       # Forces maximum settings.
       class Maximum < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         using ::Refinements::Struct
 

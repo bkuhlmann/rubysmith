@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores contributions flag.
       class Contributions < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add contributions documentation."
 

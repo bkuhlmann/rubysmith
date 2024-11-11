@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores IRB Kit flag.
       class IRBKit < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add IRB Kit gem."
 

@@ -7,7 +7,7 @@ module Rubysmith
     module Transformers
       # Dynamically updates repository handle if GitHub user is defined.
       class GitHubUser
-        include Import[:git]
+        include Dependencies[:git]
         include Dry::Monads[:result]
 
         def initialize(key = :repository_handle, **)

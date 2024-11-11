@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Refinements flag.
       class Refinements < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Refinements gem."
 

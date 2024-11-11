@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores readme flag.
       class Readme < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add readme documentation."
 

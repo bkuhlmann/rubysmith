@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Rake flag.
       class Rake < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Rake gem."
 

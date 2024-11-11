@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores security flag.
       class Security < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add security."
 

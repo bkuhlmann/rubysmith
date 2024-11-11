@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores project (build) name.
       class Name < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Set project name."
 

@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Docker flag.
       class Docker < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Docker support."
 

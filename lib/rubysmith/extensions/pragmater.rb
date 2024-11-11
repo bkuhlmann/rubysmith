@@ -7,7 +7,7 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton has pragmas.
     class Pragmater
-      include Import[:settings, :logger]
+      include Dependencies[:settings, :logger]
 
       using Refinements::Pathname
 

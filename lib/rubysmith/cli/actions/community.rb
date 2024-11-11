@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores community flag.
       class Community < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add community documentation."
 

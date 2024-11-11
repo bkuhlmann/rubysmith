@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores conduct flag.
       class Conduct < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add code of conduct documentation."
 

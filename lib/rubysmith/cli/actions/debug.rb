@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Debug flag.
       class Debug < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Debug gem."
 

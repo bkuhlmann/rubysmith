@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Caliber flag.
       class Caliber < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Caliber gem."
 

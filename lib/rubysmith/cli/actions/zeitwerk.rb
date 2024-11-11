@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Zeitwerk flag.
       class Zeitwerk < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Zeitwerk gem."
 

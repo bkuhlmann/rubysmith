@@ -9,7 +9,7 @@ module Rubysmith
   module Extensions
     # Ensures gem dependencies are installed.
     class Bundler
-      include Import[:settings, :logger]
+      include Dependencies[:settings, :logger]
 
       using Refinements::IO
       using Refinements::Pathname

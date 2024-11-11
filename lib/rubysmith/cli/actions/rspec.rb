@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores RSpec flag.
       class RSpec < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add RSpec gem."
 

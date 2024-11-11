@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Bootsnap flag.
       class Bootsnap < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Bootsnap gem."
 

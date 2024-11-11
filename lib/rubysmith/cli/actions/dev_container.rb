@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Development Container flag.
       class DevContainer < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Development Container support."
 

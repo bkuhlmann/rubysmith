@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Reek flag.
       class Reek < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Reek gem."
 

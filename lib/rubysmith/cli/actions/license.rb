@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores license flag.
       class License < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add license documentation."
 

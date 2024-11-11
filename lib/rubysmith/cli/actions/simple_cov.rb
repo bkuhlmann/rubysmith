@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores SimpleCov flag.
       class SimpleCov < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add SimpleCov gem."
 

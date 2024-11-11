@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores setup flag.
       class Setup < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add setup script."
 

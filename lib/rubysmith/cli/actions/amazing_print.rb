@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores Amazing Print flag.
       class AmazingPrint < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add Amazing Print gem."
 

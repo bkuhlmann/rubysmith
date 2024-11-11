@@ -8,7 +8,7 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton documentation has table of content.
     class Tocer
-      include Import[:settings, :logger]
+      include Dependencies[:settings, :logger]
 
       using Refinements::Pathname
 

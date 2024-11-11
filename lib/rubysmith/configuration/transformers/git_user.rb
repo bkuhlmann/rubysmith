@@ -7,7 +7,7 @@ module Rubysmith
     module Transformers
       # Dynamically adds Git user if defined.
       class GitUser
-        include Import[:git]
+        include Dependencies[:git]
         include Dry::Monads[:result]
 
         def call attributes

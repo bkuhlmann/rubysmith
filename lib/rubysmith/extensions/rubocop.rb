@@ -8,7 +8,7 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton adheres to style guide.
     class Rubocop
-      include Import[:settings, :logger]
+      include Dependencies[:settings, :logger]
 
       using Refinements::IO
       using Refinements::Pathname

@@ -6,7 +6,7 @@ require "refinements/pathname"
 module Rubysmith
   # Provides common functionality necessary for all builders.
   class Builder
-    include Import[:kernel, :logger]
+    include Dependencies[:kernel, :logger]
 
     using Refinements::Pathname
 

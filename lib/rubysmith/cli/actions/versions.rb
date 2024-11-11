@@ -7,7 +7,7 @@ module Rubysmith
     module Actions
       # Stores versions flag.
       class Versions < Sod::Action
-        include Import[:settings]
+        include Dependencies[:settings]
 
         description "Add version history."
 
