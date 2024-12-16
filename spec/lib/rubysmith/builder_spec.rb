@@ -19,12 +19,6 @@ RSpec.describe Rubysmith::Builder do
                     project_name: "demo-test"
   end
 
-  describe ".call" do
-    it "answers builder" do
-      expect(described_class.call(settings)).to be_a(described_class)
-    end
-  end
-
   describe "#append" do
     before { builder.render }
 

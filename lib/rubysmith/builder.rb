@@ -6,13 +6,11 @@ require "refinements/pathname"
 module Rubysmith
   # Provides common functionality necessary for all builders.
   class Builder
-    include Dependencies[:kernel, :logger]
+    include Dependencies[:logger]
 
     using Refinements::Pathname
 
     HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, executor: Open3}.freeze
-
-    def self.call(...) = new(...)
 
     def initialize(settings, helpers: HELPERS, **)
       @settings = settings
