@@ -7,7 +7,7 @@ module Rubysmith
       include Dependencies[:settings, :logger]
 
       def initialize(builder: Builder, **)
-        @builder = -> settings, **keywords { builder.new settings, logger:, **keywords }
+        @builder = -> settings { builder.new settings, logger: }
         super(**)
       end
 
