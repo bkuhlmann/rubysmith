@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Git::Setup do
   describe "#call" do
     let(:git_dir) { temp_dir.join "test/.git" }
 
-    before { temp_dir.change_dir { |path| path.join("test").make_path } }
+    before { temp_dir.change_dir { |path| path.join("test").mkpath } }
 
     context "when enabled" do
       before { settings.build_git = true }

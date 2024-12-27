@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
       before do
         settings.merge! settings.minimize.merge(build_git: true)
 
-        project_dir.make_path.change_dir do |path|
+        project_dir.mkpath.change_dir do |path|
           `git init`
           `git config user.name "#{settings.author_name}"`
           `git config user.email "#{settings.author_email}"`
@@ -52,7 +52,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
       before { settings.merge! settings.minimize }
 
       it "doesn't create commit" do
-        project_dir.make_path.change_dir do
+        project_dir.mkpath.change_dir do
           `git init`
           builder.call
         end

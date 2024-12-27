@@ -325,7 +325,7 @@ RSpec.describe Rubysmith::Configuration::Model do
   describe "#template_root" do
     include_context "with temporary directory"
 
-    let(:existing_path) { temp_dir.join("a/path").make_path }
+    let(:existing_path) { temp_dir.join("a/path").mkpath }
     let(:missing_path) { temp_dir.join "a/missing/path" }
 
     it "answers nil by default" do

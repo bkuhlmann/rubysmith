@@ -50,7 +50,7 @@ module Rubysmith
 
     def make_path
       log_info "Making: #{relative_build_path}"
-      build_path.make_path
+      build_path.mkpath
       self
     end
 

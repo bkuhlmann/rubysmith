@@ -3,8 +3,6 @@
 require "spec_helper"
 
 RSpec.describe Rubysmith::Extensions::Rubocop do
-  using Refinements::Pathname
-
   subject(:extension) { described_class.new client: }
 
   include_context "with application dependencies"
@@ -12,7 +10,7 @@ RSpec.describe Rubysmith::Extensions::Rubocop do
   let(:client) { instance_spy RuboCop::CLI }
 
   describe "#call" do
-    before { temp_dir.join("test").make_path }
+    before { temp_dir.join("test").mkpath }
 
     it "logs info" do
       extension.call
