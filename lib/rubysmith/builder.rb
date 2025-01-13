@@ -4,6 +4,7 @@ require "open3"
 require "refinements/pathname"
 
 module Rubysmith
+  # :reek:DataClump
   # Provides common functionality necessary for all builders.
   class Builder
     include Dependencies[:logger]
