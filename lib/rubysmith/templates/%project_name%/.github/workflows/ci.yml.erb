@@ -15,6 +15,11 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+<% if settings.build_git_lint %>
+        with:
+          fetch-depth: 0
+          ref: ${{github.head_ref}}
+<% end %>
 
       - name: Ruby Setup
         uses: ruby/setup-ruby@v1
