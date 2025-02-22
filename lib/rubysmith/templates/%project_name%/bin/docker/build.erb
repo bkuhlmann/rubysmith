@@ -1,15 +1,15 @@
-#! /usr/bin/env ruby
+#! /usr/bin/env bash
 
-require "bundler/setup"
-Bundler.require :tools
+set -o nounset
+set -o errexit
+set -o pipefail
+IFS=$'\n\t'
 
-version = Bundler.root.join(".ruby-version").read.chop
+read -r version < ".ruby-version"
 
-system <<~COMMAND
-  docker buildx \
-         build \
-         --load \
-         --build-arg RUBY_VERSION=#{version} \
-         --tag <%= settings.project_name %>:latest \
-         #{Bundler.root}
-COMMAND
+docker buildx \
+       build \
+       --load \
+       --build-arg RUBY_VERSION="${version}" \
+       --tag <%= settings.project_name %>:latest \
+       "$(pwd)"
