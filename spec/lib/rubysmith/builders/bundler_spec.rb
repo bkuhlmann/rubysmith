@@ -112,6 +112,19 @@ RSpec.describe Rubysmith::Builders::Bundler do
       CONTENT
     end
 
+    it "builds Gemfile with Monads only" do
+      settings.merge! settings.minimize.merge(build_monads: true)
+      builder.call
+
+      expect(gemfile_path.read).to eq(<<~CONTENT)
+        ruby file: ".ruby-version"
+
+        source "https://rubygems.org"
+
+        gem "dry-monads", "~> 1.8"
+      CONTENT
+    end
+
     it "builds Gemfile with Rake only" do
       settings.merge! settings.minimize.merge(build_rake: true)
       builder.call
@@ -236,6 +249,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "bootsnap", "~> 1.18"
+          gem "dry-monads", "~> 1.8"
           gem "refinements", "~> 13.0"
           gem "zeitwerk", "~> 2.7"
 
@@ -279,6 +293,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "bootsnap", "~> 1.18"
+          gem "dry-monads", "~> 1.8"
           gem "refinements", "~> 13.0"
           gem "zeitwerk", "~> 2.7"
 

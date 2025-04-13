@@ -5,6 +5,9 @@ source "https://rubygems.org"
 <% if settings.build_bootsnap %>
   gem "bootsnap", "~> 1.18"
 <% end %>
+<% if settings.build_monads %>
+  gem "dry-monads", "~> 1.8"
+<% end %>
 <% if settings.build_refinements %>
   gem "refinements", "~> 13.0"
 <% end %>
