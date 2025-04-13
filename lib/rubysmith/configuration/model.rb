@@ -37,6 +37,7 @@ module Rubysmith
       :build_license,
       :build_maximum,
       :build_minimum,
+      :build_monads,
       :build_rake,
       :build_readme,
       :build_reek,

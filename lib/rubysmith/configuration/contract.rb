@@ -36,6 +36,7 @@ module Rubysmith
       required(:build_license).filled :bool
       required(:build_maximum).filled :bool
       required(:build_minimum).filled :bool
+      required(:build_monads).filled :bool
       required(:build_rake).filled :bool
       required(:build_readme).filled :bool
       required(:build_reek).filled :bool

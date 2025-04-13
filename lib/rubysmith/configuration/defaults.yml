@@ -25,6 +25,7 @@ build:
   license: true
   maximum: false
   minimum: false
+  monads: false
   rake: true
   readme: true
   reek: true

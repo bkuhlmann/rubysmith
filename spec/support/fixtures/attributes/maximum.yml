@@ -21,6 +21,7 @@
 :build_license: true
 :build_maximum: true
 :build_minimum: false
+:build_monads: true
 :build_rake: true
 :build_readme: true
 :build_reek: true
