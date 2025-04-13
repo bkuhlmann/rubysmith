@@ -43,6 +43,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_doubled_constant_names = true
               mocks.verify_partial_doubles = true
             end
+
           end
         BODY
       end
@@ -90,6 +91,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_doubled_constant_names = true
               mocks.verify_partial_doubles = true
             end
+
           end
         BODY
       end
@@ -101,6 +103,56 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
       it "builds file" do
         builder.call
         expect(temp_dir.join("demo-test/spec/spec_helper.rb").read).to eq(proof)
+      end
+
+      it "answers true" do
+        expect(builder.call).to be(true)
+      end
+    end
+
+    context "when enabled with Monads only" do
+      let :proof do
+        <<~BODY
+          Bundler.require :tools
+
+          require "test"
+          require "dry/monads"
+
+          SPEC_ROOT = Pathname(__dir__).realpath.freeze
+
+          Dir[File.join(SPEC_ROOT, "support", "shared_contexts", "**/*.rb")].each { |path| require path }
+
+          RSpec.configure do |config|
+            config.color = true
+            config.disable_monkey_patching!
+            config.example_status_persistence_file_path = "./tmp/rspec-examples.txt"
+            config.filter_run_when_matching :focus
+            config.formatter = ENV.fetch("CI", false) == "true" ? :progress : :documentation
+            config.order = :random
+            config.pending_failure_output = :no_backtrace
+            config.shared_context_metadata_behavior = :apply_to_host_groups
+            config.warnings = true
+
+            config.expect_with :rspec do |expectations|
+              expectations.syntax = :expect
+              expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+            end
+
+            config.mock_with :rspec do |mocks|
+              mocks.verify_doubled_constant_names = true
+              mocks.verify_partial_doubles = true
+            end
+
+            config.before(:suite) { Dry::Monads.load_extensions :rspec }
+          end
+        BODY
+      end
+
+      before { settings.merge! settings.minimize.merge(build_rspec: true, build_monads: true) }
+
+      it "builds file" do
+        builder.call
+        expect(path.read).to eq(proof)
       end
 
       it "answers true" do
@@ -142,6 +194,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_doubled_constant_names = true
               mocks.verify_partial_doubles = true
             end
+
           end
         BODY
       end
@@ -202,6 +255,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_doubled_constant_names = true
               mocks.verify_partial_doubles = true
             end
+
           end
         BODY
       end
@@ -237,6 +291,7 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
           Bundler.require :tools
 
           require "test"
+          require "dry/monads"
           require "refinements"
 
           SPEC_ROOT = Pathname(__dir__).realpath.freeze
@@ -265,6 +320,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_doubled_constant_names = true
               mocks.verify_partial_doubles = true
             end
+
+            config.before(:suite) { Dry::Monads.load_extensions :rspec }
           end
         BODY
       end

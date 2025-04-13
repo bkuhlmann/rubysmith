@@ -16,6 +16,7 @@ module Rubysmith
                  .render
                  .replace(/\A\n/, "")
                  .replace("\n\n\n", "\n\n")
+                 .replace("\n  \n", "\n")
 
           true
         end
