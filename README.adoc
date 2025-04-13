@@ -248,7 +248,7 @@ The `--git` option allows you add link:https://git-scm.com[Git] repository suppo
 ===== GitHub
 
 The `--git_hub` option allows you add link:https://github.com[GitHub] templates to your project for
-issues and pull requests. This adds the following fhile when enabled:
+issues and pull requests. This adds the following files when enabled:
 
 ....
 ├── .github
@@ -288,6 +288,10 @@ to build a new project without having to pick and choose.
 ===== Minimum
 
 The `--min` option allows you to build your project with _all options disabled_. This is a quick way to build a new project with the bare minimum of support which is a one step above reaching for a {bundler_inline_link} script.
+
+===== Monads
+
+The `--monads` option allows you to add the link:https://dry-rb.org/gems/dry-monads[Dry Monads] gem to your project for building more functional and fault tolerant objects.
 
 ===== Rake
 
@@ -401,6 +405,7 @@ build:
   license: true
   maximum: false
   minimum: false
+  monads: false
   rake: true
   readme: true
   reek: true
