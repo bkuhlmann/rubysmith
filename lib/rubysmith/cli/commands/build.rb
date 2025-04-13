@@ -78,6 +78,7 @@ module Rubysmith
         on Actions::License
         on Actions::Maximum
         on Actions::Minimum
+        on Actions::Monads
         on Actions::Rake
         on Actions::Readme
         on Actions::Reek
