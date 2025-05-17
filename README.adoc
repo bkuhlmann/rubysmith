@@ -3,7 +3,6 @@
 :figure-caption!:
 
 :bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
-:development_containers_link: link:https://containers.dev[Development Containers]
 :docker_alpine_ruby_link: link:https://alchemists.io/projects/docker-alpine-ruby[Docker Alpine Ruby]
 :docker_link: link:https://www.docker.com[Docker]
 :gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
@@ -31,7 +30,6 @@ toc::[]
 * Supports link:https://orcid.org[Citations (ORCID)].
 * Supports console script for local development.
 * Supports link:https://github.com/ruby/debug[Debug].
-* Supports {development_containers_link}.
 * Supports {docker_link}.
 * Supports link:https://git-scm.com[Git].
 * Supports link:https://github.com[GitHub].
@@ -213,11 +211,14 @@ The `--docker` option allows you add {docker_link} to your project so you can bu
 │  │  ├── build       # Use to build your production image for local use.
 │  │  ├── console     # Use to interact with your production image.
 │  │  └── entrypoint  # Conditionally enables jemalloc support.
-├── .dockerignore     # Defines the files/folders Docker should ignore.
-├── Dockerfile        # Defines how to build your production image.
+├── .dockerignore     # Specifies files/folders Docker should ignore.
+├── compose.yml       # Provides the Docker Compose configuration.
+├── Dockerfile        # Provides the production build configuration for your image.
 ....
 
 ===== Development Containers
+
+⚠️ DEPRECATED: Will be removed in Version 9.0.0.
 
 The `--devcontainer` option allows you add {development_containers_link} support to your project so you can develop locally by running your project within a {docker_link} container. When enabled, these files will be added to your project:
 
