@@ -42,6 +42,7 @@ module Rubysmith
           Builders::Docker::Build,
           Builders::Docker::Console,
           Builders::Docker::Entrypoint,
+          Builders::Docker::Compose,
           Builders::Docker::File,
           Builders::Docker::Ignore,
           Extensions::Bundler,

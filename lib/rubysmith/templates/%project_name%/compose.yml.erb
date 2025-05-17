@@ -1,0 +1,15 @@
+name: "<%= settings.project_name %>"
+
+services:
+  web:
+    init: true
+    build:
+      context: .
+    ports:
+      - "2300:2300"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
