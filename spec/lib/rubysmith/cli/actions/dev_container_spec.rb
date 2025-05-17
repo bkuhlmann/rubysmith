@@ -8,6 +8,11 @@ RSpec.describe Rubysmith::CLI::Actions::DevContainer do
   include_context "with application dependencies"
 
   describe "#call" do
+    it "logs deprecation warning" do
+      action.call true
+      expect(logger.reread).to match(/Dev Container support will be removed in Version 9.0.0/)
+    end
+
     it "answers true when true" do
       action.call true
       expect(settings.build_devcontainer).to be(true)
