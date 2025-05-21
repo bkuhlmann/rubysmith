@@ -18,11 +18,11 @@
 <% namespace do %>
   <% if settings.project_levels.positive? %>
     def self.loader registry = Zeitwerk::Registry
-      @loader ||= registry.loaders.find { |loader| loader.tag == "<%= settings.project_name %>" }
+      @loader ||= registry.loaders.each.find { |loader| loader.tag == "<%= settings.project_name %>" }
     end
   <% else %>
     def self.loader registry = Zeitwerk::Registry
-      @loader ||= registry.loaders.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
+      @loader ||= registry.loaders.each.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
     end
   <% end %>
 <% end %>

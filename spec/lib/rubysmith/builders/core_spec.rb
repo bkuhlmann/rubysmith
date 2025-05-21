@@ -75,7 +75,7 @@ RSpec.describe Rubysmith::Builders::Core do
           # Main namespace.
           module Test
             def self.loader registry = Zeitwerk::Registry
-                @loader ||= registry.loaders.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
+                @loader ||= registry.loaders.each.find { |loader| loader.tag == File.basename(__FILE__, ".rb") }
           end
 
           end
@@ -122,7 +122,7 @@ RSpec.describe Rubysmith::Builders::Core do
             # Main namespace.
             module Test
               def self.loader registry = Zeitwerk::Registry
-                  @loader ||= registry.loaders.find { |loader| loader.tag == "demo-test" }
+                  @loader ||= registry.loaders.each.find { |loader| loader.tag == "demo-test" }
             end
 
             end
@@ -175,7 +175,7 @@ RSpec.describe Rubysmith::Builders::Core do
               # Main namespace.
               module Example
                 def self.loader registry = Zeitwerk::Registry
-                    @loader ||= registry.loaders.find { |loader| loader.tag == "demo-test-example" }
+                    @loader ||= registry.loaders.each.find { |loader| loader.tag == "demo-test-example" }
               end
 
           end
