@@ -10,3 +10,8 @@ Metrics/CollectionLiteralLength:
 Metrics/ModuleLength:
   Exclude:
     - "lib/rubysmith/configuration/model.rb"
+Naming/PredicateMethod:
+  AllowedMethods:
+    - call
+    - install
+    - log_error
