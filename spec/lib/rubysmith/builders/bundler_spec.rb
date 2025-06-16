@@ -135,7 +135,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         source "https://rubygems.org"
 
         group :development do
-          gem "rake", "~> 13.2"
+          gem "rake", "~> 13.3"
         end
       CONTENT
     end
@@ -261,7 +261,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :development do
-            gem "rake", "~> 13.2"
+            gem "rake", "~> 13.3"
           end
 
           group :test do
@@ -305,7 +305,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           end
 
           group :development do
-            gem "rake", "~> 13.2"
+            gem "rake", "~> 13.3"
             gem "tocer", "~> 18.7"
           end
 
