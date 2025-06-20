@@ -164,7 +164,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "refinements", "~> 13.0"
+        gem "refinements", "~> 13.3"
       CONTENT
     end
 
@@ -250,7 +250,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.8"
-          gem "refinements", "~> 13.0"
+          gem "refinements", "~> 13.3"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
@@ -294,7 +294,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.8"
-          gem "refinements", "~> 13.0"
+          gem "refinements", "~> 13.3"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
