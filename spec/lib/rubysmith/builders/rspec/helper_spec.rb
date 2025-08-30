@@ -44,6 +44,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_partial_doubles = true
             end
 
+
+            Kernel.srand config.seed
           end
         BODY
       end
@@ -92,6 +94,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_partial_doubles = true
             end
 
+
+            Kernel.srand config.seed
           end
         BODY
       end
@@ -144,6 +148,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             end
 
             config.before(:suite) { Dry::Monads.load_extensions :rspec }
+
+            Kernel.srand config.seed
           end
         BODY
       end
@@ -195,6 +201,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_partial_doubles = true
             end
 
+
+            Kernel.srand config.seed
           end
         BODY
       end
@@ -256,6 +264,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
               mocks.verify_partial_doubles = true
             end
 
+
+            Kernel.srand config.seed
           end
         BODY
       end
@@ -322,6 +332,8 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
             end
 
             config.before(:suite) { Dry::Monads.load_extensions :rspec }
+
+            Kernel.srand config.seed
           end
         BODY
       end
