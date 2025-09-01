@@ -15,7 +15,7 @@ RSpec.describe Rubysmith::Builders::Caliber do
     let(:settings_path) { temp_dir.join "test/.config/rubocop/config.yml" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_caliber: true) }
+      before { settings.with! settings.minimize.with(build_caliber: true) }
 
       it "builds binstub" do
         builder.call
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::Caliber do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build binstub" do
         builder.call

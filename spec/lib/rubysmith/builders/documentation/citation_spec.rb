@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
     let(:path) { temp_dir.join "test/CITATION.cff" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_citation: true) }
+      before { settings.with! settings.minimize.with(build_citation: true) }
 
       it "builds file with defaults" do
         builder.call
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
       end
 
       it "builds file with custom affiliation and ORCID" do
-        settings.merge! citation_affiliation: "ACME", citation_orcid: "0000-1111-2222-3333"
+        settings.with! citation_affiliation: "ACME", citation_orcid: "0000-1111-2222-3333"
         builder.call
 
         expect(path.read).to eq(<<~CONTENT)
@@ -70,7 +70,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Citation do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

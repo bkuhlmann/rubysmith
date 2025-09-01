@@ -153,7 +153,7 @@ module Rubysmith
       def update_build_options value
         to_h.select { |key, _value| key.start_with? "build_" }
             .transform_values { value }
-            .then { |attributes| dup.merge!(**attributes, build_minimum: !value) }
+            .then { |attributes| dup.with!(**attributes, build_minimum: !value) }
             .freeze
       end
     end

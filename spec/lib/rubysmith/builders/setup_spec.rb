@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Setup do
     let(:path) { temp_dir.join "test", "bin", "setup" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_setup: true) }
+      before { settings.with! settings.minimize.with(build_setup: true) }
 
       it "builds file" do
         builder.call
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::Setup do
 
     context "when enabled with debug" do
       before do
-        settings.merge! settings.minimize.merge(build_setup: true, build_debug: true)
+        settings.with! settings.minimize.with(build_setup: true, build_debug: true)
         builder.call
       end
 
@@ -80,7 +80,7 @@ RSpec.describe Rubysmith::Builders::Setup do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

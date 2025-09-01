@@ -11,7 +11,7 @@ RSpec.shared_context "with application dependencies" do
   let(:io) { StringIO.new }
 
   before do
-    settings.merge! Etcher.call(
+    settings.with! Etcher.call(
       Rubysmith::Container[:registry].remove_loader(1),
       author_email: "jill@acme.io",
       author_family_name: "Smith",

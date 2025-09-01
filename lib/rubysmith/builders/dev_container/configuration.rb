@@ -13,7 +13,7 @@ module Rubysmith
           return false unless settings.build_devcontainer
 
           path = "%project_name%/.devcontainer/devcontainer.json.erb"
-          builder.call(settings.merge(template_path: path)).render
+          builder.call(settings.with(template_path: path)).render
           true
         end
       end

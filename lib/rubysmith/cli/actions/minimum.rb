@@ -18,7 +18,7 @@ module Rubysmith
 
         default { Container[:settings].build_minimum }
 
-        def call(*) = settings.merge! settings.minimize
+        def call(*) = settings.with! settings.minimize
       end
     end
   end

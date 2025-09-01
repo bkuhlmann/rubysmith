@@ -26,7 +26,7 @@ RSpec.describe Rubysmith::Builders::Git::Safe do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build path" do
         builder.call

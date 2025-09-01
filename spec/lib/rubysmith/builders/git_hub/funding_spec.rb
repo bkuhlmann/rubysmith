@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::GitHub::Funding do
 
     context "when enabled with all options" do
       before do
-        settings.merge! settings.maximize
+        settings.with! settings.maximize
         builder.call
       end
 
@@ -29,7 +29,7 @@ RSpec.describe Rubysmith::Builders::GitHub::Funding do
 
     context "when enabled without funding" do
       before do
-        settings.merge! settings.minimize.merge(build_git_hub: true)
+        settings.with! settings.minimize.with(build_git_hub: true)
         builder.call
       end
 
@@ -44,7 +44,7 @@ RSpec.describe Rubysmith::Builders::GitHub::Funding do
 
     context "when disabled" do
       before do
-        settings.merge! settings.minimize
+        settings.with! settings.minimize
         builder.call
       end
 

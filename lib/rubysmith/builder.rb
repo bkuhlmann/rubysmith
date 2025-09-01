@@ -99,7 +99,7 @@ module Rubysmith
 
     def touch
       log_info "Touching: #{relative_build_path}"
-      build_path.deep_touch
+      build_path.touch_deep
       self
     end
 

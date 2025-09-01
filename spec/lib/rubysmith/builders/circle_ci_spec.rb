@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     let(:path) { temp_dir.join "test/.circleci/config.yml" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_circle_ci: true) }
+      before { settings.with! settings.minimize.with(build_circle_ci: true) }
 
       it "builds file when enabled" do
         builder.call
@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     end
 
     it "builds file when enabled with SimpleCov" do
-      settings.merge! settings.minimize.merge(build_circle_ci: true, build_simple_cov: true)
+      settings.with! settings.minimize.with(build_circle_ci: true, build_simple_cov: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -103,7 +103,7 @@ RSpec.describe Rubysmith::Builders::CircleCI do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "does not build file" do
         builder.call

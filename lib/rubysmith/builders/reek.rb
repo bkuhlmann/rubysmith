@@ -11,7 +11,7 @@ module Rubysmith
       def call
         return false unless settings.build_reek
 
-        builder.call(settings.merge(template_path: "%project_name%/.reek.yml.erb")).render
+        builder.call(settings.with(template_path: "%project_name%/.reek.yml.erb")).render
         true
       end
     end

@@ -16,7 +16,7 @@ RSpec.describe Rubysmith::Builders::GitHub::Template do
 
     context "when enabled with all options" do
       before do
-        settings.merge! settings.maximize
+        settings.with! settings.maximize
         builder.call
       end
 
@@ -48,7 +48,7 @@ RSpec.describe Rubysmith::Builders::GitHub::Template do
 
     context "when disabled" do
       before do
-        settings.merge! settings.minimize
+        settings.with! settings.minimize
         builder.call
       end
 

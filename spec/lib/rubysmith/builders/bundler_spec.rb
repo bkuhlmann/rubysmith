@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     let(:gemfile_path) { temp_dir.join "test", "Gemfile" }
 
     it "builds Gemfile with minimum options" do
-      settings.merge! settings.minimize
+      settings.with! settings.minimize
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Amazing Print only" do
-      settings.merge! settings.minimize.merge(build_amazing_print: true)
+      settings.with! settings.minimize.with(build_amazing_print: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -40,7 +40,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Bootsnap only" do
-      settings.merge! settings.minimize.merge(build_bootsnap: true)
+      settings.with! settings.minimize.with(build_bootsnap: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -53,7 +53,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Caliber only" do
-      settings.merge! settings.minimize.merge(build_caliber: true)
+      settings.with! settings.minimize.with(build_caliber: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Debug only" do
-      settings.merge! settings.minimize.merge(build_debug: true)
+      settings.with! settings.minimize.with(build_debug: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -83,7 +83,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Git and Git Lint only" do
-      settings.merge! settings.minimize.merge(build_git: true, build_git_lint: true)
+      settings.with! settings.minimize.with(build_git: true, build_git_lint: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -98,7 +98,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with IRB Kit only" do
-      settings.merge! settings.minimize.merge(build_irb_kit: true)
+      settings.with! settings.minimize.with(build_irb_kit: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -113,7 +113,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Monads only" do
-      settings.merge! settings.minimize.merge(build_monads: true)
+      settings.with! settings.minimize.with(build_monads: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -126,7 +126,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Rake only" do
-      settings.merge! settings.minimize.merge(build_rake: true)
+      settings.with! settings.minimize.with(build_rake: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -141,7 +141,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Reek only" do
-      settings.merge! settings.minimize.merge(build_reek: true)
+      settings.with! settings.minimize.with(build_reek: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -156,7 +156,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Refinements only" do
-      settings.merge! settings.minimize.merge(build_refinements: true)
+      settings.with! settings.minimize.with(build_refinements: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -164,12 +164,12 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "refinements", "~> 13.3"
+        gem "refinements", "~> 13.5"
       CONTENT
     end
 
     it "builds Gemfile with RSpec only" do
-      settings.merge! settings.minimize.merge(build_rspec: true)
+      settings.with! settings.minimize.with(build_rspec: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -184,7 +184,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Repl Type Completor only" do
-      settings.merge! settings.minimize.merge(build_rtc: true)
+      settings.with! settings.minimize.with(build_rtc: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -199,7 +199,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with SimpleCov only" do
-      settings.merge! settings.minimize.merge(build_simple_cov: true)
+      settings.with! settings.minimize.with(build_simple_cov: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -214,7 +214,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Zeitwerk only" do
-      settings.merge! settings.minimize.merge(build_zeitwerk: true)
+      settings.with! settings.minimize.with(build_zeitwerk: true)
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -227,7 +227,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with Markdown only" do
-      settings.merge! settings.minimize.merge(documentation_format: "md")
+      settings.with! settings.minimize.with(documentation_format: "md")
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -250,7 +250,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 13.3"
+          gem "refinements", "~> 13.5"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
@@ -278,7 +278,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
 
       it "builds Gemfile" do
-        settings.merge! settings.maximize.merge(documentation_format: "adoc")
+        settings.with! settings.maximize.with(documentation_format: "adoc")
         builder.call
 
         expect(gemfile_path.read).to eq(proof)
@@ -294,7 +294,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 13.3"
+          gem "refinements", "~> 13.5"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
@@ -323,7 +323,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
       end
 
       it "builds Gemfile" do
-        settings.merge! settings.maximize.merge(documentation_format: "md")
+        settings.with! settings.maximize.with(documentation_format: "md")
         builder.call
 
         expect(gemfile_path.read).to eq(proof)

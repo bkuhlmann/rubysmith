@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_license
 
-          settings.merge(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
+          settings.with(template_path: "%project_name%/LICENSE-#{license}.#{kind}.erb")
                   .then do |updated_settings|
                     builder.call(updated_settings).render.rename "LICENSE.#{kind}"
                   end

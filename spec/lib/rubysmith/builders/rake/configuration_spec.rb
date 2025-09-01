@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     let(:path) { temp_dir.join "test", "Rakefile" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_rake: true) }
+      before { settings.with! settings.minimize.with(build_rake: true) }
 
       it "builds file" do
         builder.call
@@ -34,7 +34,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     end
 
     it "builds file when enabled with Git and Git Lint only" do
-      settings.merge! settings.minimize.merge(
+      settings.with! settings.minimize.with(
         build_rake: true,
         build_git: true,
         build_git_lint: true
@@ -56,7 +56,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     end
 
     it "builds file when enabled with Reek only" do
-      settings.merge! settings.minimize.merge(build_rake: true, build_reek: true)
+      settings.with! settings.minimize.with(build_rake: true, build_reek: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -73,7 +73,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     end
 
     it "builds file when enabled with RSpec only" do
-      settings.merge! settings.minimize.merge(build_rake: true, build_rspec: true)
+      settings.with! settings.minimize.with(build_rake: true, build_rspec: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -90,7 +90,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     end
 
     it "builds file when enabled with Caliber only" do
-      settings.merge! settings.minimize.merge(build_rake: true, build_caliber: true)
+      settings.with! settings.minimize.with(build_rake: true, build_caliber: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -108,7 +108,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
 
     context "when enabled with all options" do
       before do
-        settings.merge! settings.maximize
+        settings.with! settings.maximize
         builder.call
       end
 
@@ -138,7 +138,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_docker
 
-          builder.call(settings.merge(template_path: "%project_name%/bin/docker/build.erb"))
+          builder.call(settings.with(template_path: "%project_name%/bin/docker/build.erb"))
                  .render
                  .permit 0o755
 

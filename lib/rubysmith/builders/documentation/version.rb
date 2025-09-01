@@ -13,7 +13,7 @@ module Rubysmith
         def call
           return false unless settings.build_versions
 
-          builder.call(settings.merge(template_path: "%project_name%/VERSIONS.#{kind}.erb")).render
+          builder.call(settings.with(template_path: "%project_name%/VERSIONS.#{kind}.erb")).render
 
           true
         end

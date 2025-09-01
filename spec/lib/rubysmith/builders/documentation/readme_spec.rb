@@ -12,7 +12,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
 
   describe "#call" do
     it "builds file when enabled with ASCII Doc format and minimum configuration" do
-      settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "adoc")
+      settings.with! settings.minimize.with(build_readme: true, documentation_format: "adoc")
       builder.call
 
       expect(temp_dir.join("test/README.adoc").read).to eq(
@@ -21,7 +21,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     it "builds file when enabled with ASCII Doc format and maximum configuration" do
-      settings.merge! settings.maximize.merge(documentation_format: "adoc")
+      settings.with! settings.maximize.with(documentation_format: "adoc")
       builder.call
 
       expect(temp_dir.join("test/README.adoc").read).to eq(
@@ -30,7 +30,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     it "builds file when enabled with Markdown format and minimum configuration" do
-      settings.merge! settings.minimize.merge(build_readme: true, documentation_format: "md")
+      settings.with! settings.minimize.with(build_readme: true, documentation_format: "md")
       builder.call
 
       expect(temp_dir.join("test/README.md").read).to eq(
@@ -39,7 +39,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     it "builds file when enabled with Markdown format and maximum configuration" do
-      settings.merge! settings.maximize.merge(documentation_format: "md")
+      settings.with! settings.maximize.with(documentation_format: "md")
       builder.call
 
       expect(temp_dir.join("test/README.md").read).to eq(
@@ -48,12 +48,12 @@ RSpec.describe Rubysmith::Builders::Documentation::Readme do
     end
 
     it "answers true when enabled" do
-      settings.merge! settings.merge(build_readme: true)
+      settings.with! settings.with(build_readme: true)
       expect(builder.call).to be(true)
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

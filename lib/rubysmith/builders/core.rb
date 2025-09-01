@@ -19,7 +19,7 @@ module Rubysmith
       private
 
       def render_implementation
-        builder.call(settings.merge(template_path: "%project_name%/lib/%project_path%.rb.erb"))
+        builder.call(settings.with(template_path: "%project_name%/lib/%project_path%.rb.erb"))
                .render
                .replace("  require", "require")
                .replace(/    (?=(Zeit|loader|end))/, "")
@@ -31,7 +31,7 @@ module Rubysmith
         return unless settings.build_zeitwerk
 
         path = "%project_name%/spec/lib/%project_path%_spec.rb.erb"
-        builder.call(settings.merge(template_path: path)).render
+        builder.call(settings.with(template_path: path)).render
       end
 
       def indentation = ::Core::EMPTY_STRING.indent settings.project_levels

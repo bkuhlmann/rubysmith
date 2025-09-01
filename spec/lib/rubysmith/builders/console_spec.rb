@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::Console do
 
     context "when enabled with non-dashed project name" do
       it "builds file" do
-        settings.merge! settings.minimize.merge(build_console: true)
+        settings.with! settings.minimize.with(build_console: true)
         builder.call
 
         expect(path.read).to eq(<<~CONTENT)
@@ -31,7 +31,7 @@ RSpec.describe Rubysmith::Builders::Console do
       end
 
       it "updates file permissions" do
-        settings.merge! settings.minimize.merge(build_console: true)
+        settings.with! settings.minimize.with(build_console: true)
         builder.call
 
         expect(path.stat.mode).to eq(33261)
@@ -42,7 +42,7 @@ RSpec.describe Rubysmith::Builders::Console do
       let(:path) { temp_dir.join "demo-test/bin/console" }
 
       it "builds file" do
-        settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
+        settings.with! settings.minimize.with(project_name: "demo-test", build_console: true)
         builder.call
 
         expect(path.read).to eq(<<~CONTENT)
@@ -59,7 +59,7 @@ RSpec.describe Rubysmith::Builders::Console do
       end
 
       it "updates file permissions" do
-        settings.merge! settings.minimize.merge(project_name: "demo-test", build_console: true)
+        settings.with! settings.minimize.with(project_name: "demo-test", build_console: true)
         builder.call
 
         expect(path.stat.mode).to eq(33261)
@@ -72,7 +72,7 @@ RSpec.describe Rubysmith::Builders::Console do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_citation
 
-          builder.call(settings.merge(template_path: "%project_name%/CITATION.cff.erb")).render
+          builder.call(settings.with(template_path: "%project_name%/CITATION.cff.erb")).render
           true
         end
       end

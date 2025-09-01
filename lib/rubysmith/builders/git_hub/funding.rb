@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_git_hub && settings.build_funding
 
-          settings.merge(template_path: "%project_name%/.github/FUNDING.yml.erb")
+          settings.with(template_path: "%project_name%/.github/FUNDING.yml.erb")
                   .then { |updated_configuration| builder.call(updated_configuration).render }
 
           true

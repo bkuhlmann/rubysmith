@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_readme
 
-          builder.call(settings.merge(template_path: "%project_name%/README.#{kind}.erb"))
+          builder.call(settings.with(template_path: "%project_name%/README.#{kind}.erb"))
                  .render
                  .replace(/\n{2,}/, "\n\n")
                  .replace("\n    \n", "\n")

@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Builders::Core do
   describe "#call" do
     context "with default configuration" do
       before do
-        settings.merge! settings.minimize
+        settings.with! settings.minimize
         builder.call
       end
 
@@ -37,7 +37,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
     context "with dashed project name" do
       before do
-        settings.merge! settings.minimize.merge(project_name: "demo-test")
+        settings.with! settings.minimize.with(project_name: "demo-test")
         builder.call
       end
 
@@ -58,7 +58,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
     context "with default configuration and Zeitwerk enabled" do
       before do
-        settings.merge! settings.minimize.merge(build_zeitwerk: true)
+        settings.with! settings.minimize.with(build_zeitwerk: true)
         builder.call
       end
 
@@ -104,7 +104,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
     context "with single dashed project name and Zeitwerk enabled" do
       before do
-        settings.merge! settings.minimize.merge(project_name: "demo-test", build_zeitwerk: true)
+        settings.with! settings.minimize.with(project_name: "demo-test", build_zeitwerk: true)
         builder.call
       end
 
@@ -152,7 +152,7 @@ RSpec.describe Rubysmith::Builders::Core do
 
     context "with multi-dashed project name and Zeitwerk enabled" do
       before do
-        settings.merge! settings.minimize.merge(
+        settings.with! settings.minimize.with(
           project_name: "demo-test-example",
           build_zeitwerk: true
         )

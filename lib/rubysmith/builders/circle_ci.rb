@@ -11,7 +11,7 @@ module Rubysmith
       def call
         return false unless settings.build_circle_ci
 
-        builder.call(settings.merge(template_path: "%project_name%/.circleci/config.yml.erb"))
+        builder.call(settings.with(template_path: "%project_name%/.circleci/config.yml.erb"))
                .render
                .replace(/\n\n\Z/, "\n")
 

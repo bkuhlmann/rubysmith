@@ -13,10 +13,10 @@ RSpec.describe Rubysmith::Builder do
   let(:build_path) { temp_dir.join "demo-test", "lib", "demo", "test", "identity.rb" }
 
   before do
-    settings.merge! template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
-                    template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
-                    target_root: temp_dir,
-                    project_name: "demo-test"
+    settings.with! template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
+                   template_path: "%project_name%/lib/%project_path%/identity.rb.erb",
+                   target_root: temp_dir,
+                   project_name: "demo-test"
   end
 
   describe "#append" do
@@ -48,9 +48,9 @@ RSpec.describe Rubysmith::Builder do
 
   describe "#check" do
     before do
-      settings.merge! template_path: "%project_name%",
-                      target_root: temp_dir,
-                      project_name: "demo-test"
+      settings.with! template_path: "%project_name%",
+                     target_root: temp_dir,
+                     project_name: "demo-test"
     end
 
     it "logs debug info when project doesn't exist" do
@@ -68,7 +68,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#delete" do
-    before { build_path.deep_touch }
+    before { build_path.touch_deep }
 
     it "logs information" do
       builder.delete
@@ -165,9 +165,9 @@ RSpec.describe Rubysmith::Builder do
     let(:build_path) { temp_dir.join "demo-test/lib/demo/test/one/two" }
 
     before do
-      settings.merge! template_path: "%project_name%/lib/%project_path%/one/two",
-                      target_root: temp_dir,
-                      project_name: "demo-test"
+      settings.with! template_path: "%project_name%/lib/%project_path%/one/two",
+                     target_root: temp_dir,
+                     project_name: "demo-test"
     end
 
     it "logs information" do
@@ -186,7 +186,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#permit" do
-    before { build_path.deep_touch }
+    before { build_path.touch_deep }
 
     it "logs information" do
       builder.permit 0o755
@@ -234,7 +234,7 @@ RSpec.describe Rubysmith::Builder do
   end
 
   describe "#rename" do
-    before { build_path.deep_touch }
+    before { build_path.touch_deep }
 
     it "logs information" do
       builder.rename "identity.backup"
@@ -271,11 +271,11 @@ RSpec.describe Rubysmith::Builder do
 
     context "with duplicated project name in path" do
       before do
-        settings.merge! build_debug: false,
-                        template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
-                        template_path: "%project_name%/bin/%project_name%.erb",
-                        target_root: temp_dir,
-                        project_name: "demo-test"
+        settings.with! build_debug: false,
+                       template_roots: [SPEC_ROOT.join("support/fixtures/templates")],
+                       template_path: "%project_name%/bin/%project_name%.erb",
+                       target_root: temp_dir,
+                       project_name: "demo-test"
       end
 
       it "renders template" do
@@ -369,7 +369,7 @@ RSpec.describe Rubysmith::Builder do
     end
 
     it "creates empty directory" do
-      described_class.new(settings.merge(template_path: "test/path")).touch
+      described_class.new(settings.with(template_path: "test/path")).touch
       expect(temp_dir.join("test", "path").exist?).to be(true)
     end
 

@@ -109,12 +109,12 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
 
     it "answers camelcased class with underscored project name" do
-      updated_record = record.merge project_name: "test_underscore"
+      updated_record = record.with project_name: "test_underscore"
       expect(updated_record.project_class).to eq("TestUnderscore")
     end
 
     it "answers class with dashed project name" do
-      updated_record = record.merge project_name: "test-dash"
+      updated_record = record.with project_name: "test-dash"
       expect(updated_record.project_class).to eq("Dash")
     end
   end
@@ -125,12 +125,12 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
 
     it "answers namespaced class with underscored project name" do
-      updated_record = record.merge project_name: "test_underscore"
+      updated_record = record.with project_name: "test_underscore"
       expect(updated_record.project_namespaced_class).to eq("TestUnderscore")
     end
 
     it "answers namespaced class with dashed project name" do
-      updated_record = record.merge project_name: "test-dash"
+      updated_record = record.with project_name: "test-dash"
       expect(updated_record.project_namespaced_class).to eq("Test::Dash")
     end
   end
@@ -141,12 +141,12 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
 
     it "answers titleized label with underscored project name" do
-      updated_record = record.merge project_name: "test_underscore"
+      updated_record = record.with project_name: "test_underscore"
       expect(updated_record.project_label).to eq("Test Underscore")
     end
 
     it "answers titleized project label with dashed project name" do
-      updated_record = record.merge project_name: "test-dash"
+      updated_record = record.with project_name: "test-dash"
       expect(updated_record.project_label).to eq("Test Dash")
     end
   end
@@ -157,12 +157,12 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
 
     it "answers one with single dashed project name" do
-      updated_record = record.merge project_name: "test-dash"
+      updated_record = record.with project_name: "test-dash"
       expect(updated_record.project_levels).to eq(1)
     end
 
     it "answers more than one with multi-dashed project name" do
-      updated_record = record.merge project_name: "test-one-two"
+      updated_record = record.with project_name: "test-one-two"
       expect(updated_record.project_levels).to eq(2)
     end
   end
@@ -173,12 +173,12 @@ RSpec.describe Rubysmith::Configuration::Model do
     end
 
     it "answers underscored project path with underscored project name" do
-      updated_record = record.merge project_name: "test_underscore"
+      updated_record = record.with project_name: "test_underscore"
       expect(updated_record.project_path).to eq("test_underscore")
     end
 
     it "answers nested project path with dashed project name" do
-      updated_record = record.merge project_name: "test-dash"
+      updated_record = record.with project_name: "test-dash"
       expect(updated_record.project_path).to eq("test/dash")
     end
   end
@@ -187,125 +187,125 @@ RSpec.describe Rubysmith::Configuration::Model do
     let(:target_root) { Bundler.root }
 
     it "answers unchanged project root path with single project name" do
-      updated_record = record.merge(target_root:)
+      updated_record = record.with(target_root:)
       expect(updated_record.project_root).to eq(Bundler.root.join("test"))
     end
 
     it "answers unchanged project root path with underscored project name" do
-      updated_record = record.merge(project_name: "test_underscore", target_root:)
+      updated_record = record.with(project_name: "test_underscore", target_root:)
       expect(updated_record.project_root).to eq(Bundler.root.join("test_underscore"))
     end
 
     it "answers unchanged project root path with dashed project name" do
-      updated_record = record.merge(project_name: "test-dash", target_root:)
+      updated_record = record.with(project_name: "test-dash", target_root:)
       expect(updated_record.project_root).to eq(Bundler.root.join("test-dash"))
     end
   end
 
   describe "#computed_project_uri_community" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_community: "test.com/%<project_name>s/commons"
+      updated_record = record.with project_uri_community: "test.com/%<project_name>s/commons"
       expect(updated_record.computed_project_uri_community).to eq("test.com/test/commons")
     end
   end
 
   describe "#computed_project_uri_conduct" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_conduct: "test.com/%<project_name>s/conduct"
+      updated_record = record.with project_uri_conduct: "test.com/%<project_name>s/conduct"
       expect(updated_record.computed_project_uri_conduct).to eq("test.com/test/conduct")
     end
   end
 
   describe "#computed_project_uri_contributions" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_contributions: "test.com/%<project_name>s/contribs"
+      updated_record = record.with project_uri_contributions: "test.com/%<project_name>s/contribs"
       expect(updated_record.computed_project_uri_contributions).to eq("test.com/test/contribs")
     end
   end
 
   describe "#computed_project_uri_dcoo" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_dcoo: "test.com/%<project_name>s/dcoo"
+      updated_record = record.with project_uri_dcoo: "test.com/%<project_name>s/dcoo"
       expect(updated_record.computed_project_uri_dcoo).to eq("test.com/test/dcoo")
     end
   end
 
   describe "#computed_project_uri_download" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_download: "test.com/%<project_name>s/latest"
+      updated_record = record.with project_uri_download: "test.com/%<project_name>s/latest"
       expect(updated_record.computed_project_uri_download).to eq("test.com/test/latest")
     end
   end
 
   describe "#computed_project_uri_funding" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_funding: "test.com/%<project_name>s/funding"
+      updated_record = record.with project_uri_funding: "test.com/%<project_name>s/funding"
       expect(updated_record.computed_project_uri_funding).to eq("test.com/test/funding")
     end
   end
 
   describe "#computed_project_uri_home" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_home: "test.com/%<project_name>s"
+      updated_record = record.with project_uri_home: "test.com/%<project_name>s"
       expect(updated_record.computed_project_uri_home).to eq("test.com/test")
     end
   end
 
   describe "#computed_project_uri_issues" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_issues: "test.com/%<project_name>s/issues"
+      updated_record = record.with project_uri_issues: "test.com/%<project_name>s/issues"
       expect(updated_record.computed_project_uri_issues).to eq("test.com/test/issues")
     end
   end
 
   describe "#computed_project_uri_license" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_license: "test.com/%<project_name>s/license"
+      updated_record = record.with project_uri_license: "test.com/%<project_name>s/license"
       expect(updated_record.computed_project_uri_license).to eq("test.com/test/license")
     end
   end
 
   describe "#computed_project_uri_security" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_security: "test.com/%<project_name>s/security"
+      updated_record = record.with project_uri_security: "test.com/%<project_name>s/security"
       expect(updated_record.computed_project_uri_security).to eq("test.com/test/security")
     end
   end
 
   describe "#computed_project_uri_source" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_source: "test.com/%<project_name>s/source"
+      updated_record = record.with project_uri_source: "test.com/%<project_name>s/source"
       expect(updated_record.computed_project_uri_source).to eq("test.com/test/source")
     end
   end
 
   describe "#computed_project_uri_versions" do
     it "answers formatted URL" do
-      updated_record = record.merge project_uri_versions: "test.com/%<project_name>s/versions"
+      updated_record = record.with project_uri_versions: "test.com/%<project_name>s/versions"
       expect(updated_record.computed_project_uri_versions).to eq("test.com/test/versions")
     end
   end
 
   describe "#ascii_doc?" do
     it "answers true when ASCII Doc format" do
-      updated_record = record.merge documentation_format: "adoc"
+      updated_record = record.with documentation_format: "adoc"
       expect(updated_record.ascii_doc?).to be(true)
     end
 
     it "answers false when other format" do
-      updated_record = record.merge documentation_format: "test"
+      updated_record = record.with documentation_format: "test"
       expect(updated_record.ascii_doc?).to be(false)
     end
   end
 
   describe "#markdown?" do
     it "answers true when Markdown format" do
-      updated_record = record.merge documentation_format: "md"
+      updated_record = record.with documentation_format: "md"
       expect(updated_record.markdown?).to be(true)
     end
 
     it "answers false when other format" do
-      updated_record = record.merge documentation_format: "test"
+      updated_record = record.with documentation_format: "test"
       expect(updated_record.markdown?).to be(false)
     end
   end
@@ -314,7 +314,7 @@ RSpec.describe Rubysmith::Configuration::Model do
     let(:target_root) { Bundler.root }
 
     it "answers pathway" do
-      updated_record = record.merge(target_root:)
+      updated_record = record.with(target_root:)
 
       expect(updated_record.pathway).to eq(
         Rubysmith::Pathway[start_root: nil, end_root: target_root]

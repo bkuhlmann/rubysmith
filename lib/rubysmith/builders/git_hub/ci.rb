@@ -19,7 +19,7 @@ module Rubysmith
         private
 
         def with_template
-          settings.merge template_path: "%project_name%/.github/workflows/ci.yml.erb"
+          settings.with template_path: "%project_name%/.github/workflows/ci.yml.erb"
         end
       end
     end

@@ -11,7 +11,7 @@ module Rubysmith
       def call
         return false unless settings.build_console
 
-        builder.call(settings.merge(template_path: "%project_name%/bin/console.erb"))
+        builder.call(settings.with(template_path: "%project_name%/bin/console.erb"))
                .render
                .permit 0o755
 

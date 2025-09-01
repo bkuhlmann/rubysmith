@@ -27,7 +27,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -48,7 +48,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content before namespace block" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -74,7 +74,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content after namespace" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -95,7 +95,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with content after namespace block" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -121,7 +121,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with single lined namespace" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let :content do
         <<~CONTENT
@@ -143,7 +143,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
     end
 
     context "with empty namespace" do
-      let(:test_settings) { settings.minimize.merge project_name: "example" }
+      let(:test_settings) { settings.minimize.with project_name: "example" }
 
       let(:content) { "<% namespace %>" }
 
@@ -159,7 +159,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
 
     context "with empty namespaces" do
       let :test_settings do
-        settings.minimize.merge project_name: "example-one-two"
+        settings.minimize.with project_name: "example-one-two"
       end
 
       let(:content) { "<% namespace %>" }
@@ -183,7 +183,7 @@ RSpec.describe Rubysmith::Renderers::ERB do
 
     context "with filled namespaces" do
       let :test_settings do
-        settings.minimize.merge project_name: "example-one-two"
+        settings.minimize.with project_name: "example-one-two"
       end
 
       let :content do

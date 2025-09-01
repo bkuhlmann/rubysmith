@@ -12,7 +12,7 @@ module Rubysmith
         def call
           return false unless settings.build_rspec
 
-          builder.call(settings.merge(template_path: "%project_name%/spec/spec_helper.rb.erb"))
+          builder.call(settings.with(template_path: "%project_name%/spec/spec_helper.rb.erb"))
                  .render
                  .replace(/\A\n/, "")
                  .replace("\n\n\n", "\n\n")

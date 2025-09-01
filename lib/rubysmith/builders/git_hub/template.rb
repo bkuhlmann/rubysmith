@@ -21,15 +21,15 @@ module Rubysmith
         private
 
         def with_issue
-          settings.merge template_path: "%project_name%/.github/ISSUE_TEMPLATE/issue.md.erb"
+          settings.with template_path: "%project_name%/.github/ISSUE_TEMPLATE/issue.md.erb"
         end
 
         def with_pull_request
-          settings.merge template_path: "%project_name%/.github/PULL_REQUEST_TEMPLATE.md.erb"
+          settings.with template_path: "%project_name%/.github/PULL_REQUEST_TEMPLATE.md.erb"
         end
 
         def with_configuration
-          settings.merge template_path: "%project_name%/.github/ISSUE_TEMPLATE/config.yml.erb"
+          settings.with template_path: "%project_name%/.github/ISSUE_TEMPLATE/config.yml.erb"
         end
       end
     end

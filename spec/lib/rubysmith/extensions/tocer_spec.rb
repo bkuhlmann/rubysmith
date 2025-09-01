@@ -14,7 +14,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
     before { temp_dir.join("test/README.md").make_ancestors.write("## Test") }
 
     context "with readme and Markdown enabled" do
-      before { settings.merge! build_readme: true, documentation_format: "md" }
+      before { settings.with! build_readme: true, documentation_format: "md" }
 
       it "logs info" do
         extension.call
@@ -43,7 +43,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
     end
 
     context "with readme enabled and non-Markdown format" do
-      before { settings.merge! build_readme: true, documentation_format: "adoc" }
+      before { settings.with! build_readme: true, documentation_format: "adoc" }
 
       it "doesn't log anything" do
         extension.call
@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::Extensions::Tocer do
     end
 
     context "with readme disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't log anything" do
         extension.call

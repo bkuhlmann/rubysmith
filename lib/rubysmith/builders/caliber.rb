@@ -11,12 +11,12 @@ module Rubysmith
       def call
         return false unless settings.build_caliber
 
-        builder.call(settings.merge(template_path: "%project_name%/bin/rubocop.erb"))
+        builder.call(settings.with(template_path: "%project_name%/bin/rubocop.erb"))
                .render
                .permit 0o755
 
         path = "%project_name%/.config/rubocop/config.yml.erb"
-        builder.call(settings.merge(template_path: path)).render
+        builder.call(settings.with(template_path: path)).render
         true
       end
     end

@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     let(:path) { temp_dir.join "test/.reek.yml" }
 
     context "when enabled" do
-      before { settings.merge! settings.minimize.merge(build_reek: true) }
+      before { settings.with! settings.minimize.with(build_reek: true) }
 
       it "builds file" do
         builder.call
@@ -35,7 +35,7 @@ RSpec.describe Rubysmith::Builders::Reek do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

@@ -13,7 +13,7 @@ module Rubysmith
           return false unless settings.build_rspec
 
           template = "%project_name%/spec/support/shared_contexts/temp_dir.rb.erb"
-          settings.merge(template_path: template)
+          settings.with(template_path: template)
                   .then { |updated_configuration| builder.call updated_configuration }
                   .render
                   .replace(/\n\s+\n\s+/, "\n  ")

@@ -13,7 +13,7 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
     let(:path) { temp_dir.join "test/.github/workflows/ci.yml" }
 
     it "builds YAML template when enabled" do
-      settings.merge! settings.minimize.merge(build_git_hub_ci: true)
+      settings.with! settings.minimize.with(build_git_hub_ci: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -46,7 +46,7 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
     end
 
     it "builds YAML template when enabled with SimpleCov" do
-      settings.merge! settings.minimize.merge(build_git_hub_ci: true, build_simple_cov: true)
+      settings.with! settings.minimize.with(build_git_hub_ci: true, build_simple_cov: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -85,7 +85,7 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
     end
 
     it "builds YAML template when enabled with Git Lint" do
-      settings.merge! settings.minimize.merge(build_git_hub_ci: true, build_git_lint: true)
+      settings.with! settings.minimize.with(build_git_hub_ci: true, build_git_lint: true)
       builder.call
 
       expect(path.read).to eq(<<~CONTENT)
@@ -126,7 +126,7 @@ RSpec.describe Rubysmith::Builders::GitHub::CI do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call

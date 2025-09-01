@@ -23,7 +23,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
 
     context "when enabled" do
       before do
-        settings.merge! settings.minimize.merge(build_git: true)
+        settings.with! settings.minimize.with(build_git: true)
 
         project_dir.mkpath.change_dir do |path|
           `git init`
@@ -49,7 +49,7 @@ RSpec.describe Rubysmith::Builders::Git::Commit do
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't create commit" do
         project_dir.mkpath.change_dir do

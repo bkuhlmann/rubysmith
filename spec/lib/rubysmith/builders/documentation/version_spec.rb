@@ -12,7 +12,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
 
   describe "#call" do
     it "builds default version history when enabled with Markdown format" do
-      settings.merge! settings.minimize.merge(build_versions: true, documentation_format: "md")
+      settings.with! settings.minimize.with(build_versions: true, documentation_format: "md")
       builder.call
 
       expect(temp_dir.join("test", "VERSIONS.md").read).to eq(<<~CONTENT)
@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
     end
 
     it "builds default version history when enabled with Markdown format and custom version" do
-      settings.merge! settings.minimize.merge(
+      settings.with! settings.minimize.with(
         build_versions: true,
         documentation_format: "md",
         project_version: "1.2.3"
@@ -43,7 +43,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
     end
 
     it "builds default version history when enabled with ASCII Doc format" do
-      settings.merge! settings.minimize.merge(build_versions: true, documentation_format: "adoc")
+      settings.with! settings.minimize.with(build_versions: true, documentation_format: "adoc")
       builder.call
 
       expect(temp_dir.join("test", "VERSIONS.adoc").read).to eq(<<~CONTENT)
@@ -56,7 +56,7 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
     end
 
     it "builds default version history when enabled with ASCII Doc format and custom version" do
-      settings.merge! settings.minimize.merge(
+      settings.with! settings.minimize.with(
         build_versions: true,
         documentation_format: "adoc",
         project_version: "1.2.3"
@@ -74,12 +74,12 @@ RSpec.describe Rubysmith::Builders::Documentation::Version do
     end
 
     it "answers true when enabled" do
-      settings.merge! settings.minimize.merge(build_versions: true)
+      settings.with! settings.minimize.with(build_versions: true)
       expect(builder.call).to be(true)
     end
 
     context "when disabled" do
-      before { settings.merge! settings.minimize }
+      before { settings.with! settings.minimize }
 
       it "doesn't build file" do
         builder.call
