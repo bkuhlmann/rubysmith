@@ -226,7 +226,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         <<~BODY
           require "simplecov"
 
-          unless ENV["NO_COVERAGE"]
+          if ENV["COVERAGE"] == "no"
+            puts "SimpleCov skipped due to being disabled."
+          else
             SimpleCov.start do
               add_filter %r(^/spec/)
               enable_coverage :branch
@@ -289,7 +291,9 @@ RSpec.describe Rubysmith::Builders::RSpec::Helper do
         <<~BODY
           require "simplecov"
 
-          unless ENV["NO_COVERAGE"]
+          if ENV["COVERAGE"] == "no"
+            puts "SimpleCov skipped due to being disabled."
+          else
             SimpleCov.start do
               add_filter %r(^/spec/)
               enable_coverage :branch
