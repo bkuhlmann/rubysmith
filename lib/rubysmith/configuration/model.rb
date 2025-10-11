@@ -53,6 +53,7 @@ module Rubysmith
       :citation_message,
       :citation_orcid,
       :documentation_format,
+      :gems_uri,
       :license_label,
       :license_name,
       :license_version,

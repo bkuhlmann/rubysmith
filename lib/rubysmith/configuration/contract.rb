@@ -52,6 +52,7 @@ module Rubysmith
       optional(:citation_message).filled :string
       optional(:citation_orcid).filled :string
       required(:documentation_format).filled :string
+      required(:gems_uri).filled :string
       required(:loaded_at).filled :time
       required(:license_label).filled :string
       required(:license_name).filled :string

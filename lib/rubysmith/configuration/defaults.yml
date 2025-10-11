@@ -42,6 +42,8 @@ citation:
   message: Please use the following metadata when citing this project in your work.
 documentation:
   format: "adoc"
+gems:
+  uri: https://rubygems.org
 license:
   label: Hippocratic
   name: hippocratic
@@ -54,7 +56,7 @@ project:
     conduct: "%<organization_uri>s/policies/code_of_conduct"
     contributions: "%<organization_uri>s/policies/contributions"
     dcoo: "%<organization_uri>s/policies/developer_certificate_of_origin"
-    download: "https://rubygems.org/gems/%<project_name>s"
+    download: "%<gems_uri>s/gems/%<project_name>s"
     funding: "%<repository_uri>s/sponsors/%<repository_handle>s"
     home: "%<organization_uri>s/projects/%<project_name>s"
     issues: "%<repository_uri>s/%<repository_handle>s/%<project_name>s/issues"
