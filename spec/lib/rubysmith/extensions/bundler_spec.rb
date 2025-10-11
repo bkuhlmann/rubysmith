@@ -12,7 +12,7 @@ RSpec.describe Rubysmith::Extensions::Bundler do
   let(:client) { class_spy Bundler::CLI }
 
   describe "#call" do
-    before { temp_dir.join("test/Gemfile").make_ancestors.write(%(source "https://rubygems.org")) }
+    before { temp_dir.join("test/Gemfile").make_ancestors.write(%(source "#{settings.gems_uri}")) }
 
     it "logs info" do
       extension.call
