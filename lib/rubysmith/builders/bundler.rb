@@ -16,7 +16,7 @@ module Rubysmith
                .replace(/  (?=.+(bootsnap|dry-monads|refinements|zeitwerk))/, "")
                .replace(/(\n+|\s+)end/, "\nend")
                .replace(/\n\ngroup :(quality|development|test|tools) do\nend/, "")
-               .replace(/org"\n+/, "org\"\n\n")
+               .insert_after(/source.+"\n/, "\n")
 
         true
       end

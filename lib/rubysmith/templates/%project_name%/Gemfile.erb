@@ -1,6 +1,6 @@
 ruby file: ".ruby-version"
 
-source "https://rubygems.org"
+source "<%= settings.gems_uri %>"
 
 <% if settings.build_bootsnap %>
   gem "bootsnap", "~> 1.18"

@@ -24,6 +24,18 @@ RSpec.describe Rubysmith::Builders::Bundler do
       CONTENT
     end
 
+    it "builds Gemfile with custom gems URI" do
+      settings.with! settings.minimize.merge(gems_uri: "https://gems.io")
+      builder.call
+
+      expect(gemfile_path.read).to eq(<<~CONTENT)
+        ruby file: ".ruby-version"
+
+        source "https://gems.io"
+
+      CONTENT
+    end
+
     it "builds Gemfile with Amazing Print only" do
       settings.with! settings.minimize.with(build_amazing_print: true)
       builder.call
@@ -32,6 +44,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :tools do
           gem "amazing_print", "~> 2.0"
@@ -61,6 +74,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
+
         group :quality do
           gem "caliber", "~> 0.82"
         end
@@ -75,6 +89,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :tools do
           gem "debug", "~> 1.11"
@@ -91,6 +106,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
+
         group :quality do
           gem "git-lint", "~> 9.0"
         end
@@ -105,6 +121,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :tools do
           gem "irb-kit", "~> 1.1"
@@ -134,6 +151,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
+
         group :development do
           gem "rake", "~> 13.3"
         end
@@ -148,6 +166,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :quality do
           gem "reek", "~> 6.5", require: false
@@ -177,6 +196,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
+
         group :test do
           gem "rspec", "~> 3.13"
         end
@@ -192,6 +212,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
+
         group :tools do
           gem "repl_type_completor", "~> 0.1"
         end
@@ -206,6 +227,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :quality do
           gem "simplecov", "~> 0.22", require: false
@@ -234,6 +256,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
         ruby file: ".ruby-version"
 
         source "https://rubygems.org"
+
 
         group :development do
           gem "tocer", "~> 18.7"
