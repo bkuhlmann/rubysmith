@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "refinements", "~> 13.6"
   spec.add_dependency "rubocop", "~> 1.77"
   spec.add_dependency "runcom", "~> 12.0"
-  spec.add_dependency "sod", "~> 1.0"
+  spec.add_dependency "sod", "~> 1.5"
   spec.add_dependency "spek", "~> 4.0"
   spec.add_dependency "tocer", "~> 19.0"
   spec.add_dependency "tone", "~> 2.0"
