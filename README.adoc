@@ -3,7 +3,6 @@
 :figure-caption!:
 
 :bundler_inline_link: link:https://alchemists.io/articles/ruby_bundler_inline[Bundler Inline]
-:docker_alpine_ruby_link: link:https://alchemists.io/projects/docker-alpine-ruby[Docker Alpine Ruby]
 :docker_link: link:https://www.docker.com[Docker]
 :gemsmith_link: link:https://alchemists.io/projects/gemsmith[Gemsmith]
 :runcom_link: link:https://alchemists.io/projects/runcom[Runcom]
@@ -216,21 +215,6 @@ The `--docker` option allows you add {docker_link} to your project so you can bu
 ├── Dockerfile        # Provides the production build configuration for your image.
 ....
 
-===== Development Containers
-
-⚠️ DEPRECATED: Will be removed in Version 9.0.0.
-
-The `--devcontainer` option allows you add {development_containers_link} support to your project so you can develop locally by running your project within a {docker_link} container. When enabled, these files will be added to your project:
-
-....
-├── .devcontainer
-│  ├── compose.yaml       # Your Docker Compose configuration.
-│  ├── devcontainer.json  # Your Developer Container configuration.
-│  └── Dockerfile         # The steps for building your development environment.
-....
-
-ℹ️ The `Dockerfile` uses the {docker_alpine_ruby_link} base image so you have a small but functional image. This base image can be easily be swapped out with a base image you prefer.
-
 ===== Funding
 
 The `--funding` option allows you add a link:https://github.com[GitHub] funding configuration to
@@ -395,7 +379,6 @@ build:
   contributions: true
   dcoo: true
   debug: true
-  devcontainer: false
   docker: false
   funding: false
   git: true

@@ -14,7 +14,6 @@ build:
   contributions: true
   dcoo: true
   debug: true
-  devcontainer: false
   docker: false
   funding: false
   git: true

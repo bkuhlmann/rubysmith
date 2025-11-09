@@ -36,9 +36,6 @@ module Rubysmith
           Builders::RSpec::Context,
           Builders::RSpec::Helper,
           Builders::Caliber,
-          Builders::DevContainer::Dockerfile,
-          Builders::DevContainer::Compose,
-          Builders::DevContainer::Configuration,
           Builders::Docker::Build,
           Builders::Docker::Console,
           Builders::Docker::Entrypoint,
@@ -68,7 +65,6 @@ module Rubysmith
         on Actions::Contributions
         on Actions::DCOO
         on Actions::Debug
-        on Actions::DevContainer
         on Actions::Docker
         on Actions::Funding
         on Actions::Git

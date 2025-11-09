@@ -12,7 +12,6 @@ test
 --contributions
 --dcoo
 --debug
---devcontainer
 --docker
 --funding
 --git

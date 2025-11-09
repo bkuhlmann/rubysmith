@@ -25,7 +25,6 @@ module Rubysmith
       required(:build_contributions).filled :bool
       required(:build_dcoo).filled :bool
       required(:build_debug).filled :bool
-      required(:build_devcontainer).filled :bool
       required(:build_docker).filled :bool
       required(:build_funding).filled :bool
       required(:build_git).filled :bool
