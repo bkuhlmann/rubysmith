@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "pathname"
 require "refinements/array"
 require "refinements/string"
 require "refinements/struct"
