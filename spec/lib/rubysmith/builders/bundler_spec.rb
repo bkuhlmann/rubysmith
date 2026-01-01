@@ -259,7 +259,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
 
         group :development do
-          gem "tocer", "~> 18.7"
+          gem "tocer", "~> 20.0"
         end
       CONTENT
     end
@@ -329,7 +329,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :development do
             gem "rake", "~> 13.3"
-            gem "tocer", "~> 18.7"
+            gem "tocer", "~> 20.0"
           end
 
           group :test do
