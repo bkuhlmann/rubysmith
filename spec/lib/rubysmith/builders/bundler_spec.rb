@@ -25,7 +25,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
     end
 
     it "builds Gemfile with custom gems URI" do
-      settings.with! settings.minimize.merge(gems_uri: "https://gems.io")
+      settings.with! settings.minimize.with(gems_uri: "https://gems.io")
       builder.call
 
       expect(gemfile_path.read).to eq(<<~CONTENT)
@@ -183,7 +183,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "refinements", "~> 13.5"
+        gem "refinements", "~> 14.0"
       CONTENT
     end
 
@@ -273,7 +273,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 13.5"
+          gem "refinements", "~> 14.0"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
@@ -317,7 +317,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           gem "bootsnap", "~> 1.18"
           gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 13.5"
+          gem "refinements", "~> 14.0"
           gem "zeitwerk", "~> 2.7"
 
           group :quality do
