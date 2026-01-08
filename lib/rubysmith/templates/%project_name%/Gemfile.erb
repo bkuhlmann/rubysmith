@@ -17,7 +17,7 @@ source "<%= settings.gems_uri %>"
 
 group :quality do
   <% if settings.build_caliber %>
-    gem "caliber", "~> 0.82"
+    gem "caliber", "~> 0.87"
   <% end %>
   <% if settings.build_git && settings.build_git_lint %>
     gem "git-lint", "~> 10.0"
