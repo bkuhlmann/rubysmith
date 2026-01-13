@@ -4,18 +4,18 @@ require "refinements/pathname"
 
 module Rubysmith
   # Represents a pathway which has source start and destination end.
-  Pathway = Struct.new :start_root, :start_path, :end_root, keyword_init: true do
+  Pathway = Struct.new :start_root, :start_path, :end_root do
     using Refinements::Pathname
 
     # :reek:TooManyStatements
-    def initialize *arguments
+    def initialize(**)
       super
       each_pair { |key, value| self[key] = Pathname value }
       self[:start_path] = start_path.absolute? ? start_path : start_root.join(start_path)
       freeze
     end
 
-    def with(attributes) = self.class.new(to_h.merge(attributes))
+    def with(attributes) = self.class.new(**to_h, **attributes)
 
     def end_path = end_root.join(from_parent, start_path.basename)
 
