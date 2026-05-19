@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "spek", "~> 5.0"
   spec.add_dependency "tocer", "~> 20.0"
   spec.add_dependency "tone", "~> 3.0"
-  spec.add_dependency "zeitwerk", "~> 2.7"
+  spec.add_dependency "zeitwerk", "~> 2.8"
 
   spec.bindir = "exe"
   spec.executables << "rubysmith"
