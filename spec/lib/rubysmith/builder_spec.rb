@@ -348,7 +348,7 @@ RSpec.describe Rubysmith::Builder do
     context "when major failure" do
       it "logs information" do
         builder.run "bogus"
-        expect(logger.reread).to match(/No such file or director/)
+        expect(logger.reread).to include("No such file or directory")
       end
 
       it "answers self" do
