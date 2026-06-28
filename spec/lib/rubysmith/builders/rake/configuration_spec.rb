@@ -80,7 +80,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
         require "bundler/setup"
         require "rspec/core/rake_task"
 
-        RSpec::Core::RakeTask.new { |task| task.verbose = false }
+        RSpec::Core::RakeTask.new { it.verbose = false }
 
         desc "Run code quality checks"
         task quality: %i[]
@@ -122,7 +122,7 @@ RSpec.describe Rubysmith::Builders::Rake::Configuration do
 
           Git::Lint::Rake::Register.call
           Reek::Rake::Task.new
-          RSpec::Core::RakeTask.new { |task| task.verbose = false }
+          RSpec::Core::RakeTask.new { it.verbose = false }
           RuboCop::RakeTask.new
 
           desc "Run code quality checks"

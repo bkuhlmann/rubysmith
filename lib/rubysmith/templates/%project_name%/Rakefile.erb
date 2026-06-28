@@ -20,7 +20,7 @@ require "bundler/setup"
   Reek::Rake::Task.new
 <% end %>
 <% if settings.build_rspec %>
-  RSpec::Core::RakeTask.new { |task| task.verbose = false }
+  RSpec::Core::RakeTask.new { it.verbose = false }
 <% end %>
 <% if settings.build_caliber %>
   RuboCop::RakeTask.new
