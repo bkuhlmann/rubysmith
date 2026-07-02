@@ -3,13 +3,13 @@ ruby file: ".ruby-version"
 source "<%= settings.gems_uri %>"
 
 <% if settings.build_bootsnap %>
-  gem "bootsnap", "~> 1.18"
+  gem "bootsnap", "~> 1.24"
 <% end %>
 <% if settings.build_monads %>
-  gem "dry-monads", "~> 1.9"
+  gem "dry-monads", "~> 1.10"
 <% end %>
 <% if settings.build_refinements %>
-  gem "refinements", "~> 14.0"
+  gem "refinements", "~> 14.3"
 <% end %>
 <% if settings.build_zeitwerk %>
   gem "zeitwerk", "~> 2.8"
@@ -17,7 +17,7 @@ source "<%= settings.gems_uri %>"
 
 group :quality do
   <% if settings.build_caliber %>
-    gem "caliber", "~> 0.90"
+    gem "caliber", "~> 0.94"
   <% end %>
   <% if settings.build_git && settings.build_git_lint %>
     gem "git-lint", "~> 11.0"
@@ -35,7 +35,7 @@ group :development do
     gem "rake", "~> 13.4"
   <% end %>
   <% if settings.markdown? %>
-    gem "tocer", "~> 20.0"
+    gem "tocer", "~> 20.3"
   <% end %>
 end
 
@@ -53,7 +53,7 @@ group :tools do
     gem "debug", "~> 1.11"
   <% end %>
   <% if settings.build_irb_kit %>
-    gem "irb-kit", "~> 2.0"
+    gem "irb-kit", "~> 2.2"
   <% end %>
   <% if settings.build_rtc %>
     gem "repl_type_completor", "~> 0.1"

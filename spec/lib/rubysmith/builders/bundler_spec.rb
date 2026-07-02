@@ -61,7 +61,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "bootsnap", "~> 1.18"
+        gem "bootsnap", "~> 1.24"
       CONTENT
     end
 
@@ -76,7 +76,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
 
         group :quality do
-          gem "caliber", "~> 0.90"
+          gem "caliber", "~> 0.94"
         end
       CONTENT
     end
@@ -124,7 +124,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
 
         group :tools do
-          gem "irb-kit", "~> 2.0"
+          gem "irb-kit", "~> 2.2"
         end
       CONTENT
     end
@@ -138,7 +138,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "dry-monads", "~> 1.9"
+        gem "dry-monads", "~> 1.10"
       CONTENT
     end
 
@@ -183,7 +183,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "refinements", "~> 14.0"
+        gem "refinements", "~> 14.3"
       CONTENT
     end
 
@@ -259,7 +259,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
 
         group :development do
-          gem "tocer", "~> 20.0"
+          gem "tocer", "~> 20.3"
         end
       CONTENT
     end
@@ -271,13 +271,13 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "bootsnap", "~> 1.18"
-          gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 14.0"
+          gem "bootsnap", "~> 1.24"
+          gem "dry-monads", "~> 1.10"
+          gem "refinements", "~> 14.3"
           gem "zeitwerk", "~> 2.8"
 
           group :quality do
-            gem "caliber", "~> 0.90"
+            gem "caliber", "~> 0.94"
             gem "git-lint", "~> 11.0"
             gem "reek", "~> 6.5", require: false
             gem "simplecov", "~> 0.22", require: false
@@ -294,7 +294,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 2.0"
             gem "debug", "~> 1.11"
-            gem "irb-kit", "~> 2.0"
+            gem "irb-kit", "~> 2.2"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
@@ -315,13 +315,13 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           source "https://rubygems.org"
 
-          gem "bootsnap", "~> 1.18"
-          gem "dry-monads", "~> 1.9"
-          gem "refinements", "~> 14.0"
+          gem "bootsnap", "~> 1.24"
+          gem "dry-monads", "~> 1.10"
+          gem "refinements", "~> 14.3"
           gem "zeitwerk", "~> 2.8"
 
           group :quality do
-            gem "caliber", "~> 0.90"
+            gem "caliber", "~> 0.94"
             gem "git-lint", "~> 11.0"
             gem "reek", "~> 6.5", require: false
             gem "simplecov", "~> 0.22", require: false
@@ -329,7 +329,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
           group :development do
             gem "rake", "~> 13.4"
-            gem "tocer", "~> 20.0"
+            gem "tocer", "~> 20.3"
           end
 
           group :test do
@@ -339,7 +339,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           group :tools do
             gem "amazing_print", "~> 2.0"
             gem "debug", "~> 1.11"
-            gem "irb-kit", "~> 2.0"
+            gem "irb-kit", "~> 2.2"
             gem "repl_type_completor", "~> 0.1"
           end
         CONTENT
