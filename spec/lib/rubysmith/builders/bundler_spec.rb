@@ -138,7 +138,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
 
         source "https://rubygems.org"
 
-        gem "dry-monads", "~> 1.10"
+        gem "dry-monads", "~> 1.11"
       CONTENT
     end
 
@@ -272,7 +272,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "bootsnap", "~> 1.24"
-          gem "dry-monads", "~> 1.10"
+          gem "dry-monads", "~> 1.11"
           gem "refinements", "~> 14.3"
           gem "zeitwerk", "~> 2.8"
 
@@ -316,7 +316,7 @@ RSpec.describe Rubysmith::Builders::Bundler do
           source "https://rubygems.org"
 
           gem "bootsnap", "~> 1.24"
-          gem "dry-monads", "~> 1.10"
+          gem "dry-monads", "~> 1.11"
           gem "refinements", "~> 14.3"
           gem "zeitwerk", "~> 2.8"
 
