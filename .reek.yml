@@ -11,3 +11,5 @@ detectors:
   TooManyStatements:
     exclude:
       - "Rubysmith::CLI::Shell#cli"
+  UnusedParameters:
+    enabled: false

@@ -26,6 +26,8 @@ RSpec.describe Rubysmith::Builders::Reek do
           detectors:
             LongParameterList:
               enabled: false
+            UnusedParameters:
+              enabled: false
         CONTENT
       end
 
