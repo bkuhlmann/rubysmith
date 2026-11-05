@@ -8,8 +8,6 @@ module Rubysmith
     module Commands
       # Stores table of contents root path.
       class Build < Sod::Command
-        include Dependencies[:settings, :kernel, :logger]
-
         # Order is important.
         BUILDERS = [
           Builders::Init,
@@ -48,6 +46,8 @@ module Rubysmith
           Extensions::Rubocop,
           Builders::Git::Commit
         ].freeze
+
+        include Dependencies[:settings, :kernel, :logger]
 
         handle "build"
 

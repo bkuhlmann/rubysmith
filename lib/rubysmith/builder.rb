@@ -7,11 +7,11 @@ module Rubysmith
   # :reek:DataClump
   # Provides common functionality necessary for all builders.
   class Builder
+    HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, executor: Open3}.freeze
+
     include Dependencies[:logger]
 
     using Refinements::Pathname
-
-    HELPERS = {inserter: Text::Inserter, renderer: Renderers::ERB, executor: Open3}.freeze
 
     def initialize(settings, helpers: HELPERS, **)
       @settings = settings

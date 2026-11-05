@@ -7,10 +7,6 @@ module Rubysmith
   module Extensions
     # Ensures project skeleton has pragmas.
     class Pragmater
-      include Dependencies[:settings, :logger]
-
-      using Refinements::Pathname
-
       CLIENT = ::Pragmater::Inserter.new(
         settings: ::Pragmater::Configuration::Model[
           comments: ["# frozen_string_literal: true"],
@@ -30,6 +26,10 @@ module Rubysmith
           ]
         ]
       ).freeze
+
+      include Dependencies[:settings, :logger]
+
+      using Refinements::Pathname
 
       def initialize(client: CLIENT, **)
         @client = client
